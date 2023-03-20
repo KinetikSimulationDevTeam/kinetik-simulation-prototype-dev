@@ -1,38 +1,183 @@
 .App {
   text-align: center;
+  background-color: #CED3E2;
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#mainFrameLayout {
+  display: grid;
+  grid-template-columns: 25vw 33vw 30vw;
+  grid-auto-rows: minmax(100px, auto);
+  column-gap: 3em;
+  margin: 1em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#upload-module-layout {
   display: flex;
   flex-direction: column;
+  border-radius: 5%;
+  background-color: white;
+  width: 25vw;
+  height: 40vh;
+  padding: 0 1em 1em 1em;
+}
+
+#upload-input-file {
+  display: flex;
+  flex-direction: row;
+}
+
+#form-file-upload {
+  height: 16rem;
+  width: 28rem;
+  max-width: 50%;
+  height: 30vh;
+  text-align: center;
+  position: relative;
+}
+
+#input-file-upload {
+  display: none;
+}
+
+#label-file-upload {
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-width: 2px;
+  border-radius: 1rem;
+  border-style: dashed;
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
 }
 
-.App-link {
-  color: #61dafb;
+#label-file-upload.drag-active {
+  background-color: #ffffff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.upload-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  background-color: transparent;
+}
+
+.upload-button:hover {
+  text-decoration-line: underline;
+}
+
+#drag-file-element {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.title {
+  text-align: left;
+}
+
+#upload-module-input-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#uploadModuleFileName {
+  max-width: 200px;
+  text-align: left;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+#upload-module-select-layout {
+  display: flex;
+  flex-direction: column;
+  justify-items: left;
+  padding-right: 10px;
+}
+
+#simulation-module-layout {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  background-color: white;
+  width: 33vw;
+  height: 50vh;
+  padding: 0 1em 1em 1em;
+}
+
+#new-ops-module-layout {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  background-color: white;
+  width: 30vw;
+  height: 55vh;
+  padding: 0 1em 1em 1em;
+}
+
+#scenario-module-layout {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  background-color: white;
+  width: 25vw;
+  height: 55vh;
+  padding: 0 1em 1em 1em;
+}
+
+.customSlider {
+  /* max width of your slider */
+  width: 300px;
+  height: 10px;
+  /* Optional: Only If you want to center your slider in the page */
+  margin: auto;
+}
+
+.customSlider-track {
+  /* Top value to align your track to the center of your thumb */
+  top: 8px;
+  /* thickness of the track */
+  height: 4px;
+ /* default color of your track */
+  background: #ddd;
+}
+
+.customSlider-track.customSlider-track-0 {
+  /* color of the track before the thumb */
+  background: rgb(104, 117, 217);
+}
+
+.customSlider-thumb {
+  cursor: pointer;
+  /*color for the thumb */
+  background: rgb(104, 117, 217);
+  /* shape of the thumb: circle */
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  /* remove default outline when selected */
+  outline: none;
+}
+
+.customSlider-thumb:hover {
+  box-shadow: 0 0 0 8px rgb(104, 117, 217, 0.2);
+}
+
+.customSlider-mark {
+  cursor: pointer;
+  top: 6px;
+  width: 1.5px;
+  height: 8px;
+  background-color: #aaaaaa;
 }
