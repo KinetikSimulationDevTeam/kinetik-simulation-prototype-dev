@@ -19,7 +19,7 @@
   border-radius: 5%;
   background-color: white;
   width: 25vw;
-  height: 40vh;
+  height: 300px;
   padding: 0 1em 1em 1em;
 }
 
@@ -32,7 +32,7 @@
   height: 16rem;
   width: 28rem;
   max-width: 50%;
-  height: 30vh;
+  height: 210px;
   text-align: center;
   position: relative;
 }
@@ -112,7 +112,7 @@
   border-radius: 5%;
   background-color: white;
   width: 33vw;
-  height: 50vh;
+  height: 400px;
   padding: 0 1em 1em 1em;
 }
 
@@ -180,4 +180,8 @@
   width: 1.5px;
   height: 8px;
   background-color: #aaaaaa;
+}
+
+#simulation-bar-chart {
+  height: 270px;
 }

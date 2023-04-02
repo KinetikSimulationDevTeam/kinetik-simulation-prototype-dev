@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UploadImg from '../Images/UploadImg.png'
-import fs, { readFileSync } from 'fs'
+import Papa from 'papaparse'
+
 
 // drag drop file component
 function DragDropFile({onAction}) {
@@ -8,6 +9,14 @@ function DragDropFile({onAction}) {
     const [dragActive, setDragActive] = useState(false);
     // ref
     const inputRef = React.useRef(null);
+
+    // This state will store the parsed data
+    const [data, setData] = useState([]);
+
+    // It will store the file uploaded by the user
+    const [file, setFile] = useState("");
+
+    const fileReader = new FileReader();
     
     // handle drag events
     const handleDrag = function(e) {
@@ -20,6 +29,8 @@ function DragDropFile({onAction}) {
       } else if (e.type === "dragleave") {
         setDragActive(false);
       }
+      onAction(e.dataTransfer.files[0].name);
+      setFile(e.target.files[0]);
     };
     
     // triggers when file is dropped
@@ -30,8 +41,7 @@ function DragDropFile({onAction}) {
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
         alert(`Selected file - ${e.dataTransfer.files[0].name}`);
         onAction(e.dataTransfer.files[0].name);
-        convertFile(e.convertFile.files)
-        // handleFiles(e.dataTransfer.files);
+        setFile(e.target.files[0]);
       }
     };
     
@@ -40,9 +50,8 @@ function DragDropFile({onAction}) {
       e.preventDefault();
       if (e.target.files && e.target.files[0]) {
         alert(`Selected file - ${e.target.files[0].name}`);
+        setFile(e.target.files[0]);
         onAction(e.target.files[0].name);
-        convertFile(e.target.files)
-        // handleFiles(e.target.files);
       }
     };
     
@@ -51,17 +60,97 @@ function DragDropFile({onAction}) {
       inputRef.current.click();
     };
 
+    const handleOnSubmit = (e) => {
+      e.preventDefault();
+  
+      if (file) {
+        fileReader.onload = function (event) {
+          const text = event.target.result;
+          console.log(event);
+          console.log(event.target.result);
+          csvFileToArray(text);
+        };
+  
+        fileReader.readAsText(file);
+      }
+    };
+
     // reading the file and converting into Json
-    const convertFile = (file) => {
-      var csv = readFileSync(file)
-      // convert the data to string and aplit in array
-      var array = csv.toString().split("\r")
-      console.log(array)
+    const csvFileToArray = string => {
+      let array = string.toString().split("\n");
+      let sources = array[0].split(",");
+      let stages = array[1].split(",");
+      let newOpsProbabilities = array[4].split(",");
+      let mean = [];
+      let std = [];
+      let opsProbabilities = [];
+      let ops = [];
+
+      for(let i = 0; i < sources.length; i++){
+        sources[i] = sources[i].toString().trim();
+        if(sources[i] === ""){
+          sources = sources.slice(1, i);
+          break;
+        } 
+        if(i === sources.length - 1){
+          sources = sources.slice(1,sources.length);
+        }
+      }
+
+      for(let i = 0; i < stages.length; i++){
+        stages[i] = stages[i].toString().trim();
+        newOpsProbabilities[i] = parseFloat(newOpsProbabilities[i].toString().trim());
+        if(stages[i] === "" ){
+          stages = stages.slice(1, i);
+          newOpsProbabilities = newOpsProbabilities.slice(1, i);
+          break;
+        } 
+        if(i === stages.length - 1){
+          stages = stages.slice(1,stages.length);
+          newOpsProbabilities = newOpsProbabilities.slice(1,newOpsProbabilities.length);
+        }
+      }
+
+      for(let i = 0; i < sources.length; i++){
+        mean[i] = parseFloat(array[7 + i].split(",")[1]);
+        std[i] = parseFloat(array[7 + i].split(",")[2]);
+      }
+
+      for(let i = 0; i < stages.length; i++){
+        console.log(array[9 + sources.length + i])
+        opsProbabilities[i] = array[9 + sources.length + i].split(",");
+
+        for(let j = 0; j < stages.length + 1; j++) {
+          opsProbabilities[i][j] = parseFloat(opsProbabilities[i][j].trim());
+        }
+        opsProbabilities[i] = opsProbabilities[i].slice(1, stages.length + 1);
+      }
+
+      ops = array[11 + sources.length + stages.length].split(",").slice(1, stages.length + 1);
+
+      for(let i = 0; i < stages.length; i++){
+        ops[i] = parseFloat(ops[i]);
+      }
+
+      
+      console.log(sources);
+      console.log(stages);
+      console.log(newOpsProbabilities);
+      console.log(mean);
+      console.log(std);
+      console.log(opsProbabilities);
+      console.log(ops);
+      let data = [];
+      for(const r of array){
+        let row = r.toString().split(",");
+        data.push(row);
+      }
+      console.log(data);
     }
     
     return (
       <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
-        <input ref={inputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+        <input ref={inputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} accept=".csv"/>
         <label id="label-file-upload" htmlFor="input-file-upload" className={dragActive ? "drag-active" : "" }>
           <div>
             <img src={UploadImg} width="50" height="50" alt="" />
@@ -69,6 +158,12 @@ function DragDropFile({onAction}) {
             <button className="upload-button" onClick={onButtonClick}>Upload a file</button>
           </div> 
         </label>
+        <button
+          onClick={(e) => {
+            handleOnSubmit(e);
+          }}>
+             IMPORT CSV
+        </button>
         { dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
       </form>
     );
