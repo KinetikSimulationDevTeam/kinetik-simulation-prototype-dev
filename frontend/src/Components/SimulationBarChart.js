@@ -73,7 +73,7 @@ const MyResponsiveBar = ({ data }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'food',
+            legend: 'Opportunities',
             legendPosition: 'middle',
             legendOffset: -40
         }}
