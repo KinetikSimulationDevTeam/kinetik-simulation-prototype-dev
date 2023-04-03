@@ -55,6 +55,9 @@ const MyResponsiveBar = ({ data }) => (
                 ]
             ]
         }}
+        minValue={0}
+        maxValue={100}
+        enableGridX={true}
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -66,6 +69,7 @@ const MyResponsiveBar = ({ data }) => (
             legendOffset: 32
         }}
         axisLeft={{
+            minValue: 100,
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,

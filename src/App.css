@@ -111,7 +111,7 @@
   flex-direction: column;
   border-radius: 5%;
   background-color: white;
-  width: 33vw;
+  width: 66vw;
   height: 400px;
   padding: 0 1em 1em 1em;
 }
@@ -183,5 +183,6 @@
 }
 
 #simulation-bar-chart {
-  height: 270px;
+  display: flex;
+  height: 250px;
 }

@@ -66,8 +66,6 @@ function DragDropFile({onAction}) {
       if (file) {
         fileReader.onload = function (event) {
           const text = event.target.result;
-          console.log(event);
-          console.log(event.target.result);
           csvFileToArray(text);
         };
   
@@ -140,12 +138,6 @@ function DragDropFile({onAction}) {
       console.log(std);
       console.log(opsProbabilities);
       console.log(ops);
-      let data = [];
-      for(const r of array){
-        let row = r.toString().split(",");
-        data.push(row);
-      }
-      console.log(data);
     }
     
     return (

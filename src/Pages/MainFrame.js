@@ -9,7 +9,6 @@ const MainFrame = () => {
     <div id='mainFrameLayout'>
       <UploadModule />
       <SimulationModule />
-      <NewOpsModule />
     </div>
   )
 }
