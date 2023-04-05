@@ -142,23 +142,22 @@ function DragDropFile({onAction}) {
       };
       const jsonString = JSON.stringify(jsonData);
       setJsonInput(jsonString);
-      console.log(jsonString);
-      callLambdaFunction();
+      callLambdaFunction(jsonString);
 
-      console.log(jsonString);
-      console.log(sources);
-      console.log(stages);
-      console.log(newOpsProbabilities);
-      console.log(mean);
-      console.log(std);
-      console.log(opsProbabilities);
-      console.log(ops);
+      console.log(jsonInput);
+      // console.log(sources);
+      // console.log(stages);
+      // console.log(newOpsProbabilities);
+      // console.log(mean);
+      // console.log(std);
+      // console.log(opsProbabilities);
+      // console.log(ops);
     }
 
-    const callLambdaFunction = async () => {
+    const callLambdaFunction = async (input) => {
       try {
         const response = await API.post('getSimulationOutput', '/simulation',{
-          body: jsonInput
+          body: input
       });
         console.log(response.body);
       } catch (error) {

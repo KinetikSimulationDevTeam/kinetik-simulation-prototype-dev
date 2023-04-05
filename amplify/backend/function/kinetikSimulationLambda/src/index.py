@@ -1,10 +1,16 @@
-import json, numpy
+import json
+import numpy
 
 def handler(event, context):
     print('received event:')
     print(event)
 
-    body = json.loads(event["body"])
+    eventBody = event['body']
+    print(eventBody)
+    print(type(eventBody))
+    body = json.loads(json.loads(eventBody))
+    print(body)
+    print(type(body))
 
     data = [[{} for i in range(len(body['stages']))]
                                for j in range(body['weeks'])]
@@ -41,11 +47,11 @@ def handler(event, context):
             data[i][j]["Stage"] = body['stages'][j]
             data[i][j]["values"] = output[j]
 
-        response = {
-            "statusCode": 200,
-            "headers": {},
-            "body": json.dumps(data),
-            "isBase64Encoded": False
-        }
+    response = {
+        "statusCode": 200,
+        "headers": {},
+        "body": json.dumps(data),
+        "isBase64Encoded": False
+    }
 
     return response
