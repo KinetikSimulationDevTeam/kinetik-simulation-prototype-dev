@@ -4,30 +4,32 @@ def handler(event, context):
     print('received event:')
     print(event)
 
-    data = [[{} for i in range(len(event['stages']))]
-                               for j in range(event['weeks'])]
+    body = json.loads(event["body"])
 
-    for i in range(event['weeks']):
+    data = [[{} for i in range(len(body['stages']))]
+                               for j in range(body['weeks'])]
 
-        output = [0 for j in range(len(event['stages']))]
+    for i in range(body['weeks']):
+
+        output = [0 for j in range(len(body['stages']))]
 
         # total new opportunities coming in
         # uses normal distribution for each source and adds to total opportunities
         newOpsTotal = 0.0
-        for j in range(len(event['sources'])):
-            newOpsTotal = newOpsTotal + 5
+        for j in range(len(body['sources'])):
+            newOpsTotal = newOpsTotal + numpy.random.normal(body['means'][j], body['stds'][j])
 
         # new opportunities distributed to each stage (need to calculate using normal dist)
         # Order: Engage, Qualify, Design, Propose, Negotiate, Closing, Win, Loss
-        newOps = [j * newOpsTotal for j in event['newOpsProbabilities']]
+        newOps = [j * newOpsTotal for j in body['newOpsProbabilities']]
 
         # movement from each stage to each other stage
         # Order: Engage, Qualify, Design, Propose, Negotiate, Closing, Win, Loss
-        movementFromStages = [0 for j in range(len(event['stages']))]
+        movementFromStages = [0 for j in range(len(body['stages']))]
 
-        for j in range(len(event['stages'])):
-            movementForCurrentStage = [k * event['ops'][j]
-                for k in event['opsProbabilities'][j]]
+        for j in range(len(body['stages'])):
+            movementForCurrentStage = [k * body['ops'][j]
+                for k in body['opsProbabilities'][j]]
             movementFromStages[j] = movementForCurrentStage
 
         # new totals (update output list with new totals for each stage)
@@ -35,8 +37,8 @@ def handler(event, context):
             output[j] = newOps[j] + sum(movementFromStages[k][j]
                                             for k in range(len(movementFromStages)))
 
-        for j in range(len(event['stages'])):
-            data[i][j]["Stage"] = event['stages'][j]
+        for j in range(len(body['stages'])):
+            data[i][j]["Stage"] = body['stages'][j]
             data[i][j]["values"] = output[j]
 
         response = {

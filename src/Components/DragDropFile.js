@@ -142,6 +142,7 @@ function DragDropFile({onAction}) {
       };
       const jsonString = JSON.stringify(jsonData);
       setJsonInput(jsonString);
+      console.log(jsonString);
       callLambdaFunction();
 
       console.log(jsonString);
@@ -156,9 +157,9 @@ function DragDropFile({onAction}) {
 
     const callLambdaFunction = async () => {
       try {
-        const response = await API.post('getSimulationOutput', '/simulation', {
+        const response = await API.post('getSimulationOutput', '/simulation',{
           body: jsonInput
-        });
+      });
         console.log(response.body);
       } catch (error) {
         console.error(error);
