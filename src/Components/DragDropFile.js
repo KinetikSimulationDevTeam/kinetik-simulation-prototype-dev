@@ -159,7 +159,7 @@ function DragDropFile({onAction}) {
         const response = await API.post('getSimulationOutput', '/simulation', {
           body: jsonInput
         });
-        console.log(response);
+        console.log(response.body);
       } catch (error) {
         console.error(error);
       }

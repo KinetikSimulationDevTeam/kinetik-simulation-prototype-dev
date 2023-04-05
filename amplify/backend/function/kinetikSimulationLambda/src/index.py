@@ -1,6 +1,5 @@
 import json, numpy
 
-
 def handler(event, context):
     print('received event:')
     print(event)
@@ -16,7 +15,7 @@ def handler(event, context):
         # uses normal distribution for each source and adds to total opportunities
         newOpsTotal = 0.0
         for j in range(len(event['sources'])):
-            newOpsTotal = newOpsTotal  + numpy.random.normal(event['means'][j], event['stds'][j])
+            newOpsTotal = newOpsTotal + 5
 
         # new opportunities distributed to each stage (need to calculate using normal dist)
         # Order: Engage, Qualify, Design, Propose, Negotiate, Closing, Win, Loss
@@ -40,4 +39,11 @@ def handler(event, context):
             data[i][j]["Stage"] = event['stages'][j]
             data[i][j]["values"] = output[j]
 
-    return data
+        response = {
+            "statusCode": 200,
+            "headers": {},
+            "body": json.dumps(data),
+            "isBase64Encoded": False
+        }
+
+    return response
