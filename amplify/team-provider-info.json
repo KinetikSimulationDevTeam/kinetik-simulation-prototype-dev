@@ -10,6 +10,11 @@
       "StackName": "amplify-kinetikdashboard-dev-201114",
       "StackId": "arn:aws:cloudformation:us-east-1:651824410532:stack/amplify-kinetikdashboard-dev-201114/61f103f0-d346-11ed-a5f9-0a5771deb1cf",
       "AmplifyAppId": "d2bkww882j30jj"
+    },
+    "categories": {
+      "function": {
+        "kinetikSimulationLambda": {}
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import UploadImg from '../Images/UploadImg.png'
-import Papa from 'papaparse'
+import { API } from 'aws-amplify';
 
 
 // drag drop file component
@@ -11,7 +11,7 @@ function DragDropFile({onAction}) {
     const inputRef = React.useRef(null);
 
     // This state will store the parsed data
-    const [data, setData] = useState([]);
+    const [jsonInput, setJsonInput] = useState([]);
 
     // It will store the file uploaded by the user
     const [file, setFile] = useState("");
@@ -130,7 +130,21 @@ function DragDropFile({onAction}) {
         ops[i] = parseFloat(ops[i]);
       }
 
-      
+      const jsonData = {
+        weeks: 52,
+        stages: stages,
+        sources: sources,
+        ops: ops,
+        means: mean,
+        stds: std,
+        newOpsProbabilities: newOpsProbabilities,
+        opsProbabilities: opsProbabilities,
+      };
+      const jsonString = JSON.stringify(jsonData);
+      setJsonInput(jsonString);
+      callLambdaFunction();
+
+      console.log(jsonString);
       console.log(sources);
       console.log(stages);
       console.log(newOpsProbabilities);
@@ -139,6 +153,17 @@ function DragDropFile({onAction}) {
       console.log(opsProbabilities);
       console.log(ops);
     }
+
+    const callLambdaFunction = async () => {
+      try {
+        const response = await API.post('getSimulationOutput', '/simulation', {
+          body: jsonInput
+        });
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     
     return (
       <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
