@@ -131,7 +131,7 @@ function DragDropFile({onAction}) {
       }
 
       const jsonData = {
-        weeks: 52,
+        weeks: 10,
         stages: stages,
         sources: sources,
         ops: ops,
