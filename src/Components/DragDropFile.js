@@ -10,8 +10,8 @@ function DragDropFile({onAction}) {
     // ref
     const inputRef = React.useRef(null);
 
-    // This state will store the parsed data
-    const [jsonInput, setJsonInput] = useState([]);
+    // This state will store the response from the lambda function
+    const [lambdaOutput, setLambdaOutput] = useState();
 
     // It will store the file uploaded by the user
     const [file, setFile] = useState("");
@@ -115,7 +115,6 @@ function DragDropFile({onAction}) {
       }
 
       for(let i = 0; i < stages.length; i++){
-        console.log(array[9 + sources.length + i])
         opsProbabilities[i] = array[9 + sources.length + i].split(",");
 
         for(let j = 0; j < stages.length + 1; j++) {
@@ -141,17 +140,7 @@ function DragDropFile({onAction}) {
         opsProbabilities: opsProbabilities,
       };
       const jsonString = JSON.stringify(jsonData);
-      setJsonInput(jsonString);
       callLambdaFunction(jsonString);
-
-      console.log(jsonInput);
-      // console.log(sources);
-      // console.log(stages);
-      // console.log(newOpsProbabilities);
-      // console.log(mean);
-      // console.log(std);
-      // console.log(opsProbabilities);
-      // console.log(ops);
     }
 
     const callLambdaFunction = async (input) => {
@@ -159,7 +148,13 @@ function DragDropFile({onAction}) {
         const response = await API.post('getSimulationOutput', '/simulation',{
           body: input
       });
-        console.log(response.body);
+        console.log("Lambda Function Input Sent");
+        console.log(response);
+
+        // Set the state of lambdaOutput with the response
+        setLambdaOutput(response);
+        console.log(lambdaOutput[0]);
+        console.log("Lambda Function Result Received");
       } catch (error) {
         console.error(error);
       }
