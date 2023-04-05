@@ -1,4 +1,4 @@
-import json
+import json, numpy
 
 
 def handler(event, context):
@@ -16,7 +16,7 @@ def handler(event, context):
         # uses normal distribution for each source and adds to total opportunities
         newOpsTotal = 0.0
         for j in range(len(event['sources'])):
-            newOpsTotal = newOpsTotal + 5
+            newOpsTotal = newOpsTotal  + numpy.random.normal(event['means'][j], event['stds'][j])
 
         # new opportunities distributed to each stage (need to calculate using normal dist)
         # Order: Engage, Qualify, Design, Propose, Negotiate, Closing, Win, Loss
