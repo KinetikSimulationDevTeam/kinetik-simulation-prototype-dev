@@ -12,6 +12,7 @@ const MyResponsiveBar = ({ data }) => (
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
         colors={{ scheme: 'nivo' }}
+        colorBy='indexValue'
         defs={[
             {
                 id: 'dots',
@@ -63,7 +64,7 @@ const MyResponsiveBar = ({ data }) => (
         axisBottom={{
             tickSize: 5,
             tickPadding: 5,
-            tickRotation: 0,
+            tickRotation: -15,
             legend: 'Stage',
             legendPosition: 'middle',
             legendOffset: 32

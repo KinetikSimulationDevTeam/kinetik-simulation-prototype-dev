@@ -37,10 +37,15 @@ const SimulationModule = ({ lambdaOutput }) => {
 
   return (
     <div id='simulation-module-layout'>
-      <h3 className='title'> Simulation/History </h3>
+      <div id='simulation-title'>
+        <h3 className='title'> Simulation/History </h3>
+        <h4> Week {currentIndex + 1} </h4>
+      </div>
       <div>
         <div id='simulation-bar-chart'>
-          <MyResponsiveBar data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0: data[0].length - 2)} />
+          <div id='simulation-bar-chart-left'>
+            <MyResponsiveBar data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0: data[0].length - 2)} />
+          </div>
           <MyResponsiveBar data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
         </div>
         <button onClick={togglePlay}>
