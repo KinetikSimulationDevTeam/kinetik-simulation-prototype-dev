@@ -14,6 +14,8 @@ def handler(event, context):
 
     data = [[{} for i in range(len(body['stages']))]
                                for j in range(body['weeks'])]
+    
+    currentNumber = body["ops"]
 
     for i in range(body['weeks']):
 
@@ -34,7 +36,7 @@ def handler(event, context):
         movementFromStages = [0 for j in range(len(body['stages']))]
 
         for j in range(len(body['stages'])):
-            movementForCurrentStage = [k * body['ops'][j]
+            movementForCurrentStage = [k * currentNumber[j]
                 for k in body['opsProbabilities'][j]]
             movementFromStages[j] = movementForCurrentStage
 
@@ -46,6 +48,8 @@ def handler(event, context):
         for j in range(len(body['stages'])):
             data[i][j]["Stage"] = body['stages'][j]
             data[i][j]["values"] = round(output[j], 1)
+        
+        currentNumber = output
 
     response = {
         "statusCode": 200,

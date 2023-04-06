@@ -48,7 +48,7 @@ const SimulationModule = ({ lambdaOutput }) => {
           </div>
           <MyResponsiveBar data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
         </div>
-        <button onClick={togglePlay}>
+        <button className='button' onClick={togglePlay}>
           {isPlaying ? 'Pause' : 'Play'}
         </button>
         <ReactSlider
