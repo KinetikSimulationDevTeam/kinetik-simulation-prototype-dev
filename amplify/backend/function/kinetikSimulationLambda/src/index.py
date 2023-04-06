@@ -45,7 +45,7 @@ def handler(event, context):
 
         for j in range(len(body['stages'])):
             data[i][j]["Stage"] = body['stages'][j]
-            data[i][j]["values"] = output[j]
+            data[i][j]["values"] = round(output[j], 1)
 
     response = {
         "statusCode": 200,

@@ -130,7 +130,7 @@ function DragDropFile(props) {
       }
 
       const jsonData = {
-        weeks: 10,
+        weeks: Number(props.timePeriod),
         stages: stages,
         sources: sources,
         ops: ops,
@@ -174,7 +174,7 @@ function DragDropFile(props) {
           onClick={(e) => {
             handleOnSubmit(e);
           }}>
-             IMPORT CSV
+             Start Simulation
         </button>
         { dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
       </form>
