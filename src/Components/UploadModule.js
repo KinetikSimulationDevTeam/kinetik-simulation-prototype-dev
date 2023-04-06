@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DragDropFile from './DragDropFile'
 
-const UploadModule = () => {
+const UploadModule = ({ handleLambdaOutput }) => {
   //uploaded file name
   const [fileName, setFileName] = useState();
 
@@ -23,7 +23,7 @@ const UploadModule = () => {
           <h5 className='title'>File Name: </h5>
           <h5 id='uploadModuleFileName'> {fileName} </h5>
         </div>
-        <DragDropFile onAction={file} />
+        <DragDropFile handleLambdaOutput={handleLambdaOutput} onAction={file} />
       </div>
     </div>
   )

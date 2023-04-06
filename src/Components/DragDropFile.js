@@ -4,17 +4,17 @@ import { API } from 'aws-amplify';
 
 
 // drag drop file component
-function DragDropFile({onAction}) {
+function DragDropFile(props) {
     // drag state
     const [dragActive, setDragActive] = useState(false);
     // ref
     const inputRef = React.useRef(null);
 
-    // This state will store the response from the lambda function
-    const [lambdaOutput, setLambdaOutput] = useState();
-
     // It will store the file uploaded by the user
     const [file, setFile] = useState("");
+
+    // This state will store the response from the lambda function
+    const [lambdaOutput, setLambdaOutput] = useState();
 
     const fileReader = new FileReader();
     
@@ -23,13 +23,13 @@ function DragDropFile({onAction}) {
       e.preventDefault();
       e.stopPropagation();
       alert(`Selected file - ${e.dataTransfer.files[0].name}`);
-      onAction(e.dataTransfer.files[0].name);
+      props.onAction(e.dataTransfer.files[0].name);
       if (e.type === "dragenter" || e.type === "dragover") {
         setDragActive(true);
       } else if (e.type === "dragleave") {
         setDragActive(false);
       }
-      onAction(e.dataTransfer.files[0].name);
+      props.onAction(e.dataTransfer.files[0].name);
       setFile(e.target.files[0]);
     };
     
@@ -40,7 +40,7 @@ function DragDropFile({onAction}) {
       setDragActive(false);
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
         alert(`Selected file - ${e.dataTransfer.files[0].name}`);
-        onAction(e.dataTransfer.files[0].name);
+        props.onAction(e.dataTransfer.files[0].name);
         setFile(e.target.files[0]);
       }
     };
@@ -51,7 +51,7 @@ function DragDropFile({onAction}) {
       if (e.target.files && e.target.files[0]) {
         alert(`Selected file - ${e.target.files[0].name}`);
         setFile(e.target.files[0]);
-        onAction(e.target.files[0].name);
+        props.onAction(e.target.files[0].name);
       }
     };
     
@@ -152,8 +152,8 @@ function DragDropFile({onAction}) {
         console.log(response);
 
         // Set the state of lambdaOutput with the response
-        setLambdaOutput(response);
-        console.log(lambdaOutput[0]);
+        setLambdaOutput(response === undefined ? response[0] : response);
+        props.handleLambdaOutput(response === undefined ? response[0] : response);
         console.log("Lambda Function Result Received");
       } catch (error) {
         console.error(error);
