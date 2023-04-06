@@ -20,7 +20,7 @@ const SimulationModule = ({ lambdaOutput }) => {
           setCurrentIndex(0);
           setSliderValue(0);
         }
-      }, 1000);
+      }, 200);
     }
 
     return () => clearInterval(timer);
