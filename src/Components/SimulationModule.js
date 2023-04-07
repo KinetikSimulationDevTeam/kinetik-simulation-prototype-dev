@@ -7,9 +7,14 @@ const SimulationModule = ({ lambdaOutput }) => {
   const [sliderValue, setSliderValue] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [data, setData] = useState([[]]);
+  const [largestValue, setLargestValue] = useState();
 
   useEffect(() => {
     setData(lambdaOutput == undefined ? [[]] : lambdaOutput);
+    const maxValue = data
+      .flatMap(array => array.map(obj => obj.values))
+      .reduce((max, value) => Math.max(max, value), 0);
+    setLargestValue(maxValue);
     let timer = null;
     if (isPlaying) {
       timer = setInterval(() => {
@@ -44,9 +49,9 @@ const SimulationModule = ({ lambdaOutput }) => {
       <div>
         <div id='simulation-bar-chart'>
           <div id='simulation-bar-chart-left'>
-            <MyResponsiveBar data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0: data[0].length - 2)} />
+            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0: data[0].length - 2)} />
           </div>
-          <MyResponsiveBar data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
+          <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
         </div>
         <button className='button' onClick={togglePlay}>
           {isPlaying ? 'Pause' : 'Play'}

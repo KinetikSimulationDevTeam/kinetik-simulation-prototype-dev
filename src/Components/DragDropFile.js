@@ -170,11 +170,11 @@ function DragDropFile(props) {
             <button className="upload-button" onClick={onButtonClick}>Upload a file</button>
           </div> 
         </label>
-        <button
+        <button className="button"
           onClick={(e) => {
             handleOnSubmit(e);
           }}>
-             Start Simulation
+             Import CSV
         </button>
         { dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
       </form>

@@ -1,6 +1,6 @@
 import { ResponsiveBar } from '@nivo/bar'
 
-const MyResponsiveBar = ({ data }) => (
+const MyResponsiveBar = ({ data, largestValue }) => (
     <ResponsiveBar
         data={data}
         keys={[
@@ -56,8 +56,8 @@ const MyResponsiveBar = ({ data }) => (
                 ]
             ]
         }}
-        // minValue={0}
-        // maxValue={10}
+        minValue={0}
+        maxValue={largestValue}
         enableGridX={true}
         axisTop={null}
         axisRight={null}

@@ -10,7 +10,6 @@
   grid-template-columns: 25vw 33vw 30vw;
   grid-auto-rows: minmax(100px, auto);
   column-gap: 3em;
-  margin: 1em;
 }
 
 #upload-module-layout {
@@ -42,6 +41,7 @@
 }
 
 #label-file-upload {
+  margin-bottom: 5px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -199,6 +199,7 @@
 }
 
 .button {
+  margin: 30px;
   height: 20px;
   width: 100px;
   align-items: center;
