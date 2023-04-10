@@ -60,6 +60,7 @@ const SimulationModule = ({ lambdaOutput }) => {
         </button>
         <ReactSlider
           className='customSlider'
+          valueLabelDisplay="on"
           thumbClassName='customSlider-thumb'
           trackClassName='customSlider-track'
           markClassName='customSlider-mark'
@@ -68,7 +69,6 @@ const SimulationModule = ({ lambdaOutput }) => {
           max={data.length - 1}
           value={sliderValue}
           onChange={handleSliderChange}
-          valueLabelDisplay="on"
         />
       </div>
     </div>
