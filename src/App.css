@@ -7,9 +7,10 @@
 
 #mainFrameLayout {
   display: grid;
-  grid-template-columns: 25vw 33vw 30vw;
+  grid-template-columns: 25vw 60vw;
   grid-auto-rows: minmax(100px, auto);
   column-gap: 3em;
+  margin: 0 1em 0 1em;
 }
 
 #upload-module-layout {
@@ -121,8 +122,8 @@
   flex-direction: column;
   border-radius: 5%;
   background-color: white;
-  width: 30vw;
-  height: 55vh;
+  width: 25vw;
+  height: 53vh;
   padding: 0 1em 1em 1em;
 }
 
@@ -188,7 +189,12 @@
 }
 
 #simulation-bar-chart-left {
-  flex-basis: 170%;
+  width: 42vw;
+  height: 300px;
+}
+
+#simulation-bar-chart-right {
+  width: 24vw;
   height: 300px;
 }
 
@@ -231,4 +237,10 @@
 
 .button:hover {
   box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+}
+
+#first-column-mainframe {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }

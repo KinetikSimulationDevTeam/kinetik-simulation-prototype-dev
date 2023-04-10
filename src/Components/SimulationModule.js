@@ -51,7 +51,9 @@ const SimulationModule = ({ lambdaOutput }) => {
           <div id='simulation-bar-chart-left'>
             <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0: data[0].length - 2)} />
           </div>
-          <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
+          <div id='simulation-bar-chart-right'>
+            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
+          </div>
         </div>
         <button className='button' onClick={togglePlay}>
           {isPlaying ? 'Pause' : 'Play'}
@@ -61,11 +63,12 @@ const SimulationModule = ({ lambdaOutput }) => {
           thumbClassName='customSlider-thumb'
           trackClassName='customSlider-track'
           markClassName='customSlider-mark'
-          marks={10}
+          marks={1}
           min={0}
           max={data.length - 1}
           value={sliderValue}
           onChange={handleSliderChange}
+          valueLabelDisplay="on"
         />
       </div>
     </div>
