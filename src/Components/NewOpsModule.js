@@ -4,7 +4,7 @@ import ReactSlider from 'react-slider';
 const NewOpsModule = () => {
   return (
     <div id='new-ops-module-layout'>
-      <h3 className='title'> Scenerios </h3>
+      <h3 className='title'> Scenerio Analysis </h3>
       <ReactSlider
           className='customSlider'
           thumbClassName='customSlider-thumb'

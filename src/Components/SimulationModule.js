@@ -7,14 +7,19 @@ const SimulationModule = ({ lambdaOutput }) => {
   const [sliderValue, setSliderValue] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [data, setData] = useState([[]]);
-  const [largestValue, setLargestValue] = useState();
+  const [largestValue, setLargestValue] = useState(100);
 
   useEffect(() => {
-    setData(lambdaOutput == undefined ? [[]] : lambdaOutput);
-    const maxValue = data
-      .flatMap(array => array.map(obj => obj.values))
-      .reduce((max, value) => Math.max(max, value), 0);
-    setLargestValue(maxValue);
+    if (lambdaOutput) {
+      setData(lambdaOutput);
+      const maxValue = lambdaOutput
+        .flatMap(array => array.map(obj => obj.values))
+        .reduce((max, value) => Math.max(max, value), 0);
+      setLargestValue(maxValue);
+    }
+  }, [lambdaOutput]);
+
+  useEffect(() => {
     let timer = null;
     if (isPlaying) {
       timer = setInterval(() => {

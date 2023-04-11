@@ -3,6 +3,7 @@ import SimulationModule from '../Components/SimulationModule'
 import UploadModule from '../Components/UploadModule'
 import { useState } from 'react'
 import NewOpsModule from '../Components/NewOpsModule'
+import Scoreboard from '../Components/Scoreboard'
 
 const MainFrame = () => {
   // This state will store the response from the lambda function
@@ -19,8 +20,9 @@ const MainFrame = () => {
         <UploadModule handleLambdaOutput={handleLambdaOutput} />
         <NewOpsModule />
       </div>
-      <div>
+      <div id='second-column-mainframe'>
         <SimulationModule lambdaOutput={lambdaOutput} />
+        <Scoreboard lambdaOutput={lambdaOutput} />
       </div>
     </div>
   )

@@ -113,7 +113,7 @@
   border-radius: 5%;
   background-color: white;
   width: 66vw;
-  height: 400px;
+  height: 55vh;
   padding: 0 1em 1em 1em;
 }
 
@@ -243,4 +243,24 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+#scoreboard-layout {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  background-color: white;
+  width: 66vw;
+  height: 38vh;
+  padding: 0 1em 1em 1em;
+}
+
+#second-column-mainframe {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+#scoreboard-graph {
+  height: 33vh;
 }
