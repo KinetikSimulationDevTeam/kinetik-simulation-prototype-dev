@@ -185,17 +185,17 @@
 
 #simulation-bar-chart {
   display: flex;
-  height: 300px;
+  height: 41vh;
 }
 
 #simulation-bar-chart-left {
   width: 42vw;
-  height: 300px;
+  height: 41vh;
 }
 
 #simulation-bar-chart-right {
   width: 24vw;
-  height: 300px;
+  height: 41vh;
 }
 
 #simulation-title {

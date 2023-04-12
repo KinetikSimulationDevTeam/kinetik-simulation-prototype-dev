@@ -25,7 +25,6 @@ const Scoreboard = ({ lambdaOutput }) => {
         let largestValue = 0;
         for (let i = 0; i < filteredData.length; i++) {
             const value = filteredData[i].values;
-            console.log(value);
             if (value > largestValue) {
                 largestValue = value;
             }
@@ -35,7 +34,7 @@ const Scoreboard = ({ lambdaOutput }) => {
 
     return (
         <div id='scoreboard-layout'>
-            <h3> Scoreboard </h3>
+            <h3 className='title'> Scoreboard </h3>
             <div id='scoreboard-graph'>
                 <MyResponsiveBar data={filteredData} largestValue={largestValue}/>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactSlider from 'react-slider';
+import Slider from 'react-slider';
 import MyResponsiveBar from './SimulationBarChart';
 
 const SimulationModule = ({ lambdaOutput }) => {
@@ -63,14 +63,15 @@ const SimulationModule = ({ lambdaOutput }) => {
         <button className='button' onClick={togglePlay}>
           {isPlaying ? 'Pause' : 'Play'}
         </button>
-        <ReactSlider
+        <Slider
           className='customSlider'
-          valueLabelDisplay="on"
           thumbClassName='customSlider-thumb'
           trackClassName='customSlider-track'
           markClassName='customSlider-mark'
+          valueLabelDisplay="auto"
           marks={1}
           min={0}
+          defaultValue={0}
           max={data.length - 1}
           value={sliderValue}
           onChange={handleSliderChange}
