@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slider';
 import MyResponsiveBar from './SimulationBarChart';
+import { API } from 'aws-amplify';
 
-const SimulationModule = ({ lambdaOutput }) => {
+const SimulationModule = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sliderValue, setSliderValue] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [data, setData] = useState([[]]);
   const [largestValue, setLargestValue] = useState(100);
+  // This state will store the response from the lambda function
+  const [lambdaOutput, setLambdaOutput] = useState();
 
   useEffect(() => {
     if (lambdaOutput) {
@@ -45,6 +48,23 @@ const SimulationModule = ({ lambdaOutput }) => {
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
 
+  const callLambdaFunction = async (input) => {
+    try {
+      const response = await API.post('getSimulationOutput', '/simulation',{
+        body: input
+      });
+      console.log("Lambda Function Input Sent");
+      console.log(response);
+
+      // Set the state of lambdaOutput with the response
+      setLambdaOutput(response === undefined ? response[0] : response);
+      props.handleLambdaOutput(response === undefined ? response[0] : response);
+      console.log("Lambda Function Result Received");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div id='simulation-module-layout'>
       <div id='simulation-title'>
@@ -60,9 +80,12 @@ const SimulationModule = ({ lambdaOutput }) => {
             <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
           </div>
         </div>
-        <button className='button' onClick={togglePlay}>
-          {isPlaying ? 'Pause' : 'Play'}
-        </button>
+        <div id='simulation-buttons-layout'>
+          <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Run </button>
+          <button className='button' onClick={togglePlay}>
+            {isPlaying ? 'Pause' : 'Auto Play'}
+          </button>
+        </div>
         <Slider
           className='customSlider'
           thumbClassName='customSlider-thumb'

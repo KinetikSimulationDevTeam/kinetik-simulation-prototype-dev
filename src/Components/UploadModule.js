@@ -30,7 +30,7 @@ const UploadModule = ({ handleLambdaOutput }) => {
             <option value="52">One Year</option>
           </select>
           <h5 className='title'>File Name: </h5>
-          <h5 id='uploadModuleFileName'> {fileName} </h5>
+          <h5 id='uploadModuleFileName'> {localStorage.getItem('fileName') === undefined ? fileName : localStorage.getItem('fileName')} </h5>
         </div>
         <DragDropFile timePeriod={selectedTimePeriod} handleLambdaOutput={handleLambdaOutput} onAction={file} />
       </div>

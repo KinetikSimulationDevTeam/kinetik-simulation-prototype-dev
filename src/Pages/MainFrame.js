@@ -17,11 +17,11 @@ const MainFrame = () => {
   return (
     <div id='mainFrameLayout'>
       <div id='first-column-mainframe'>
-        <UploadModule handleLambdaOutput={handleLambdaOutput} />
+        <UploadModule/>
         <NewOpsModule />
       </div>
       <div id='second-column-mainframe'>
-        <SimulationModule lambdaOutput={lambdaOutput} />
+        <SimulationModule handleLambdaOutput={handleLambdaOutput} />
         <Scoreboard lambdaOutput={lambdaOutput} />
       </div>
     </div>

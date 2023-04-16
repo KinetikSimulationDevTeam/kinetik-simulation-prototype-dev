@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UploadImg from '../Images/UploadImg.png'
-import { API } from 'aws-amplify';
 
 
 // drag drop file component
@@ -13,9 +12,6 @@ function DragDropFile(props) {
     // It will store the file uploaded by the user
     const [file, setFile] = useState("");
 
-    // This state will store the response from the lambda function
-    const [lambdaOutput, setLambdaOutput] = useState();
-
     const fileReader = new FileReader();
     
     // handle drag events
@@ -23,6 +19,7 @@ function DragDropFile(props) {
       e.preventDefault();
       e.stopPropagation();
       alert(`Selected file - ${e.dataTransfer.files[0].name}`);
+      localStorage.setItem('fileName', e.target.files[0].name);
       props.onAction(e.dataTransfer.files[0].name);
       if (e.type === "dragenter" || e.type === "dragover") {
         setDragActive(true);
@@ -40,6 +37,7 @@ function DragDropFile(props) {
       setDragActive(false);
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
         alert(`Selected file - ${e.dataTransfer.files[0].name}`);
+        localStorage.setItem('fileName', e.target.files[0].name);
         props.onAction(e.dataTransfer.files[0].name);
         setFile(e.target.files[0]);
       }
@@ -50,6 +48,7 @@ function DragDropFile(props) {
       e.preventDefault();
       if (e.target.files && e.target.files[0]) {
         alert(`Selected file - ${e.target.files[0].name}`);
+        localStorage.setItem('fileName', e.target.files[0].name);
         setFile(e.target.files[0]);
         props.onAction(e.target.files[0].name);
       }
@@ -74,7 +73,7 @@ function DragDropFile(props) {
     };
 
     // reading the file and converting into Json
-    const csvFileToArray = string => {
+    const csvFileToArray = (string) => {
       let array = string.toString().split("\n");
       let sources = array[0].split(",");
       let stages = array[1].split(",");
@@ -140,25 +139,8 @@ function DragDropFile(props) {
         opsProbabilities: opsProbabilities,
       };
       const jsonString = JSON.stringify(jsonData);
-      callLambdaFunction(jsonString);
+      localStorage.setItem('KinetikDataSet', jsonString);
     }
-
-    const callLambdaFunction = async (input) => {
-      try {
-        const response = await API.post('getSimulationOutput', '/simulation',{
-          body: input
-      });
-        console.log("Lambda Function Input Sent");
-        console.log(response);
-
-        // Set the state of lambdaOutput with the response
-        setLambdaOutput(response === undefined ? response[0] : response);
-        props.handleLambdaOutput(response === undefined ? response[0] : response);
-        console.log("Lambda Function Result Received");
-      } catch (error) {
-        console.error(error);
-      }
-    };
     
     return (
       <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>

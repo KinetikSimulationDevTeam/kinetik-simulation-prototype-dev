@@ -264,3 +264,11 @@
 #scoreboard-graph {
   height: 33vh;
 }
+
+#simulation-buttons-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 5vw;
+  justify-content: space-between;
+
+}
