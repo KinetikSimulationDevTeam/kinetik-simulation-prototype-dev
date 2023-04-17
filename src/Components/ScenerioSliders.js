@@ -43,7 +43,11 @@ const ScenerioSliders = (props) => {
           onSliderChange={(value) => handleSliderChange(value, i)}
         />      
       ));
-      return <div>{sliders}</div>;
+      return (
+              <div  style={{ height: '45vh', overflow: 'auto' }}>
+                {sliders}
+              </div>
+      )
     }
 };
   
