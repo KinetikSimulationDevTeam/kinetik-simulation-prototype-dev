@@ -4,40 +4,19 @@ import ScenerioSlider from './ScenerioSlider';
 const ScenerioSliders = (props) => {
     const [data, setData] = useState(null);
     const [sliderValue, setSliderValue] = useState([]);
-    const [numSliders, setNumSliders] = useState(0);
-    const [sliders, setSliders] = useState();
-
+  
     useEffect(() => {
-      if(localStorage.getItem('KinetikDataSet') != null){
-        setData(JSON.parse(localStorage.getItem('KinetikDataSet')));
-        if (data) {
+        const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
+        setData(jsonData);
+        if (jsonData) {
           let array = [];
-          for (let i = 0; i < data['means'].length; i++) {
-            array[i] = data['means'][i];
+          for (let i = 0; i < jsonData['means'].length; i++) {
+            array[i] = jsonData['means'][i];
           }
           setSliderValue(array);
           props.handleSliderValue(sliderValue);
         }
-      }
-    }, [localStorage.getItem('KinetikDataSet')])
-
-    useEffect(() => {
-      if (data) {
-        setNumSliders(data['sources'].length);
-      }
-    }, [data]);
-
-    useEffect(() => {
-      const sliders = Array.from({ length: numSliders }, (_, i) => (
-        <ScenerioSlider
-          key={i}
-          name={data['sources'][i]}
-          mean={data['means'][i]}
-          onSliderChange={(value) => handleSliderChange(value, i)}
-        />      
-      ));
-      setSliders(sliders);
-    }, [numSliders, data]);
+    }, []);
 
     const handleSliderChange = (newValue, index) => {
         setSliderValue((prevValues) => {
@@ -55,12 +34,22 @@ const ScenerioSliders = (props) => {
         </div>
       );
     } else {
+      const numSliders = data['sources'].length;
+      const sliders = Array.from({ length: numSliders }, (_, i) => (
+        <ScenerioSlider
+          key={i}
+          name={data['sources'][i]}
+          mean={data['means'][i]}
+          onSliderChange={(value) => handleSliderChange(value, i)}
+        />      
+      ));
       return (
-        <div  style={{ height: '45vh', overflow: 'auto' }}>
-          {sliders}
-        </div>
+              <div  style={{ height: '45vh', overflow: 'auto' }}>
+                {sliders}
+              </div>
       )
     }
 };
+  
 
 export default ScenerioSliders;
