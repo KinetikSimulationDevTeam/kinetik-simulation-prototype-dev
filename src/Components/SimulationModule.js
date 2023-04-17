@@ -50,6 +50,11 @@ const SimulationModule = (props) => {
 
   const callLambdaFunction = async (input) => {
     try {
+      // const jsonObject = JSON.parse(input);
+      // const currentMeans = jsonObject['means']
+      // for(let i = 0; i < currentMeans.length; i++) {
+      //   currentMeans[i] = 
+      // }
       const response = await API.post('getSimulationOutput', '/simulation',{
         body: input
       });

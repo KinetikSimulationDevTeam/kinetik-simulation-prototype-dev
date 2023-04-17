@@ -270,5 +270,8 @@
   flex-direction: row;
   gap: 5vw;
   justify-content: space-between;
+}
 
+#scenerio-slider-name {
+  text-align: left;
 }
