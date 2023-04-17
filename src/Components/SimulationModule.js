@@ -51,17 +51,23 @@ const SimulationModule = (props) => {
 
   const callLambdaFunction = async (input) => {
     try {
+      let updatedJsonObject = input;
       setUpdatedSliderValue(props.sliderValue);
       console.log("simulationmodule slider value:");
       console.log(updatedSliderValue);
-      // const jsonObject = JSON.parse(input);
-      // const currentMeans = jsonObject['means']
-      // for(let i = 0; i < currentMeans.length; i++) {
-      //   currentMeans[i] = 
-      // }
+
+      if(updatedSliderValue.length != 0){
+        const jsonObject = JSON.parse(updatedJsonObject);
+        for(let i = 0; i < jsonObject['means'].length; i++) {
+          jsonObject['means'][i] = updatedSliderValue[i];
+        }
+        updatedJsonObject = JSON.stringify(jsonObject);
+      }
+
       const response = await API.post('getSimulationOutput', '/simulation',{
-        body: input
+        body: updatedJsonObject
       });
+
       console.log("Lambda Function Input Sent");
       console.log(response);
 
