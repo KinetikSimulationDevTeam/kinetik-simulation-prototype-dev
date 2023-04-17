@@ -11,6 +11,7 @@ const SimulationModule = (props) => {
   const [largestValue, setLargestValue] = useState(100);
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
+  const [updatedSliderValue, setUpdatedSliderValue] = useState([]);
 
   useEffect(() => {
     if (lambdaOutput) {
@@ -50,6 +51,9 @@ const SimulationModule = (props) => {
 
   const callLambdaFunction = async (input) => {
     try {
+      setUpdatedSliderValue(props.sliderValue);
+      console.log("simulationmodule slider value:");
+      console.log(updatedSliderValue);
       // const jsonObject = JSON.parse(input);
       // const currentMeans = jsonObject['means']
       // for(let i = 0; i < currentMeans.length; i++) {
@@ -86,7 +90,7 @@ const SimulationModule = (props) => {
           </div>
         </div>
         <div id='simulation-buttons-layout'>
-          <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Run </button>
+          <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Start Simulation </button>
           <button className='button' onClick={togglePlay}>
             {isPlaying ? 'Pause' : 'Auto Play'}
           </button>

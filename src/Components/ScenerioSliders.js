@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ScenerioSlider from './ScenerioSlider';
 
-const ScenerioSliders = () => {
+const ScenerioSliders = (props) => {
     const [data, setData] = useState(null);
     const [sliderValue, setSliderValue] = useState([]);
   
@@ -14,6 +14,7 @@ const ScenerioSliders = () => {
             array[i] = jsonData['means'][i];
           }
           setSliderValue(array);
+          props.handleSliderValue(sliderValue);
         }
     }, []);
 
@@ -23,17 +24,8 @@ const ScenerioSliders = () => {
           newValues[index] = newValue;
           return newValues;
         });
-        console.log("123");
-        console.log(sliderValue);
+        props.handleSliderValue(sliderValue);
     };
-  
-    // const handleSliderChange = (newValue, index) => {
-    //   let shallowCopy = sliderValue.slice();
-    //   shallowCopy[index] = newValue;
-    //   setSliderValue(shallowCopy)
-    //   console.log("123");
-    //   console.log(sliderValue);
-    // };
   
     if (!data) {
       return (

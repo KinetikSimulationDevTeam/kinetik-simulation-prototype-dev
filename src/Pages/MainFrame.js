@@ -8,20 +8,25 @@ import Scoreboard from '../Components/Scoreboard'
 const MainFrame = () => {
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
+  const [sliderValue, setSliderValue] = useState([]);
 
   const handleLambdaOutput = (output) => {
     setLambdaOutput(output);
     console.log(lambdaOutput);
   }
 
+  const handleSliderValue = (data) => {
+    setSliderValue(data);
+  }
+
   return (
     <div id='mainFrameLayout'>
       <div id='first-column-mainframe'>
-        <UploadModule/>
-        <NewOpsModule />
+        <UploadModule />
+        <NewOpsModule handleSliderValue={handleSliderValue} />
       </div>
       <div id='second-column-mainframe'>
-        <SimulationModule handleLambdaOutput={handleLambdaOutput} />
+        <SimulationModule handleLambdaOutput={handleLambdaOutput} sliderValue={sliderValue} />
         <Scoreboard lambdaOutput={lambdaOutput} />
       </div>
     </div>
