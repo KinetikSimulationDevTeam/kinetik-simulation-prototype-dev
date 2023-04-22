@@ -4,25 +4,55 @@ import MyResponsiveBar from './SimulationBarChart';
 import { API } from 'aws-amplify';
 
 const SimulationModule = (props) => {
+  //This state variable keeps track of the index of the current week being displayed in the simulation module. It is initialized with a default value of 0.
   const [currentIndex, setCurrentIndex] = useState(0);
+  //This state variable is used to keep track of the value of the slider component in the simulation module. It is initialized with a default value of 0.This state variable is used to keep track of the value of the slider component in the simulation module. It is initialized with a default value of 0.
   const [sliderValue, setSliderValue] = useState(0);
+  //This state variable is used to keep track of whether the simulation is currently playing or not. It is initialized with a default value of false.
   const [isPlaying, setIsPlaying] = useState(false);
+  //This state variable is used to keep track of the data that is passed into the bar chart component. It is initialized with a default value of [[]].
   const [data, setData] = useState([[]]);
+  //This state variable is used to keep track of the largest value in the lambdaOutput state. It is initialized with a default value of 100.
   const [largestValue, setLargestValue] = useState(100);
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
+  // This state will store the response from the lambda function
   const [updatedSliderValue, setUpdatedSliderValue] = useState([]);
 
+  /*
+    Description: This function is used to make a call to the lambda function to get the data for the simulation module. It is called when the component is first rendered.
+
+    Arguments: None
+
+    Return Type: None
+  */
   useEffect(() => {
     if (lambdaOutput) {
-      setData(lambdaOutput);
-      const maxValue = lambdaOutput
-        .flatMap(array => array.map(obj => obj.values))
-        .reduce((max, value) => Math.max(max, value), 0);
-      setLargestValue(maxValue);
+      setData(lambdaOutput, largestOutput());
     }
   }, [lambdaOutput]);
 
+  /*
+    Description: This function calculates the largest value in the lambdaOutput state and sets the largestValue state with that value.
+
+    Arguments: None
+
+    Return Type: None
+  */
+  function largestOutput() {
+    const maxValue = lambdaOutput
+      .flatMap(array => array.map(obj => obj.values))
+      .reduce((max, value) => Math.max(max, value), 0);
+    setLargestValue(maxValue);
+  }
+
+  /*
+    Description: This function is used to make a call to the lambda function to get the data for the simulation module. It is called when the component is first rendered.
+
+    Arguments: None
+
+    Return Type: None
+  */
   useEffect(() => {
     let timer = null;
     if (isPlaying) {
@@ -40,41 +70,55 @@ const SimulationModule = (props) => {
     return () => clearInterval(timer);
   }, [currentIndex, data.length, isPlaying]);
 
+  /*
+    Description: This function is called when the slider is moved and sets the currentIndex and sliderValue states with the new value.
+
+    Arguments: value (Number): The new value of the slider.
+
+    Return Type: None
+  */
   const handleSliderChange = (value) => {
     setCurrentIndex(value);
     setSliderValue(value);
   };
 
+  /*
+    Description: This function is called when the "Auto Play" or "Pause" button is clicked and toggles the isPlaying state.
+
+    Arguments: None
+
+    Return Type: None
+  */
   const togglePlay = () => {
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
 
+  /*
+    Description: This function is called when the "Start Simulation" button is clicked and sends a POST request to the getSimulationOutput API endpoint using the input parameter. It then sets the lambdaOutput state with the response.
+
+    Arguments: input (String): The input to send to the API.
+    
+    Return Type: None
+  */
   const callLambdaFunction = async (input) => {
     try {
       let updatedJsonObject = input;
       setUpdatedSliderValue(props.sliderValue);
-      console.log("simulationmodule slider value:");
-      console.log(updatedSliderValue);
 
-      if(updatedSliderValue.length != 0){
+      if (updatedSliderValue.length != 0) {
         const jsonObject = JSON.parse(updatedJsonObject);
-        for(let i = 0; i < jsonObject['means'].length; i++) {
+        for (let i = 0; i < jsonObject['means'].length; i++) {
           jsonObject['means'][i] = updatedSliderValue[i];
         }
         updatedJsonObject = JSON.stringify(jsonObject);
       }
 
-      const response = await API.post('getSimulationOutput', '/simulation',{
+      const response = await API.post('getSimulationOutput', '/simulation', {
         body: updatedJsonObject
       });
 
-      console.log("Lambda Function Input Sent");
-      console.log(response);
-
       // Set the state of lambdaOutput with the response
-      setLambdaOutput(response === undefined ? response[0] : response);
-      props.handleLambdaOutput(response === undefined ? response[0] : response);
-      console.log("Lambda Function Result Received");
+      setLambdaOutput(response === undefined ? response[0] : response, props.handleLambdaOutput(response === undefined ? response[0] : response));
     } catch (error) {
       console.error(error);
     }
@@ -89,10 +133,10 @@ const SimulationModule = (props) => {
       <div>
         <div id='simulation-bar-chart'>
           <div id='simulation-bar-chart-left'>
-            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0: data[0].length - 2)} />
+            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0 : data[0].length - 2)} />
           </div>
           <div id='simulation-bar-chart-right'>
-            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0: data[0].length - 2, data[0].length)} />
+            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0 : data[0].length - 2, data[0].length)} />
           </div>
         </div>
         <div id='simulation-buttons-layout'>

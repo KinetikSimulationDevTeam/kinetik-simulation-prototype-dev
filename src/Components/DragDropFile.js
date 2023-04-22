@@ -6,15 +6,20 @@ import UploadImg from '../Images/UploadImg.png'
 function DragDropFile(props) {
     // drag state
     const [dragActive, setDragActive] = useState(false);
-    // ref
+    // input ref
     const inputRef = React.useRef(null);
-
     // It will store the file uploaded by the user
     const [file, setFile] = useState("");
-
+    // It will store the file uploaded by the user
     const fileReader = new FileReader();
     
-    // handle drag events
+    /*
+      Description: triggers when file is drag.
+
+      Arguments: None
+
+      Return Type: None
+    */
     const handleDrag = function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -22,15 +27,20 @@ function DragDropFile(props) {
       localStorage.setItem('fileName', e.target.files[0].name);
       props.onAction(e.dataTransfer.files[0].name);
       if (e.type === "dragenter" || e.type === "dragover") {
-        setDragActive(true);
+        setDragActive(true, props.onAction(e.dataTransfer.files[0].name));
       } else if (e.type === "dragleave") {
-        setDragActive(false);
+        setDragActive(false, props.onAction(e.dataTransfer.files[0].name));
       }
-      props.onAction(e.dataTransfer.files[0].name);
       setFile(e.target.files[0]);
     };
     
-    // triggers when file is dropped
+    /*
+      Description: triggers when file is dropped.
+
+      Arguments: None
+
+      Return Type: None
+    */
     const handleDrop = function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -42,23 +52,41 @@ function DragDropFile(props) {
         setFile(e.target.files[0]);
       }
     };
-    
-    // triggers when file is selected with click
+
+    /*
+      Description: triggers when file is selected with click.
+
+      Arguments: None
+
+      Return Type: None
+    */
     const handleChange = function(e) {
       e.preventDefault();
       if (e.target.files && e.target.files[0]) {
         alert(`Selected file - ${e.target.files[0].name}`);
         localStorage.setItem('fileName', e.target.files[0].name);
-        setFile(e.target.files[0]);
-        props.onAction(e.target.files[0].name);
+        setFile(e.target.files[0], props.onAction(e.target.files[0].name));
       }
     };
-    
-    // triggers the input when the button is clicked
+
+    /*
+      Description: triggers when file is selected with click.
+
+      Arguments: None
+
+      Return Type: None
+    */
     const onButtonClick = () => {
       inputRef.current.click();
     };
 
+    /*
+      Description: triggers when file is selected with click.
+
+      Arguments: None
+
+      Return Type: None
+    */
     const handleOnSubmit = (e) => {
       e.preventDefault();
   
@@ -72,7 +100,13 @@ function DragDropFile(props) {
       }
     };
 
-    // reading the file and converting into Json
+    /*
+      Description: parsing the file and converting into Json.
+
+      Arguments: None
+
+      Return Type: None
+    */
     const csvFileToArray = (string) => {
       let array = string.toString().split("\n");
       let sources = array[0].split(",");
@@ -83,6 +117,7 @@ function DragDropFile(props) {
       let opsProbabilities = [];
       let ops = [];
 
+      //get the number of sources
       for(let i = 0; i < sources.length; i++){
         sources[i] = sources[i].toString().trim();
         if(sources[i] === ""){
@@ -94,6 +129,7 @@ function DragDropFile(props) {
         }
       }
 
+      //get the number of stages
       for(let i = 0; i < stages.length; i++){
         stages[i] = stages[i].toString().trim();
         newOpsProbabilities[i] = parseFloat(newOpsProbabilities[i].toString().trim());
@@ -108,11 +144,13 @@ function DragDropFile(props) {
         }
       }
 
+      //get the mean and std
       for(let i = 0; i < sources.length; i++){
         mean[i] = parseFloat(array[7 + i].split(",")[1]);
         std[i] = parseFloat(array[7 + i].split(",")[2]);
       }
 
+      //get the ops probabilities
       for(let i = 0; i < stages.length; i++){
         opsProbabilities[i] = array[9 + sources.length + i].split(",");
 
@@ -122,12 +160,15 @@ function DragDropFile(props) {
         opsProbabilities[i] = opsProbabilities[i].slice(1, stages.length + 1);
       }
 
+      //get the ops
       ops = array[11 + sources.length + stages.length].split(",").slice(1, stages.length + 1);
 
+      //convert the ops to float
       for(let i = 0; i < stages.length; i++){
         ops[i] = parseFloat(ops[i]);
       }
 
+      //convert data into json object
       const jsonData = {
         weeks: Number(props.timePeriod),
         stages: stages,

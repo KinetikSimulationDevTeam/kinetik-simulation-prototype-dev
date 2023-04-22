@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import ReactSlider from 'react-slider';
 
 const ScenerioSlider = ({ name, mean, onSliderChange }) => {
+  // This state will store the value of the slider
   const [value, setValue] = useState(mean);
 
+  /*
+    Description: This function is used to update the state of the slider when the user changes the value of the slider.
+
+    Arguments: newValue (the value of the slider)
+
+    Return Type: None
+  */
   const handleSliderChange = (newValue) => {
     setValue(newValue);
     onSliderChange(newValue); // call the callback function to update the state in ScenerioSliders
