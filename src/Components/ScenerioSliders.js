@@ -7,6 +7,26 @@ const ScenerioSliders = (props) => {
   // This state will store the value of the slider
   const [sliderValue, setSliderValue] = useState([]);
 
+  useEffect(() => {
+    const refreshPage = () => {
+      const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
+      setData(jsonData, change(jsonData));
+    };
+  
+    const change = (jsonData) => {
+      if (jsonData) {
+        let array = [];
+        for (let i = 0; i < jsonData['means'].length; i++) {
+          array[i] = jsonData['means'][i];
+        }
+        setSliderValue(array);
+        props.handleSliderValue(array);
+      }
+    };
+    
+    refreshPage();
+  }, [props.uploadCount])
+
   /*
     Description: This function is called when the slider is moved and sets the currentIndex and sliderValue states with the new value.
     

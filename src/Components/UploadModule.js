@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DragDropFile from './DragDropFile'
 
-const UploadModule = ({ handleLambdaOutput }) => {
+const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
   //uploaded file name
   const [fileName, setFileName] = useState();
 
@@ -32,7 +32,7 @@ const UploadModule = ({ handleLambdaOutput }) => {
           <h5 className='title'>File Name: </h5>
           <h5 id='uploadModuleFileName'> {localStorage.getItem('fileName') === undefined ? fileName : localStorage.getItem('fileName')} </h5>
         </div>
-        <DragDropFile timePeriod={selectedTimePeriod} handleLambdaOutput={handleLambdaOutput} onAction={file} />
+        <DragDropFile timePeriod={selectedTimePeriod} handleLambdaOutput={handleLambdaOutput} onAction={file} handleUploadCount={handleUploadCount} />
       </div>
     </div>
   )

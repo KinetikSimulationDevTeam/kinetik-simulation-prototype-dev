@@ -181,6 +181,7 @@ function DragDropFile(props) {
       };
       const jsonString = JSON.stringify(jsonData);
       localStorage.setItem('KinetikDataSet', jsonString);
+      props.handleUploadCount();
     }
     
     return (

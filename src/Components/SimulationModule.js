@@ -6,7 +6,7 @@ import { API } from 'aws-amplify';
 const SimulationModule = (props) => {
   //This state variable keeps track of the index of the current week being displayed in the simulation module. It is initialized with a default value of 0.
   const [currentIndex, setCurrentIndex] = useState(0);
-  //This state variable is used to keep track of the value of the slider component in the simulation module. It is initialized with a default value of 0.This state variable is used to keep track of the value of the slider component in the simulation module. It is initialized with a default value of 0.
+  //This state variable is used to keep track of the value of the week slider. It is initialized with a default value of 0
   const [sliderValue, setSliderValue] = useState(0);
   //This state variable is used to keep track of whether the simulation is currently playing or not. It is initialized with a default value of false.
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,7 +16,7 @@ const SimulationModule = (props) => {
   const [largestValue, setLargestValue] = useState(100);
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
-  // This state will store the response from the lambda function
+  // This state will This state variable is used to keep track of the value of the newops sliders component in the simulation module. It is initialized with a default value of 0.
   const [updatedSliderValue, setUpdatedSliderValue] = useState([]);
 
   /*

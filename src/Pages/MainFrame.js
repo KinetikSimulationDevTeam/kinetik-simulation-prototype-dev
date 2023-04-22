@@ -9,6 +9,7 @@ const MainFrame = () => {
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
   const [sliderValue, setSliderValue] = useState([]);
+  const [uploadCount, setUploadCount] = useState(0);
 
   const handleLambdaOutput = (output) => {
     setLambdaOutput(output);
@@ -19,11 +20,15 @@ const MainFrame = () => {
     setSliderValue(data);
   }
 
+  const handleUploadCount = () => {
+    setUploadCount(uploadCount + 1);
+  }
+
   return (
     <div id='mainFrameLayout'>
       <div id='first-column-mainframe'>
-        <UploadModule />
-        <NewOpsModule handleSliderValue={handleSliderValue} />
+        <UploadModule handleUploadCount={handleUploadCount} />
+        <NewOpsModule handleSliderValue={handleSliderValue} uploadCount={uploadCount} />
       </div>
       <div id='second-column-mainframe'>
         <SimulationModule handleLambdaOutput={handleLambdaOutput} sliderValue={sliderValue} />
