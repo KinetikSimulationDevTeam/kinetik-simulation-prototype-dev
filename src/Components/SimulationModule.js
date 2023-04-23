@@ -63,6 +63,9 @@ const SimulationModule = (props) => {
           setSliderValue(0);
         }
       }, 200);
+      if (currentIndex === data.length - 1) {
+        setIsPlaying(false);
+      };
     }
 
     return () => clearInterval(timer);
