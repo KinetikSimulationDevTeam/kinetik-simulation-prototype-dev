@@ -12,9 +12,9 @@ const ScenerioSlider = ({ name, mean, onSliderChange }) => {
 
     Return Type: None
   */
-  const handleSliderChange = (newValue) => {
-    setValue(newValue);
-    onSliderChange(newValue); // call the callback function to update the state in ScenerioSliders
+  const handleSliderChange = async (newValue) => {
+    await setValue(newValue);
+    await onSliderChange(newValue); // call the callback function to update the state in ScenerioSliders
   };
 
   return (

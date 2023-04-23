@@ -12,18 +12,18 @@ const ScenerioSliders = (props) => {
       const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
       setData(jsonData, change(jsonData));
     };
-  
-    const change = (jsonData) => {
+
+    const change = async (jsonData) => {
       if (jsonData) {
         let array = [];
         for (let i = 0; i < jsonData['means'].length; i++) {
           array[i] = jsonData['means'][i];
         }
-        setSliderValue(array);
+        await setSliderValue(array);
         props.handleSliderValue(array);
       }
     };
-    
+
     refreshPage();
   }, [props.uploadCount])
 
@@ -45,9 +45,9 @@ const ScenerioSliders = (props) => {
 
     Return Type: None
   */
-  const refreshPage = () => {
+  const refreshPage = async () => {
     const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
-    setData(jsonData, change(jsonData));
+    await setData(jsonData, change(jsonData));
   }
 
   /*
@@ -57,13 +57,13 @@ const ScenerioSliders = (props) => {
 
     Return Type: None
   */
-  function change(jsonData) {
+  async function change(jsonData) {
     if (jsonData) {
       let array = [];
       for (let i = 0; i < jsonData['means'].length; i++) {
         array[i] = jsonData['means'][i];
       }
-      setSliderValue(array, props.handleSliderValue(sliderValue));
+      await setSliderValue(array, props.handleSliderValue(sliderValue));
     }
   }
 
@@ -78,8 +78,8 @@ const ScenerioSliders = (props) => {
 
     Return Type: array
   */
-  const handleSliderChange = (newValue, index) => {
-    setSliderValue((prevValues) => {
+  const handleSliderChange = async (newValue, index) => {
+    await setSliderValue((prevValues) => {
       const newValues = [...prevValues];
       newValues[index] = newValue;
       return newValues;

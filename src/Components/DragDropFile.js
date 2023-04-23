@@ -20,18 +20,18 @@ function DragDropFile(props) {
 
       Return Type: None
     */
-    const handleDrag = function(e) {
+    const handleDrag = async function(e) {
       e.preventDefault();
       e.stopPropagation();
       alert(`Selected file - ${e.dataTransfer.files[0].name}`);
       localStorage.setItem('fileName', e.target.files[0].name);
       props.onAction(e.dataTransfer.files[0].name);
       if (e.type === "dragenter" || e.type === "dragover") {
-        setDragActive(true, props.onAction(e.dataTransfer.files[0].name));
+        await setDragActive(true, props.onAction(e.dataTransfer.files[0].name));
       } else if (e.type === "dragleave") {
-        setDragActive(false, props.onAction(e.dataTransfer.files[0].name));
+        await setDragActive(false, props.onAction(e.dataTransfer.files[0].name));
       }
-      setFile(e.target.files[0]);
+      await setFile(e.target.files[0]);
     };
     
     /*
@@ -41,15 +41,15 @@ function DragDropFile(props) {
 
       Return Type: None
     */
-    const handleDrop = function(e) {
+    const handleDrop = async function(e) {
       e.preventDefault();
       e.stopPropagation();
-      setDragActive(false);
+      await setDragActive(false);
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
         alert(`Selected file - ${e.dataTransfer.files[0].name}`);
         localStorage.setItem('fileName', e.target.files[0].name);
         props.onAction(e.dataTransfer.files[0].name);
-        setFile(e.target.files[0]);
+        await setFile(e.target.files[0]);
       }
     };
 
@@ -60,12 +60,12 @@ function DragDropFile(props) {
 
       Return Type: None
     */
-    const handleChange = function(e) {
+    const handleChange = async function(e) {
       e.preventDefault();
       if (e.target.files && e.target.files[0]) {
         alert(`Selected file - ${e.target.files[0].name}`);
         localStorage.setItem('fileName', e.target.files[0].name);
-        setFile(e.target.files[0], props.onAction(e.target.files[0].name));
+        await setFile(e.target.files[0], props.onAction(e.target.files[0].name));
       }
     };
 

@@ -16,8 +16,6 @@ const SimulationModule = (props) => {
   const [largestValue, setLargestValue] = useState(100);
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
-  // This state will This state variable is used to keep track of the value of the newops sliders component in the simulation module. It is initialized with a default value of 0.
-  const [updatedSliderValue, setUpdatedSliderValue] = useState([]);
 
   /*
     Description: This function is used to make a call to the lambda function to get the data for the simulation module. It is called when the component is first rendered.
@@ -39,11 +37,11 @@ const SimulationModule = (props) => {
 
     Return Type: None
   */
-  function largestOutput() {
+  async function largestOutput() {
     const maxValue = lambdaOutput
       .flatMap(array => array.map(obj => obj.values))
       .reduce((max, value) => Math.max(max, value), 0);
-    setLargestValue(maxValue);
+    await setLargestValue(maxValue);
   }
 
   /*
@@ -77,9 +75,9 @@ const SimulationModule = (props) => {
 
     Return Type: None
   */
-  const handleSliderChange = (value) => {
-    setCurrentIndex(value);
-    setSliderValue(value);
+  const handleSliderChange = async (value) => {
+    await setCurrentIndex(value);
+    await setSliderValue(value);
   };
 
   /*
@@ -94,6 +92,17 @@ const SimulationModule = (props) => {
   };
 
   /*
+    Description: This function is called when the newOps sliders are changed and sets the updatedSliderValue state with the new value.
+
+    Arguments: None
+
+    Return Type: None
+  */
+  useEffect(() => {
+    callLambdaFunction(localStorage.getItem('KinetikDataSet'));
+  }, [props.sliderValue]);
+
+  /*
     Description: This function is called when the "Start Simulation" button is clicked and sends a POST request to the getSimulationOutput API endpoint using the input parameter. It then sets the lambdaOutput state with the response.
 
     Arguments: input (String): The input to send to the API.
@@ -103,12 +112,11 @@ const SimulationModule = (props) => {
   const callLambdaFunction = async (input) => {
     try {
       let updatedJsonObject = input;
-      setUpdatedSliderValue(props.sliderValue);
 
-      if (updatedSliderValue.length != 0) {
+      if (props.sliderValue.length != 0) {
         const jsonObject = JSON.parse(updatedJsonObject);
         for (let i = 0; i < jsonObject['means'].length; i++) {
-          jsonObject['means'][i] = updatedSliderValue[i];
+          jsonObject['means'][i] = props.sliderValue[i];
         }
         updatedJsonObject = JSON.stringify(jsonObject);
       }
@@ -118,7 +126,7 @@ const SimulationModule = (props) => {
       });
 
       // Set the state of lambdaOutput with the response
-      setLambdaOutput(response === undefined ? response[0] : response, props.handleLambdaOutput(response === undefined ? response[0] : response));
+      await setLambdaOutput(response === undefined ? response[0] : response, props.handleLambdaOutput(response === undefined ? response[0] : response));
     } catch (error) {
       console.error(error);
     }

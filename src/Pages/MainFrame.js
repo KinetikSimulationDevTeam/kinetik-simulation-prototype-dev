@@ -11,17 +11,17 @@ const MainFrame = () => {
   const [sliderValue, setSliderValue] = useState([]);
   const [uploadCount, setUploadCount] = useState(0);
 
-  const handleLambdaOutput = (output) => {
-    setLambdaOutput(output);
+  const handleLambdaOutput = async(output) => {
+    await setLambdaOutput(output);
     console.log(lambdaOutput);
   }
 
-  const handleSliderValue = (data) => {
-    setSliderValue(data);
+  const handleSliderValue = async (data) => {
+    await setSliderValue(data);
   }
 
-  const handleUploadCount = () => {
-    setUploadCount(uploadCount + 1);
+  const handleUploadCount = async () => {
+    await setUploadCount(uploadCount + 1);
   }
 
   return (

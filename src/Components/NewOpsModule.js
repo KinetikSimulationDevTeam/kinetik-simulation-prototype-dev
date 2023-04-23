@@ -13,8 +13,8 @@ const NewOpsModule = (props) => {
 
     Return Type: None
   */
-  const handleSliderValue = (data) => {
-    setSliderValue(data, props.handleSliderValue(sliderValue));
+  const handleSliderValue = async (data) => {
+    await setSliderValue(data, props.handleSliderValue(sliderValue));
   }
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const NewOpsModule = (props) => {
 
   return (
     <div id='new-ops-module-layout'>
-      <h3 className='title'> Scenerio Analysis </h3>
+      <h3 className='title'> Scenario Analysis </h3>
       <ScenerioSliders handleSliderValue={handleSliderValue} uploadCount={uploadCount} />
     </div>
   )
