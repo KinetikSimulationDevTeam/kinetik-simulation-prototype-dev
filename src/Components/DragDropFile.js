@@ -183,6 +183,15 @@ function DragDropFile(props) {
       localStorage.setItem('KinetikDataSet', jsonString);
       props.handleUploadCount();
     }
+
+    useEffect(() => {
+      if(localStorage.getItem('KinetikDataSet') !== null){
+        const jsonObject = JSON.parse(localStorage.getItem('KinetikDataSet'));
+        jsonObject.weeks = Number(props.timePeriod);
+        const jsonString = JSON.stringify(jsonObject);
+        localStorage.setItem('KinetikDataSet', jsonString);
+      }
+    }, [Number(props.timePeriod)]);
     
     return (
       <form id="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>

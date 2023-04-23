@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import DragDropFile from './DragDropFile'
+import Kinetik_template_file from '../InputTemplate/kinetik_template_file.xlsx'
 
 const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
   //uploaded file name
@@ -21,7 +22,10 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
 
   return (
     <div id="upload-module-layout">
-      <h3 className='title'> Control Panel </h3>
+      <div id='upload-module-title'>
+        <h3 className='title'> Control Panel </h3>
+        <a id='upload-module-template-link' href={Kinetik_template_file} target='_blank' download><h5> Download Template </h5></a>
+      </div>
       <div id='upload-module-input-layout'>
         <div id='upload-module-select-layout'>
           <select onChange={handleTimePeriodChange} value={selectedTimePeriod}>
