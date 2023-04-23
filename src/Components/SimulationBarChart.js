@@ -76,7 +76,7 @@ const MyResponsiveBar = ({ data, largestValue }) => (
             tickRotation: 0,
             legend: 'Opportunities',
             legendPosition: 'middle',
-            legendOffset: -40
+            legendOffset: -45
         }}
         labelSkipWidth={12}
         labelSkipHeight={12}

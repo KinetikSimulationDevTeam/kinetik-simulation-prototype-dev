@@ -13,7 +13,6 @@ const MainFrame = () => {
 
   const handleLambdaOutput = async(output) => {
     await setLambdaOutput(output);
-    console.log(lambdaOutput);
   }
 
   const handleSliderValue = async (data) => {
