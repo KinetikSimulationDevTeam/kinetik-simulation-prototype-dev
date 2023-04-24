@@ -97,6 +97,8 @@ function DragDropFile(props) {
       };
 
       fileReader.readAsText(file);
+    }else if(localStorage.getItem('KinetikDataSet') !== null){
+      alertify.success("File already uploaded");
     }else{
       alertify.error("Please select a file");
     }
@@ -184,7 +186,7 @@ function DragDropFile(props) {
       };
       const jsonString = JSON.stringify(jsonData);
       localStorage.setItem('KinetikDataSet', jsonString);
-      alertify.success('Successfully Upload a file.');
+      alertify.success('Successfully Upload a file');
       props.handleUploadCount();
     } catch (err) {
       alertify.error("Input File is not in correct format");
