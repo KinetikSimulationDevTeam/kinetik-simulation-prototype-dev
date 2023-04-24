@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "alertifyjs": "^1.13.1",
     "aws-amplify": "^5.0.24",
     "material-ui-slider": "^3.0.8",
     "papaparse": "^5.4.1",

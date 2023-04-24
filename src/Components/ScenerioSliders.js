@@ -34,7 +34,7 @@ const ScenerioSliders = (props) => {
 
     Return Type: None
   */
-  function onClick() {
+  function onClicked() {
     props.handleSliderValue(sliderValue);
   }
 
@@ -78,12 +78,10 @@ const ScenerioSliders = (props) => {
 
     Return Type: array
   */
-  const handleSliderChange = async (newValue, index) => {
-    await setSliderValue((prevValues) => {
-      const newValues = [...prevValues];
-      newValues[index] = newValue;
-      return newValues;
-    });
+  const handleSliderChange = async (newValue, index, currentValue) => {
+    const newValues = [...currentValue];
+    newValues[index] = newValue;
+    await setSliderValue(newValues);
   };
 
   if (!data) {
@@ -99,13 +97,13 @@ const ScenerioSliders = (props) => {
         key={i}
         name={data['sources'][i]}
         mean={data['means'][i]}
-        onSliderChange={(newValue) => handleSliderChange(newValue, i)}
+        onSliderChange={(newValue) => handleSliderChange(newValue, i, sliderValue)}
       />
     ));
     return (
       <div style={{ height: '45vh', overflow: 'auto' }}>
         {sliders}
-        <button className='button' type='submit' onClick={onClick}> Confirm </button>
+        <button className='button' type='submit' onClick={onClicked}> Confirm </button>
       </div>
     )
   }

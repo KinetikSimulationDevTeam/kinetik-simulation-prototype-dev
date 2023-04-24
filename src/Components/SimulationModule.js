@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slider';
 import MyResponsiveBar from './SimulationBarChart';
 import { API } from 'aws-amplify';
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 
 const SimulationModule = (props) => {
   //This state variable keeps track of the index of the current week being displayed in the simulation module. It is initialized with a default value of 0.
@@ -102,7 +104,9 @@ const SimulationModule = (props) => {
     Return Type: None
   */
   useEffect(() => {
-    callLambdaFunction(localStorage.getItem('KinetikDataSet'));
+    if(localStorage.getItem('KinetikDataSet') != null){
+      callLambdaFunction(localStorage.getItem('KinetikDataSet'));
+    }
   }, [props.sliderValue]);
 
   /*
@@ -115,6 +119,7 @@ const SimulationModule = (props) => {
   const callLambdaFunction = async (input) => {
     try {
       let updatedJsonObject = input;
+      console.log(props.sliderValue);
 
       if (props.sliderValue.length != 0) {
         const jsonObject = JSON.parse(updatedJsonObject);
@@ -131,6 +136,7 @@ const SimulationModule = (props) => {
       // Set the state of lambdaOutput with the response
       await setLambdaOutput(response === undefined ? response[0] : response, props.handleLambdaOutput(response === undefined ? response[0] : response));
     } catch (error) {
+      alertify.error('Input File is not in correct format.');
       console.error(error);
     }
   };

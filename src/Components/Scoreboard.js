@@ -1,29 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import MyResponsiveBar from './SimulationBarChart';
+import MyResponsiveScoreBoard from './ScoreboardBarChart';
 
 const Scoreboard = ({ lambdaOutput }) => {
     //This state variable is used to keep track of the data that is passed into the bar chart component. It is initialized with a default value of [[]].
     const [filteredData, setFilteredData] = useState([]);
-    //This state variable is used to keep track of the largest value in the lambdaOutput state. It is initialized with a default value of 100.
-    const [largestValue, setLargestValue] = useState(5);
-
-    /*
-        Description: This function calculates the largest value in the lambdaOutput state and sets the largestValue state with that value.
-
-        Arguments: None
-
-        Return Type: None
-    */
-    function largestValueAlgorithm() {
-        let largestValue = 5;
-        for (let i = 0; i < filteredData.length; i++) {
-            const value = filteredData[i].values;
-            if (value > largestValue) {
-                largestValue = value;
-            }
-        }
-        setLargestValue(largestValue);
-    }
 
     /*
         Description: This function parsed the result from the lambda function and sets the filteredData state with the data that will be passed into the bar chart component.
@@ -47,14 +27,14 @@ const Scoreboard = ({ lambdaOutput }) => {
                 newFilteredData.push(modifiedLossObj);
             }
         }
-        setFilteredData(newFilteredData, largestValueAlgorithm());
+        setFilteredData(newFilteredData);
     }, [lambdaOutput]);
 
     return (
         <div id='scoreboard-layout'>
             <h3 className='title'> Scoreboard </h3>
             <div id='scoreboard-graph'>
-                <MyResponsiveBar data={filteredData} largestValue={largestValue}/>
+                <MyResponsiveScoreBoard data={filteredData}/>
             </div>
         </div>
     )

@@ -3,6 +3,7 @@
   background-color: #CED3E2;
   width: 100vw;
   height: 100vh;
+  overflow: auto;
 }
 
 #mainFrameLayout {
@@ -32,7 +33,7 @@
   height: 16rem;
   width: 28rem;
   max-width: 50%;
-  height: 210px;
+  height: 28vh;
   text-align: center;
   position: relative;
 }

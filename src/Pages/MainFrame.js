@@ -1,9 +1,11 @@
 import React from 'react'
 import SimulationModule from '../Components/SimulationModule'
 import UploadModule from '../Components/UploadModule'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import NewOpsModule from '../Components/NewOpsModule'
 import Scoreboard from '../Components/Scoreboard'
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 
 const MainFrame = () => {
   // This state will store the response from the lambda function
@@ -11,7 +13,15 @@ const MainFrame = () => {
   const [sliderValue, setSliderValue] = useState([]);
   const [uploadCount, setUploadCount] = useState(0);
 
-  const handleLambdaOutput = async(output) => {
+  useEffect(() => {
+    if (localStorage.getItem('KinetikDataSet') === null) {
+      alertify.alert('Welcome to Kinetik Simulation', 'Please upload the file to begin!', function () {
+        alertify.success('For input template, please see the template link');
+      });
+    }
+  }, []);
+
+  const handleLambdaOutput = async (output) => {
     await setLambdaOutput(output);
   }
 
