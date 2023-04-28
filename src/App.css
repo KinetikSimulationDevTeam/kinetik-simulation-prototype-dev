@@ -6,6 +6,32 @@
   overflow: auto;
 }
 
+.link {
+  text-decoration: none;
+  font-size: medium;
+  color: rgb(128, 128, 128);
+  
+}
+
+.link:hover {
+  text-decoration: none;
+  font-size: medium;
+  color: black;
+
+}
+
+#nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 5vw;
+  height: 5vh;
+  align-items: center;
+  background-color: #e3f2fd;
+  padding: 2px 1em 0 1em;
+  list-style-type: none;
+}
+
 #mainFrameLayout {
   display: grid;
   grid-template-columns: 25vw 60vw;
@@ -106,6 +132,7 @@
   flex-direction: column;
   justify-items: left;
   padding-right: 10px;
+  width: 12vw;
 }
 
 #simulation-module-layout {
@@ -286,4 +313,8 @@
 #upload-module-template-link {
   text-decoration-line: none;
   color: #0000EE;
+}
+
+#home-link {
+  color: #121212;
 }
