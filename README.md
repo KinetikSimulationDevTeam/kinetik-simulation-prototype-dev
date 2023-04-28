@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# How to Run an Amplify App Locally Using AWS Access Keys:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Prerequisites
+Before you can run an Amplify app locally using AWS Access Keys, you will need to have the following:
 
-## Available Scripts
+An AWS account with appropriate permissions to access the resources that your app uses
+AWS Access Keys for the account you will be using
+Node.js and npm installed on your computer
+The Amplify CLI installed globally on your computer
+Setting Up Your AWS Access Keys
+To set up your AWS Access Keys, follow these steps:
 
-In the project directory, you can run:
+Log in to your AWS account.
+Navigate to the IAM Dashboard.
+Click on "Users" in the left-hand menu.
+Click on your user name to open your user details.
+Click on the "Security credentials" tab.
+Click on "Create access key" to create a new access key.
+Download the access key file or copy the access key ID and secret access key.
+Running Your Amplify App Locally
+To run your Amplify app locally using AWS Access Keys, follow these steps:
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Clone your Amplify app's repository to your local machine.
+Open a terminal window and navigate to the root directory of your app.
+Run amplify init to initialize the Amplify project.
+Run amplify configure to configure your AWS Access Keys. Enter the access key ID and secret access key that you obtained earlier, and choose the appropriate region for your app.
+Run amplify push to deploy your app's backend resources to AWS.
+Run npm start to start your app's frontend.
+Your app should now be running locally and using your AWS resources. If you encounter any issues, consult the Amplify documentation or reach out to the Amplify community for support.
