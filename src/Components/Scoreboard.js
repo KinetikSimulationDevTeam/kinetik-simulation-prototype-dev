@@ -6,7 +6,8 @@ const Scoreboard = ({ lambdaOutput }) => {
     const [filteredData, setFilteredData] = useState([]);
 
     /*
-        Description: This function parsed the result from the lambda function and sets the filteredData state with the data that will be passed into the bar chart component.
+        Description: This function parsed the result from the lambda
+                     function and sets the filteredData state with the data that will be passed into the bar chart component.
 
         Arguments: None
 

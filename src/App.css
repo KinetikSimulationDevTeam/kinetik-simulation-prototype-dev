@@ -17,7 +17,7 @@
 #upload-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 5%;
+  border-radius: 0 0 5% 5%;
   background-color: white;
   width: 25vw;
   height: 41vh;
@@ -111,7 +111,7 @@
 #simulation-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 5%;
+  border-radius: 0 0 2% 2%;
   background-color: white;
   width: 66vw;
   height: 55vh;
@@ -121,7 +121,7 @@
 #new-ops-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 5%;
+  border-radius: 5% 5% 0 0;
   background-color: white;
   width: 25vw;
   height: 53vh;
@@ -131,7 +131,7 @@
 #scenario-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 5%;
+  border-radius: 5% 5% 0 0;
   background-color: white;
   width: 25vw;
   height: 55vh;
@@ -207,8 +207,8 @@
 
 .button {
   margin: 30px;
-  height: 20px;
-  width: 100px;
+  height: 3vh;
+  width: 7vw;
   align-items: center;
   background-color: #fff;
   border-radius: 12px;
@@ -219,7 +219,7 @@
   display: inline-flex;
   flex: 1 1 auto;
   font-family: Inter,sans-serif;
-  font-size: 1rem;
+  font-size: 2vmin;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
@@ -249,10 +249,10 @@
 #scoreboard-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 5%;
+  border-radius: 2% 2% 0 0;
   background-color: white;
   width: 66vw;
-  height: 38vh;
+  height: 39vh;
   padding: 0 1em 1em 1em;
 }
 

@@ -6,6 +6,7 @@ import NewOpsModule from '../Components/NewOpsModule'
 import Scoreboard from '../Components/Scoreboard'
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import Navbar from '../Components/Navbar'
 
 const MainFrame = () => {
   // This state will store the response from the lambda function
@@ -34,14 +35,17 @@ const MainFrame = () => {
   }
 
   return (
-    <div id='mainFrameLayout'>
-      <div id='first-column-mainframe'>
-        <UploadModule handleUploadCount={handleUploadCount} />
-        <NewOpsModule handleSliderValue={handleSliderValue} uploadCount={uploadCount} />
-      </div>
-      <div id='second-column-mainframe'>
-        <SimulationModule handleLambdaOutput={handleLambdaOutput} sliderValue={sliderValue} />
-        <Scoreboard lambdaOutput={lambdaOutput} />
+    <div>
+      <Navbar />
+      <div id='mainFrameLayout'>
+        <div id='first-column-mainframe'>
+          <UploadModule handleUploadCount={handleUploadCount} />
+          <NewOpsModule handleSliderValue={handleSliderValue} uploadCount={uploadCount} />
+        </div>
+        <div id='second-column-mainframe'>
+          <SimulationModule handleLambdaOutput={handleLambdaOutput} sliderValue={sliderValue} />
+          <Scoreboard lambdaOutput={lambdaOutput} />
+        </div>
       </div>
     </div>
   )
