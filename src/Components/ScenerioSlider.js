@@ -21,7 +21,7 @@ const ScenerioSlider = ({ name, mean, onSliderChange }) => {
     <div>
       <p id="scenerio-slider-name"> {name} </p>
       <ReactSlider
-        className="customSlider"
+        className="newops-slider"
         thumbClassName="customSlider-thumb"
         trackClassName="customSlider-track"
         markClassName="customSlider-mark"

@@ -163,7 +163,7 @@ const SimulationModule = (props) => {
           </button>
         </div>
         <Slider
-          className='customSlider'
+          id='simulation-slider'
           thumbClassName='customSlider-thumb'
           trackClassName='customSlider-track'
           markClassName='customSlider-mark'
