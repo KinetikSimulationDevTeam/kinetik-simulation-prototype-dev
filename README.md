@@ -1,6 +1,6 @@
 # How to Access this Amplify App on the web:
 
-Simply open the following link and upload an excel file with the appropriate format:
+Simply open the following link and upload a CSV file with the appropriate format:
 
 https://main.d2bkww882j30jj.amplifyapp.com/
 
