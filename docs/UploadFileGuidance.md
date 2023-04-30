@@ -48,3 +48,6 @@ Make sure to save this excel file as CSV in a place you can access it.
 ## 9. Upload!
 The final step is to upload your file to the website in the top-left module, select the amount of time you would like to run the simulation, and click the "Import CSV" button!
 After this, the simulation should run and you can view the results.
+
+## Here is a simple example of what your final CSV File could look like:
+![image](https://user-images.githubusercontent.com/65926117/235377608-d4421750-13ec-4282-bf1f-d3233e9402b4.png)
