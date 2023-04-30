@@ -1,12 +1,17 @@
-# How to Access this Amplify App on the web:
+# Kinetik Simulation
+Kinetik Simulation is a web application that utilizes monte-carlo forecasting model to support enterprise revenue growth by optimizing go-to-market strategies through software.
+
+<iframe src="https://drive.google.com/file/d/1YFra8EjlHBZqoDp_MzcFXNN2pUbnEiuQ/preview" width="640" height="480" allow="autoplay"></iframe>
+
+## How to Access this Amplify App on the web:
 
 Simply open the following link and upload a CSV file with the appropriate format:
 
 https://main.d2bkww882j30jj.amplifyapp.com/
 
-# How to Run this Amplify App Locally Using AWS Access Keys:
+## How to Run this Amplify App Locally Using AWS Access Keys:
 
-## Prerequisites:
+### Prerequisites:
 Before you can run this Amplify app locally using AWS Access Keys, you will need to have the following:
 
 An AWS account with appropriate permissions to access the lambda and API resources this app uses
@@ -35,7 +40,7 @@ Click on "Create access key" to create a new access key.
 
 Download the access key file or copy the access key ID and secret access key.
 
-## Running This Amplify App Locally
+### Running This Amplify App Locally
 
 To run your Amplify app locally using AWS Access Keys, follow these steps:
 
