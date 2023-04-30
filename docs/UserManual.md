@@ -27,11 +27,11 @@ By developing a web application that utilizes monte-carlo forecasting model and 
 ## Get Started
 To get started, make sure you are connected to the internet and open the following link: https://main.d2bkww882j30jj.amplifyapp.com/. This will take you to the Kinetik Simulation Application View.
 
-![Kinetik Simulation Application View](./src/Images/KinetikSimulationStarted.png)
+![Kinetik Simulation Application View](../src/Images/KinetikSimulationStarted.png)
 
 Upon opening the website, you will see a pop-up message welcoming you to Kinetik Simulation and prompting you to upload a data file to begin the simulation. Simply click the 'OK' button to exit the alert.
 
-![Kinetik Simulation Application View](./src/Images/KinetikUplaodModule.png)
+![Kinetik Simulation Application View](../src/Images/KinetikUplaodModule.png)
 
 Since you have not uploaded the data file yet, the simulation has not been triggered, and all other modules are showing as empty.
 
