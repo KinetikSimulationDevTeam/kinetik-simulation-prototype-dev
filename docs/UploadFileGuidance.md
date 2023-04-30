@@ -31,7 +31,7 @@ Again, make sure you have them in the same order as before, and always end with 
 In order to input the probabilities, you can think of it row-wise.
 Each row is the probability that an opportunity in stage on the left (row) will move to the stage listed above (column).
 Make sure each row adds up to 1 to ensure correct probability distributions.
-### Note that the final row will be the identity matrix. 
+#### Note that the final row will be the identity matrix. 
 ### The probability that a "Win" stays a "Win" is 100% since it has exited the pipeline.
 ### The same goes for "Loss" to "Loss."
 ### Simply add zeroes as needed in the middle of these 2 final rows to ensure that this property is maintained.
