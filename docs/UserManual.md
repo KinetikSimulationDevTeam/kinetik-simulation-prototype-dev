@@ -35,6 +35,22 @@ Upon opening the website, you will see a pop-up message welcoming you to Kinetik
 
 Since you have not uploaded the data file yet, the simulation has not been triggered, and all other modules are showing as empty.
 
-To upload your data file, navigate to the right-hand side of the upload module and click the 'download template' link. This will download a CSV template file for you to fill in.
+To upload your data file, navigate to the right-hand side of the Control Panel and click the 'download template' link. This will download a CSV template file for you to fill in.
 
-* Attention: Please follow the guidance provided in the [GUIDEANCE](./UploadFileGuidance.md) file to complete your upload file. It is essential to follow the format in the guidance file thoroughly for the application to parse your file and run the simulation.
+ATTENTION: Please follow the guidance provided in the [GUIDEANCE](./UploadFileGuidance.md) file to complete your upload file. It is essential to follow the format in the guidance file thoroughly for the application to parse your file and run the simulation.
+
+To upload your file, save it to your local device as a CSV file, and then click the upload area in the Control Panel to select and upload it to the application.
+
+Once you have uploaded the file, select the duration for which you want to forecast by using the dropdown menu in the Control Panel. If you are not sure how long you want to forecast, simply select 'Half Year.'
+
+After selecting the duration of the simulation, click the 'Import CSV' button. This will automatically save your file into your browser's local storage and trigger the simulation.
+
+Please wait for a few seconds...
+
+If your file is in the correct format and can be parsed by the application, you will see two pop-up messages indicating that your file was uploaded successfully and the simulation completed successfully.
+
+Notice: If your file is not in the correct format, you will see an error message pop up. In this case, please go back to your data file and use the guidance to modify your file. For more information and help, please refer to the [troubleshooting]() or [FAQ]()sessions, or contact the [kinetik simulation staff](https://www.kinetiksimulation.com).
+
+![Kinetik Simulation Application View](./src/Images/KinetikSImulationView.png)
+
+You can now see the simulation running in the 'Simulation/History' and 'Scoreboard' modules.
