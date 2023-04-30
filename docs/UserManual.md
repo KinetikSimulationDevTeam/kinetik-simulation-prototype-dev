@@ -51,6 +51,6 @@ If your file is in the correct format and can be parsed by the application, you 
 
 Notice: If your file is not in the correct format, you will see an error message pop up. In this case, please go back to your data file and use the guidance to modify your file. For more information and help, please refer to the [troubleshooting]() or [FAQ]()sessions, or contact the [kinetik simulation staff](https://www.kinetiksimulation.com).
 
-![Kinetik Simulation Application View](./src/Images/KinetikSImulationView.png)
+![Kinetik Simulation Application View](../src/Images/KinetikSImulationView.png)
 
 You can now see the simulation running in the 'Simulation/History' and 'Scoreboard' modules.
