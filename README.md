@@ -1,7 +1,7 @@
 # Kinetik Simulation
 Kinetik Simulation is a web application that utilizes monte-carlo forecasting model to support enterprise revenue growth by optimizing go-to-market strategies through software.
 
-<iframe src="https://drive.google.com/file/d/1YFra8EjlHBZqoDp_MzcFXNN2pUbnEiuQ/preview" width="640" height="480" allow="autoplay"></iframe>
+[embed]https://drive.google.com/file/d/1YFra8EjlHBZqoDp_MzcFXNN2pUbnEiuQ/preview[/embed]
 
 ## How to Access this Amplify App on the web:
 
