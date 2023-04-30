@@ -2,11 +2,65 @@
 Kinetik Simulation is a web application that utilizes monte-carlo forecasting model to support enterprise revenue growth by optimizing go-to-market strategies through software.
 
 ![Kinetik Simulation Application View](./src/Images/KinetikSImulationView.png)
+
 ## How to Access this Amplify App on the web:
 
 Simply open the following link and upload a CSV file with the appropriate format:
 
 https://main.d2bkww882j30jj.amplifyapp.com/
+
+## Getting Started
+
+### Cloning the Keinetik Simulation project
+
+1. Open your GitHub repository in a web browser and locate the green "Code" button in the top right corner of the page.
+
+2. Click on the "Code" button to open a dropdown menu.
+
+3. From the dropdown menu, select the "HTTPS" option to obtain the repository URL in HTTPS format.
+
+4. Copy the repository URL to the clipboard.
+
+5. Open a terminal or command prompt on your local machine.
+
+6. Navigate to the directory where you want to clone the repository using the command `cd` followed by the directory path.
+
+7. Type the following command to clone the repository to your local machine:
+
+```
+git clone <https://github.com/TaoHuang0/Kinetik.git>
+```
+
+8. Press Enter to execute the command. Git will download the repository to your local machine.
+
+9. After the cloning process is complete, navigate to the cloned repository directory using the command `cd`.
+
+10. Now, you can install the project dependencies using the appropriate package manager such as npm or yarn.
+
+### Installation
+
+1. Open a terminal or command prompt on your local machine.
+2. Navigate to the cloned repository directory using the command `cd`.
+3. Install the project dependencies using `npm` and `yarn`.
+   
+    ```
+    npm install
+    yarn install
+    ```
+
+4. Wait for the installation process to complete. Once completed, you can run the project locally on your machine.
+
+### Start With Development Server
+
+1. Open a terminal or command prompt on your local machine.
+2. Navigate to the cloned repository directory using the command `cd`.
+3. Start the development server using the appropriate command.
+   
+    ```
+    npm start
+    ```
+
+4. Wait for the development server to start. Once started, you can view the project in your web browser by navigating to the appropriate URL, typically `http://localhost:3000`.
 
 ## How to Run this Amplify App Locally Using AWS Access Keys:
 
