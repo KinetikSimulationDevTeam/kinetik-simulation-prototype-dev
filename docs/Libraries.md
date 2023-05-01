@@ -12,14 +12,11 @@ React.js     | VS Code
 - All other frontend Code are written in `React.js`
 
 * The following files are written in React.js:
+```
     ├── src
-
     │   ├── Coponents
-
     │   │   ├── [DragDropFile.js](###DragDropFile.js)
-
     │   │   ├── [NavigationBar.js](###NavigationBar.js)
-    
     │   │   ├── [ScoreboardBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
     │   │   ├── [SimulationBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
     │   │   ├── [Slider.js](###Slider.js)
@@ -31,14 +28,17 @@ React.js     | VS Code
     │   │   ├── [SimulationModule.js](###SimulationModule.js)
     │   ├── Pages
     │   │   ├── [MainFrame.js](###MainFrame.js)
+```
 
 * The following files are written in Python:
+```
     ├── amplify
     │   ├── backend
     │   │   ├── function
     │   │   │   ├── KinetikSimulationLambda
     │   │   │   │  ├── src
     │   │   │   │  │   ├── index.py
+```
 
 ## React Component Explanations
 
