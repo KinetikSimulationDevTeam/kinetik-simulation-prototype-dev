@@ -99,78 +99,86 @@ The MyResponsiveScoreBoard component is a wrapper around the ResponsiveBar compo
 ### Props
 #### `data` (required): An array of objects representing the data to be displayed in the chart.
 Each object should have the following properties:
-`Stage`: a string representing the stage of the competition
+
+1. `Stage`: a string representing the stage of the competition
 values: a number representing the number of opportunities at that stage.
 
-`keys` (required): An array of strings representing the keys used to access the data values in the data objects. In this case, it is an array with a single string value of values.
+2. `keys` (required): An array of strings representing the keys used to access the data values in the data objects. In this case, it is an array with a single string value of values.
 
-`indexBy` (required): A string representing the property of the data objects that should be used as the index of the chart.
+3. `indexBy` (required): A string representing the property of the data objects that should be used as the index of the chart.
 
 #### `margin`:An object representing the margins of the chart.
 It has the following properties:
-`top`: number representing the top margin.
 
-`right`: number representing the right margin.
+1. `top`: number representing the top margin.
 
-`bottom`: number representing the bottom margin.
+2. `right`: number representing the right margin.
 
-`left`: number representing the left margin.
+3. `bottom`: number representing the bottom margin.
 
-`padding`: number representing the padding between the bars.
+4. `left`: number representing the left margin.
+
+5. `padding`: number representing the padding between the bars.
 
 #### `valueScale`: An object representing the scale used to display the values.
 It has the following properties:
-`type`: a string representing the type of scale. In this case, it is set to 'linear'.
+
+1. `type`: a string representing the type of scale. In this case, it is set to 'linear'.
 
 #### `indexScale`: An object representing the scale used to display the index values.
 It has the following properties:
-`type`: a string representing the type of scale. In this case, it is set to 'band'.
 
-`round`: a boolean indicating whether to round the scale.
+1. `type`: a string representing the type of scale. In this case, it is set to 'band'.
+
+2. `round`: a boolean indicating whether to round the scale.
 
 #### `colors`: An object representing the colors used in the chart.
 It has the following properties:
-`scheme`: a string representing the color scheme. In this case, it is set to 'nivo'.
 
-`colorBy`: A string representing the property used to determine the color of the bars.
+1. `scheme`: a string representing the color scheme. In this case, it is set to 'nivo'.
+
+2. `colorBy`: A string representing the property used to determine the color of the bars.
 
 #### `defs`: An array of objects representing the definitions used for pattern fills.
 Each object should have the following properties:
-`id`: a string representing the ID of the pattern fill.
 
-`type`: a string representing the type of pattern fill.
+1. `id`: a string representing the ID of the pattern fill.
 
-`background`: a string representing the background color of the pattern fill.
+2. `type`: a string representing the type of pattern fill.
 
-`color`: a string representing the color of the pattern fill.
+3. `background`: a string representing the background color of the pattern fill.
 
-`size`: a number representing the size of the pattern fill.
+4. `color`: a string representing the color of the pattern fill.
 
-`padding`: a number representing the padding of the pattern fill.
+5. `size`: a number representing the size of the pattern fill.
 
-`stagger`: a boolean indicating whether to stagger the pattern fill.
+6. `padding`: a number representing the padding of the pattern fill.
+
+7. `stagger`: a boolean indicating whether to stagger the pattern fill.
 
 #### `fill`: An array of objects representing the pattern fills to use for each data value.
 Each object should have the following properties:
-`match`: an object representing the criteria for which the pattern fill should be used.
 
-`id`: a string representing the ID of the pattern fill to use.
+1. `match`: an object representing the criteria for which the pattern fill should be used.
+
+2. `id`: a string representing the ID of the pattern fill to use.
 
 #### `borderColor`:An object representing the border color of the bars.
 It has the following properties:
-`from`: a string representing the source of the color. In this case, it is set to 'color'.
 
-`modifiers`: an array of arrays representing the modifiers to apply to the color. In this case, it is set to [['darker', 1.6]].
+1. `from`: a string representing the source of the color. In this case, it is set to 'color'.
 
-`minValue`: A number representing the minimum value to display on the y-axis.
+2. `modifiers`: an array of arrays representing the modifiers to apply to the color. In this case, it is set to [['darker', 1.6]].
 
-`enableGridX`:A boolean indicating whether to enable the x-axis grid.
+3. `minValue`: A number representing the minimum value to display on the y-axis.
 
-`axisTop`: An object representing the properties of the top axis.
+4. `enableGridX`:A boolean indicating whether to enable the x-axis grid.
 
-`axisRight`:An object representing the properties of the right axis.
+5. `axisTop`: An object representing the properties of the top axis.
 
-`axisBottom`:An object representing the properties of the bottom.
+6. `axisRight`:An object representing the properties of the right axis.
+
+7. `axisBottom`:An object representing the properties of the bottom.
 
 ## SimulationModule.js
 The file SimulationModule.js is a React component that displays a simulation module containing a slider and a bar chart component. The component fetches data from an API and renders the data in the form of a bar chart. The bar chart displays data for different weeks of a simulation, and the slider allows the user to navigate between the different weeks.
