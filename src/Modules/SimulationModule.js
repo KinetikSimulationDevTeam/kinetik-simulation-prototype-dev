@@ -119,7 +119,6 @@ const SimulationModule = (props) => {
   const callLambdaFunction = async (input) => {
     try {
       let updatedJsonObject = input;
-      console.log(props.sliderValue);
 
       if (props.sliderValue.length != 0) {
         const jsonObject = JSON.parse(updatedJsonObject);
@@ -135,7 +134,6 @@ const SimulationModule = (props) => {
 
       // Set the state of lambdaOutput with the response
       await setLambdaOutput(response === undefined ? response[0] : response, props.handleLambdaOutput(response === undefined ? response[0] : response));
-      alertify.success('Simulation Completed Successfully.');
     } catch (error) {
       alertify.error('Input File is not in correct format.');
     }
