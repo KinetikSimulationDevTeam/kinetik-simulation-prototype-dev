@@ -1,6 +1,44 @@
-# React Coponents Documentations
+# High-level Module Structure
 
-## DragDropFile.js
+## Programming Languages we used
+Languages    | Platform
+------------ | -----------
+Python       | PyCharm
+JavaScript   | VS Code
+React.js     | VS Code
+
+- Simulation that run in AWS Lambda Function is written in `Python`
+
+- All other frontend Code are written in `React.js`
+
+* The following files are written in React.js:
+    ├── src
+    │   ├── Coponents
+    │   │   ├── [DragDropFile.js](###DragDropFile.js)
+    │   │   ├── [NavigationBar.js](###NavigationBar.js)
+    │   │   ├── [ScoreboardBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
+    │   │   ├── [SimulationBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
+    │   │   ├── [Slider.js](###Slider.js)
+    │   │   ├── [Sliders.js](###Sliders.js)
+    │   ├── Modules
+    │   │   ├── [ControlPanelModule.js](###ControlPanelModule.js)
+    │   │   ├── [NewOpsModule.js](###NewOpsModule.js)
+    │   │   ├── [ScoreboardModule.js](###ScoreboardModule.js)
+    │   │   ├── [SimulationModule.js](###SimulationModule.js)
+    │   ├── Pages
+    │   │   ├── [MainFrame.js](###MainFrame.js)
+
+* The following files are written in Python:
+    ├── amplify
+    │   ├── backend
+    │   │   ├── function
+    │   │   │   ├── KinetikSimulationLambda
+    │   │   │   │  ├── src
+    │   │   │   │  │   ├── index.py
+
+## React Component Explanations
+
+### DragDropFile.js
 This is a React functional component that implements a drag-and-drop file upload functionality. The component consists of four major functions:
 
 `DragDropFile`: The main function that handles the drag-and-drop functionality. It sets up state variables that keep track of whether the user is currently dragging a file, as well as the file itself, and it calls a function passed in via props (props.onAction) with the name of the file that was uploaded.
@@ -18,13 +56,13 @@ Additionally, the component contains a few other helper functions:
 
 `csvFileToArray`: A function that takes a CSV-formatted string as input and parses it into a JSON object. The JSON object consists of several arrays containing data on sources, stages, mean and standard deviation, and operation probabilities.
 
-## NavBar.js
+### NavigationBar.js
 The Navbar component is a React functional component that renders a navigation bar with a logo and links to different pages.
 
-### Props
+#### Props
 The Navbar component does not accept any props.
 
-### Explanation
+#### Explanation
 To use the Navbar component in your React application, you need to import it into your component and render it within your component.
 
 This React component is responsible for rendering a navigation bar. It imports the React library and an image of the Kinetik logo from a file named Kinetik_logo.png.
@@ -39,7 +77,7 @@ The third `a` element represents the About link and it redirects to https://www.
 
 Finally, the export default statement at the end of the file exports the Navbar component to be used in other files.
 
-## NewOpsModule.js
+### NewOpsModule.js
 This React component is responsible for rendering a new operational module. It imports the React library, useEffect, useState, and a component named ScenerioSliders from a file named ScenerioSliders.js.
 
 The `NewOpsModule` component is defined as a functional component using an arrow function. When the component is called, it returns a div element with an ID of "new-ops-module-layout", containing a h3 element with a class of "title" and a ScenerioSliders component.
@@ -50,7 +88,7 @@ The `handleSliderValue` function is an asynchronous function that takes data as 
 
 Finally, the export default statement at the end of the file exports the NewOpsModule component to be used in other files.
 
-## ScenarioSlider.js
+### Slider.js
 This React component is responsible for rendering a scenario slider. It imports the React library, `useState` hook, and a component named `ReactSlider` from the react-slider library.
 
 The `ScenerioSlider` component is defined as a functional component using an arrow function. It takes three props as arguments: name, mean, and onSliderChange. name and mean are used to display the name of the slider and its mean value, respectively. onSliderChange is a callback function that is called when the user changes the value of the slider.
@@ -63,15 +101,15 @@ The return statement returns a div element containing the name and mean values o
 
 Finally, the export default statement at the end of the file exports the ScenerioSlider component to be used in other files.
 
-## ScenarioSliders.js
+### Sliders.js
 This component is a React component that displays a set of sliders that allow the user to set values for different sources. The component reads the data from local storage and displays a slider for each source in the data. The user can move the sliders to set the values and then click a "Confirm" button to save the changes.
 
-### Props
+#### Props
 The component takes the following props:
 handleSliderValue: A callback function that will be called with the slider values when the user clicks the "Confirm" button.
 uploadCount: A prop used to trigger the useEffect hook when the file is uploaded.
 
-### Explanation
+#### Explanation
 The first line imports the React library, along with the useState and useEffect hooks. The second line imports another React component called ScenerioSlider from a local file.
 
 The component defines two state variables: "data" and "sliderValue". The "data" state stores the response from the lambda function, which is initialized to null. The "sliderValue" state stores the current value of the slider and is initialized to an empty array.
@@ -84,7 +122,7 @@ The component also defines two functions: "onClicked" and "handleSliderChange". 
 
 The component conditionally renders either a message asking the user to upload a file or a set of sliders based on the "data" state variable. If "data" is null, the component returns a message to the user asking them to upload a file. Otherwise, the component generates a set of sliders based on the "data" state variable and returns them along with a "Confirm" button. Each slider is created using the ScenerioSlider component, and its initial value is set to the corresponding value in the "data" state variable. Whenever a slider is changed, the "handleSliderChange" function is called to update the "sliderValue" state variable.
 
-## Scoreboard.js
+### ScoreboardModule.js
 This is a React functional component that exports a component called "Scoreboard". It imports the React module and two hooks, useState and useEffect, as well as another component called "MyResponsiveScoreBoard" from a local file named "ScoreboardBarChart".
 
 The Scoreboard component takes in a single prop called "lambdaOutput", which is used to render a bar chart component. The component has an initial state value of an empty array, which is used to keep track of the filtered data that is passed into the bar chart component.
@@ -93,11 +131,11 @@ The useEffect hook is used to parse the data received from the lambda function (
 
 The render function returns a div element that contains a title and the MyResponsiveScoreBoard component with the filteredData passed in as a prop.
 
-## ScoreboardBarChart.js & SimulationBarChart.js
+### ScoreboardBarChart.js&SimulationBarChart.js
 The MyResponsiveScoreBoard component is a wrapper around the ResponsiveBar component provided by the @nivo/bar library, which renders a bar chart that displays information about the results of a competition, divided by stages.
 
-### Props
-#### `data` (required): An array of objects representing the data to be displayed in the chart.
+#### Props
+`data` (required): An array of objects representing the data to be displayed in the chart.
 Each object should have the following properties:
 
 1. `Stage`: a string representing the stage of the competition
@@ -107,7 +145,7 @@ values: a number representing the number of opportunities at that stage.
 
 3. `indexBy` (required): A string representing the property of the data objects that should be used as the index of the chart.
 
-#### `margin`:An object representing the margins of the chart.
+`margin`:An object representing the margins of the chart.
 It has the following properties:
 
 1. `top`: number representing the top margin.
@@ -120,26 +158,26 @@ It has the following properties:
 
 5. `padding`: number representing the padding between the bars.
 
-#### `valueScale`: An object representing the scale used to display the values.
+`valueScale`: An object representing the scale used to display the values.
 It has the following properties:
 
 1. `type`: a string representing the type of scale. In this case, it is set to 'linear'.
 
-#### `indexScale`: An object representing the scale used to display the index values.
+`indexScale`: An object representing the scale used to display the index values.
 It has the following properties:
 
 1. `type`: a string representing the type of scale. In this case, it is set to 'band'.
 
 2. `round`: a boolean indicating whether to round the scale.
 
-#### `colors`: An object representing the colors used in the chart.
+`colors`: An object representing the colors used in the chart.
 It has the following properties:
 
 1. `scheme`: a string representing the color scheme. In this case, it is set to 'nivo'.
 
 2. `colorBy`: A string representing the property used to determine the color of the bars.
 
-#### `defs`: An array of objects representing the definitions used for pattern fills.
+`defs`: An array of objects representing the definitions used for pattern fills.
 Each object should have the following properties:
 
 1. `id`: a string representing the ID of the pattern fill.
@@ -156,14 +194,14 @@ Each object should have the following properties:
 
 7. `stagger`: a boolean indicating whether to stagger the pattern fill.
 
-#### `fill`: An array of objects representing the pattern fills to use for each data value.
+`fill`: An array of objects representing the pattern fills to use for each data value.
 Each object should have the following properties:
 
 1. `match`: an object representing the criteria for which the pattern fill should be used.
 
 2. `id`: a string representing the ID of the pattern fill to use.
 
-#### `borderColor`:An object representing the border color of the bars.
+`borderColor`:An object representing the border color of the bars.
 It has the following properties:
 
 1. `from`: a string representing the source of the color. In this case, it is set to 'color'.
@@ -180,7 +218,7 @@ It has the following properties:
 
 7. `axisBottom`:An object representing the properties of the bottom.
 
-## SimulationModule.js
+### SimulationModule.js
 The file SimulationModule.js is a React component that displays a simulation module containing a slider and a bar chart component. The component fetches data from an API and renders the data in the form of a bar chart. The bar chart displays data for different weeks of a simulation, and the slider allows the user to navigate between the different weeks.
 
 The component uses several state variables to keep track of the current state of the simulation. The state variables are as follows:
@@ -232,8 +270,8 @@ The component also imports several modules and components that are used in the s
 `Typography`: A React component that provides a typography for the simulation module.
 `CircularProgress`: A React component that provides a circular progress bar for the simulation module.
 
-## UploadModule.js
-The UploadModule.js file is a React component that displays a control panel for uploading files and selecting a time period. The component imports DragDropFile.js and a template file called kinetik_template_file.xlsx.
+### ControlPanelModule.js
+The ControlPanelModule.js file is a React component that displays a control panel for uploading files and selecting a time period. The component imports DragDropFile.js and a template file called kinetik_template_file.xlsx.
 
 The component has three state variables declared using the useState hook:
 `fileName`: This state variable keeps track of the name of the uploaded file.
@@ -250,10 +288,10 @@ The second section displays a dropdown menu to select the time period, the uploa
 
 The DragDropFile component takes in the selectedTimePeriod, handleLambdaOutput, onAction, and handleUploadCount as props. The handleLambdaOutput and handleUploadCount functions are called when the file is uploaded or an action is taken.
 
-## MainFrame.js
+### MainFrame.js
 This file contains the main layout of the Kinetik Simulation web application. It imports several components and defines their placement in the layout. It also defines several state variables and functions that are used by the child components.
 
-### Imports
+#### Imports
 The following components are imported at the top of the file:
 `React` is the core library for building UI components in React.
 `SimulationModule` is a custom component that contains the logic for the simulation of the Kinetik model.
@@ -270,14 +308,14 @@ The following state variables are defined using the useState hook:
 `sliderValue`: stores the values of the sliders in the NewOpsModule.
 `uploadCount`: stores the number of times a file has been uploaded using the UploadModule.
 
-### Functions
+#### Functions
 The following functions are defined in the file:
 `handleLambdaOutput`: a function that sets the value of the lambdaOutput state variable.
 `handleSliderValue`: a function that sets the value of the sliderValue state variable.
 `handleUploadCount`: a function that increments the value of the uploadCount state variable.
 
-### Side effects
+#### Side effects
 The useEffect hook is used to display a welcome message to the user when they first open the application, if no data has been uploaded yet.
 
-### Layout
+#### Layout
 The MainFrame component defines the main layout of the application. It contains two main columns, each of which contains two custom components. The left column contains the UploadModule and NewOpsModule, while the right column contains the SimulationModule and Scoreboard. The Navbar component is placed at the top of the page.
