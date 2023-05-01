@@ -15,19 +15,19 @@ React.js     | VS Code
 ```
     ├── src
     │   ├── Coponents
-    │   │   ├── [DragDropFile.js](###DragDropFile.js)
-    │   │   ├── [NavigationBar.js](###NavigationBar.js)
-    │   │   ├── [ScoreboardBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
-    │   │   ├── [SimulationBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
-    │   │   ├── [Slider.js](###Slider.js)
-    │   │   ├── [Sliders.js](###Sliders.js)
+    │   │   ├── DragDropFile.js
+    │   │   ├── NavigationBar.js
+    │   │   ├── ScoreboardBarChart.js
+    │   │   ├── SimulationBarChart.js
+    │   │   ├── Slider.js
+    │   │   ├── Sliders.js
     │   ├── Modules
-    │   │   ├── [ControlPanelModule.js](###ControlPanelModule.js)
-    │   │   ├── [NewOpsModule.js](###NewOpsModule.js)
-    │   │   ├── [ScoreboardModule.js](###ScoreboardModule.js)
-    │   │   ├── [SimulationModule.js](###SimulationModule.js)
+    │   │   ├── ControlPanelModule.js
+    │   │   ├── NewOpsModule.js
+    │   │   ├── ScoreboardModule.js
+    │   │   ├── SimulationModule.js
     │   ├── Pages
-    │   │   ├── [MainFrame.js](###MainFrame.js)
+    │   │   ├── MainFrame.js
 ```
 
 * The following files are written in Python:
