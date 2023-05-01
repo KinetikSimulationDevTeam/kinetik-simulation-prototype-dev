@@ -4,7 +4,7 @@ import Kinetik_img from '../Images/Kinetik_logo.png';
 const Navbar = () => {
     return (
         <nav id='nav-bar'>
-            <a href="#"><img src={Kinetik_img} alt='' width={30} height={30} /></a>
+            <a href="https://www.kinetiksimulation.com" target='_blank'><img src={Kinetik_img} alt='' width={30} height={30} /></a>
             <li>
                 <a id='home-link' className='link' href=""> Home<span>(current)</span></a>
             </li>

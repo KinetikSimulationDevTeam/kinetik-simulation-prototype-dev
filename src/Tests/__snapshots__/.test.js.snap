@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DragDropFile should render DragDropFile component 1`] = `
+<div>
+  <form
+    id="form-file-upload"
+  >
+    <input
+      accept=".csv"
+      id="input-file-upload"
+      type="file"
+    />
+    <label
+      class=""
+      for="input-file-upload"
+      id="label-file-upload"
+    >
+      <div>
+        <img
+          alt=""
+          height="50"
+          src="UploadImg.png"
+          width="50"
+        />
+        <p>
+          Drag and drop your file here or
+        </p>
+        <button
+          class="upload-button"
+        >
+          Upload a file
+        </button>
+      </div>
+    </label>
+    <button
+      class="button"
+    >
+      Import CSV
+    </button>
+  </form>
+</div>
+`;
