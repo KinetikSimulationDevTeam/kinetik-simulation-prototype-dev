@@ -13,9 +13,13 @@ React.js     | VS Code
 
 * The following files are written in React.js:
     ├── src
+
     │   ├── Coponents
+
     │   │   ├── [DragDropFile.js](###DragDropFile.js)
+
     │   │   ├── [NavigationBar.js](###NavigationBar.js)
+    
     │   │   ├── [ScoreboardBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
     │   │   ├── [SimulationBarChart.js](###ScoreboardBarChart.js&SimulationBarChart.js)
     │   │   ├── [Slider.js](###Slider.js)
