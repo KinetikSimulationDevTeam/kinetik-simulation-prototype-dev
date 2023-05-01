@@ -61,16 +61,17 @@ In the `Simulation/History module`, you can see the values of each stage in each
 
 At the buttom right, there is a `Scoreboard Module` for you to keep track of quarterly wins and loses. Each bar in this module is representing the wins and losses for the 13 weeks duration. *Notice:* The values show in thie module is NOT cumulated.
 
-> ## Features
-> There are two features you can use to see the result from the simulation:
+## Features
+There are two features you can use to see the result from the simulation:
 
-> 1. Using the `auto play` button in the Simulation/History Module. The auto play button is used to automatically play the simulation week by week without the user having to manually slide the slider to the right. The simulation will automatically stop after reaching the end of duration.
+1. Using the `auto play` button in the Simulation/History Module. The auto play button is used to automatically play the simulation week by week without the user having to manually slide the slider to the right. The simulation will automatically stop after reaching the end of duration.
 
-> 2. Using the `Slider` in the button of the Simulation/History Module. The slider is used to control the week of simulation result being displayed in the simulation module.
+2. Using the `Slider` in the button of the Simulation/History Module. The slider is used to control the week of simulation result being displayed in the simulation module.
 
 ## Create Scenarios
 On the bottom left, you can create scenarios with different sliders based on your input file. Once you visualize the simulation results, you may want to try out different scenarios by adjusting the sliders up or down to observe their impact. After adjusting the slider values, click the 'Confirm' button located at the bottom of the 'Scenario Module'.
 
-*Attention:* Please note that if there are too many new opportunity sliders, the 'Confirm' button may be hidden. In such cases, scroll down to the end of the 'Scenario Module' to find it.
+> *Attention:* Please note that if there are too many new opportunity sliders, the 'Confirm' button may be hidden. In such cases, scroll down to the end of the 'Scenario Module' to find it.
 
 You should see changes in the simulation results after adjusting the slider values and clicking the 'Confirm' button.
+![Simulation Module View](../src/Images/KinetikScenario.png)
