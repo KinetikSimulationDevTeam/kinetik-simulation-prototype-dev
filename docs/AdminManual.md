@@ -130,9 +130,9 @@ Run amplify push to deploy your app's backend resources to AWS.
 2. Navigate to the cloned repository directory using the command `cd`.
 3. Start the development server using the appropriate command.
    
-    ```
-    npm start
-    ```
+```
+npm start
+```
 
 4. Wait for the development server to start. Once started, you can view the project in your web browser by navigating to the appropriate URL, typically `http://localhost:3000`.
 
