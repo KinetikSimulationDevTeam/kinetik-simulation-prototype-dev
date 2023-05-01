@@ -1,12 +1,12 @@
 import React from 'react'
-import SimulationModule from '../Components/SimulationModule'
-import UploadModule from '../Components/UploadModule'
+import SimulationModule from '../Modules/SimulationModule'
+import ControlPanelModule from '../Modules/ControlPanelModule'
 import { useState, useEffect } from 'react'
-import NewOpsModule from '../Components/NewOpsModule'
-import Scoreboard from '../Components/Scoreboard'
+import NewOpsModule from '../Modules/NewOpsModule'
+import Scoreboard from '../Modules/ScoreboardModule'
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
-import Navbar from '../Components/Navbar'
+import Navbar from '../Components/NavigationBar'
 
 const MainFrame = () => {
   // This state will store the response from the lambda function
@@ -39,7 +39,7 @@ const MainFrame = () => {
       <Navbar />
       <div id='mainFrameLayout'>
         <div id='first-column-mainframe'>
-          <UploadModule handleUploadCount={handleUploadCount} />
+          <ControlPanelModule handleUploadCount={handleUploadCount} />
           <NewOpsModule handleSliderValue={handleSliderValue} uploadCount={uploadCount} />
         </div>
         <div id='second-column-mainframe'>

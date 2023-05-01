@@ -138,3 +138,5 @@ npm start
 4. Wait for the development server to start. Once started, you can view the project in your web browser by navigating to the appropriate URL, typically `http://localhost:3000`.
 
 Your app should now be running locally and using your AWS resources. If you encounter any issues, consult the Amplify documentation or reach out to the Amplify community for support.
+
+For how to use the Kinetik Simulation Application, please refers to the [User Manual](./UserManual.md) for more information.

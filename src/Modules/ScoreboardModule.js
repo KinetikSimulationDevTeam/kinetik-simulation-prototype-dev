@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MyResponsiveScoreBoard from './ScoreboardBarChart';
+import MyResponsiveScoreBoard from '../Components/ScoreboardBarChart';
 
 const Scoreboard = ({ lambdaOutput }) => {
     //This state variable is used to keep track of the data that is passed into the bar chart component. It is initialized with a default value of [[]].

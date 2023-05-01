@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import DragDropFile from './DragDropFile'
+import DragDropFile from '../Components/DragDropFile'
 import Kinetik_template_file from '../InputTemplate/kinetik_template_file.xlsx'
 
 const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {

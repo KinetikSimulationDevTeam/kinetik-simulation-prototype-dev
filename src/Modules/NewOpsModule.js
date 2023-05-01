@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react'
-import ScenerioSliders from './ScenerioSliders'
+import ScenerioSliders from '../Components/Sliders'
 
 const NewOpsModule = (props) => {
   // This state will store the response from the lambda function

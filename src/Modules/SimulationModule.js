@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slider';
-import MyResponsiveBar from './SimulationBarChart';
+import MyResponsiveBar from '../Components/SimulationBarChart';
 import { API } from 'aws-amplify';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
