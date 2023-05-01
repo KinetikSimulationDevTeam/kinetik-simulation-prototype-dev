@@ -30,6 +30,7 @@ Simply open the following link and upload a CSV file with the appropriate format
 
 https://main.d2bkww882j30jj.amplifyapp.com/
 
+# Running the app locally
 ## Getting Started
 
 ### Cloning the Keinetik Simulation project
