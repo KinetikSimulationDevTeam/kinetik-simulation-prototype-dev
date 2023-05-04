@@ -109,5 +109,4 @@ const ScenerioSliders = (props) => {
   }
 };
 
-
 export default ScenerioSliders;
