@@ -5,6 +5,13 @@ import { API } from 'aws-amplify';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 
+/*
+    Description: This component is used to display the simulation module.
+
+    Arguments: props: the data that is passed into the bar chart component
+
+    Return Type: None
+*/
 const SimulationModule = (props) => {
   //This state variable keeps track of the index of the current week being displayed in the simulation module. It is initialized with a default value of 0.
   const [currentIndex, setCurrentIndex] = useState(0);

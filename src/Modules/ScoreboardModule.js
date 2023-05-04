@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import MyResponsiveScoreBoard from '../Components/ScoreboardBarChart';
 
+/*
+    Description: This component is used to display the scoreboard.
+
+    Arguments: lambdaOutput: the data that is passed into the bar chart component
+
+    Return Type: None
+*/
 const Scoreboard = ({ lambdaOutput }) => {
     //This state variable is used to keep track of the data that is passed into the bar chart component. It is initialized with a default value of [[]].
     const [filteredData, setFilteredData] = useState([]);

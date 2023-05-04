@@ -8,6 +8,13 @@ import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import Navbar from '../Components/NavigationBar'
 
+/*
+    Description: This component is used to display the main frame of the application.
+
+    Arguments: None
+
+    Return Type: None
+*/
 const MainFrame = () => {
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();

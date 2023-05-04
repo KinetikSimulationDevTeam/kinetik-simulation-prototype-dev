@@ -2,6 +2,15 @@ import React, { useState } from 'react'
 import DragDropFile from '../Components/DragDropFile'
 import Kinetik_template_file from '../InputTemplate/kinetik_template_file.xlsx'
 
+/*
+    Description: This component is used to display the control panel.
+
+    Arguments: handleLambdaOutput: callback function to update the state in Simulation.js
+
+              handleUploadCount: callback function to update the state in Simulation.js
+                
+    Return Type: None
+*/
 const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
   //uploaded file name
   const [fileName, setFileName] = useState();

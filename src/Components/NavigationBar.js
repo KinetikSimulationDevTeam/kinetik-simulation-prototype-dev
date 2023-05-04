@@ -2,6 +2,13 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Kinetik_img from '../Images/Kinetik_logo.png';
 
+/*
+    Description: This component is used to display the navigation bar.
+
+    Arguments: None
+
+    Return Type: None
+*/
 const Navbar = () => {
   const location = useLocation();
 

@@ -1,5 +1,12 @@
 import { ResponsiveBar } from '@nivo/bar'
 
+/*
+    Description: This component is used to display the bar chart.
+
+    Arguments: data: result from lambda function that need to be displayed in the bar chart (See Simulation Module)
+
+    Return Type: None
+*/
 const MyResponsiveScoreBoard = ({ data }) => (
     <ResponsiveBar
         data={data}

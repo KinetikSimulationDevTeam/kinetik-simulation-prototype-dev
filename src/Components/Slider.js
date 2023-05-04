@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import ReactSlider from 'react-slider';
 
+/*
+    Description: This component is used to display the sliders for the scenerio analysis.
+
+    Arguments: name: name of the slider
+
+              mean: mean value of the slider
+
+              onSliderChange: callback function to update the state in ScenerioSliders
+
+    Return Type: None
+*/
 const ScenerioSlider = ({ name, mean, onSliderChange }) => {
   // This state will store the value of the slider
   const [value, setValue] = useState(mean);

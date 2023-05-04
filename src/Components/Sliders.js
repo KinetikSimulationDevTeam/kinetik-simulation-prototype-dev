@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ScenerioSlider from './Slider';
 
+/*
+    Description: This component is used to display the sliders for the scenerio analysis.
+
+    Arguments: handleSliderValue: callback function to update the state in ScenerioSliders
+
+    Return Type: None
+
+    Note: This component is used in Simulation.js
+*/
 const ScenerioSliders = (props) => {
   // This state will store the response from the lambda function
   const [data, setData] = useState(null);

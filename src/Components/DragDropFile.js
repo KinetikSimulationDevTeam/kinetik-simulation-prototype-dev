@@ -3,7 +3,13 @@ import UploadImg from '../Images/UploadImg.png'
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 
-// drag drop file component
+/*
+    Description: This component is used to display the drag and drop file upload.
+
+    Arguments: onAction: callback function to update the state in Simulation.js
+
+    Return Type: None
+*/
 function DragDropFile(props) {
   // drag state
   const [dragActive, setDragActive] = useState(false);

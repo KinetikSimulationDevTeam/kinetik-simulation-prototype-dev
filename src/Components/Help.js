@@ -2,6 +2,13 @@ import React from 'react'
 import Navigationbar from './NavigationBar'
 import { useLocation } from 'react-router-dom'
 
+/* 
+    Description: This component is used to display the FAQ page.
+
+    Arguments: None
+
+    Return Type: None
+*/
 const Help = () => {
     return (
         <div>
