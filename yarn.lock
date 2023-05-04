@@ -8491,6 +8491,13 @@ jake@^10.8.5:
     filelist "^1.0.1"
     minimatch "^3.0.4"
 
+jest-action@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-action/-/jest-action-1.0.0.tgz#c4427ebdb9026d91db45cadcfcb0d2f7f4fc6fd9"
+  integrity sha512-VA9OwKEcMaKUP0KLSnTUYMzYOPO6XURU9ZyksCdmZaGwE7nHwX+GfJUK1lqh7TDI40T+Vnv/6GQzO5Te4rhr5w==
+  dependencies:
+    jest-set "^2.0.0"
+
 jest-changed-files@^27.5.1:
   version "27.5.1"
   resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-27.5.1.tgz#a348aed00ec9bf671cc58a66fcbe7c3dfd6a68f5"
@@ -9136,6 +9143,11 @@ jest-serializer@^27.5.1:
   dependencies:
     "@types/node" "*"
     graceful-fs "^4.2.9"
+
+jest-set@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jest-set/-/jest-set-2.0.0.tgz#977c2120120e83086e86519c1a84c2a1c800f419"
+  integrity sha512-xbkgBhzLueM0y5loQa9swFA3Gg6DxyHa9qxyNNE7E7ICLeFbI4vl3ykoZuN4HCY5w6c4LA+wzmNCLf9N+yH2Sg==
 
 jest-snapshot@^27.5.1:
   version "27.5.1"

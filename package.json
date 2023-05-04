@@ -12,6 +12,7 @@
     "aws-amplify": "^5.0.24",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.7",
+    "jest-action": "^1.0.0",
     "material-ui-slider": "^3.0.8",
     "papaparse": "^5.4.1",
     "react": "^18.2.0",
