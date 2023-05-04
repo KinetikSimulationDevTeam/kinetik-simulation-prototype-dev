@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import DragDropFile from "../Components/DragDropFile";
 import Navbar from "../Components/NavigationBar";
 import Sliders from "../Components/Sliders";
@@ -13,6 +13,9 @@ import { MemoryRouter } from 'react-router-dom';
 import MyResponsiveScoreBoard from '../Components/ScoreboardBarChart';
 import ResizeObserver from 'resize-observer-polyfill';
 import MyResponsiveBar from '../Components/SimulationBarChart';
+import UploadModule from '../Modules/ControlPanelModule';
+import Scoreboard from '../Modules/ScoreboardModule';
+import SimulationModule from '../Modules/SimulationModule';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -33,13 +36,7 @@ describe("Sliders", () => {
     });
 });
 
-describe("NewOpsModule", () => {
-    test("should render NewOpsModule component", () => {
-        render(<NewOpsModule />);
-    });
-});
-
-describe('ScenerioSlider component', () => {
+describe('Slider component', () => {
     const props = {
         name: 'Test Scenerio',
         mean: 10,
@@ -56,7 +53,7 @@ describe('ScenerioSlider component', () => {
     });
 });
 
-describe('ScenerioSlider component', () => {
+describe('Slider component', () => {
     let props;
     let wrapper;
 
@@ -83,7 +80,7 @@ describe('ScenerioSlider component', () => {
     });
 });
 
-describe('Navbar', () => {
+describe('NavigationBar', () => {
     test('renders links to home, help, and about pages', () => {
         const { getByText } = render(
             <MemoryRouter>
@@ -113,7 +110,7 @@ describe('Navbar', () => {
     });
 });
 
-describe('MyResponsiveScoreBoard', () => {
+describe('ScoreboardBarChart', () => {
     const data = [
         {
             Stage: 'Stage 1',
@@ -142,7 +139,7 @@ describe('MyResponsiveScoreBoard', () => {
     });
 });
 
-describe('MyResponsiveBar', () => {
+describe('SimulationBarChart', () => {
     const data = [
         { Stage: 'Stage 1', values: 20 },
         { Stage: 'Stage 2', values: 50 },
@@ -155,5 +152,59 @@ describe('MyResponsiveBar', () => {
             <MyResponsiveBar data={data} largestValue={largestValue} />
         );
         expect(container.firstChild).toMatchSnapshot();
+    });
+});
+
+describe('ControlPanelModule', () => {
+    const handleLambdaOutput = jest.fn();
+    const handleUploadCount = jest.fn();
+
+    test('renders UploadModule component', () => {
+        render(<UploadModule handleLambdaOutput={handleLambdaOutput} handleUploadCount={handleUploadCount} />);
+        const titleElement = screen.getByText('Control Panel');
+        expect(titleElement).toBeInTheDocument();
+    });
+
+    test('updates selectedTimePeriod state when option is changed', () => {
+        render(<UploadModule handleLambdaOutput={handleLambdaOutput} handleUploadCount={handleUploadCount} />);
+        const selectElement = screen.getByRole('combobox');
+        fireEvent.change(selectElement, { target: { value: '26' } });
+        expect(selectElement.value).toBe('26');
+    });
+});
+
+describe('NewOpsModule', () => {
+    test("should render NewOpsModule component", () => {
+        render(<NewOpsModule />);
+    });
+
+    test('renders scenario analysis title', () => {
+        render(<NewOpsModule />);
+        const titleElement = screen.getByText(/Scenario Analysis/i);
+        expect(titleElement).toBeInTheDocument();
+    });
+});
+
+describe('Scoreboard', () => {
+    it('renders the title', () => {
+        render(<Scoreboard />);
+        expect(screen.getByText('Scoreboard')).toBeInTheDocument();
+    });
+
+    it('does not render the chart when there is no data', () => {
+        render(<Scoreboard />);
+        expect(screen.queryByTestId('scoreboard-chart')).not.toBeInTheDocument();
+    });
+});
+
+describe('SimulationModule', () => {
+    let wrapper;
+
+    beforeEach(() => {
+        wrapper = shallow(<SimulationModule />);
+    });
+
+    it('should render correctly', () => {
+        expect(wrapper).toMatchSnapshot();
     });
 });
