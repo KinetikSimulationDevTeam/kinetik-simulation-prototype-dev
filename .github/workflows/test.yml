@@ -1,13 +1,13 @@
-name: tests-client
+name: Tests
 
-on: 
-  pull_request:
-    paths:
-      - 'client/**'
+on: [push]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - run: npm install && npm test
+    - uses: actions/checkout@v2
+    - name: npm test
+      uses: stefanoeb/jest-action@1.0.4
