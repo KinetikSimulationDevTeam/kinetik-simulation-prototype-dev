@@ -193,6 +193,7 @@ function DragDropFile(props) {
     }
   }
 
+  //monitorthe time period change
   useEffect(() => {
     if (localStorage.getItem('KinetikDataSet') !== null) {
       const jsonObject = JSON.parse(localStorage.getItem('KinetikDataSet'));
