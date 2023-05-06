@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ScenerioSlider from './Slider';
+import alertify from 'alertifyjs';
 
 /*
     Description: This component is used to display the sliders for the scenerio analysis.
@@ -15,6 +16,8 @@ const ScenerioSliders = (props) => {
   const [data, setData] = useState(null);
   // This state will store the value of the slider
   const [sliderValue, setSliderValue] = useState([]);
+  // This state will set the confirm times
+  const [confirmTimes, setConfirmTimes] = useState(false);
 
   useEffect(() => {
     const refreshPage = () => {
@@ -45,6 +48,13 @@ const ScenerioSliders = (props) => {
   */
   function onClicked() {
     props.handleSliderValue(sliderValue);
+    if(confirmTimes === false) {
+      setConfirmTimes(true);
+      alertify.alert('Verify', 'Please click Confirm again to confirm your selection.');
+    }else{
+      setConfirmTimes(false);
+      alertify.success('New Values Confirmed! Simulation will now re-run.');
+    }
   }
 
   /*
