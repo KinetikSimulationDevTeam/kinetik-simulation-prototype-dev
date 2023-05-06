@@ -5,6 +5,7 @@ Kinetik Simulation is a web application that utilizes monte-carlo forecasting mo
 
 ## Table of Contents
 * [Getting Started](#getting_started)
+* [Sample Input File]()
 * [Documentation Folder](https://github.com/TaoHuang0/Kinetik/tree/main/docs)
 * [User Manual](https://github.com/TaoHuang0/Kinetik/blob/main/docs/UserManual.md)
 * [Admin Manual](https://github.com/TaoHuang0/Kinetik/blob/main/docs/AdminManual.md)
@@ -18,3 +19,8 @@ https://main.d2bkww882j30jj.amplifyapp.com/
 * To run our applicaction locally in your envirnment, please follow this [admin guide](https://github.com/TaoHuang0/Kinetik/blob/main/docs/AdminManual.md)
 
 * The `docs` folder contains information relating to all components of this repository.
+
+### Need help with the input file?
+* To download a completed input file for demo use, [click here]()
+* To see the tutorial of how to fill out the input file, [click here]()
+* To download a template. [click here]()
