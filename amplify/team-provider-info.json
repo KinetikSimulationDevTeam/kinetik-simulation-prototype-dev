@@ -15,7 +15,7 @@
       "function": {
         "kinetikSimulationLambda": {
           "deploymentBucketName": "amplify-kinetikdashboard-dev-201114-deployment",
-          "s3Key": "amplify-builds/kinetikSimulationLambda-4f334f6d5864796d6373-build.zip"
+          "s3Key": "amplify-builds/kinetikSimulationLambda-4d30372b6449374d6d2b-build.zip"
         }
       },
       "api": {
