@@ -28,4 +28,4 @@ Arguments: event - The event that triggered the function, which is a JSON object
 
 Here is an overview of how the simulation runs and what is being calculated for a specific stage:
 
-![Kinetik Flowchart](./src/Images/flowchart)
+![Kinetik Flowchart](./src/Images/flowchart.png)
