@@ -189,4 +189,4 @@ function DragDropFile(props) {
   );
 };
 
-export default DragDropFile;
+export default DragDropFile
