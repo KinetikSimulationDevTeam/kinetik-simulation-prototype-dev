@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-kinetiksimulation-dev-153354-authRole",
+      "UnauthRoleArn": "arn:aws:iam::737874217071:role/amplify-kinetiksimulation-dev-153354-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::737874217071:role/amplify-kinetiksimulation-dev-153354-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
+      "UnauthRoleName": "amplify-kinetiksimulation-dev-153354-unauthRole",
+      "StackName": "amplify-kinetiksimulation-dev-153354",
+      "StackId": "arn:aws:cloudformation:us-east-1:737874217071:stack/amplify-kinetiksimulation-dev-153354/5619e3d0-082a-11ee-b3b6-0a352c8804ed",
+      "AmplifyAppId": "d3vtwai0ocltbd"
+    },
+    "categories": {
+      "function": {
+        "kinetikSimulationLambda": {}
+      }
+    }
+  }
+}
