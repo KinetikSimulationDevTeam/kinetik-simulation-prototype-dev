@@ -14,7 +14,7 @@ Kinetik Simulation is a web application that utilizes monte-carlo forecasting mo
 
 ### Getting Started
 * To view our application on the webswite, click into this link:
-https://main.d2bkww882j30jj.amplifyapp.com/
+https://main.d3vtwai0ocltbd.amplifyapp.com/
 
 * To run our applicaction locally in your envirnment, please follow this [admin guide](https://github.com/TaoHuang0/Kinetik/blob/main/docs/AdminManual.md)
 
