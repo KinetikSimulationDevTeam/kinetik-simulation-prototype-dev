@@ -22,10 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-amplify/backend/function/kinetikSimulationLambda/src/numpy
-amplify/backend/function/kinetikSimulationLambda/src/numpy-1.24.3.dist-info
-amplify/backend/function/kinetikSimulationLambda/src/numpy.libs
-
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
