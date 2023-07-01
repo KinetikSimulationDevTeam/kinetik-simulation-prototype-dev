@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Kinetik_img from '../Images/Kinetik_logo.png';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css'
 
 /*
     Description: This component is used to display the navigation bar.
@@ -28,11 +30,11 @@ const Navbar = () => {
           <a className={`link ${location.pathname === '/about' ? 'current' : ''}`} style={location.pathname === '/about' ? {color: 'black'} : {}} href="https://www.kinetiksimulation.com" target='_blank'>About{(location.pathname === '/about') && <span>(current)</span>}</a>
         </li>
       </div>
-      <Link style={{ textDecoration: 'none' }} to="https://kinetiksolutions.auth.us-east-1.amazoncognito.com/login?client_id=57svgk24ilksqnbcd500lcvfto&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fkinetik.solutions">
-        <button className='button'>Signin</button>
-      </Link>
+      <li>
+        <Link className={`link ${location.pathname === '/signin' ? 'current' : ''}`} style={location.pathname === '/signin' ? {color: 'black'} : {}} to="/signin">My Account{(location.pathname === '/signin') && <span>(current)</span>}</Link>
+      </li>
     </nav>
   );
-}
+};
 
 export default Navbar;

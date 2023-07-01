@@ -1,0 +1,24 @@
+{
+  "authSelections": "userPoolOnly",
+  "resourceName": "kinetiksimulation7377e52d",
+  "serviceType": "imported",
+  "region": "us-east-1",
+  "usernameAttributes": [
+    "email"
+  ],
+  "authProvidersUserPool": [],
+  "requiredAttributes": [
+    "name",
+    "email"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Numbers"
+  ],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}

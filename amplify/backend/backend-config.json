@@ -15,6 +15,15 @@
       "service": "API Gateway"
     }
   },
+  "auth": {
+    "kinetiksimulation7377e52d": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
   "function": {
     "kinetikSimulationLambda": {
       "build": true,
@@ -23,6 +32,38 @@
     }
   },
   "parameters": {
+    "AMPLIFY_auth_kinetiksimulation7377e52d_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "kinetiksimulation7377e52d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_kinetiksimulation7377e52d_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "kinetiksimulation7377e52d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_kinetiksimulation7377e52d_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "kinetiksimulation7377e52d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_kinetiksimulation7377e52d_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "kinetiksimulation7377e52d"
+        }
+      ]
+    },
     "AMPLIFY_function_kinetikSimulationLambda_deploymentBucketName": {
       "usedBy": [
         {

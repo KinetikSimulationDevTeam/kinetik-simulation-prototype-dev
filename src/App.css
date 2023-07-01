@@ -334,3 +334,8 @@
 #faq-page-layout {
   margin: 1em;
 }
+
+#authentication-text {
+  text-align: center;
+  margin-top: 3em;
+}
