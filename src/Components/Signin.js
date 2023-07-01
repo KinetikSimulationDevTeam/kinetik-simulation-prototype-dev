@@ -10,11 +10,12 @@ const Signin = () => {
     <div>
       <Navigationbar />
       <Authenticator>
-        {({signOut}) => (
+        {({signOut, user}) => (
           <div id='authentication-text'>
             <img src={Smile} alt='' width={100} height={100} />
             <h1>Success!..</h1>
-            <h2>You are authenticated! Click <Link to='/'>HERE</Link> to go back to the simulation.</h2>
+            <h3>Hello, {user.username}</h3>
+            <h3>You are authenticated! Click <Link to='/'>HERE</Link> to go back to the simulation.</h3>
             <button onClick={signOut} className='button'>Sign Out</button>
           </div>
         )}
