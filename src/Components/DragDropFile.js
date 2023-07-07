@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import UploadImg from '../Images/UploadImg.png'
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { createUser, createFile } from '../graphql/mutations';
+
 
 /*
     Description: This component is used to display the drag and drop file upload.
@@ -19,6 +23,31 @@ function DragDropFile(props) {
   const [file, setFile] = useState("");
   // It will store the file uploaded by the user
   const fileReader = new FileReader();
+  const [userLoginStatus, setUserLoginStatus] = useState(false);
+  const [username, setUsername] = useState('');
+
+  const { user, signOut } = useAuthenticator((context) => [context.user]);
+
+  useEffect(() => {
+    // Call handleUserLogin() when user variable changes
+    handleUserLogin();
+  }, [user]);
+
+  /*
+    Description: Store username if user is logged in.
+
+    Arguments: None
+
+    Return Type: None
+  */
+  const handleUserLogin = async function () {
+    try{
+      setUsername(user.username);
+      setUserLoginStatus(true);
+    }catch(e){
+      setUserLoginStatus(false);
+    }
+  };
 
   /*
     Description: triggers when file is selected with click.
@@ -54,7 +83,7 @@ function DragDropFile(props) {
 
     Return Type: None
   */
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     if (file) {
       fileReader.onload = function (event) {
@@ -77,7 +106,7 @@ function DragDropFile(props) {
 
     Return Type: None
   */
-  const csvFileToArray = (string) => {
+  const csvFileToArray = async (string) => {
     try {
       let array = string.toString().split("\n");
       let sources = array[0].split(",");
@@ -152,6 +181,30 @@ function DragDropFile(props) {
       };
       const jsonString = JSON.stringify(jsonData);
       localStorage.setItem('KinetikDataSet', jsonString);
+
+      if(userLoginStatus){
+        
+        try{
+          // create user
+          const userParams = { id: username }
+
+          const userResult = await API.graphql(graphqlOperation(createUser, { input: userParams }));
+          const user = userResult.data.createUser;
+        }catch(err){
+        }
+
+        // create file
+        const fileParams = {
+            userid: username,
+            title: "input template 3",
+            body: jsonString
+        }
+
+        const fileResult = await API.graphql(graphqlOperation(createFile, { input: fileParams }));
+        const file = fileResult.data.createFile;
+
+      }
+
       alertify.success('Successfully Upload a file');
       props.handleUploadCount();
     } catch (err) {
@@ -189,4 +242,4 @@ function DragDropFile(props) {
   );
 };
 
-export default DragDropFile
+export default DragDropFile;

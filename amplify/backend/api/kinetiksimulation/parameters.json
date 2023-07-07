@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "kinetiksimulation",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2023-07-02T07:44:47.331Z"
+}

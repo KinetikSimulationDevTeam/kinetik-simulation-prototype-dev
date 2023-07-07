@@ -19,7 +19,8 @@
         }
       },
       "api": {
-        "getSimulationOutput": {}
+        "getSimulationOutput": {},
+        "kinetiksimulation": {}
       },
       "auth": {
         "kinetiksimulation7377e52d": {

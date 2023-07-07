@@ -1,5 +1,6 @@
 import './App.css';
 import MainFrame from './Pages/MainFrame';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 /*
     Description: This component is used to display the main frame of the application.
@@ -10,9 +11,11 @@ import MainFrame from './Pages/MainFrame';
 */
 function App() {
   return (
-    <div className="App">
-      <MainFrame />
-    </div>
+    <Authenticator.Provider>
+      <div className="App">
+        <MainFrame />
+      </div>
+    </Authenticator.Provider>
   );
 }
 
