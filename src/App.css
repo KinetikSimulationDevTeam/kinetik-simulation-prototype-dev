@@ -175,6 +175,7 @@
   max-width: 8vw;
   text-align: left;
   overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: 0;
 }
 

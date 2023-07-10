@@ -257,7 +257,11 @@ function DragDropFile(props) {
     e.preventDefault();
     const selectElement = document.getElementsByName("filesDdb")[0];
     const selectedValue = selectElement.options[selectElement.selectedIndex].value;
+    const selectedText = selectElement.options[selectElement.selectedIndex].text;
+    var fileName = selectedText.split(": ")[1];
+    fileName = fileName.split(",")[0].trim();
     localStorage.setItem("KinetikDataSet", selectedValue);
+    localStorage.setItem("fileName", fileName);
     props.handleUploadCount();
     setShowFileSelect(false);
     setShowConfirmationButtons(false);
