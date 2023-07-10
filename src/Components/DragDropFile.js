@@ -92,6 +92,7 @@ function DragDropFile(props) {
     if (file) {
       fileReader.onload = function (event) {
         const text = event.target.result;
+        console.log(e);
         csvFileToArray(text);
       };
 
@@ -200,7 +201,7 @@ function DragDropFile(props) {
         // create file
         const fileParams = {
             userid: username,
-            title: "input template 3",
+            title: localStorage.getItem('fileName'),
             body: jsonString
         }
 
@@ -304,8 +305,8 @@ function DragDropFile(props) {
   
       {showFileSelect && (
         <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
-          <select className='upload-module-ddb-dropdown' name="filesDdb">
-            <option selected disabled>Choose From Uploaded File</option>
+          <select className='upload-module-ddb-dropdown' name="filesDdb" defaultValue="disabled">
+            <option value="disabled" disabled>Choose From Uploaded File</option>
             {filesFromDdb.map((file) => (
               <option key={file.id} value={file.body}>
                 {"File Name: " + file.title + ", Time: " + new Date(file.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '')}
