@@ -11,11 +11,11 @@ import { Authenticator } from '@aws-amplify/ui-react';
 */
 function App() {
   return (
-    <Authenticator.Provider>
-      <div className="App">
+    <div className="App">
+      <Authenticator.Provider>
         <MainFrame />
-      </div>
-    </Authenticator.Provider>
+      </Authenticator.Provider>
+    </div>
   );
 }
 

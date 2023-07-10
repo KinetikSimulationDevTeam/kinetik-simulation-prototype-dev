@@ -37,7 +37,7 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
       </div>
       <div id='upload-module-input-layout'>
         <div id='upload-module-select-layout'>
-          <select onChange={handleTimePeriodChange} value={selectedTimePeriod}>
+          <select className='upload-module-input-dropdown' onChange={handleTimePeriodChange} value={selectedTimePeriod}>
             <option value="13">One Quarter</option>
             <option value="26">Half Year</option>
             <option value="52">One Year</option>

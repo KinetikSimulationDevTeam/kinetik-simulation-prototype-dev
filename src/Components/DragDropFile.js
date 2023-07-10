@@ -5,6 +5,7 @@ import 'alertifyjs/build/css/alertify.css';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createUser, createFile } from '../graphql/mutations';
+import { getUserDdb } from './DynamoDBFunctions';
 
 
 /*
@@ -25,6 +26,9 @@ function DragDropFile(props) {
   const fileReader = new FileReader();
   const [userLoginStatus, setUserLoginStatus] = useState(false);
   const [username, setUsername] = useState('');
+  const [filesFromDdb, setFilesFromDdb] = useState([]);
+  const [showFileSelect, setShowFileSelect] = useState(false);
+  const [showConfirmationButtons, setShowConfirmationButtons] = useState(false);
 
   const { user, signOut } = useAuthenticator((context) => [context.user]);
 
@@ -42,7 +46,7 @@ function DragDropFile(props) {
   */
   const handleUserLogin = async function () {
     try{
-      setUsername(user.username);
+      setUsername(user.username)
       setUserLoginStatus(true);
     }catch(e){
       setUserLoginStatus(false);
@@ -212,7 +216,7 @@ function DragDropFile(props) {
     }
   }
 
-  //monitorthe time period change
+  //monitor the time period change
   useEffect(() => {
     if (localStorage.getItem('KinetikDataSet') !== null) {
       const jsonObject = JSON.parse(localStorage.getItem('KinetikDataSet'));
@@ -222,24 +226,108 @@ function DragDropFile(props) {
     }
   }, [Number(props.timePeriod)]);
 
+  useEffect(() => {
+    if (userLoginStatus && username) {
+      const fetchData = async () => {
+        try {
+          const fileResult = await getUserDdb(username);
+          setFilesFromDdb(fileResult.data.getUser.files.items);
+
+        } catch (e) {
+        }
+      };
+
+      fetchData();
+    }
+  }, [userLoginStatus, username]);
+
+  const handleSelectButtonClick = (e) => {
+    e.preventDefault();
+    setShowFileSelect(!showFileSelect);
+    setShowConfirmationButtons(true);
+  };
+
+  const handleGoBackClick = () => {
+    setShowFileSelect(false);
+    setShowConfirmationButtons(false);
+  };
+
+  const handleConfirmSelectionClick = (e) => {
+    e.preventDefault();
+    const selectElement = document.getElementsByName("filesDdb")[0];
+    const selectedValue = selectElement.options[selectElement.selectedIndex].value;
+    localStorage.setItem("KinetikDataSet", selectedValue);
+    props.handleUploadCount();
+    setShowFileSelect(false);
+    setShowConfirmationButtons(false);
+  };
+
+
   return (
-    <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
-      <input ref={inputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} accept=".csv" />
-      <label id="label-file-upload" htmlFor="input-file-upload" className={dragActive ? "drag-active" : ""}>
-        <div>
-          <img src={UploadImg} width="50" height="50" alt="" />
-          <p>Click here to</p>
-          <button className="upload-button" onClick={onButtonClick}>Upload a file</button>
-        </div>
-      </label>
-      <button className="button"
-        onClick={(e) => {
-          handleOnSubmit(e);
-        }}>
-        Import CSV
-      </button>
-    </form>
+    <div>
+      {!showFileSelect && !showConfirmationButtons && (
+        <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
+          <input
+            ref={inputRef}
+            type="file"
+            id="input-file-upload"
+            multiple={false}
+            onChange={handleChange}
+            accept=".csv"
+          />
+          <label
+            id="label-file-upload"
+            htmlFor="input-file-upload"
+            className={dragActive ? "drag-active" : ""}
+          >
+            <div>
+              <img src={UploadImg} width="50" height="50" alt="" />
+              <p>Click here to</p>
+              <button className="upload-click-text" onClick={onButtonClick}>
+                Upload a file
+              </button>
+            </div>
+          </label>
+          <button
+            className="upload-button"
+            onClick={(e) => {
+              handleOnSubmit(e);
+            }}
+          >
+            Import CSV
+          </button>
+          <button className="upload-button" onClick={handleSelectButtonClick}>
+            Database
+          </button>
+        </form>
+      )}
+  
+      {showFileSelect && (
+        <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
+          <select className='upload-module-ddb-dropdown' name="filesDdb">
+            <option selected disabled>Choose From Uploaded File</option>
+            {filesFromDdb.map((file) => (
+              <option key={file.id} value={file.body}>
+                {"File Name: " + file.title + ", Time: " + new Date(file.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '')}
+              </option>
+            ))}
+          </select>
+          {showConfirmationButtons && (
+            <div>
+              <button className="upload-button" onClick={handleGoBackClick}>
+                Back
+              </button>
+              <button className="upload-button" onClick={(e) => {
+                handleConfirmSelectionClick(e);
+              }}>
+                Confirm
+              </button>
+            </div>
+          )}
+        </form>
+      )}
+    </div>
   );
-};
+}
 
 export default DragDropFile;

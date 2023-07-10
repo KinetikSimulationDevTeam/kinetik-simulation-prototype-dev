@@ -39,7 +39,6 @@ export async function getUserDdb(id) {
 export async function getFileDdb(id) {
     try {
         const file = await API.graphql(graphqlOperation(getFile, { id: id }));
-        console.log('File:', file);
         return file;
     } catch (error) {
         console.log('Error retrieving files:', error);
