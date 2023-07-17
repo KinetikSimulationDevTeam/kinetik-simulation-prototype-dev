@@ -29,6 +29,7 @@ function DragDropFile(props) {
   const [filesFromDdb, setFilesFromDdb] = useState([]);
   const [showFileSelect, setShowFileSelect] = useState(false);
   const [showConfirmationButtons, setShowConfirmationButtons] = useState(false);
+  const [uploadtoDatabase, setUploadtoDatabase] = useState(false);
 
   const { user, signOut } = useAuthenticator((context) => [context.user]);
 
@@ -92,7 +93,6 @@ function DragDropFile(props) {
     if (file) {
       fileReader.onload = function (event) {
         const text = event.target.result;
-        console.log(e);
         csvFileToArray(text);
       };
 
@@ -194,7 +194,7 @@ function DragDropFile(props) {
       const jsonString = JSON.stringify(jsonData);
       localStorage.setItem('KinetikDataSet', jsonString);
 
-      if(userLoginStatus){
+      if(userLoginStatus && uploadtoDatabase){
         
         try{
           // create user
@@ -274,6 +274,12 @@ function DragDropFile(props) {
     setShowConfirmationButtons(false);
   };
 
+  // function to handle checkbox state changes
+  const handleCheckboxChange = (e) => {
+    const isChecked = e.target.checked;
+    setUploadtoDatabase(isChecked);
+  };
+
 
   return (
     <div>
@@ -293,13 +299,15 @@ function DragDropFile(props) {
             className={dragActive ? "drag-active" : ""}
           >
             <div>
-              <img src={UploadImg} width="50" height="50" alt="" />
+              <img src={UploadImg} width="55vw" height="55vh" alt="" />
               <p>Click here to</p>
               <button className="upload-click-text" onClick={onButtonClick}>
                 Upload a file
               </button>
             </div>
           </label>
+          <input id="checkbox-upload-to-cloud" type="checkbox" name="upload-to-cloud" value="true" onChange={handleCheckboxChange} />
+          <label id="checkbox-upload-to-cloud-text" htmlFor="checkbox-upload-to-cloud">Upload to Database</label>
           <button
             className="upload-button"
             onClick={(e) => {

@@ -126,7 +126,6 @@ const SimulationModule = (props) => {
   const callLambdaFunction = async (input) => {
     try {
       let updatedJsonObject = input;
-      console.log("input " + props.sliderValue);
 
       if (props.sliderValue.length != 0) {
         const jsonObject = JSON.parse(updatedJsonObject);

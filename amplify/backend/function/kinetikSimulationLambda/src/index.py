@@ -122,7 +122,7 @@ def handler(event, context):
     # win Rate slider bar
     # negotiation > win
     currentWin = body['opsProbabilities'][4][5]
-    newWin = body['opsProbabilities'][4][5] * (1 + sliderValues[4])
+    newWin = body['opsProbabilities'][4][5] * (1 + (sliderValues[4]/5))
     if(body['opsProbabilities'][4][4] - (newWin - currentWin) > 0):
         body['opsProbabilities'][4][5] = newWin
         body['opsProbabilities'][4][4] -= (newWin - currentWin)
@@ -133,7 +133,7 @@ def handler(event, context):
     # market Dynamics slider bar
     # prospecting > Lead Qualification
     currentLeadQualificationMarketDynamics = body['opsProbabilities'][0][1]
-    newLeadQualificationMarketDynamics = body['opsProbabilities'][0][1] * (1 + sliderValues[5])
+    newLeadQualificationMarketDynamics = body['opsProbabilities'][0][1] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][0][0] - (newLeadQualificationMarketDynamics - currentLeadQualificationMarketDynamics) > 0):
         body['opsProbabilities'][0][1] = newLeadQualificationMarketDynamics
         body['opsProbabilities'][0][0] -= (newLeadQualificationMarketDynamics - currentLeadQualificationMarketDynamics)
@@ -143,7 +143,7 @@ def handler(event, context):
     
     # prospecting > Demo
     currentDemoMarketDynamics = body['opsProbabilities'][0][2]
-    newDemoMarketDynamics = body['opsProbabilities'][0][2] * (1 + sliderValues[5])
+    newDemoMarketDynamics = body['opsProbabilities'][0][2] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][0][0] - (newDemoMarketDynamics - currentDemoMarketDynamics) > 0):
         body['opsProbabilities'][0][2] = newDemoMarketDynamics
         body['opsProbabilities'][0][0] -= (newDemoMarketDynamics - currentDemoMarketDynamics)
@@ -153,7 +153,7 @@ def handler(event, context):
     
     # lead Qualification > Demo
     currentDemoMarketDynamics2 = body['opsProbabilities'][1][2]
-    newDemoMarketDynamics2 = body['opsProbabilities'][1][2] * (1 + sliderValues[5])
+    newDemoMarketDynamics2 = body['opsProbabilities'][1][2] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][1][1] - (newDemoMarketDynamics2 - currentDemoMarketDynamics2) > 0):
         body['opsProbabilities'][1][2] = newDemoMarketDynamics2
         body['opsProbabilities'][1][1] -= (newDemoMarketDynamics2 - currentDemoMarketDynamics2)
@@ -163,7 +163,7 @@ def handler(event, context):
     
     # lead Qualification > Proposal
     currentProposalMarketDynamics = body['opsProbabilities'][1][3]
-    newProposalMarketDynamics = body['opsProbabilities'][1][3] * (1 + sliderValues[5])
+    newProposalMarketDynamics = body['opsProbabilities'][1][3] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][1][1] - (newProposalMarketDynamics - currentProposalMarketDynamics) > 0):
         body['opsProbabilities'][1][3] = newProposalMarketDynamics
         body['opsProbabilities'][1][1] -= (newProposalMarketDynamics - currentProposalMarketDynamics)
@@ -173,7 +173,7 @@ def handler(event, context):
     
     # Demo > Proposal
     currentProposalMarketDynamics2 = body['opsProbabilities'][2][3]
-    newProposalMarketDynamics2 = body['opsProbabilities'][2][3] * (1 + sliderValues[5])
+    newProposalMarketDynamics2 = body['opsProbabilities'][2][3] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][2][2] - (newProposalMarketDynamics2 - currentProposalMarketDynamics2) > 0):
         body['opsProbabilities'][2][3] = newProposalMarketDynamics2
         body['opsProbabilities'][2][2] -= (newProposalMarketDynamics2 - currentProposalMarketDynamics2)
@@ -183,7 +183,7 @@ def handler(event, context):
     
     # Demo > Negotiation
     currentNegotiationMarketDynamics = body['opsProbabilities'][2][4]
-    newNegotiationMarketDynamics = body['opsProbabilities'][2][4] * (1 + sliderValues[5])
+    newNegotiationMarketDynamics = body['opsProbabilities'][2][4] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][2][2] - (newNegotiationMarketDynamics - currentNegotiationMarketDynamics) > 0):
         body['opsProbabilities'][2][4] = newNegotiationMarketDynamics
         body['opsProbabilities'][2][2] -= (newNegotiationMarketDynamics - currentNegotiationMarketDynamics)
@@ -193,7 +193,7 @@ def handler(event, context):
     
     # Proposal > Negotiation
     currentNegotiationMarketDynamics2 = body['opsProbabilities'][3][4]
-    newNegotiationMarketDynamics2 = body['opsProbabilities'][3][4] * (1 + sliderValues[5])
+    newNegotiationMarketDynamics2 = body['opsProbabilities'][3][4] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][3][3] - (newNegotiationMarketDynamics2 - currentNegotiationMarketDynamics2) > 0):
         body['opsProbabilities'][3][4] = newNegotiationMarketDynamics2
         body['opsProbabilities'][3][3] -= (newNegotiationMarketDynamics2 - currentNegotiationMarketDynamics2)
@@ -203,7 +203,7 @@ def handler(event, context):
     
     # negotiation > win
     currentWinMarketDynamics = body['opsProbabilities'][4][5]
-    newWinMarketDynamics = body['opsProbabilities'][4][5] * (1 + sliderValues[5])
+    newWinMarketDynamics = body['opsProbabilities'][4][5] * (1 + (sliderValues[5]/5))
     if(body['opsProbabilities'][4][4] - (newWinMarketDynamics - currentWinMarketDynamics) > 0):
         body['opsProbabilities'][4][5] = newWinMarketDynamics
         body['opsProbabilities'][4][4] -= (newWinMarketDynamics - currentWinMarketDynamics)
@@ -223,7 +223,7 @@ def handler(event, context):
             newOpsTotal = newOpsTotal + numpy.random.normal(body['means'][j], body['stds'][j])
         
         # adjust slider values to reflect new opportunities
-        newOpsTotal = newOpsTotal * (1 + sliderValues[1] + sliderValues[5])
+        newOpsTotal = newOpsTotal * (1 + sliderValues[1] + (sliderValues[5]/5))
 
         # new opportunities distributed to each stage (need to calculate using normal dist)
         # Order: All stages, followed by Win and Loss

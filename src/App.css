@@ -78,7 +78,7 @@
 #label-file-upload {
   font-size: 2vh;
   margin-bottom: 5px;
-  height: 28vh;
+  height: 25vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +107,7 @@
 }
 
 .upload-button {
-  margin: 0.2vh 0.2vw;
+  margin: 1vh 0.2vw;
   width: 6.5vw;
   height: 4vh;
   align-items: center;
@@ -119,7 +119,7 @@
   cursor: pointer;
   display: inline-flex;
   font-family: Inter,sans-serif;
-  font-size: auto;
+  font-size: 1.9vh;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
@@ -378,4 +378,14 @@
 #authentication-text {
   text-align: center;
   margin-top: 3em;
+}
+
+#checkbox-upload-to-cloud-text {
+  font-size: 1.5vh;
+  text-align: center;
+}
+
+#checkbox-upload-to-cloud {
+  width: 0.7vw;
+  height: 0.7vw;
 }

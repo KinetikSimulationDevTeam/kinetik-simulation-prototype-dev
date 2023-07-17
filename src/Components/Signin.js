@@ -27,7 +27,7 @@ const Signin = () => {
             <div>
               <img src={Smile} alt='' width={100} height={100} />
               <h1>Success!..</h1>
-              <h3>Hello, {user.username}</h3>
+              <h3>Welcome to Kinetik Simulation</h3>
               <h3>
                 You are authenticated! Click{' '}
                 <Link to='/'>HERE</Link> to go back to the simulation.
@@ -35,7 +35,7 @@ const Signin = () => {
               <button onClick={signOut} className='button'>
                 Sign Out
               </button>
-              <h3>Manage My Files</h3>
+              {/* <h3>Manage My Files</h3>
               <table className='upload-module-ddb-table'>
                 <thead>
                   <tr>
@@ -55,7 +55,7 @@ const Signin = () => {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table> */}
             </div>
           )}
         </Authenticator>
