@@ -131,8 +131,85 @@ def handler(event, context):
         body['opsProbabilities'][4][4] = 0
 
     # market Dynamics slider bar
-
-
+    # prospecting > Lead Qualification
+    currentLeadQualificationMarketDynamics = body['opsProbabilities'][0][1]
+    newLeadQualificationMarketDynamics = body['opsProbabilities'][0][1] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][0][0] - (newLeadQualificationMarketDynamics - currentLeadQualificationMarketDynamics) > 0):
+        body['opsProbabilities'][0][1] = newLeadQualificationMarketDynamics
+        body['opsProbabilities'][0][0] -= (newLeadQualificationMarketDynamics - currentLeadQualificationMarketDynamics)
+    else:
+        body['opsProbabilities'][0][1] = body['opsProbabilities'][0][1] + body['opsProbabilities'][0][0]
+        body['opsProbabilities'][0][0] = 0
+    
+    # prospecting > Demo
+    currentDemoMarketDynamics = body['opsProbabilities'][0][2]
+    newDemoMarketDynamics = body['opsProbabilities'][0][2] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][0][0] - (newDemoMarketDynamics - currentDemoMarketDynamics) > 0):
+        body['opsProbabilities'][0][2] = newDemoMarketDynamics
+        body['opsProbabilities'][0][0] -= (newDemoMarketDynamics - currentDemoMarketDynamics)
+    else:
+        body['opsProbabilities'][0][2] = body['opsProbabilities'][0][2] + body['opsProbabilities'][0][0]
+        body['opsProbabilities'][0][0] = 0
+    
+    # lead Qualification > Demo
+    currentDemoMarketDynamics2 = body['opsProbabilities'][1][2]
+    newDemoMarketDynamics2 = body['opsProbabilities'][1][2] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][1][1] - (newDemoMarketDynamics2 - currentDemoMarketDynamics2) > 0):
+        body['opsProbabilities'][1][2] = newDemoMarketDynamics2
+        body['opsProbabilities'][1][1] -= (newDemoMarketDynamics2 - currentDemoMarketDynamics2)
+    else:
+        body['opsProbabilities'][1][2] = body['opsProbabilities'][1][2] + body['opsProbabilities'][1][1]
+        body['opsProbabilities'][1][1] = 0
+    
+    # lead Qualification > Proposal
+    currentProposalMarketDynamics = body['opsProbabilities'][1][3]
+    newProposalMarketDynamics = body['opsProbabilities'][1][3] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][1][1] - (newProposalMarketDynamics - currentProposalMarketDynamics) > 0):
+        body['opsProbabilities'][1][3] = newProposalMarketDynamics
+        body['opsProbabilities'][1][1] -= (newProposalMarketDynamics - currentProposalMarketDynamics)
+    else:
+        body['opsProbabilities'][1][3] = body['opsProbabilities'][1][3] + body['opsProbabilities'][1][1]
+        body['opsProbabilities'][1][1] = 0
+    
+    # Demo > Proposal
+    currentProposalMarketDynamics2 = body['opsProbabilities'][2][3]
+    newProposalMarketDynamics2 = body['opsProbabilities'][2][3] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][2][2] - (newProposalMarketDynamics2 - currentProposalMarketDynamics2) > 0):
+        body['opsProbabilities'][2][3] = newProposalMarketDynamics2
+        body['opsProbabilities'][2][2] -= (newProposalMarketDynamics2 - currentProposalMarketDynamics2)
+    else:
+        body['opsProbabilities'][2][3] = body['opsProbabilities'][2][3] + body['opsProbabilities'][2][2]
+        body['opsProbabilities'][2][2] = 0
+    
+    # Demo > Negotiation
+    currentNegotiationMarketDynamics = body['opsProbabilities'][2][4]
+    newNegotiationMarketDynamics = body['opsProbabilities'][2][4] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][2][2] - (newNegotiationMarketDynamics - currentNegotiationMarketDynamics) > 0):
+        body['opsProbabilities'][2][4] = newNegotiationMarketDynamics
+        body['opsProbabilities'][2][2] -= (newNegotiationMarketDynamics - currentNegotiationMarketDynamics)
+    else:
+        body['opsProbabilities'][2][4] = body['opsProbabilities'][2][4] + body['opsProbabilities'][2][2]
+        body['opsProbabilities'][2][2] = 0
+    
+    # Proposal > Negotiation
+    currentNegotiationMarketDynamics2 = body['opsProbabilities'][3][4]
+    newNegotiationMarketDynamics2 = body['opsProbabilities'][3][4] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][3][3] - (newNegotiationMarketDynamics2 - currentNegotiationMarketDynamics2) > 0):
+        body['opsProbabilities'][3][4] = newNegotiationMarketDynamics2
+        body['opsProbabilities'][3][3] -= (newNegotiationMarketDynamics2 - currentNegotiationMarketDynamics2)
+    else:
+        body['opsProbabilities'][3][4] = body['opsProbabilities'][3][4] + body['opsProbabilities'][3][3]
+        body['opsProbabilities'][3][3] = 0
+    
+    # negotiation > win
+    currentWinMarketDynamics = body['opsProbabilities'][4][5]
+    newWinMarketDynamics = body['opsProbabilities'][4][5] * (1 + sliderValues[5])
+    if(body['opsProbabilities'][4][4] - (newWinMarketDynamics - currentWinMarketDynamics) > 0):
+        body['opsProbabilities'][4][5] = newWinMarketDynamics
+        body['opsProbabilities'][4][4] -= (newWinMarketDynamics - currentWinMarketDynamics)
+    else:
+        body['opsProbabilities'][4][5] = body['opsProbabilities'][4][5] + body['opsProbabilities'][4][4]
+        body['opsProbabilities'][4][4] = 0
 
     # loop through weeks
     for i in range(body['weeks']):
