@@ -15,8 +15,9 @@ import numpy
                 4. sources - The sources of the opportunities
                 5. means - The means of the normal distributions for each source
                 6. stds - The standard deviations of the normal distributions for each source
-                8. newOpsProbabilities - The probabilities of new opportunities coming in from each source
-                9. opsProbabilities - The probabilities of opportunities moving from each stage to each other stage
+                7. newOpsProbabilities - The probabilities of new opportunities coming in from each source
+                8. opsProbabilities - The probabilities of opportunities moving from each stage to each other stage
+                9. sliderValues - The values of the sliders for each source, default is 0
 
                 context - an object that contains information about the invocation, function, and execution environment
 
@@ -39,8 +40,99 @@ def handler(event, context):
     data = [[{} for i in range(len(body['stages']))]
                                for j in range(body['weeks'])]
     
+    # set slider values
+    sliderValues = body['sliderValues']
+    
     # set first week to current number of opportunities
     currentNumber = body["ops"]
+
+    # change opsProbabilities to reflect slider values
+    # progression slider bar
+    # prospecting > Lead Qualification
+    currentLeadQualification = body['opsProbabilities'][0][1]
+    newLeadQualification = body['opsProbabilities'][0][1] * (1 + sliderValues[2])
+    if(body['opsProbabilities'][0][0] - (newLeadQualification - currentLeadQualification) > 0):
+        body['opsProbabilities'][0][1] = newLeadQualification
+        body['opsProbabilities'][0][0] -= (newLeadQualification - currentLeadQualification)
+    else:
+        body['opsProbabilities'][0][1] = body['opsProbabilities'][0][1] + body['opsProbabilities'][0][0]
+        body['opsProbabilities'][0][0] = 0
+
+    # prospecting > Demo
+    currentDemo = body['opsProbabilities'][0][2]
+    newDemo = body['opsProbabilities'][0][2] * (1 + sliderValues[2])
+    if(body['opsProbabilities'][0][0] - (newDemo - currentDemo) > 0):
+        body['opsProbabilities'][0][2] = newDemo
+        body['opsProbabilities'][0][0] -= (newDemo - currentDemo)
+    else:
+        body['opsProbabilities'][0][2] = body['opsProbabilities'][0][2] + body['opsProbabilities'][0][0]
+        body['opsProbabilities'][0][0] = 0
+
+    # lead Qualification > Demo
+    currentDemo2 = body['opsProbabilities'][1][2]
+    newDemo2 = body['opsProbabilities'][1][2] * (1 + sliderValues[2])
+    if(body['opsProbabilities'][1][1] - (newDemo2 - currentDemo2) > 0):
+        body['opsProbabilities'][1][2] = newDemo2
+        body['opsProbabilities'][1][1] -= (newDemo2 - currentDemo2)
+    else:
+        body['opsProbabilities'][1][2] = body['opsProbabilities'][1][2] + body['opsProbabilities'][1][1]
+        body['opsProbabilities'][1][1] = 0
+
+    # lead Qualification > Proposal
+    currentProposal = body['opsProbabilities'][1][3]
+    newProposal = body['opsProbabilities'][1][3] * (1 + sliderValues[2])
+    if(body['opsProbabilities'][1][1] - (newProposal - currentProposal) > 0):
+        body['opsProbabilities'][1][3] = newProposal
+        body['opsProbabilities'][1][1] -= (newProposal - currentProposal)
+    else:
+        body['opsProbabilities'][1][3] = body['opsProbabilities'][1][3] + body['opsProbabilities'][1][1]
+        body['opsProbabilities'][1][1] = 0
+
+    # Closing slider bar
+    # Demo > Proposal
+    currentProposal2 = body['opsProbabilities'][2][3]
+    newProposal2 = body['opsProbabilities'][2][3] * (1 + sliderValues[3])
+    if(body['opsProbabilities'][2][2] - (newProposal2 - currentProposal2) > 0):
+        body['opsProbabilities'][2][3] = newProposal2
+        body['opsProbabilities'][2][2] -= (newProposal2 - currentProposal2)
+    else:
+        body['opsProbabilities'][2][3] = body['opsProbabilities'][2][3] + body['opsProbabilities'][2][2]
+        body['opsProbabilities'][2][2] = 0
+
+    # Demo > Negotiation
+    currentNegotiation = body['opsProbabilities'][2][4]
+    newNegotiation = body['opsProbabilities'][2][4] * (1 + sliderValues[3])
+    if(body['opsProbabilities'][2][2] - (newNegotiation - currentNegotiation) > 0):
+        body['opsProbabilities'][2][4] = newNegotiation
+        body['opsProbabilities'][2][2] -= (newNegotiation - currentNegotiation)
+    else:
+        body['opsProbabilities'][2][4] = body['opsProbabilities'][2][4] + body['opsProbabilities'][2][2]
+        body['opsProbabilities'][2][2] = 0
+
+    # Proposal > Negotiation
+    currentNegotiation2 = body['opsProbabilities'][3][4]
+    newNegotiation2 = body['opsProbabilities'][3][4] * (1 + sliderValues[3])
+    if(body['opsProbabilities'][3][3] - (newNegotiation2 - currentNegotiation2) > 0):
+        body['opsProbabilities'][3][4] = newNegotiation2
+        body['opsProbabilities'][3][3] -= (newNegotiation2 - currentNegotiation2)
+    else:
+        body['opsProbabilities'][3][4] = body['opsProbabilities'][3][4] + body['opsProbabilities'][3][3]
+        body['opsProbabilities'][3][3] = 0
+
+    # win Rate slider bar
+    # negotiation > win
+    currentWin = body['opsProbabilities'][4][5]
+    newWin = body['opsProbabilities'][4][5] * (1 + sliderValues[4])
+    if(body['opsProbabilities'][4][4] - (newWin - currentWin) > 0):
+        body['opsProbabilities'][4][5] = newWin
+        body['opsProbabilities'][4][4] -= (newWin - currentWin)
+    else:
+        body['opsProbabilities'][4][5] = body['opsProbabilities'][4][5] + body['opsProbabilities'][4][4]
+        body['opsProbabilities'][4][4] = 0
+
+    # market Dynamics slider bar
+
+
 
     # loop through weeks
     for i in range(body['weeks']):
@@ -52,6 +144,9 @@ def handler(event, context):
         newOpsTotal = 0.0
         for j in range(len(body['sources'])):
             newOpsTotal = newOpsTotal + numpy.random.normal(body['means'][j], body['stds'][j])
+        
+        # adjust slider values to reflect new opportunities
+        newOpsTotal = newOpsTotal * (1 + sliderValues[1] + sliderValues[5])
 
         # new opportunities distributed to each stage (need to calculate using normal dist)
         # Order: All stages, followed by Win and Loss

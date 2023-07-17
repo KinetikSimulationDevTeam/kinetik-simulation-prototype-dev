@@ -18,7 +18,7 @@ import Navbar from '../Components/NavigationBar'
 const MainFrame = () => {
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
-  const [sliderValue, setSliderValue] = useState([]);
+  const [sliderValue, setSliderValue] = useState([0,0,0,0,0,0]);
   const [uploadCount, setUploadCount] = useState(0);
 
   useEffect(() => {

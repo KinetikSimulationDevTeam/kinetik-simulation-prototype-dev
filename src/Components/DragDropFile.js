@@ -121,6 +121,7 @@ function DragDropFile(props) {
       let std = [];
       let opsProbabilities = [];
       let ops = [];
+      let sliderValues = [];
 
       //get the number of sources
       for (let i = 0; i < sources.length; i++) {
@@ -173,6 +174,11 @@ function DragDropFile(props) {
         ops[i] = parseFloat(ops[i]);
       }
 
+      //add slider values to the json object
+      for (let i = 0; i < 6; i++) {
+        sliderValues[i] = 0; //default value
+      }
+
       //convert data into json object
       const jsonData = {
         weeks: Number(props.timePeriod),
@@ -183,6 +189,7 @@ function DragDropFile(props) {
         stds: std,
         newOpsProbabilities: newOpsProbabilities,
         opsProbabilities: opsProbabilities,
+        sliderValues: sliderValues,
       };
       const jsonString = JSON.stringify(jsonData);
       localStorage.setItem('KinetikDataSet', jsonString);

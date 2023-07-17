@@ -37,12 +37,12 @@ const ScenerioSlider = ({ name, mean, onSliderChange }) => {
         trackClassName="customSlider-track"
         markClassName="customSlider-mark"
         marks={mean}
-        min={0}
-        max={2 * mean}
+        min={-90}
+        max={300}
         defaultValue={mean}
         onChange={handleSliderChange}
       />
-      <p>Value: {value}</p>
+      <p>Value: {value}%</p>
     </div>
   );
 };

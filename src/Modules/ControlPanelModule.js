@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import DragDropFile from '../Components/DragDropFile'
-import Kinetik_template_file from '../InputTemplate/kinetik_template_file.xlsx'
 
 /*
     Description: This component is used to display the control panel.
@@ -33,7 +32,7 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
     <div id="upload-module-layout">
       <div id='upload-module-title'>
         <h3 className='title'> Control Panel </h3>
-        <a id='upload-module-template-link' href={Kinetik_template_file} target='_blank' download><h5> Download Template </h5></a>
+        <a id='upload-module-template-link' href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview" target='_blank'><h5> Download Template </h5></a>
       </div>
       <div id='upload-module-input-layout'>
         <div id='upload-module-select-layout'>

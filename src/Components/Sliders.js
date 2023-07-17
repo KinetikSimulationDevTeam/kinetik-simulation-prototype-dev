@@ -15,29 +15,19 @@ const ScenerioSliders = (props) => {
   // This state will store the response from the lambda function
   const [data, setData] = useState(null);
   // This state will store the value of the slider
-  const [sliderValue, setSliderValue] = useState([]);
+  const [sliderValue, setSliderValue] = useState([0,0,0,0,0,0]);
   // This state will set the confirm times
   const [confirmTimes, setConfirmTimes] = useState(false);
 
   useEffect(() => {
     const refreshPage = () => {
       const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
-      setData(jsonData, change(jsonData));
-    };
-
-    const change = async (jsonData) => {
-      if (jsonData) {
-        let array = [];
-        for (let i = 0; i < jsonData['means'].length; i++) {
-          array[i] = jsonData['means'][i];
-        }
-        await setSliderValue(array);
-        props.handleSliderValue(array);
-      }
+      setData(jsonData);
     };
 
     refreshPage();
   }, [props.uploadCount])
+
 
   /*
     Description: This function is called when the slider is moved and sets the currentIndex and sliderValue states with the new value.
@@ -56,6 +46,7 @@ const ScenerioSliders = (props) => {
       alertify.success('New Values Confirmed! Simulation will now re-run.');
     }
   }
+  
 
   /*
     Description: This function is used to get the data from the local storage when the page refresh and set the data state with that data.
@@ -66,40 +57,16 @@ const ScenerioSliders = (props) => {
   */
   const refreshPage = async () => {
     const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
-    await setData(jsonData, change(jsonData));
-  }
-
-  /*
-    Description: This function is used to get the current slider value and set the sliderValue state with that value.
-
-    Arguments: None
-
-    Return Type: None
-  */
-  async function change(jsonData) {
-    if (jsonData) {
-      let array = [];
-      for (let i = 0; i < jsonData['means'].length; i++) {
-        array[i] = jsonData['means'][i];
-      }
-      await setSliderValue(array, props.handleSliderValue(sliderValue));
-    }
+    await setData(jsonData);
   }
 
   useEffect(() => {
     refreshPage();
   }, []);
 
-  /*
-    Description: This function is called when the slider is moved and sets the currentIndex and sliderValue states with the new value.
-
-    Arguments: None
-
-    Return Type: array
-  */
   const handleSliderChange = async (newValue, index, currentValue) => {
     const newValues = [...currentValue];
-    newValues[index] = newValue;
+    newValues[index] = newValue * 0.01;
     await setSliderValue(newValues);
   };
 
@@ -110,18 +77,38 @@ const ScenerioSliders = (props) => {
       </div>
     );
   } else {
-    const numSliders = data['sources'].length;
-    const sliders = Array.from({ length: numSliders }, (_, i) => (
-      <ScenerioSlider
-        key={i}
-        name={data['sources'][i]}
-        mean={data['means'][i]}
-        onSliderChange={(newValue) => handleSliderChange(newValue, i, sliderValue)}
-      />
-    ));
     return (
       <div style={{ height: '45vh', overflow: 'auto' }}>
-        {sliders}
+        <ScenerioSlider
+          name='Leads (TBD)'
+          mean={0}
+          onSliderChange={(newValue) => handleSliderChange(newValue, 0, sliderValue)}
+        />
+        <ScenerioSlider
+          name='Opportunities'
+          mean={0}
+          onSliderChange={(newValue) => handleSliderChange(newValue, 1, sliderValue)}
+        />
+        <ScenerioSlider
+          name='Progression'
+          mean={0}
+          onSliderChange={(newValue) => handleSliderChange(newValue, 2, sliderValue)}
+        />
+        <ScenerioSlider
+          name='Closing'
+          mean={0}
+          onSliderChange={(newValue) => handleSliderChange(newValue, 3, sliderValue)}
+        />
+        <ScenerioSlider
+          name='Win Rate'
+          mean={0}
+          onSliderChange={(newValue) => handleSliderChange(newValue, 4, sliderValue)}
+        />
+        <ScenerioSlider
+          name='Market Dynamics'
+          mean={0}
+          onSliderChange={(newValue) => handleSliderChange(newValue, 5, sliderValue)}
+        />
         <button className='button' type='submit' onClick={onClicked}> Confirm </button>
       </div>
     )

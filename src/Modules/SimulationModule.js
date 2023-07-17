@@ -126,11 +126,12 @@ const SimulationModule = (props) => {
   const callLambdaFunction = async (input) => {
     try {
       let updatedJsonObject = input;
+      console.log("input " + props.sliderValue);
 
       if (props.sliderValue.length != 0) {
         const jsonObject = JSON.parse(updatedJsonObject);
-        for (let i = 0; i < jsonObject['means'].length; i++) {
-          jsonObject['means'][i] = props.sliderValue[i];
+        for (let i = 0; i < jsonObject['sliderValues'].length; i++) {
+          jsonObject['sliderValues'][i] = props.sliderValue[i];
         }
         updatedJsonObject = JSON.stringify(jsonObject);
       }
