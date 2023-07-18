@@ -389,3 +389,8 @@
 .upload-to-cloud {
   font-size: 0.7vw;
 }
+
+#remind-signin-text {
+  font-size: 0.7vw;
+  margin-bottom: -0.3vh;
+}

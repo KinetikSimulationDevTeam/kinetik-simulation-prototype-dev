@@ -8,7 +8,7 @@ import { createUser, createFile } from '../graphql/mutations';
 import { getUserDdb } from './DynamoDBFunctions';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
-
+import { Link } from 'react-router-dom';
 
 /*
     Description: This component is used to display the drag and drop file upload.
@@ -308,7 +308,18 @@ function DragDropFile(props) {
               </button>
             </div>
           </label>
-          <Checkbox shape="round" color="primary-o" className="upload-to-cloud" value="true" onChange={handleCheckboxChange}> Save file to database for future use </Checkbox>
+          { userLoginStatus &&
+            <Checkbox shape="round" color="primary-o" className="upload-to-cloud" value="true" onChange={handleCheckboxChange}> Save file to database for future use </Checkbox>
+          }
+          { !userLoginStatus &&
+            <p id="remind-signin-text">
+              Please{' '}
+              <Link to="/signin" >
+                sign in
+              </Link>
+              {' '}to save file to database
+            </p>
+          }
           <button
             className="upload-button"
             onClick={(e) => {
@@ -317,9 +328,11 @@ function DragDropFile(props) {
           >
             Import CSV
           </button>
-          <button className="upload-button" onClick={handleSelectButtonClick}>
-            Database
-          </button>
+          {userLoginStatus && (
+            <button className="upload-button" onClick={handleSelectButtonClick}>
+              Database
+            </button>
+          )}
         </form>
       )}
   
