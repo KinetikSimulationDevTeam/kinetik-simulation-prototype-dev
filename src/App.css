@@ -365,6 +365,7 @@
 #upload-module-template-link {
   text-decoration-line: none;
   color: #0000EE;
+  font-size: 1vw;
 }
 
 #home-link {
@@ -380,12 +381,6 @@
   margin-top: 3em;
 }
 
-#checkbox-upload-to-cloud-text {
-  font-size: 1.5vh;
-  text-align: center;
-}
-
-#checkbox-upload-to-cloud {
-  width: 0.7vw;
-  height: 0.7vw;
+.upload-to-cloud {
+  font-size: 0.7vw;
 }

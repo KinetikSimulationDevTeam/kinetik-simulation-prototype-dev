@@ -6,6 +6,8 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createUser, createFile } from '../graphql/mutations';
 import { getUserDdb } from './DynamoDBFunctions';
+import { Checkbox } from 'pretty-checkbox-react';
+import '@djthoms/pretty-checkbox';
 
 
 /*
@@ -306,8 +308,7 @@ function DragDropFile(props) {
               </button>
             </div>
           </label>
-          <input id="checkbox-upload-to-cloud" type="checkbox" name="upload-to-cloud" value="true" onChange={handleCheckboxChange} />
-          <label id="checkbox-upload-to-cloud-text" htmlFor="checkbox-upload-to-cloud">Upload to Database</label>
+          <Checkbox shape="round" color="primary-o" className="upload-to-cloud" value="true" onChange={handleCheckboxChange}> Save file to database for future use </Checkbox>
           <button
             className="upload-button"
             onClick={(e) => {
