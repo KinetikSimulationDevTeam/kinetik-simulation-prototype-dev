@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactSlider from 'react-slider';
 
 /*
@@ -12,9 +12,15 @@ import ReactSlider from 'react-slider';
 
     Return Type: None
 */
-const ScenerioSlider = ({ name, mean, onSliderChange }) => {
+const ScenerioSlider = ({ name, mean, onSliderChange, sliderValue }) => {
   // This state will store the value of the slider
   const [value, setValue] = useState(mean);
+
+  useEffect(() => {
+    sliderValue = Math.round(sliderValue * 100);
+    setValue(sliderValue);
+  }, [sliderValue]);
+
 
   /*
     Description: This function is used to update the state of the slider when the user changes the value of the slider.
@@ -39,7 +45,8 @@ const ScenerioSlider = ({ name, mean, onSliderChange }) => {
         marks={mean}
         min={-90}
         max={300}
-        defaultValue={mean}
+        defaultValue={0}
+        value={value}
         onChange={handleSliderChange}
       />
       <p>Value: {value}%</p>

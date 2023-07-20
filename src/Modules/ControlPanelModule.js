@@ -40,7 +40,7 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
     <div id="upload-module-layout">
       <div id='upload-module-title'>
         <h3 className='title'> Control Panel </h3>
-        <a id='upload-module-template-link' href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview" target='_blank'><h5> Download Template </h5></a>
+        <a id='upload-module-template-link' href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview" target='_blank'><h5> Input File Template </h5></a>
       </div>
       <div id='upload-module-input-layout'>
         <div id='upload-module-select-layout'>

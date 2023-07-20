@@ -18,6 +18,8 @@ const ScenerioSliders = (props) => {
   const [sliderValue, setSliderValue] = useState([0,0,0,0,0,0]);
   // This state will set the confirm times
   const [confirmTimes, setConfirmTimes] = useState(false);
+  const [previousSliderValue, setPreviousSliderValue] = useState([0,0,0,0,0,0]);
+  const [confirmCount, setConfirmCount] = useState(true);
 
   useEffect(() => {
     const refreshPage = () => {
@@ -42,6 +44,12 @@ const ScenerioSliders = (props) => {
       setConfirmTimes(true);
       alertify.alert('Verify', 'Please click Confirm again to confirm your selection.');
     }else{
+      if(confirmCount) {
+        setPreviousSliderValue(sliderValue);
+        setConfirmCount(false);
+      }else{
+        setConfirmCount(true);
+      }
       setConfirmTimes(false);
       alertify.success('New Values Confirmed! Simulation will now re-run.');
     }
@@ -70,6 +78,23 @@ const ScenerioSliders = (props) => {
     await setSliderValue(newValues);
   };
 
+  /*
+    Description: This function is called when the Reset button is clicked and sets the sliderValue state to its initial state.
+
+    Arguments: None
+
+    Return Type: None
+  */
+    const onResetClicked = () => {
+      if(sliderValue === previousSliderValue) {
+        alertify.alert('Warning', 'Sliders are already at their previous values.');
+        return;
+      }
+      setSliderValue(previousSliderValue);
+      setConfirmTimes(false);
+      alertify.success('Sliders have been reset to their previous values.');
+    };
+
   if (!data) {
     return (
       <div>
@@ -83,33 +108,42 @@ const ScenerioSliders = (props) => {
           name='Leads (TBD)'
           mean={0}
           onSliderChange={(newValue) => handleSliderChange(newValue, 0, sliderValue)}
+          sliderValue={sliderValue[0]}
         />
         <ScenerioSlider
           name='Opportunities'
           mean={0}
           onSliderChange={(newValue) => handleSliderChange(newValue, 1, sliderValue)}
+          sliderValue={sliderValue[1]}
         />
         <ScenerioSlider
           name='Progression'
           mean={0}
           onSliderChange={(newValue) => handleSliderChange(newValue, 2, sliderValue)}
+          sliderValue={sliderValue[2]}
         />
         <ScenerioSlider
           name='Closing'
           mean={0}
           onSliderChange={(newValue) => handleSliderChange(newValue, 3, sliderValue)}
+          sliderValue={sliderValue[3]}
         />
         <ScenerioSlider
           name='Win Rate'
           mean={0}
           onSliderChange={(newValue) => handleSliderChange(newValue, 4, sliderValue)}
+          sliderValue={sliderValue[4]}
         />
         <ScenerioSlider
           name='Market Dynamics'
           mean={0}
           onSliderChange={(newValue) => handleSliderChange(newValue, 5, sliderValue)}
+          sliderValue={sliderValue[5]}
         />
-        <button className='button' type='submit' onClick={onClicked}> Confirm </button>
+        <div id='scenario-buttons'>
+          <button className='button' type='submit' onClick={onClicked}> Confirm </button>
+          <button className='button' type='submit' onClick={onResetClicked}> Previous Values </button>
+        </div>
       </div>
     )
   }

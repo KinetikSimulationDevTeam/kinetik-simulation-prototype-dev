@@ -394,3 +394,11 @@
   font-size: 0.7vw;
   margin-bottom: -0.3vh;
 }
+
+#scenario-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1.5vh 0.5vw;
+  gap: 1vw;
+}

@@ -23,9 +23,8 @@ const MainFrame = () => {
 
   useEffect(() => {
     if (localStorage.getItem('KinetikDataSet') === null) {
-      alertify.alert('Welcome to Kinetik Simulation', 'Please upload the file to begin!', function () {
-        alertify.success('For input template, please see the template link');
-      });
+      alertify.alert('Welcome to Kinetik Simulation', 'Please upload the file to begin!');
+      alertify.success('For input template, please see the template link');
     }
   }, []);
 

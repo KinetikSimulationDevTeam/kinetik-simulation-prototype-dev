@@ -100,7 +100,7 @@ function DragDropFile(props) {
 
       fileReader.readAsText(file);
     }else if(localStorage.getItem('KinetikDataSet') !== null){
-      alertify.success("File already uploaded");
+      alertify.error("No new file uploaded.");
     }else{
       alertify.error("Please select a file");
     }
@@ -219,7 +219,8 @@ function DragDropFile(props) {
 
       }
 
-      alertify.success('Successfully Upload a file');
+      alertify.success('Successfully Upload a file.');
+      alertify.success('Please click "Start Simulation" to run the simulation.');
       props.handleUploadCount();
     } catch (err) {
       alertify.error("Input File is not in correct format");
@@ -274,6 +275,8 @@ function DragDropFile(props) {
     props.handleUploadCount();
     setShowFileSelect(false);
     setShowConfirmationButtons(false);
+    alertify.success('Successfully select a file from the database.');
+    alertify.success('Please click "Start Simulation" to run the simulation.');
   };
 
   // function to handle checkbox state changes
