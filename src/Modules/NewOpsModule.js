@@ -30,7 +30,7 @@ const NewOpsModule = (props) => {
 
   return (
     <div id='new-ops-module-layout'>
-      <h3 className='title'> Scenario Analysis </h3>
+      <h3 id='scoreboard-title'> Scenario Analysis </h3>
       <ScenerioSliders handleSliderValue={handleSliderValue} uploadCount={uploadCount} />
     </div>
   )

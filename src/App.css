@@ -221,10 +221,10 @@
   padding: 0 1em 1em 1em;
 }
 
-.newops-slider {
+.scenario-slider {
   width: 23vw;
   height: 2vh;
-  margin: auto;
+  margin: -1vh auto;
 }
 
 #simulation-slider {
@@ -357,7 +357,7 @@
   margin-bottom: 1.5vh;
 }
 
-#scenerio-slider-name {
+#scenario-slider-name {
   text-align: left;
 }
 
@@ -401,4 +401,13 @@
   justify-content: space-between;
   margin: 1.5vh 0.5vw;
   gap: 1vw;
+}
+
+.scenario-slider-value {
+  margin-bottom: -1vh;
+}
+
+#scoreboard-title {
+  text-align: left;
+  margin-bottom: -1vh;
 }

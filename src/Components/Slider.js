@@ -36,9 +36,9 @@ const ScenerioSlider = ({ name, mean, onSliderChange, sliderValue }) => {
 
   return (
     <div>
-      <p id="scenerio-slider-name"> {name} </p>
+      <p id="scenario-slider-name"> {name} </p>
       <ReactSlider
-        className="newops-slider"
+        className="scenario-slider"
         thumbClassName="customSlider-thumb"
         trackClassName="customSlider-track"
         markClassName="customSlider-mark"
@@ -49,7 +49,7 @@ const ScenerioSlider = ({ name, mean, onSliderChange, sliderValue }) => {
         value={value}
         onChange={handleSliderChange}
       />
-      <p>Value: {value}%</p>
+      <p className='scenario-slider-value'>Value: {value}%</p>
     </div>
   );
 };
