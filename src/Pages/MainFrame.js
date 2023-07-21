@@ -2,7 +2,7 @@ import React from 'react'
 import SimulationModule from '../Modules/SimulationModule'
 import ControlPanelModule from '../Modules/ControlPanelModule'
 import { useState, useEffect } from 'react'
-import NewOpsModule from '../Modules/NewOpsModule'
+import NewOpsModule from '../Modules/ScenarioAnalysisModule'
 import Scoreboard from '../Modules/ScoreboardModule'
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';

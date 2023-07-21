@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react'
-import ScenerioSliders from '../Components/Sliders'
+import ScenerioSliders from '../Components/ScenarioAnalysisComponents/ScenarioSliders'
 
 /*
     Description: This component is used to display the sliders for the scenerio analysis.
@@ -8,7 +8,7 @@ import ScenerioSliders from '../Components/Sliders'
 
     Return Type: None
 */
-const NewOpsModule = (props) => {
+const ScenarioAnalysisModule = (props) => {
   // This state will store the response from the lambda function
   const [sliderValue, setSliderValue] = useState([0,0,0,0,0,0]);
   const [uploadCount, setUploadCount] = useState(0);
@@ -36,4 +36,4 @@ const NewOpsModule = (props) => {
   )
 }
 
-export default NewOpsModule
+export default ScenarioAnalysisModule

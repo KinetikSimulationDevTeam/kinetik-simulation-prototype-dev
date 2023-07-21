@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Navigationbar from './NavigationBar';
+import Navigationbar from '../Components/NavigationBar';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { Link } from 'react-router-dom';
 import Smile from '../Images/Smile.png';
-import { getUserDdb } from './DynamoDBFunctions';
+import { getUserDdb } from '../Components/DynamoDBFunctions';
 
 const Signin = () => {
   const [filesFromDdb, setFilesFromDdb] = useState([]);

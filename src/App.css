@@ -65,7 +65,7 @@
 
 #form-file-upload {
   height: 30vh;
-  width: 28vw;
+  width: 23vw;
   max-width: 50%;
   text-align: center;
   position: relative;
@@ -108,7 +108,7 @@
 
 .upload-button {
   margin: 1vh 0.2vw;
-  width: 6.5vw;
+  width: 5vw;
   height: 4vh;
   align-items: center;
   background-color: #fff;
@@ -119,7 +119,7 @@
   cursor: pointer;
   display: inline-flex;
   font-family: Inter,sans-serif;
-  font-size: 1.9vh;
+  font-size: 1.5vh;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
@@ -163,7 +163,7 @@
 }
 
 .upload-module-input-dropdown {
-  width: 8.5vw;
+  width: 11vw;
   font-size: 0.7vw;
 }
 
@@ -175,7 +175,7 @@
 
 
 #uploadModuleFileName {
-  max-width: 8vw;
+  max-width: 11vw;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -387,7 +387,7 @@
 }
 
 .upload-to-cloud {
-  font-size: 0.7vw;
+  font-size: 0.6vw;
 }
 
 #remind-signin-text {

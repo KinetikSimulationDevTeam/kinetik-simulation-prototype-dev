@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import DragDropFile from '../Components/DragDropFile'
+import FileUplaod from '../Components/ControlPanelComponents/FileUpload'
 import CreatableSelect from 'react-select/creatable';
 
 /*
@@ -19,7 +19,7 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
   const [selectedTimePeriod, setSelectedTimePeriod] = useState('13');
 
   //set file name after updating the file
-  //in the DragDropModule
+  //in the FileUplaod component
   const file = (data) => {
     setFileName(data);
   }
@@ -49,7 +49,7 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
           <h5 className='title'>File Name: </h5>
           <p id='uploadModuleFileName'> {localStorage.getItem('fileName') === undefined ? fileName : localStorage.getItem('fileName')} </p>
         </div>
-        <DragDropFile timePeriod={selectedTimePeriod} handleLambdaOutput={handleLambdaOutput} onAction={file} handleUploadCount={handleUploadCount} />
+        <FileUplaod timePeriod={selectedTimePeriod} handleLambdaOutput={handleLambdaOutput} onAction={file} handleUploadCount={handleUploadCount} />
       </div>
     </div>
   )

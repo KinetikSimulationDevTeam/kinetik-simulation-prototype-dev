@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ScenerioSlider from './Slider';
+import ScenerioSlider from './ScenarioSlider';
 import alertify from 'alertifyjs';
 
 /*

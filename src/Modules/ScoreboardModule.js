@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MyResponsiveScoreBoard from '../Components/ScoreboardBarChart';
+import MyResponsiveScoreBoard from '../Components/ScoreboardComponents/ScoreboardBarChart';
 
 /*
     Description: This component is used to display the scoreboard.

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import UploadImg from '../Images/UploadImg.png'
+import UploadImg from '../../Images/UploadImg.png'
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { createUser, createFile } from '../graphql/mutations';
-import { getUserDdb } from './DynamoDBFunctions';
+import { createUser, createFile } from '../../graphql/mutations';
+import { getUserDdb } from '../DynamoDBFunctions';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import { Link } from 'react-router-dom';
+import FileSelection from "./FileSelection";
 
 /*
     Description: This component is used to display the drag and drop file upload.
@@ -19,7 +20,6 @@ import { Link } from 'react-router-dom';
 */
 function DragDropFile(props) {
   // drag state
-  const [dragActive, setDragActive] = useState(false);
   // input ref
   const inputRef = React.useRef(null);
   // It will store the file uploaded by the user
@@ -235,7 +235,7 @@ function DragDropFile(props) {
       const jsonString = JSON.stringify(jsonObject);
       localStorage.setItem('KinetikDataSet', jsonString);
     }
-  }, [Number(props.timePeriod)]);
+  }, [props.timePeriod]);
 
   useEffect(() => {
     if (userLoginStatus && username) {
@@ -287,7 +287,7 @@ function DragDropFile(props) {
 
 
   return (
-    <div>
+    <div className='inner-control-pannel'>
       {!showFileSelect && !showConfirmationButtons && (
         <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -301,7 +301,6 @@ function DragDropFile(props) {
           <label
             id="label-file-upload"
             htmlFor="input-file-upload"
-            className={dragActive ? "drag-active" : ""}
           >
             <div>
               <img src={UploadImg} width="55vw" height="55vh" alt="" />
@@ -340,28 +339,7 @@ function DragDropFile(props) {
       )}
   
       {showFileSelect && (
-        <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
-          <select className='upload-module-ddb-dropdown' name="filesDdb" defaultValue="disabled">
-            <option value="disabled" disabled>Choose From Uploaded File</option>
-            {filesFromDdb.map((file) => (
-              <option key={file.id} value={file.body}>
-                {"File Name: " + file.title + ", Time: " + new Date(file.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '')}
-              </option>
-            ))}
-          </select>
-          {showConfirmationButtons && (
-            <div>
-              <button className="upload-button" onClick={handleGoBackClick}>
-                Back
-              </button>
-              <button className="upload-button" onClick={(e) => {
-                handleConfirmSelectionClick(e);
-              }}>
-                Confirm
-              </button>
-            </div>
-          )}
-        </form>
+        <FileSelection filesFromDdb={filesFromDdb} showConfirmationButtons={showConfirmationButtons} handleGoBackClick={handleGoBackClick} handleConfirmSelectionClick={handleConfirmSelectionClick} />
       )}
     </div>
   );
