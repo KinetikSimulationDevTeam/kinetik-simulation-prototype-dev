@@ -3,7 +3,7 @@
   background-color: #CED3E2;
   width: 100vw;
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .link {
@@ -335,7 +335,7 @@
   border-radius: 2% 2% 0 0;
   background-color: white;
   width: 66vw;
-  height: 36.5vh;
+  height: 36vh;
   padding: 0 1em 1em 1em;
 }
 
@@ -346,7 +346,7 @@
 }
 
 #scoreboard-graph {
-  height: 29vh;
+  height: 28vh;
 }
 
 #simulation-buttons-layout {
@@ -370,7 +370,8 @@
 #upload-module-template-link {
   text-decoration-line: none;
   color: #0000EE;
-  font-size: 1vw;
+  font-size: 2vh;
+  height: 2vh;
 }
 
 #home-link {
