@@ -47,7 +47,12 @@ const SimulationModule = (props) => {
     Return Type: None
   */
   async function largestOutput() {
-    const maxValue = lambdaOutput
+    // Filter out the revenue stage for the largest value calculation in y-axis
+    const lambdaOutputWithoutRevenue = lambdaOutput.map((array) =>
+      array.filter((obj) => obj.Stage !== 'Revenue')
+    );
+
+    const maxValue = lambdaOutputWithoutRevenue
       .flatMap(array => array.map(obj => obj.values))
       .reduce((max, value) => Math.max(max, value), 0);
     await setLargestValue(maxValue);
@@ -150,15 +155,15 @@ const SimulationModule = (props) => {
     <div id='simulation-module-layout'>
       <div id='simulation-title'>
         <h3 className='title'> Simulation/History </h3>
-        <h4> Week {currentIndex + 1} </h4>
+        <h3> Week {currentIndex + 1} </h3>
       </div>
       <div>
         <div id='simulation-bar-chart'>
           <div id='simulation-bar-chart-left'>
-            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0 : data[0].length - 2)} />
+            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 3 < 0 ? 0 : data[0].length - 3)} />
           </div>
           <div id='simulation-bar-chart-right'>
-            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 2 < 0 ? 0 : data[0].length - 2, data[0].length)} />
+            <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(data[0].length - 3 < 0 ? 0 : data[0].length - 3, data[0].length - 1)} />
           </div>
         </div>
         <div id='simulation-buttons-layout'>

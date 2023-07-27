@@ -22,21 +22,15 @@ const Scoreboard = ({ lambdaOutput }) => {
     */
     useEffect(() => {
         const newFilteredData = [];
-        let previousWin = 0;
-        let previousLoss = 0;
+        let previousRevenue = 0;
         if(lambdaOutput === undefined) return;
         for (let i = 1; i <= lambdaOutput.length; i++) {
             if (i % 13 === 0 && i !== 0) {
-                const winObj = lambdaOutput[i-1].find(obj => obj.Stage === "Win");
-                const lossObj = lambdaOutput[i-1].find(obj => obj.Stage === "Loss");
-                const winStage = `Win-Q${i/13}`;
-                const lossStage = `Loss-Q${i/13}`;
-                const modifiedWinObj = { Stage: winStage, values: (winObj.values - previousWin).toFixed(2) };
-                const modifiedLossObj = { Stage: lossStage, values: (lossObj.values - previousLoss).toFixed(2) };
-                previousWin = winObj.values;
-                previousLoss = lossObj.values;
-                newFilteredData.push(modifiedWinObj);
-                newFilteredData.push(modifiedLossObj);
+                const revenue = lambdaOutput[i-1].find(obj => obj.Stage === "Revenue");
+                const RevenueQuarter = `Quarter ${i/13}`;
+                const modifiedRevenue = { Stage: RevenueQuarter, values: (revenue.values - previousRevenue).toFixed(2) };
+                previousRevenue = revenue.values;
+                newFilteredData.push(modifiedRevenue);
             }
         }
         setFilteredData(newFilteredData);

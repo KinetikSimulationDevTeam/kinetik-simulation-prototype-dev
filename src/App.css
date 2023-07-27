@@ -1,8 +1,12 @@
+p {
+  font-size: 2vh;
+}
+
 .App {
   text-align: center;
   background-color: #CED3E2;
-  width: 100vw;
-  height: 100vh;
+  min-width: 70vw;
+  min-height: 50vh;
   overflow: hidden;
 }
 
@@ -56,6 +60,7 @@
   width: 25vw;
   height: 43vh;
   padding: 0 1em 0.5em 1em;
+  overflow: auto;
 }
 
 #upload-input-file {
@@ -119,7 +124,7 @@
   cursor: pointer;
   display: inline-flex;
   font-family: Inter,sans-serif;
-  font-size: 1.6vh;
+  font-size: 1.4vh;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
@@ -151,6 +156,7 @@
 }
 
 .title {
+  font-size: 2.5vh;
   text-align: left;
 }
 
@@ -199,6 +205,7 @@
   width: 66vw;
   height: 57vh;
   padding: 0 1em 1em 1em;
+  overflow: auto;
 }
 
 #new-ops-module-layout {
@@ -409,7 +416,6 @@
   margin-bottom: -1vh;
 }
 
-#scoreboard-title {
+#upload-file-name-layout {
   text-align: left;
-  margin-bottom: -1vh;
 }

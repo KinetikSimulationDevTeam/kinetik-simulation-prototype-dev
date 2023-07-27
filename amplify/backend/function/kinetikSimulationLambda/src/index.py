@@ -18,6 +18,7 @@ import numpy
                 7. newOpsProbabilities - The probabilities of new opportunities coming in from each source
                 8. opsProbabilities - The probabilities of opportunities moving from each stage to each other stage
                 9. sliderValues - The values of the sliders for each source, default is 0
+                10. dealSizes - The average deal sizes for each opportunity
 
                 context - an object that contains information about the invocation, function, and execution environment
 
@@ -33,11 +34,15 @@ def handler(event, context):
 
     # store body of request in variable
     eventBody = event['body']
+
     # convert body to JSON object
     body = json.loads(json.loads(eventBody))
 
+    # store total revenue
+    totalRevenue = 0.0
+
     # create 2D array to store data
-    data = [[{} for i in range(len(body['stages']))]
+    data = [[{} for i in range(len(body['stages'])+1)]
                                for j in range(body['weeks'])]
     
     # set slider values
@@ -243,11 +248,34 @@ def handler(event, context):
         for j in range(len(movementFromStages)):
             output[j] = newOps[j] + sum(movementFromStages[k][j]
                                             for k in range(len(movementFromStages)))
-            
+        
+        # calculate new number of dealsizes, that are the amount of wins for that week
+        newDealSize = output[len(body['stages'])-2] - currentNumber[len(body['stages'])-2]
+
+        # convert newDealSize to integer
+        newDealSizeInt = int(numpy.ceil(newDealSize))
+
+        # deal size coming
+        for j in range(0 if newDealSizeInt == 0 else newDealSizeInt - 1):
+            newWinDealRevenue = numpy.random.normal(body['dealSizeMean'], body['dealSizeStd'])
+            totalRevenue = totalRevenue + newWinDealRevenue
+        
+        # handle decimal deal size values
+        if(newDealSize.is_integer() & newDealSizeInt != 0):
+            newWinDealRevenue = numpy.random.normal(body['dealSizeMean'], body['dealSizeStd'])
+            totalRevenue = totalRevenue + newWinDealRevenue
+        elif(newDealSizeInt != 0):
+            newWinDealRevenue = numpy.random.normal(body['dealSizeMean'], body['dealSizeStd'])
+            totalRevenue = totalRevenue + newWinDealRevenue * (newDealSize - newDealSizeInt + 1)
+
         # update current number of opportunities
         for j in range(len(body['stages'])):
             data[i][j]["Stage"] = body['stages'][j]
             data[i][j]["values"] = round(output[j], 1)
+        
+        # update current number of dealsizes
+        data[i][len(body['stages'])]['Stage'] = 'Revenue'
+        data[i][len(body['stages'])]['values'] = round(totalRevenue, 2)
         
         # set current number of opportunities to output for next week
         currentNumber = output

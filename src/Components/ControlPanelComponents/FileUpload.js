@@ -124,6 +124,7 @@ function DragDropFile(props) {
       let opsProbabilities = [];
       let ops = [];
       let sliderValues = [];
+      let dealSize = [];
 
       //get the number of sources
       for (let i = 0; i < sources.length; i++) {
@@ -178,7 +179,17 @@ function DragDropFile(props) {
 
       //add slider values to the json object
       for (let i = 0; i < 6; i++) {
-        sliderValues[i] = 0; //default value
+        //default value for slider is 0
+        sliderValues[i] = 0;
+      }
+
+      // get the deal size mean and std from the csv file
+      dealSize = array[14 + sources.length + stages.length].split(",").slice(1,3);
+
+      //convert the deal size to float
+      for(let i = 0; i < 2; i++) {
+        dealSize[i] = dealSize[i].toString().replace('$', '');
+        dealSize[i] = parseFloat(dealSize[i]);
       }
 
       //convert data into json object
@@ -192,6 +203,8 @@ function DragDropFile(props) {
         newOpsProbabilities: newOpsProbabilities,
         opsProbabilities: opsProbabilities,
         sliderValues: sliderValues,
+        dealSizeMean: dealSize[0],
+        dealSizeStd: dealSize[1]
       };
       const jsonString = JSON.stringify(jsonData);
       localStorage.setItem('KinetikDataSet', jsonString);
@@ -287,7 +300,7 @@ function DragDropFile(props) {
 
 
   return (
-    <div className='inner-control-pannel'>
+    <div>
       {!showFileSelect && !showConfirmationButtons && (
         <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -315,9 +328,8 @@ function DragDropFile(props) {
           }
           { !userLoginStatus &&
             <p id="remind-signin-text">
-              Please{' '}
               <Link to="/signin" >
-                sign in
+                Sign in
               </Link>
               {' '}to save file to database
             </p>
