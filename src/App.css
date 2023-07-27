@@ -3,7 +3,7 @@
   background-color: #CED3E2;
   min-width: 70vw;
   min-height: 50vh;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .link {
@@ -42,7 +42,7 @@
 
 #mainFrameLayout {
   display: grid;
-  grid-template-columns: 25vw 42vw 33vw;
+  grid-template-columns: 25vw 44vw 26.5vw;
   grid-auto-rows: minmax(100px, auto);
   column-gap: 1em;
   margin: 0 1em 0 1em;
@@ -52,7 +52,7 @@
 #upload-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 0 0 5% 5%;
+  border-radius: 0 0 2% 2%;
   background-color: white;
   width: 25vw;
   height: 43vh;
@@ -199,7 +199,7 @@
   flex-direction: column;
   border-radius: 0 0 2% 2%;
   background-color: white;
-  width: 42vw;
+  width: 44vw;
   height: 57vh;
   padding: 0.5vh 0.5vw;
   overflow: auto;
@@ -208,7 +208,7 @@
 #new-ops-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 5% 5% 0 0;
+  border-radius: 2% 2% 0 0;
   background-color: white;
   width: 25vw;
   height: 51.5vh;
@@ -272,7 +272,7 @@
 }
 
 #simulation-bar-chart {
-  width: 42vw;
+  width: 43.5vw;
   height: 39vh;
 }
 
@@ -328,7 +328,7 @@
   flex-direction: column;
   border-radius: 2% 2% 0 0;
   background-color: white;
-  width: 42vw;
+  width: 44vw;
   height: 37vh;
   padding: 0 0.5em;
 }
@@ -341,7 +341,7 @@
 
 #scoreboard-graph {
   height: 28vh;
-  width: 42vw;
+  width: 44vw;
 }
 
 #simulation-buttons-layout {
@@ -417,9 +417,9 @@
 #statistics-top-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 0 0 0 2%;
+  border-radius: 0 0 2% 2%;
   background-color: white;
-  width: 30vw;
+  width: 26.5vw;
   height: 47vh;
   padding: 0 1em;
 }
@@ -427,9 +427,9 @@
 #statistics-buttom-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 2% 0 0 0;
+  border-radius: 2% 2% 0 0;
   background-color: white;
-  width: 30vw;
+  width: 26.5vw;
   height: 47vh;
   padding: 0 1em;
 }
@@ -439,7 +439,7 @@
   font-size: 2.5vh;
   font-weight: 300;
   text-align: left;
-  width: 27vw;
+  width: 23.5vw;
 }
 
 .statistics-module-info-values {
