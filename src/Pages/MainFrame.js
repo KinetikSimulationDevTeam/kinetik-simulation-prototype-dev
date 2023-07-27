@@ -7,6 +7,8 @@ import Scoreboard from '../Modules/ScoreboardModule'
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import Navbar from '../Components/NavigationBar'
+import StatisticsTopModule from '../Modules/StatisticsTopModule'
+import StatisticsButtomModule from '../Modules/StatisticsButtomModule'
 
 /*
     Description: This component is used to display the main frame of the application.
@@ -51,6 +53,10 @@ const MainFrame = () => {
         <div id='second-column-mainframe'>
           <SimulationModule handleLambdaOutput={handleLambdaOutput} sliderValue={sliderValue} />
           <Scoreboard lambdaOutput={lambdaOutput} />
+        </div>
+        <div id='third-column-mainframe'>
+          <StatisticsTopModule lambdaOutput={lambdaOutput} />
+          <StatisticsButtomModule lambdaOutput={lambdaOutput} />
         </div>
       </div>
     </div>

@@ -1,7 +1,3 @@
-p {
-  font-size: 2vh;
-}
-
 .App {
   text-align: center;
   background-color: #CED3E2;
@@ -28,7 +24,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 5vh;
+  height: 4vh;
   align-items: center;
   background-color: #e3f2fd;
   padding: 2px 1em 0 1em;
@@ -46,10 +42,11 @@ p {
 
 #mainFrameLayout {
   display: grid;
-  grid-template-columns: 25vw 60vw;
+  grid-template-columns: 25vw 42vw 33vw;
   grid-auto-rows: minmax(100px, auto);
-  column-gap: 3em;
+  column-gap: 1em;
   margin: 0 1em 0 1em;
+  height: 96vh;
 }
 
 #upload-module-layout {
@@ -83,7 +80,7 @@ p {
 #label-file-upload {
   font-size: 2vh;
   margin-bottom: 5px;
-  height: 23vh;
+  height: 25vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,9 +199,9 @@ p {
   flex-direction: column;
   border-radius: 0 0 2% 2%;
   background-color: white;
-  width: 66vw;
+  width: 42vw;
   height: 57vh;
-  padding: 0 1em 1em 1em;
+  padding: 0.5vh 0.5vw;
   overflow: auto;
 }
 
@@ -214,7 +211,7 @@ p {
   border-radius: 5% 5% 0 0;
   background-color: white;
   width: 25vw;
-  height: 50.5vh;
+  height: 51.5vh;
   padding: 0 1em 1em 1em;
 }
 
@@ -275,17 +272,7 @@ p {
 }
 
 #simulation-bar-chart {
-  display: flex;
-  height: 39vh;
-}
-
-#simulation-bar-chart-left {
   width: 42vw;
-  height: 39vh;
-}
-
-#simulation-bar-chart-right {
-  width: 24vw;
   height: 39vh;
 }
 
@@ -341,9 +328,9 @@ p {
   flex-direction: column;
   border-radius: 2% 2% 0 0;
   background-color: white;
-  width: 66vw;
-  height: 36vh;
-  padding: 0 1em 1em 1em;
+  width: 42vw;
+  height: 37vh;
+  padding: 0 0.5em;
 }
 
 #second-column-mainframe {
@@ -354,6 +341,7 @@ p {
 
 #scoreboard-graph {
   height: 28vh;
+  width: 42vw;
 }
 
 #simulation-buttons-layout {
@@ -418,4 +406,55 @@ p {
 
 #upload-file-name-layout {
   text-align: left;
+}
+
+#third-column-mainframe {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+#statistics-top-module-layout {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 0 2%;
+  background-color: white;
+  width: 30vw;
+  height: 47vh;
+  padding: 0 1em;
+}
+
+#statistics-buttom-module-layout {
+  display: flex;
+  flex-direction: column;
+  border-radius: 2% 0 0 0;
+  background-color: white;
+  width: 30vw;
+  height: 47vh;
+  padding: 0 1em;
+}
+
+.statistics-module-info {
+  padding: 1vh 1vw;
+  font-size: 2.5vh;
+  font-weight: 300;
+  text-align: left;
+  width: 27vw;
+}
+
+.statistics-module-info p + p {
+  padding: 1vh 0;
+}
+
+.statistics-module-info-values {
+  color: rgb(105, 139, 193);
+  font-weight: bold;
+}
+
+.statistics-module-info-legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
 }

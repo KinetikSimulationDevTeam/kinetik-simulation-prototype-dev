@@ -16,7 +16,7 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
   const [fileName, setFileName] = useState();
 
   //selected time period
-  const [selectedTimePeriod, setSelectedTimePeriod] = useState('13');
+  const [selectedTimePeriod, setSelectedTimePeriod] = useState('52');
 
   //set file name after updating the file
   //in the FileUplaod component
