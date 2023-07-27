@@ -159,7 +159,7 @@ const SimulationModule = (props) => {
       </div>
       <div>
         <div id='simulation-bar-chart'>
-          <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 3 < 0 ? 0 : data[0].length - 1)} />
+          <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0 : data[0].length - 2)} />
         </div>
         <div id='simulation-buttons-layout'>
           <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Start Simulation </button>

@@ -10,6 +10,13 @@ const StatisticsButtomModule = ({ lambdaOutput }) => {
         if (lambdaOutput === undefined) return;
         setTotalRevenue(lambdaOutput[lambdaOutput.length - 1].find(obj => obj.Stage === "Revenue").values);
         setWins(Math.round(lambdaOutput[lambdaOutput.length - 1].find(obj => obj.Stage === "Win").values));
+
+        // add all the opportunities of each week to get the total number of new opportunities
+        let totalOpportunities = 0;
+        for (let i = 0; i < lambdaOutput.length; i++) {
+            totalOpportunities += lambdaOutput[i].find(obj => obj.Stage === "New Opportunities").values;
+        }
+        setNewOpportunities(Math.round(totalOpportunities));
     }, [lambdaOutput]);
 
     return (
@@ -19,15 +26,20 @@ const StatisticsButtomModule = ({ lambdaOutput }) => {
                 <p className='statistics-module-info-legend'>
                     Total Revenue: 
                     <p className='statistics-module-info-values'>
-                        ${totalRevenue}M
+                        ${totalRevenue.toLocaleString('en')}M
                     </p>
                 </p>
                 <p>New Leads: {' '}</p>
-                <p>New Opportunities: {' '}</p>
+                <p className='statistics-module-info-legend'>
+                    New Opportunities:
+                    <p className='statistics-module-info-values'>
+                        {newOpportunities.toLocaleString('en')}
+                    </p>
+                </p>
                 <p className='statistics-module-info-legend'>
                     Wins:
                     <p className='statistics-module-info-values'>
-                        {wins}
+                        {wins.toLocaleString('en')}
                     </p>
                 </p>
             </div>

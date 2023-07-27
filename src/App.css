@@ -442,10 +442,6 @@
   width: 27vw;
 }
 
-.statistics-module-info p + p {
-  padding: 1vh 0;
-}
-
 .statistics-module-info-values {
   color: rgb(105, 139, 193);
   font-weight: bold;

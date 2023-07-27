@@ -42,7 +42,7 @@ def handler(event, context):
     totalRevenue = 0.0
 
     # create 2D array to store data
-    data = [[{} for i in range(len(body['stages'])+1)]
+    data = [[{} for i in range(len(body['stages']) + 2)]
                                for j in range(body['weeks'])]
     
     # set slider values
@@ -276,6 +276,10 @@ def handler(event, context):
         # update current number of dealsizes
         data[i][len(body['stages'])]['Stage'] = 'Revenue'
         data[i][len(body['stages'])]['values'] = round(totalRevenue, 2)
+
+        # update current number of new opportunities
+        data[i][len(body['stages'])+1]['Stage'] = 'New Opportunities'
+        data[i][len(body['stages'])+1]['values'] = round(newOpsTotal, 1)
         
         # set current number of opportunities to output for next week
         currentNumber = output
