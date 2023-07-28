@@ -21,15 +21,34 @@ const Scoreboard = ({ lambdaOutput }) => {
         Return Type: None
     */
     useEffect(() => {
+        // get the current quarter and year to display in the x-axis
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+        let currentQuarter = Math.floor((currentMonth + 3) / 3);
+
         const newFilteredData = [];
         let previousRevenue = 0;
         if(lambdaOutput === undefined) return;
         for (let i = 1; i <= lambdaOutput.length; i++) {
+            // if the current index is a revenue value, add it to the filtered data
             if (i % 13 === 0 && i !== 0) {
+
+                // reset the quarter to 1 and increment the year if the current quarter is greater than 4
+                if(currentQuarter > 4) {
+                    currentQuarter = 1;
+                    currentYear++;
+                }
+
+                // get the revenue value and add it to the filtered data
                 const revenue = lambdaOutput[i-1].find(obj => obj.Stage === "Revenue");
-                const RevenueQuarter = `Quarter ${i/13}`;
+                // get the quarter and year and add it to the filtered data
+                const RevenueQuarter = `Q${currentQuarter++} ${currentYear}`;
+                // create a new object with the quarter and revenue value and add it to the filtered data
                 const modifiedRevenue = { Stage: RevenueQuarter, values: (revenue.values - previousRevenue).toFixed(2) };
+                // update the previous revenue value
                 previousRevenue = revenue.values;
+                // add the new object to the filtered data
                 newFilteredData.push(modifiedRevenue);
             }
         }
