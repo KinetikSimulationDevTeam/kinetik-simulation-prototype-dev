@@ -334,14 +334,26 @@ function DragDropFile(props) {
               {' '}to save file to database
             </p>
           }
-          <button
-            className="upload-button"
-            onClick={(e) => {
-              handleOnSubmit(e);
-            }}
-          >
-            Import CSV
-          </button>
+          { !userLoginStatus &&
+            <button
+              className="upload-button-not-logged-in"
+              onClick={(e) => {
+                handleOnSubmit(e);
+              }}
+            >
+              Import CSV
+            </button>
+          }
+          { userLoginStatus &&
+            <button
+              className="upload-button"
+              onClick={(e) => {
+                handleOnSubmit(e);
+              }}
+            >
+              Import CSV
+            </button>
+          }
           {userLoginStatus && (
             <button className="upload-button" onClick={handleSelectButtonClick}>
               Database
