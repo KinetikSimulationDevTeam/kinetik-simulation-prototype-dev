@@ -171,7 +171,6 @@ const SimulationModule = (props) => {
           id='simulation-slider'
           thumbClassName='customSlider-thumb'
           trackClassName='customSlider-track'
-          markClassName='customSlider-mark'
           valueLabelDisplay="auto"
           marks={1}
           min={0}

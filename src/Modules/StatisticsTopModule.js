@@ -19,9 +19,9 @@ const StatisticsTopModule = ({ lambdaOutput }) => {
             <p>Sales Cycle {'('}Weeks{'): '}</p>
             <p className='statistics-module-info-legend'>
                 Win Rate:
-                <p className='statistics-module-info-values'>
+                <span className='statistics-module-info-values'>
                     {winRate.toLocaleString('en')}%
-                </p>
+                </span>
             </p>
             <p>Progression Velocity: {' '}</p>
         </div>

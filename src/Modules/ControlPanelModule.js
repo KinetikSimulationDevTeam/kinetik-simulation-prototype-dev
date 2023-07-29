@@ -44,8 +44,7 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
       </div>
       <div id='upload-module-input-layout'>
         <div id='upload-module-select-layout'>
-          <CreatableSelect placeholder="Type weeks or select..." options={dropdownOptions} className='upload-module-input-dropdown' onChange={(choice) => handleTimePeriodChange(choice)}>
-          </CreatableSelect>
+          <CreatableSelect placeholder="Type weeks or select..." options={dropdownOptions} className='upload-module-input-dropdown' onChange={(choice) => handleTimePeriodChange(choice)} />
           <h5 id='upload-file-name-layout'>File Name: </h5>
           <p id='uploadModuleFileName'> {localStorage.getItem('fileName') === undefined ? fileName : localStorage.getItem('fileName')} </p>
         </div>

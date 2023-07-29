@@ -435,6 +435,10 @@
 }
 
 .statistics-module-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   padding: 1vh 1vw;
   font-size: 2.5vh;
   font-weight: 300;
@@ -448,6 +452,14 @@
 }
 
 .statistics-module-info-legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+#scoreboard-top-layout {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

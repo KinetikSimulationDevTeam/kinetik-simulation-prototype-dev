@@ -25,22 +25,22 @@ const StatisticsButtomModule = ({ lambdaOutput }) => {
             <div className='statistics-module-info'>
                 <p className='statistics-module-info-legend'>
                     Total Revenue: 
-                    <p className='statistics-module-info-values'>
+                    <span className='statistics-module-info-values'>
                         ${totalRevenue.toLocaleString('en')}M
-                    </p>
+                    </span>
                 </p>
                 <p>New Leads: {' '}</p>
                 <p className='statistics-module-info-legend'>
                     New Opportunities:
-                    <p className='statistics-module-info-values'>
+                    <span className='statistics-module-info-values'>
                         {newOpportunities.toLocaleString('en')}
-                    </p>
+                    </span>
                 </p>
                 <p className='statistics-module-info-legend'>
                     Wins:
-                    <p className='statistics-module-info-values'>
+                    <span className='statistics-module-info-values'>
                         {wins.toLocaleString('en')}
-                    </p>
+                    </span>
                 </p>
             </div>
         </div>
