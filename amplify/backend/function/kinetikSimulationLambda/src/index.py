@@ -42,7 +42,7 @@ def handler(event, context):
     totalRevenue = 0.0
 
     # create 2D array to store data
-    data = [[{} for i in range(len(body['stages']) + 2)]
+    data = [[{} for i in range(len(body['stages']) + 3)]
                                for j in range(body['weeks'])]
     
     # set slider values
@@ -247,7 +247,7 @@ def handler(event, context):
         # new totals (update output list with new totals for each stage)
         for j in range(len(movementFromStages)):
             output[j] = newOps[j] + sum(movementFromStages[k][j]
-                                            for k in range(len(movementFromStages)))
+                                            for k in range(len(movementFromStages)))     
         
         # calculate new number of dealsizes, that are the amount of wins for that week
         newDealSize = output[len(body['stages'])-2] - currentNumber[len(body['stages'])-2]
@@ -280,6 +280,10 @@ def handler(event, context):
         # update current number of new opportunities
         data[i][len(body['stages'])+1]['Stage'] = 'New Opportunities'
         data[i][len(body['stages'])+1]['values'] = round(newOpsTotal, 1)
+
+        # update movement from each stage to each other stage
+        data[i][len(body['stages'])+2]['Stage'] = 'Movement Flow'
+        data[i][len(body['stages'])+2]['values'] = movementFromStages
         
         # set current number of opportunities to output for next week
         currentNumber = output

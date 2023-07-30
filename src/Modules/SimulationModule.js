@@ -4,6 +4,7 @@ import MyResponsiveBar from '../Components/SimulationComponents/SimulationBarCha
 import { API } from 'aws-amplify';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import SimulationChordChart from '../Components/SimulationComponents/SimulationChordChart';
 
 /*
     Description: This component is used to display the simulation module.
@@ -25,6 +26,10 @@ const SimulationModule = (props) => {
   const [largestValue, setLargestValue] = useState(100);
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
+  // This state will store the key for the chord diagram
+  const [chordKey, setChordKey] = useState([]);
+  // This state will store the data for the chord diagram
+  const [chordData, setChordData] = useState([[]]);
 
   /*
     Description: This function is used to make a call to the lambda function to get the data for the simulation module. It is called when the component is first rendered.
@@ -35,7 +40,16 @@ const SimulationModule = (props) => {
   */
   useEffect(() => {
     if (lambdaOutput) {
-      setData(lambdaOutput, largestOutput());
+      setData(
+        lambdaOutput.map((array) =>
+          array.slice(0, -3)
+        ),
+        largestOutput(), setChordKey(data[0].map((obj) => obj.Stage).slice(0, -3))
+      );
+
+      setChordData(lambdaOutput.map((array) =>
+        array.slice(-1))
+      );
     }
   }, [lambdaOutput]);
 
@@ -47,12 +61,12 @@ const SimulationModule = (props) => {
     Return Type: None
   */
   async function largestOutput() {
-    // Filter out the revenue stage for the largest value calculation in y-axis
-    const lambdaOutputWithoutRevenue = lambdaOutput.map((array) =>
-      array.filter((obj) => obj.Stage !== 'Revenue')
+    // Filter out the last 3 stages for the largest value calculation in y-axis
+    const lambdaOutputWithoutLastStages = lambdaOutput.map((array) =>
+      array.slice(0, -3)
     );
 
-    const maxValue = lambdaOutputWithoutRevenue
+    const maxValue = lambdaOutputWithoutLastStages
       .flatMap(array => array.map(obj => obj.values))
       .reduce((max, value) => Math.max(max, value), 0);
     await setLargestValue(maxValue);
@@ -121,6 +135,7 @@ const SimulationModule = (props) => {
     }
   }, [props.sliderValue]);
 
+
   /*
     Description: This function is called when the "Start Simulation" button is clicked and sends a POST request to the getSimulationOutput API endpoint using the input parameter. It then sets the lambdaOutput state with the response.
 
@@ -159,7 +174,8 @@ const SimulationModule = (props) => {
       </div>
       <div>
         <div id='simulation-bar-chart'>
-          <MyResponsiveBar largestValue={largestValue} data={data[currentIndex].slice(0, data[0].length - 2 < 0 ? 0 : data[0].length - 2)} />
+          <MyResponsiveBar largestValue={largestValue} data={data[currentIndex]} />
+          {/* <SimulationChordChart data={chordData[currentIndex][0]["values"]} keys={chordKey} /> */}
         </div>
         <div id='simulation-buttons-layout'>
           <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Start Simulation </button>

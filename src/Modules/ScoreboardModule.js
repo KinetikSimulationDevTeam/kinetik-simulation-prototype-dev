@@ -38,6 +38,10 @@ const Scoreboard = ({ lambdaOutput }) => {
         Return Type: None
     */
     useEffect(() => {
+        if(lambdaOutput === undefined) return;
+        const data = lambdaOutput.map((array) =>
+            array.slice(0, -3)
+        );
         // get the current quarter and year to display in the x-axis
         const currentDate = new Date();
         let currentMonth = currentDate.getMonth();
@@ -46,8 +50,7 @@ const Scoreboard = ({ lambdaOutput }) => {
 
         const newFilteredData = [];
         let previousRevenue = 0;
-        if(lambdaOutput === undefined) return;
-        for (let i = 1; i <= lambdaOutput.length; i++) {
+        for (let i = 1; i <= data.length; i++) {
             // if the current index is a revenue value, add it to the filtered data
             if (i % timeFrame === 0 && i !== 0) {
 
