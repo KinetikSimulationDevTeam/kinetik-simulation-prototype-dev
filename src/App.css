@@ -235,7 +235,8 @@
   width: 44vw;
   height: 57vh;
   padding: 0.5vh 0.5vw;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #new-ops-module-layout {
