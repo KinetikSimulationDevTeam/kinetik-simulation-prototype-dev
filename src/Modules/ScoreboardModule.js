@@ -12,7 +12,7 @@ import Select from 'react-select';
 const Scoreboard = ({ lambdaOutput }) => {
     //This state variable is used to keep track of the data that is passed into the bar chart component. It is initialized with a default value of [[]].
     const [filteredData, setFilteredData] = useState([]);
-
+    //This state variable is used to keep track of the time frame that the user has selected. It is initialized with a default value of '13'.
     const [timeFrame, setTimeFrame] = useState('13');
 
     const dropdownOptions = [

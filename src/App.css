@@ -305,14 +305,15 @@
 }
 
 #simulation-bar-chart {
-  width: 43.5vw;
+  width: 48vw;
   height: 39vh;
 }
 
 #simulation-title {
   display: flex;
   flex-direction: row;
-  gap: 30%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .button {
@@ -374,7 +375,7 @@
 
 #scoreboard-graph {
   height: 28vh;
-  width: 44vw;
+  width: 48vw;
 }
 
 #simulation-buttons-layout {
@@ -498,4 +499,11 @@
   justify-content: space-between;
   align-items: center;
   margin: 0;
+}
+
+.simulation-chart-icon {
+  width: 8vh;
+  height: 8vh;
+  object-fit: cover;
+  cursor: pointer;
 }

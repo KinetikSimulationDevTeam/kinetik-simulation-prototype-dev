@@ -5,6 +5,8 @@ import { API } from 'aws-amplify';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import SimulationChordChart from '../Components/SimulationComponents/SimulationChordChart';
+import ChordChartIcon from '../Images/ChordChartIcon.png';
+import BarChartIcon from '../Images/BarChartIcon.png';
 
 /*
     Description: This component is used to display the simulation module.
@@ -29,7 +31,9 @@ const SimulationModule = (props) => {
   // This state will store the key for the chord diagram
   const [chordKey, setChordKey] = useState([]);
   // This state will store the data for the chord diagram
-  const [chordData, setChordData] = useState([[]]);
+  const [chordData, setChordData] = useState(false);
+  // This state will store the current user graph selection
+  const [graphSelection, setGraphSelection] = useState('bar-chart');
 
   /*
     Description: This function is used to make a call to the lambda function to get the data for the simulation module. It is called when the component is first rendered.
@@ -44,12 +48,13 @@ const SimulationModule = (props) => {
         lambdaOutput.map((array) =>
           array.slice(0, -3)
         ),
-        largestOutput(), setChordKey(data[0].map((obj) => obj.Stage).slice(0, -3))
+        largestOutput()
       );
 
       setChordData(lambdaOutput.map((array) =>
         array.slice(-1))
       );
+      setChordKey(data[0].map((obj) => obj.Stage));
     }
   }, [lambdaOutput]);
 
@@ -147,7 +152,7 @@ const SimulationModule = (props) => {
     try {
       let updatedJsonObject = input;
 
-      if (props.sliderValue.length != 0) {
+      if (props.sliderValue.length !== 0) {
         const jsonObject = JSON.parse(updatedJsonObject);
         for (let i = 0; i < jsonObject['sliderValues'].length; i++) {
           jsonObject['sliderValues'][i] = props.sliderValue[i];
@@ -166,16 +171,33 @@ const SimulationModule = (props) => {
     }
   };
 
+  const getChordDataForCurrentIndex = () => {
+    if (chordData && chordKey && chordData.length > currentIndex && Array.isArray(chordData[currentIndex])) {
+      return chordData[currentIndex][0]?.values ?? [];
+    }
+    return [];
+  };
+
+  const handleGraphSelection = () => {
+    if (graphSelection === 'bar-chart') {
+      setGraphSelection('chord-chart');
+    } else {
+      setGraphSelection('bar-chart');
+    }
+  };
+
   return (
     <div id='simulation-module-layout'>
       <div id='simulation-title'>
         <h3 className='title'> Simulation/History </h3>
         <h3> Week {currentIndex + 1} </h3>
+        {graphSelection === 'bar-chart' && <img className='simulation-chart-icon' title='Click to show movement flow chart' src={ChordChartIcon} alt='chord-chart' onClick={handleGraphSelection}/>}
+        {graphSelection === 'chord-chart' && <img className='simulation-chart-icon' title='Click to show stages bar chart'  src={BarChartIcon} alt='chord-chart' onClick={handleGraphSelection}/>}
       </div>
       <div>
         <div id='simulation-bar-chart'>
-          <MyResponsiveBar largestValue={largestValue} data={data[currentIndex]} />
-          {/* <SimulationChordChart data={chordData[currentIndex][0]["values"]} keys={chordKey} /> */}
+          {graphSelection === 'bar-chart' && <MyResponsiveBar largestValue={largestValue} data={data[currentIndex]} />}
+          {graphSelection === 'chord-chart' && chordData && <SimulationChordChart data={getChordDataForCurrentIndex()} key={chordKey} />}
         </div>
         <div id='simulation-buttons-layout'>
           <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Start Simulation </button>

@@ -1,10 +1,11 @@
-import { ResponsiveChord } from '@nivo/chord'
+import { ResponsiveChord } from '@nivo/chord';
 
-const SimulationChordChart = ({ data, keys }) => {
+const SimulationChordChart = ({ data, key }) => {
+  return (
     <ResponsiveChord
         data={data}
-        keys={keys}
-        margin={{ top: 5, right: 100, bottom: 50, left: 60 }}
+        keys={["Prospecting", "Lead Qualification", "Demo /Meeting", "Proposal", "Negotiation", "Win", "Loss"]}
+        margin={{ top: 50, right: 140, bottom: 50, left: 50 }}
         valueFormat=".2f"
         padAngle={0.02}
         innerRadiusRatio={0.96}
@@ -42,31 +43,8 @@ const SimulationChordChart = ({ data, keys }) => {
         }}
         colors={{ scheme: 'nivo' }}
         motionConfig="stiff"
-        legends={[
-            {
-                anchor: 'bottom',
-                direction: 'row',
-                justify: false,
-                translateX: 0,
-                translateY: 70,
-                itemWidth: 80,
-                itemHeight: 14,
-                itemsSpacing: 0,
-                itemTextColor: '#999',
-                itemDirection: 'left-to-right',
-                symbolSize: 12,
-                symbolShape: 'circle',
-                effects: [
-                    {
-                        on: 'hover',
-                        style: {
-                            itemTextColor: '#000'
-                        }
-                    }
-                ]
-            }
-        ]}
     />
-}
+  );
+};
 
 export default SimulationChordChart;
