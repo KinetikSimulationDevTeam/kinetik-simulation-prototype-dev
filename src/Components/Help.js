@@ -21,7 +21,7 @@ const Help = () => {
                         <p>Click <a href="https://tarheels.live/comp523s23teaml/user-manual/" target='_blank'>here</a> to see the User Manual.</p>
                     </div>
                     <div>
-                        <h5 className='title'> 1. Where can I find help for creating input file? </h5>
+                        <h5 className='title'> 2. Where can I find help for creating input file? </h5>
                         <p>Click <a href="https://tarheels.live/comp523s23teaml/input-file-tutorial1/" target='_blank'>here</a> to see the File Input Tutorial.</p>
                     </div>
                     <div>
