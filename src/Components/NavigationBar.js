@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Kinetik_img from '../Images/Kinetik_logo.png';
+import MyAccountIcon from '../Images/MyAccountIcon.png';
 
 /*
     Description: This component is used to display the navigation bar.
@@ -29,7 +30,7 @@ const Navbar = () => {
         </li>
       </div>
       <li>
-        <Link className={`link ${location.pathname === '/signin' ? 'current' : ''}`} style={location.pathname === '/signin' ? {color: 'black'} : {}} to="/signin">My Account{(location.pathname === '/signin') && <span>(current)</span>}</Link>
+        <Link className={`link ${location.pathname === '/signin' ? 'current' : ''}`} style={location.pathname === '/signin' ? {color: 'black'} : {}} to="/signin"><img id='my-account-icon' src={MyAccountIcon} alt='my-account' /></Link>
       </li>
     </nav>
   );

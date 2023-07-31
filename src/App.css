@@ -508,3 +508,9 @@
   object-fit: cover;
   cursor: pointer;
 }
+
+#my-account-icon {
+  width: 4vh;
+  height: 3.8vh;
+  background-color: #e3f2fd;
+}
