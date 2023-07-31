@@ -70,7 +70,6 @@
   height: 30vh;
   width: 100%;
   text-align: center;
-  position: relative;
 }
 
 #input-file-upload {
@@ -110,7 +109,7 @@
 
 .upload-button {
   margin: 1vh 0.2vw;
-  width: 5vw;
+  width: 45%;
   height: 4vh;
   align-items: center;
   background-color: #fff;
@@ -121,7 +120,7 @@
   cursor: pointer;
   display: inline-flex;
   font-family: Inter,sans-serif;
-  font-size: 1.4vh;
+  font-size: 0.7em;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
@@ -412,12 +411,13 @@
 }
 
 .upload-to-cloud {
-  font-size: 0.6vw;
+  font-size: 0.5em;
 }
 
 #remind-signin-text {
-  font-size: 0.65em;
+  font-size: 0.7em;
   margin-bottom: -0.3vh;
+  white-space: nowrap;
 }
 
 #scenario-buttons {
