@@ -38,18 +38,12 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
 
   return (
     <div id="upload-module-layout">
-      <div id='upload-module-title'>
+      <div id='upload-module-left-section'>
         <h3 className='title'> Control Panel </h3>
-        <a id='upload-module-template-link' href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview" target='_blank'><h5> Input File Template </h5></a>
+        <CreatableSelect placeholder="Type weeks or select..." options={dropdownOptions} className='upload-module-input-dropdown' onChange={(choice) => handleTimePeriodChange(choice)} />
+        <p id='uploadModuleFileName'> File Name: {localStorage.getItem('fileName') === undefined ? fileName : localStorage.getItem('fileName')} </p>
       </div>
-      <div id='upload-module-input-layout'>
-        <div id='upload-module-select-layout'>
-          <CreatableSelect placeholder="Type weeks or select..." options={dropdownOptions} className='upload-module-input-dropdown' onChange={(choice) => handleTimePeriodChange(choice)} />
-          <h5 id='upload-file-name-layout'>File Name: </h5>
-          <p id='uploadModuleFileName'> {localStorage.getItem('fileName') === undefined ? fileName : localStorage.getItem('fileName')} </p>
-        </div>
-        <FileUplaod timePeriod={selectedTimePeriod} handleLambdaOutput={handleLambdaOutput} onAction={file} handleUploadCount={handleUploadCount} />
-      </div>
+      <FileUplaod timePeriod={selectedTimePeriod} handleLambdaOutput={handleLambdaOutput} onAction={file} handleUploadCount={handleUploadCount} />
     </div>
   )
 }
