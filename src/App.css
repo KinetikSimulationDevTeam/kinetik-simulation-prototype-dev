@@ -3,7 +3,7 @@
   background-color: #CED3E2;
   min-width: 70vw;
   min-height: 50vh;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .link {
@@ -42,9 +42,9 @@
 
 #mainFrameLayout {
   display: grid;
-  grid-template-columns: 25vw 44vw 26.5vw;
+  grid-template-columns: 27% 44% 27%;
   grid-auto-rows: minmax(100px, auto);
-  column-gap: 1em;
+  column-gap: 1vw;
   margin: 0 1em 0 1em;
   height: 96vh;
 }
@@ -54,7 +54,7 @@
   flex-direction: column;
   border-radius: 0 0 2% 2%;
   background-color: white;
-  width: 25vw;
+  width: 100%;
   height: 43vh;
   padding: 0 1em 0.5em 1em;
   overflow: auto;
@@ -80,7 +80,7 @@
 #label-file-upload {
   font-size: 2vh;
   margin-bottom: 5px;
-  height: 23vh;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +143,7 @@
 
 .upload-button-not-logged-in {
   margin: 1vh 0.2vw;
-  width: 10vw;
+  width: 100%;
   height: 4vh;
   align-items: center;
   background-color: #fff;
@@ -193,9 +193,8 @@
 #upload-module-input-layout {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: start;
-  justify-content: left;
+  gap: 6%;
 }
 
 .upload-module-input-dropdown {
@@ -224,7 +223,6 @@
   display: flex;
   flex-direction: column;
   justify-items: left;
-  padding-right: 1vw;
 }
 
 #simulation-module-layout {
@@ -232,7 +230,7 @@
   flex-direction: column;
   border-radius: 0 0 2% 2%;
   background-color: white;
-  width: 44vw;
+  width: 100%;
   height: 57vh;
   padding: 0.5vh 0.5vw;
   overflow-x: hidden;
@@ -244,18 +242,8 @@
   flex-direction: column;
   border-radius: 2% 2% 0 0;
   background-color: white;
-  width: 25vw;
-  height: 51.5vh;
-  padding: 0 1em 1em 1em;
-}
-
-#scenario-module-layout {
-  display: flex;
-  flex-direction: column;
-  border-radius: 5% 5% 0 0;
-  background-color: white;
-  width: 25vw;
-  height: 54vh;
+  width: 100%;
+  height: 50.5vh;
   padding: 0 1em 1em 1em;
 }
 
@@ -266,7 +254,7 @@
 }
 
 #simulation-slider {
-  width: 40vw;
+  width: 100%;
   height: 2vh;
 }
 
@@ -363,8 +351,8 @@
   flex-direction: column;
   border-radius: 2% 2% 0 0;
   background-color: white;
-  width: 44vw;
-  height: 37vh;
+  width: 100%;
+  height: 36.5vh;
   padding: 0 0.5em;
 }
 
@@ -454,7 +442,7 @@
   flex-direction: column;
   border-radius: 0 0 2% 2%;
   background-color: white;
-  width: 26.5vw;
+  width: 100%;
   height: 47vh;
   padding: 0 1em;
 }
@@ -464,8 +452,8 @@
   flex-direction: column;
   border-radius: 2% 2% 0 0;
   background-color: white;
-  width: 26.5vw;
-  height: 47vh;
+  width: 100%;
+  height: 46.5vh;
   padding: 0 1em;
 }
 
@@ -478,7 +466,7 @@
   font-size: 2.5vh;
   font-weight: 300;
   text-align: left;
-  width: 23.5vw;
+  width: 100%;
 }
 
 .statistics-module-info-values {
