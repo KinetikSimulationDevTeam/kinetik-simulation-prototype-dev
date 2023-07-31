@@ -8,14 +8,14 @@
 
 .link {
   text-decoration: none;
-  font-size: medium;
+  font-size: 2vh;
   color: rgb(128, 128, 128);
   
 }
 
 .link:hover {
   text-decoration: none;
-  font-size: medium;
+  font-size: 2vh;
   color: black;
 
 }
@@ -501,4 +501,10 @@
   width: 4vh;
   height: 3.8vh;
   background-color: #e3f2fd;
+}
+
+#nav-bar-kinetik-logo {
+  padding-top: 0.7%;
+  height: 100%;
+  width: 5%;
 }

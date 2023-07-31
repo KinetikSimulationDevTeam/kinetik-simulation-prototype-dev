@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav id='nav-bar'>
       <div id='nav-bar-left'>
-        <a href="https://www.kinetiksimulation.com" target='_blank'>
+        <a id='nav-bar-kinetik-logo' href="https://www.kinetiksimulation.com" target='_blank'>
           <img src={Kinetik_img} alt='' width={30} height={30} />
         </a>
         <li>
