@@ -97,7 +97,7 @@
 .upload-click-text {
   cursor: pointer;
   padding: 0.25rem;
-  font-size: 2vh;
+  font-size: 1em;
   border: none;
   font-family: 'Oswald', sans-serif;
   background-color: transparent;
@@ -187,6 +187,7 @@
 .title {
   font-size: 2.5vh;
   text-align: left;
+  white-space: nowrap;
 }
 
 #upload-module-input-layout {
@@ -194,11 +195,11 @@
   flex-direction: row;
   align-items: start;
   gap: 6%;
+  width: 100%;
 }
 
 .upload-module-input-dropdown {
-  width: 11vw;
-  font-size: 0.7vw;
+  font-size: 0.8em;
 }
 
 .upload-module-ddb-dropdown {
@@ -214,7 +215,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: -2vh;
-  font-size: 0.7vw;
+  font-size: 0.8em;
   font-weight: bold;
 }
 
@@ -222,6 +223,7 @@
   display: flex;
   flex-direction: column;
   justify-items: left;
+  width: 50%;
 }
 
 #simulation-module-layout {
@@ -382,6 +384,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
 }
 
 #upload-module-template-link {
@@ -410,7 +413,7 @@
 }
 
 #remind-signin-text {
-  font-size: 0.7vw;
+  font-size: 0.65em;
   margin-bottom: -0.3vh;
 }
 
