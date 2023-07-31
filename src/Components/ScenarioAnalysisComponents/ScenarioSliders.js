@@ -103,7 +103,7 @@ const ScenerioSliders = (props) => {
     );
   } else {
     return (
-      <div style={{ height: '45vh', overflow: 'auto' }}>
+      <div style={{ height: '100%', overflow: 'auto' }}>
         <ScenerioSlider
           name='Leads (TBD)'
           mean={0}

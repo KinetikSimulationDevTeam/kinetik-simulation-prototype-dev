@@ -1,9 +1,9 @@
 .App {
   text-align: center;
   background-color: #CED3E2;
-  min-width: 70vw;
-  min-height: 50vh;
-  overflow: hidden;
+  min-width: 1200px;
+  min-height: 100vh;
+  overflow: auto;
 }
 
 .link {
@@ -44,7 +44,7 @@
   display: grid;
   grid-template-columns: 27% 44% 27%;
   grid-auto-rows: minmax(100px, auto);
-  column-gap: 1vw;
+  column-gap: 1%;
   margin: 0 1em 0 1em;
   height: 96vh;
 }
@@ -57,7 +57,7 @@
   width: 100%;
   height: 43vh;
   padding: 0 1em 0.5em 1em;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 #upload-input-file {
@@ -67,8 +67,7 @@
 
 #form-file-upload {
   height: 30vh;
-  width: 23vw;
-  max-width: 50%;
+  width: 110%;
   text-align: center;
   position: relative;
 }
@@ -248,7 +247,7 @@
 }
 
 .scenario-slider {
-  width: 23vw;
+  width: 100%;
   height: 2vh;
   margin: -1vh auto;
 }
@@ -294,7 +293,7 @@
 }
 
 #simulation-bar-chart {
-  width: 48vw;
+  width: 113%;
   height: 39vh;
 }
 
@@ -364,7 +363,7 @@
 
 #scoreboard-graph {
   height: 28vh;
-  width: 48vw;
+  width: 113%;
 }
 
 #simulation-buttons-layout {
