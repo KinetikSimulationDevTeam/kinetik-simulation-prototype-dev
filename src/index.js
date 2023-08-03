@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Amplify, API } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Help from './Components/Help';
+import Help from './Pages/FaqPage';
 import Signin from './Pages/SigninPage';
 
 Amplify.configure(awsconfig);

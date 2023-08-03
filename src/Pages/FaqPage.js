@@ -1,6 +1,6 @@
 import React from 'react'
-import Navigationbar from './NavigationBar'
-import { useLocation } from 'react-router-dom'
+import SearchAppBar from '../Components/SearchAppBar'
+import Navbar from '../Components/NavigationBar'
 
 /* 
     Description: This component is used to display the FAQ page.
@@ -9,10 +9,11 @@ import { useLocation } from 'react-router-dom'
 
     Return Type: None
 */
-const Help = () => {
+const Faq = () => {
     return (
         <div>
-            <Navigationbar />
+            <SearchAppBar />
+            <Navbar />
             <div id='faq-page-layout'>
                 <h3 className='title'> FAQ Session </h3>
                 <div>
@@ -86,4 +87,4 @@ const Help = () => {
     )
 }
 
-export default Help
+export default Faq

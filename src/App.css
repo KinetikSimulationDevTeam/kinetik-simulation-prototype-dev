@@ -26,18 +26,21 @@
   justify-content: space-between;
   height: 4vh;
   align-items: center;
-  background-color: #e3f2fd;
+  background-color: white;
   padding: 2px 1em 0 1em;
   list-style-type: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
 }
 
-#nav-bar-left {
+.nav-bar-items {
   display: flex;
   flex-direction: row;
-  gap: 5vw;
-  height: 5vh;
+  justify-content: space-between;
   align-items: center;
-  list-style-type: none;
+  gap: 0.3vw;
+  cursor: pointer;
 }
 
 #mainFrameLayout {
@@ -45,17 +48,17 @@
   grid-template-columns: 27% 44% 27%;
   grid-auto-rows: minmax(100px, auto);
   column-gap: 1%;
-  margin: 0 1em 0 1em;
-  height: 96vh;
+  margin: 1em 1em 1em 1em;
+  height: 84vh;
 }
 
 #upload-module-layout {
   display: flex;
   flex-direction: row;
-  border-radius: 0 0 2% 2%;
+  border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 43vh;
+  height: 47%;
   padding: 0 1em 0.5em 1em;
   overflow-y: auto;
   gap: 1em;
@@ -68,7 +71,6 @@
 
 #form-file-upload {
   height: 30vh;
-  width: 100%;
   text-align: center;
 }
 
@@ -79,7 +81,7 @@
 #label-file-upload {
   font-size: 2vh;
   margin-bottom: 5px;
-  height: 80%;
+  height: 65%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,7 +112,7 @@
 .upload-button {
   margin: 1vh 0.2vw;
   width: 45%;
-  height: 4vh;
+  height: 10%;
   align-items: center;
   background-color: #fff;
   border-radius: 12px;
@@ -143,7 +145,7 @@
 .upload-button-not-logged-in {
   margin: 1vh 0.2vw;
   width: 100%;
-  height: 4vh;
+  height: 10%;
   align-items: center;
   background-color: #fff;
   border-radius: 12px;
@@ -175,7 +177,6 @@
 
 #drag-file-element {
   position: absolute;
-  width: 100%;
   height: 100%;
   border-radius: 1rem;
   top: 0px;
@@ -195,7 +196,6 @@
   flex-direction: row;
   align-items: start;
   gap: 6%;
-  width: 100%;
 }
 
 .upload-module-input-dropdown {
@@ -210,7 +210,6 @@
 
 
 #uploadModuleFileName {
-  max-width: 100%;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -229,10 +228,10 @@
 #simulation-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 0 0 2% 2%;
+  border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 57vh;
+  height: 60%;
   padding: 0.5vh 0.5vw;
   overflow-x: hidden;
   overflow-y: auto;
@@ -241,10 +240,10 @@
 #new-ops-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 2% 2% 0 0;
+  border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 50.5vh;
+  height: 53%;
   padding: 0 1em 1em 1em;
 }
 
@@ -296,7 +295,7 @@
 
 #simulation-bar-chart {
   width: 113%;
-  height: 39vh;
+  height: 65%;
 }
 
 #simulation-title {
@@ -308,7 +307,6 @@
 
 .button {
   margin: 30px;
-  height: 3vh;
   width: 7vw;
   align-items: center;
   background-color: #fff;
@@ -350,10 +348,10 @@
 #scoreboard-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 2% 2% 0 0;
+  border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 36.5vh;
+  height: 40%;
   padding: 0 0.5em;
 }
 
@@ -364,7 +362,7 @@
 }
 
 #scoreboard-graph {
-  height: 28vh;
+  height: 25vh;
   width: 113%;
 }
 
@@ -374,6 +372,7 @@
   gap: 5vw;
   justify-content: space-between;
   margin-bottom: 1.5vh;
+  height: 7%;
 }
 
 #scenario-slider-name {
@@ -426,6 +425,7 @@
   justify-content: space-between;
   margin: 1.5vh 0.5vw;
   gap: 1vw;
+  height: 10%;
 }
 
 .scenario-slider-value {
@@ -441,20 +441,20 @@
 #statistics-top-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 0 0 2% 2%;
+  border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 47vh;
+  height: 50%;
   padding: 0 1em;
 }
 
 #statistics-buttom-module-layout {
   display: flex;
   flex-direction: column;
-  border-radius: 2% 2% 0 0;
+  border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 46.5vh;
+  height: 50%;
   padding: 0 1em;
 }
 
@@ -515,4 +515,13 @@
   flex-direction: column;
   gap: 2em;
   width: 50%;
+}
+
+#kinetik-logo {
+  object-fit: cover;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: #121212;
 }

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Navigationbar from '../Components/NavigationBar';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { Link } from 'react-router-dom';
 import Smile from '../Images/Smile.png';
 import { getUserDdb } from '../Components/DynamoDBFunctions';
+import SearchAppBar from '../Components/SearchAppBar'
+import Navbar from '../Components/NavigationBar';
 
 const Signin = () => {
   const [filesFromDdb, setFilesFromDdb] = useState([]);
@@ -20,7 +21,8 @@ const Signin = () => {
 
   return (
     <div>
-      <Navigationbar />
+      <SearchAppBar />
+      <Navbar />
       <div id='authentication-text'>
         <Authenticator>
           {({ signOut, user }) => (

@@ -9,6 +9,7 @@ import 'alertifyjs/build/css/alertify.css';
 import Navbar from '../Components/NavigationBar'
 import StatisticsTopModule from '../Modules/StatisticsTopModule'
 import StatisticsButtomModule from '../Modules/StatisticsButtomModule'
+import SearchAppBar from '../Components/SearchAppBar'
 
 /*
     Description: This component is used to display the main frame of the application.
@@ -44,6 +45,7 @@ const MainFrame = () => {
 
   return (
     <div>
+      <SearchAppBar />
       <Navbar />
       <div id='mainFrameLayout'>
         <div id='first-column-mainframe'>

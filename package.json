@@ -5,6 +5,10 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^5.0.2",
     "@djthoms/pretty-checkbox": "^3.1.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.3",
     "@nivo/bar": "^0.80.0",
     "@nivo/chord": "0.80.0",
     "@nivo/core": "^0.80.0",

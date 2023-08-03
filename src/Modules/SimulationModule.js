@@ -194,30 +194,28 @@ const SimulationModule = (props) => {
         {graphSelection === 'bar-chart' && <img className='simulation-chart-icon' title='Click to show movement flow chart' src={ChordChartIcon} alt='chord-chart' onClick={handleGraphSelection}/>}
         {graphSelection === 'chord-chart' && <img className='simulation-chart-icon' title='Click to show stages bar chart'  src={BarChartIcon} alt='chord-chart' onClick={handleGraphSelection}/>}
       </div>
-      <div>
-        <div id='simulation-bar-chart'>
-          {graphSelection === 'bar-chart' && <MyResponsiveBar largestValue={largestValue} data={data[currentIndex]} />}
-          {graphSelection === 'chord-chart' && chordData && <SimulationChordChart data={getChordDataForCurrentIndex()} key={chordKey} />}
-        </div>
-        <div id='simulation-buttons-layout'>
-          <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Start Simulation </button>
-          <button className='button' onClick={togglePlay}>
-            {isPlaying ? 'Pause' : 'Auto Play'}
-          </button>
-        </div>
-        <Slider
-          id='simulation-slider'
-          thumbClassName='customSlider-thumb'
-          trackClassName='customSlider-track'
-          valueLabelDisplay="auto"
-          marks={1}
-          min={0}
-          defaultValue={0}
-          max={data.length - 1}
-          value={sliderValue}
-          onChange={handleSliderChange}
-        />
+      <div id='simulation-bar-chart'>
+        {graphSelection === 'bar-chart' && <MyResponsiveBar largestValue={largestValue} data={data[currentIndex]} />}
+        {graphSelection === 'chord-chart' && chordData && <SimulationChordChart data={getChordDataForCurrentIndex()} key={chordKey} />}
       </div>
+      <div id='simulation-buttons-layout'>
+        <button className='button' onClick={() => callLambdaFunction(localStorage.getItem('KinetikDataSet'))}> Start Simulation </button>
+        <button className='button' onClick={togglePlay}>
+          {isPlaying ? 'Pause' : 'Auto Play'}
+        </button>
+      </div>
+      <Slider
+        id='simulation-slider'
+        thumbClassName='customSlider-thumb'
+        trackClassName='customSlider-track'
+        valueLabelDisplay="auto"
+        marks={1}
+        min={0}
+        defaultValue={0}
+        max={data.length - 1}
+        value={sliderValue}
+        onChange={handleSliderChange}
+      />
     </div>
   );
 };
