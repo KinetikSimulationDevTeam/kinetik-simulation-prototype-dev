@@ -25,6 +25,7 @@
   flex-direction: row;
   justify-content: space-between;
   height: 35px;
+  width: 100%;
   align-items: center;
   background-color: white;
   padding: 2px 1em 0 1em;
@@ -501,12 +502,6 @@
   width: 4vh;
   height: 3.8vh;
   background-color: #e3f2fd;
-}
-
-#nav-bar-kinetik-logo {
-  padding-top: 0.7%;
-  height: 100%;
-  width: 5%;
 }
 
 #upload-module-left-section {
