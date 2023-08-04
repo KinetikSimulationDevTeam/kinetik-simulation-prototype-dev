@@ -61,7 +61,7 @@
   height: 47%;
   padding: 0 1em 0.5em 1em;
   overflow-y: auto;
-  gap: 1em;
+  gap: 1vw;
 }
 
 #upload-input-file {
@@ -524,4 +524,14 @@
 .menu-link {
   text-decoration: none;
   color: #121212;
+}
+
+#upload-module-right-section {
+  width: 50%;
+}
+
+#upload-logo {
+  width: 30%;
+  height: 20%;
+  object-fit: cover;
 }

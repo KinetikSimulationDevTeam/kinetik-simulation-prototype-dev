@@ -300,7 +300,7 @@ function DragDropFile(props) {
 
 
   return (
-    <div>
+    <div id="upload-module-right-section">
       <a id='upload-module-template-link' href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview" target='_blank'><h5> Input File Template </h5></a>
       {!showFileSelect && !showConfirmationButtons && (
         <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
@@ -317,7 +317,7 @@ function DragDropFile(props) {
             htmlFor="input-file-upload"
           >
             <div>
-              <img src={UploadImg} width="55em" height="55em" alt="" />
+              <img id="upload-logo" src={UploadImg} alt="" />
               <p>Click here to</p>
               <button className="upload-click-text" onClick={onButtonClick}>
                 Upload a file
