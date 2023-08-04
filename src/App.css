@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 4vh;
+  height: 35px;
   align-items: center;
   background-color: white;
   padding: 2px 1em 0 1em;
@@ -243,7 +243,7 @@
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 53%;
+  height: 51%;
   padding: 0 1em 1em 1em;
 }
 
@@ -416,7 +416,6 @@
 #remind-signin-text {
   font-size: 0.7em;
   margin-bottom: -0.3vh;
-  white-space: nowrap;
 }
 
 #scenario-buttons {
@@ -514,7 +513,7 @@
   display: flex;
   flex-direction: column;
   gap: 2em;
-  width: 50%;
+  width: 47%;
 }
 
 #kinetik-logo {

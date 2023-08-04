@@ -46,7 +46,7 @@ const SimulationModule = (props) => {
     if (lambdaOutput) {
       setData(
         lambdaOutput.map((array) =>
-          array.slice(0, -3)
+          array.slice(0, -5)
         ),
         largestOutput()
       );
@@ -68,7 +68,7 @@ const SimulationModule = (props) => {
   async function largestOutput() {
     // Filter out the last 3 stages for the largest value calculation in y-axis
     const lambdaOutputWithoutLastStages = lambdaOutput.map((array) =>
-      array.slice(0, -3)
+      array.slice(0, -5)
     );
 
     const maxValue = lambdaOutputWithoutLastStages

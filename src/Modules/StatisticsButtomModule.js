@@ -5,6 +5,7 @@ const StatisticsButtomModule = ({ lambdaOutput }) => {
     const [newLeads, setNewLeads] = useState(0);
     const [newOpportunities, setNewOpportunities] = useState(0);
     const [wins, setWins] = useState(0);
+    const [loss, setLoss] = useState(0);
 
     useEffect(() => {
         if (lambdaOutput === undefined) return;
@@ -17,6 +18,7 @@ const StatisticsButtomModule = ({ lambdaOutput }) => {
             totalOpportunities += lambdaOutput[i].find(obj => obj.Stage === "New Opportunities").values;
         }
         setNewOpportunities(Math.round(totalOpportunities));
+        setLoss(lambdaOutput[lambdaOutput.length - 1].find(obj => obj.Stage === "Loss").values);
     }, [lambdaOutput]);
 
     return (
@@ -29,7 +31,18 @@ const StatisticsButtomModule = ({ lambdaOutput }) => {
                         ${totalRevenue.toLocaleString('en')}M
                     </span>
                 </p>
-                <p>New Leads: {' '}</p>
+                <p className='statistics-module-info-legend'>
+                    Loss:
+                    <span className='statistics-module-info-values'>
+                        {loss.toLocaleString('en')}
+                    </span>
+                </p>
+                <p className='statistics-module-info-legend'>
+                    New Leads:
+                    <span className='statistics-module-info-values'>
+                        Coming Soon...
+                    </span>
+                </p>
                 <p className='statistics-module-info-legend'>
                     New Opportunities:
                     <span className='statistics-module-info-values'>

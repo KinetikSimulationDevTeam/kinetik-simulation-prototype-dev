@@ -15,15 +15,29 @@ const StatisticsTopModule = ({ lambdaOutput }) => {
     <div id='statistics-top-module-layout'>
         <h3 className='title'>Statistics</h3>
         <div className='statistics-module-info'>
-            <p>Customer Acquisition Cost: {' '}</p>
-            <p>Sales Cycle {'('}Weeks{'): '}</p>
+            <p className='statistics-module-info-legend'>
+                Customer Acquisition Cost:
+                <span className='statistics-module-info-values'>
+                </span>
+            </p>
+
+            <p className='statistics-module-info-legend'>
+                Sales Cycle {'('}Weeks{'): '}
+                <span className='statistics-module-info-values'>
+                </span>
+            </p>
+
             <p className='statistics-module-info-legend'>
                 Win Rate:
                 <span className='statistics-module-info-values'>
                     {winRate.toLocaleString('en')}%
                 </span>
             </p>
-            <p>Progression Velocity: {' '}</p>
+
+            <p>Progression Velocity: {' '}
+                <span className='statistics-module-info-values'>
+                </span>
+            </p>
         </div>
     </div>
   )

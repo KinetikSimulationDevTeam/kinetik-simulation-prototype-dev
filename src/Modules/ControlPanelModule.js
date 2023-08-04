@@ -31,9 +31,10 @@ const UploadModule = ({ handleLambdaOutput, handleUploadCount }) => {
   }
 
   const dropdownOptions = [
-    { value: "13", label: "One Quarter" },
-    { value: "26", label: "Half Year" },
-    { value: "52", label: "One Year" },
+    { value: "26", label: "1/2 Year" },
+    { value: "52", label: "1 Year" },
+    { value: "104", label: "2 Years" },
+    { value: "156", label: "3 Years" },
   ]
 
   return (

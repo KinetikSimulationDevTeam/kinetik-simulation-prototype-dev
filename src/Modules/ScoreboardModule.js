@@ -80,7 +80,7 @@ const Scoreboard = ({ lambdaOutput }) => {
                 }
 
                 // create a new object with the quarter and revenue value and add it to the filtered data
-                const modifiedRevenue = { Stage: revenueDate, values: timeFrame === '13' ? (revenue.values - previousRevenue).toFixed(2) : (revenue.values - previousRevenue).toFixed(0)};
+                const modifiedRevenue = { Stage: revenueDate, values: timeFrame === '13' ? (revenue.values - previousRevenue).toFixed(1) : (revenue.values - previousRevenue).toFixed(0)};
                 // update the previous revenue value
                 previousRevenue = revenue.values;
                 // add the new object to the filtered data

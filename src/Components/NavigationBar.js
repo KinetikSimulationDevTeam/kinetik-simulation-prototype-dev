@@ -134,6 +134,8 @@ const Navbar = () => {
         </Menu>
       </div>
 
+      <p> | </p>
+
       <div
         className='nav-bar-items'
         onMouseEnter={handleHomeMenuOpen}
@@ -162,10 +164,14 @@ const Navbar = () => {
         </Menu>
       </div>
 
+      <p> | </p>
+
       <div  className='nav-bar-items'>
         <ViewInArTwoToneIcon className='nav-bar-icon' />
         Run Simulation
       </div>
+
+      <p> | </p>
 
       <div 
         className='nav-bar-items'
@@ -195,10 +201,14 @@ const Navbar = () => {
         </Menu>
       </div>
 
+      <p> | </p>
+
       <div className='nav-bar-items'>
         <AccountTreeTwoToneIcon className='nav-bar-icon' />
         Structure Module
       </div>
+
+      <p> | </p>
 
       <div
         className='nav-bar-items'
@@ -226,6 +236,8 @@ const Navbar = () => {
           <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleVisualizationsMenuClose} >Profile User Defined Tranches</MenuItem>
         </Menu>
       </div>
+
+      <p> | </p>
 
       <div 
         className='nav-bar-items'
@@ -255,6 +267,8 @@ const Navbar = () => {
         </Menu>
       </div>
 
+      <p> | </p>
+
       <div  
         className='nav-bar-items'
         onMouseEnter={handleUploadMenuOpen}
@@ -280,6 +294,8 @@ const Navbar = () => {
           <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleUploadMenuClose} >Multiple File Upload: Upload From Box File or Drive; Infer Dates or Tag</MenuItem>
         </Menu>
       </div>
+
+      <p> | </p>
 
       <div 
         className='nav-bar-items'
@@ -310,6 +326,8 @@ const Navbar = () => {
           <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >Strategy</MenuItem>
         </Menu>
       </div>
+
+      <p> | </p>
 
       <div 
         className='nav-bar-items'
