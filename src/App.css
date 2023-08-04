@@ -2,7 +2,7 @@
   text-align: center;
   background-color: #CED3E2;
   min-width: 1200px;
-  min-height: 100vh;
+  height: 100%;
   overflow: auto;
 }
 
