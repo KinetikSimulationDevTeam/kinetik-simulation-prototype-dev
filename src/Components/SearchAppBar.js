@@ -20,8 +20,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 const searchResult = [
   { tab: 'Go to: Slider UX', group: 'Forecast', link: '/', value: 'slider ux' },
+  { tab: 'Go to: Upload file', group: 'Forecast', link: '/', value: 'upload file' },
+  { tab: 'Go to: Statistics session', group: 'Forecast', link: '/', value: 'statistics' },
   { tab: 'Go to: FAQ', group: 'Help', link: '/help', value: 'faq' },
   { tab: 'Go to: Sign in', group: 'Sign in', link: '/signin', value: 'sign in' },
+  { tab: 'Go to: Sign up', group: 'Sign in', link: '/signin', value: 'sign up' },
+  { tab: 'Go to: Forgot password', group: 'Sign in', link: '/signin', value: 'forgot password' },
+  { tab: 'Outbound link to: About Kinetik', group: 'Sign in', link: '/', value: 'about kinetik' },
 ]
 
 export default function PrimarySearchAppBar() {
@@ -49,9 +54,17 @@ export default function PrimarySearchAppBar() {
     event.preventDefault();
     if(searchValue.length > 0) {
       if(searchResult.find((result) => (result.tab).toLowerCase() === searchValue)) {
-        window.location.href = searchResult.find((result) => (result.tab).toLowerCase() === searchValue).link;
+        if(searchValue === 'outbound link to: about kinetik') {
+          window.open('https://www.kinetiksimulation.com', '_blank');
+        }else {
+          window.location.href = searchResult.find((result) => (result.tab).toLowerCase() === searchValue).link;
+        }
       }else if(searchResult.find((result) => result.value === searchValue)) {
-        window.location.href = searchResult.find((result) => result.value === searchValue).link;
+        if(searchValue === 'about kinetik') {
+          window.open('https://www.kinetiksimulation.com', '_blank');
+        }else {
+          window.location.href = searchResult.find((result) => result.value === searchValue).link;
+        }
       }
     }
   }
