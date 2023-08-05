@@ -1,65 +1,33 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Logo from '../Images/Logo.png'
 import { Link } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+import InputAdornment from "@mui/material/InputAdornment";
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+const searchResult = [
+  { tab: 'Go to: Slider UX', group: 'Forecast', link: '/', value: 'slider ux' },
+  { tab: 'Go to: FAQ', group: 'Help', link: '/help', value: 'faq' },
+  { tab: 'Go to: Sign in', group: 'Sign in', link: '/signin', value: 'sign in' },
+]
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [searchValue, setSearchValue] = React.useState('');
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -76,6 +44,17 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if(searchValue.length > 0) {
+      if(searchResult.find((result) => (result.tab).toLowerCase() === searchValue)) {
+        window.location.href = searchResult.find((result) => (result.tab).toLowerCase() === searchValue).link;
+      }else if(searchResult.find((result) => result.value === searchValue)) {
+        window.location.href = searchResult.find((result) => result.value === searchValue).link;
+      }
+    }
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -158,19 +137,52 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-          <a href="https://www.kinetiksimulation.com" target='_blank'>
-            <img src={Logo} alt='logo' id='kinetik-logo'/>
-          </a>
+            <a href="https://www.kinetiksimulation.com" target='_blank'>
+              <img src={Logo} alt='logo' id='kinetik-logo'/>
+            </a>
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
+          <Stack
+            sx={{width: '50%',
+              margin: 'auto',
+            }}
+          >
+            <Autocomplete
+              id="app-features"
+              freeSolo
+              disableClearable
+              options={searchResult.map((option) => option.tab)}
+              sx={{
+                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                  border: "1px solid rgb(27, 150, 255)",
+                  borderRadius: '5px'
+                }
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search..."
+                  InputProps={{
+                    ...params.InputProps,
+                    type: 'search',
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <SearchIcon 
+                          style={{ color: 'rgb(27, 150, 255)', cursor: 'pointer' }}
+                          onClick={handleSearchSubmit}
+                        />
+                      </InputAdornment>
+                    )
+                  }}
+                  size="small"
+                  onChange={(event) => setSearchValue((event.target.value).toLowerCase())}
+                  sx={{ input: { color: 'white' } }}
+                  InputLabelProps={{
+                    style: { color: 'rgb(27, 150, 255)' },
+                  }}
+                />
+              )}
             />
-          </Search>
+          </Stack>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
