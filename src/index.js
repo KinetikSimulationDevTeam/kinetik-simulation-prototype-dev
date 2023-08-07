@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Help from './Pages/FaqPage';
 import Signin from './Pages/SigninPage';
 import PageNotFound from './Pages/PageNotFound';
+import Files from './Pages/Files';
 
 Amplify.configure(awsconfig);
 
@@ -20,6 +21,7 @@ root.render(
         <Route path='/' element={<App />} />
         <Route path="/help" element={<Help />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/files" element={<Files />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

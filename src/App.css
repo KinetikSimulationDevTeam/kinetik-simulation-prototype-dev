@@ -529,3 +529,30 @@
   height: 20%;
   object-fit: cover;
 }
+
+#files-page-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#files-page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 0.5% 2%;
+}
+
+.files-type-logo {
+  width: 5vh;
+  height: 5vh;
+  object-fit: cover;
+}
+
+.file-type-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5vw;
+}

@@ -289,7 +289,9 @@ const Navbar = () => {
             horizontal: 'left',
           }}
         >
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleUploadMenuClose} >Upload CSV</MenuItem>
+          <Link className='menu-link' to='/files'>
+            <MenuItem onClick={handleUploadMenuClose} >Upload CSV</MenuItem>
+          </Link>
           <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleUploadMenuClose} >Simple Upload: Two Files With Dates</MenuItem>
           <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleUploadMenuClose} >Multiple File Upload: Upload From Box File or Drive; Infer Dates or Tag</MenuItem>
         </Menu>
