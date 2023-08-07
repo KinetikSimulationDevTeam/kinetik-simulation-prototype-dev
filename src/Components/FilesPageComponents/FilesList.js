@@ -83,15 +83,13 @@ const FilesList = () => {
   };
 
   const handleSelectAllClick = (event) => {
-    if (filesFromDdb.length > 0) {
-      if (event.target.checked) {
-        const newSelectedIds = filesFromDdb.map((row) => row.id);
-        setSelected(newSelectedIds);
-      } else {
-        setSelected([]);
-      }
-      setDisplayDeleteButton(event.target.checked);
+    if (event.target.checked) {
+      const newSelectedIds = filesFromDdb.map((row) => row.id);
+      setSelected(newSelectedIds);
+    } else {
+      setSelected([]);
     }
+    setDisplayDeleteButton(event.target.checked);
   };
 
   const handleRowClick = (event, id) => {
