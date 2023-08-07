@@ -8,6 +8,7 @@ import awsconfig from './aws-exports';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Help from './Pages/FaqPage';
 import Signin from './Pages/SigninPage';
+import PageNotFound from './Pages/PageNotFound';
 
 Amplify.configure(awsconfig);
 
@@ -19,6 +20,7 @@ root.render(
         <Route path='/' element={<App />} />
         <Route path="/help" element={<Help />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
