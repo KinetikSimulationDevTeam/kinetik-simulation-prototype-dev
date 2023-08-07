@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import UploadImg from '../../Images/UploadImg.png'
-import alertify from 'alertifyjs';
-import 'alertifyjs/build/css/alertify.css';
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import { API, graphqlOperation } from 'aws-amplify';
-import { createUser, createFile } from '../../graphql/mutations';
-import { getUserDdb } from '../DynamoDBFunctions';
-import { Checkbox } from 'pretty-checkbox-react';
-import '@djthoms/pretty-checkbox';
-import { Link } from 'react-router-dom';
+import UploadImg from "../../Images/UploadImg.png";
+import alertify from "alertifyjs";
+import "alertifyjs/build/css/alertify.css";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { API, graphqlOperation } from "aws-amplify";
+import { createUser, createFile } from "../../graphql/mutations";
+import { getUserDdb } from "../DynamoDBFunctions";
+import { Checkbox } from "pretty-checkbox-react";
+import "@djthoms/pretty-checkbox";
+import { Link } from "react-router-dom";
 import FileSelection from "./FileSelection";
 
 /*
@@ -27,7 +27,7 @@ function DragDropFile(props) {
   // It will store the file uploaded by the user
   const fileReader = new FileReader();
   const [userLoginStatus, setUserLoginStatus] = useState(false);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [filesFromDdb, setFilesFromDdb] = useState([]);
   const [showFileSelect, setShowFileSelect] = useState(false);
   const [showConfirmationButtons, setShowConfirmationButtons] = useState(false);
@@ -48,10 +48,10 @@ function DragDropFile(props) {
     Return Type: None
   */
   const handleUserLogin = async function () {
-    try{
-      setUsername(user.username)
+    try {
+      setUsername(user.username);
       setUserLoginStatus(true);
-    }catch(e){
+    } catch (e) {
       setUserLoginStatus(false);
     }
   };
@@ -67,7 +67,7 @@ function DragDropFile(props) {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       alert(`Selected file - ${e.target.files[0].name}`);
-      localStorage.setItem('fileName', e.target.files[0].name);
+      localStorage.setItem("fileName", e.target.files[0].name);
       await setFile(e.target.files[0], props.onAction(e.target.files[0].name));
     }
   };
@@ -99,9 +99,9 @@ function DragDropFile(props) {
       };
 
       fileReader.readAsText(file);
-    }else if(localStorage.getItem('KinetikDataSet') !== null){
+    } else if (localStorage.getItem("KinetikDataSet") !== null) {
       alertify.error("No new file uploaded.");
-    }else{
+    } else {
       alertify.error("Please select a file");
     }
   };
@@ -141,7 +141,9 @@ function DragDropFile(props) {
       //get the number of stages
       for (let i = 0; i < stages.length; i++) {
         stages[i] = stages[i].toString().trim();
-        newOpsProbabilities[i] = parseFloat(newOpsProbabilities[i].toString().trim());
+        newOpsProbabilities[i] = parseFloat(
+          newOpsProbabilities[i].toString().trim()
+        );
         if (stages[i] === "") {
           stages = stages.slice(1, i);
           newOpsProbabilities = newOpsProbabilities.slice(1, i);
@@ -149,7 +151,10 @@ function DragDropFile(props) {
         }
         if (i === stages.length - 1) {
           stages = stages.slice(1, stages.length);
-          newOpsProbabilities = newOpsProbabilities.slice(1, newOpsProbabilities.length);
+          newOpsProbabilities = newOpsProbabilities.slice(
+            1,
+            newOpsProbabilities.length
+          );
         }
       }
 
@@ -170,7 +175,9 @@ function DragDropFile(props) {
       }
 
       //get the ops
-      ops = array[11 + sources.length + stages.length].split(",").slice(1, stages.length + 1);
+      ops = array[11 + sources.length + stages.length]
+        .split(",")
+        .slice(1, stages.length + 1);
 
       //convert the ops to float
       for (let i = 0; i < stages.length; i++) {
@@ -184,11 +191,13 @@ function DragDropFile(props) {
       }
 
       // get the deal size mean and std from the csv file
-      dealSize = array[14 + sources.length + stages.length].split(",").slice(1,3);
+      dealSize = array[14 + sources.length + stages.length]
+        .split(",")
+        .slice(1, 3);
 
       //convert the deal size to float
-      for(let i = 0; i < 2; i++) {
-        dealSize[i] = dealSize[i].toString().replace('$', '');
+      for (let i = 0; i < 2; i++) {
+        dealSize[i] = dealSize[i].toString().replace("$", "");
         dealSize[i] = parseFloat(dealSize[i]);
       }
 
@@ -204,49 +213,52 @@ function DragDropFile(props) {
         opsProbabilities: opsProbabilities,
         sliderValues: sliderValues,
         dealSizeMean: dealSize[0],
-        dealSizeStd: dealSize[1]
+        dealSizeStd: dealSize[1],
       };
       const jsonString = JSON.stringify(jsonData);
-      localStorage.setItem('KinetikDataSet', jsonString);
+      localStorage.setItem("KinetikDataSet", jsonString);
 
-      if(userLoginStatus && uploadtoDatabase){
-        
-        try{
+      if (userLoginStatus && uploadtoDatabase) {
+        try {
           // create user
-          const userParams = { id: username }
+          const userParams = { id: username };
 
-          const userResult = await API.graphql(graphqlOperation(createUser, { input: userParams }));
+          const userResult = await API.graphql(
+            graphqlOperation(createUser, { input: userParams })
+          );
           const user = userResult.data.createUser;
-        }catch(err){
-        }
+        } catch (err) {}
 
         // create file
         const fileParams = {
-            userid: username,
-            title: localStorage.getItem('fileName'),
-            body: jsonString
-        }
+          userid: username,
+          title: localStorage.getItem("fileName"),
+          body: jsonString,
+        };
 
-        const fileResult = await API.graphql(graphqlOperation(createFile, { input: fileParams }));
+        const fileResult = await API.graphql(
+          graphqlOperation(createFile, { input: fileParams })
+        );
         const file = fileResult.data.createFile;
-
       }
 
-      alertify.success('Successfully Upload a file.');
-      alertify.success('Please click "Start Simulation" to run the simulation.');
+      alertify.success("Successfully Upload a file.");
+      alertify.success(
+        'Please click "Start Simulation" to run the simulation.'
+      );
       props.handleUploadCount();
     } catch (err) {
       alertify.error("Input File is not in correct format");
     }
-  }
+  };
 
   //monitor the time period change
   useEffect(() => {
-    if (localStorage.getItem('KinetikDataSet') !== null) {
-      const jsonObject = JSON.parse(localStorage.getItem('KinetikDataSet'));
+    if (localStorage.getItem("KinetikDataSet") !== null) {
+      const jsonObject = JSON.parse(localStorage.getItem("KinetikDataSet"));
       jsonObject.weeks = Number(props.timePeriod);
       const jsonString = JSON.stringify(jsonObject);
-      localStorage.setItem('KinetikDataSet', jsonString);
+      localStorage.setItem("KinetikDataSet", jsonString);
     }
   }, [props.timePeriod]);
 
@@ -256,9 +268,7 @@ function DragDropFile(props) {
         try {
           const fileResult = await getUserDdb(username);
           setFilesFromDdb(fileResult.data.getUser.files.items);
-
-        } catch (e) {
-        }
+        } catch (e) {}
       };
 
       fetchData();
@@ -279,8 +289,10 @@ function DragDropFile(props) {
   const handleConfirmSelectionClick = (e) => {
     e.preventDefault();
     const selectElement = document.getElementsByName("filesDdb")[0];
-    const selectedValue = selectElement.options[selectElement.selectedIndex].value;
-    const selectedText = selectElement.options[selectElement.selectedIndex].text;
+    const selectedValue =
+      selectElement.options[selectElement.selectedIndex].value;
+    const selectedText =
+      selectElement.options[selectElement.selectedIndex].text;
     var fileName = selectedText.split(": ")[1];
     fileName = fileName.split(",")[0].trim();
     localStorage.setItem("KinetikDataSet", selectedValue);
@@ -288,7 +300,7 @@ function DragDropFile(props) {
     props.handleUploadCount();
     setShowFileSelect(false);
     setShowConfirmationButtons(false);
-    alertify.success('Successfully select a file from the database.');
+    alertify.success("Successfully select a file from the database.");
     alertify.success('Please click "Start Simulation" to run the simulation.');
   };
 
@@ -298,10 +310,15 @@ function DragDropFile(props) {
     setUploadtoDatabase(isChecked);
   };
 
-
   return (
     <div id="upload-module-right-section">
-      <a id='upload-module-template-link' href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview" target='_blank'><h5> Input File Template </h5></a>
+      <a
+        id="upload-module-template-link"
+        href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
+        target="_blank"
+      >
+        <h5> Input File Template </h5>
+      </a>
       {!showFileSelect && !showConfirmationButtons && (
         <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -312,10 +329,7 @@ function DragDropFile(props) {
             onChange={handleChange}
             accept=".csv"
           />
-          <label
-            id="label-file-upload"
-            htmlFor="input-file-upload"
-          >
+          <label id="label-file-upload" htmlFor="input-file-upload">
             <div>
               <img id="upload-logo" src={UploadImg} alt="" />
               <p>Click here to</p>
@@ -324,18 +338,24 @@ function DragDropFile(props) {
               </button>
             </div>
           </label>
-          { userLoginStatus &&
-            <Checkbox shape="round" color="primary-o" className="upload-to-cloud" value="true" onChange={handleCheckboxChange}> Save file to database for future use </Checkbox>
-          }
-          { !userLoginStatus &&
+          {userLoginStatus && (
+            <Checkbox
+              shape="round"
+              color="primary-o"
+              className="upload-to-cloud"
+              value="true"
+              onChange={handleCheckboxChange}
+            >
+              {" "}
+              Save file to database for future use{" "}
+            </Checkbox>
+          )}
+          {!userLoginStatus && (
             <p id="remind-signin-text">
-              <Link to="/signin" >
-                Sign in
-              </Link>
-              {' '}to save file to database
+              <Link to="/signin">Sign in</Link> to save file to database
             </p>
-          }
-          { !userLoginStatus &&
+          )}
+          {!userLoginStatus && (
             <button
               className="upload-button-not-logged-in"
               onClick={(e) => {
@@ -344,8 +364,8 @@ function DragDropFile(props) {
             >
               Import CSV
             </button>
-          }
-          { userLoginStatus &&
+          )}
+          {userLoginStatus && (
             <button
               className="upload-button"
               onClick={(e) => {
@@ -354,7 +374,7 @@ function DragDropFile(props) {
             >
               Import CSV
             </button>
-          }
+          )}
           {userLoginStatus && (
             <button className="upload-button" onClick={handleSelectButtonClick}>
               Database
@@ -362,9 +382,14 @@ function DragDropFile(props) {
           )}
         </form>
       )}
-  
+
       {showFileSelect && (
-        <FileSelection filesFromDdb={filesFromDdb} showConfirmationButtons={showConfirmationButtons} handleGoBackClick={handleGoBackClick} handleConfirmSelectionClick={handleConfirmSelectionClick} />
+        <FileSelection
+          filesFromDdb={filesFromDdb}
+          showConfirmationButtons={showConfirmationButtons}
+          handleGoBackClick={handleGoBackClick}
+          handleConfirmSelectionClick={handleConfirmSelectionClick}
+        />
       )}
     </div>
   );
