@@ -47,6 +47,7 @@ const ScenerioSlider = ({ name, mean, onSliderChange, sliderValue }) => {
         defaultValue={0}
         value={value}
         onChange={handleSliderChange}
+        step={5}
       />
       <p className="scenario-slider-value">Value: {value}%</p>
     </div>
