@@ -155,8 +155,8 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem>
-        <Link to={"/signin"} style={{ textDecoration: "none", color: "black" }}>
+      <Link to={"/signin"} style={{ textDecoration: "none", color: "black" }}>
+        <MenuItem>
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -167,8 +167,8 @@ export default function PrimarySearchAppBar() {
             <AccountCircle />
           </IconButton>
           <span>Profile</span>
-        </Link>
-      </MenuItem>
+        </MenuItem>
+      </Link>
     </Menu>
   );
 
