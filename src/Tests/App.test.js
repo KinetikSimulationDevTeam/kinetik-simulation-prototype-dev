@@ -1,14 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import React from 'react';
-import DragDropFile from "../Components/DragDropFile";
+import { render, screen } from "@testing-library/react";
+import React from "react";
+import DragDropFile from "../Components/ControlPanelComponents/FileUpload";
 
 describe("Render Learn React App", () => {
-    let onActionMock;
-    beforeEach(() => {
-        onActionMock = jest.fn();
-    });
+  let onActionMock;
+  beforeEach(() => {
+    onActionMock = jest.fn();
+  });
 
-    it('renders without crashing', () => {
-        render(<DragDropFile onAction={onActionMock} />);
-    });
+  it("renders without crashing", () => {
+    render(<DragDropFile onAction={onActionMock} />);
+  });
 });
