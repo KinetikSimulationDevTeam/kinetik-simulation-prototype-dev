@@ -399,7 +399,7 @@ const FilesList = () => {
                         src={CsvLogo}
                         alt="csv logo"
                       />
-                      <b>Pipeline Detail</b>
+                      <b>Pipeline Summary</b>
                     </div>
                   </TableCell>
                   <TableCell>{row.title}</TableCell>
