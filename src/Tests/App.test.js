@@ -1,12 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import Sliders from "../Components/ScenarioAnalysisComponents/ScenarioSliders";
+import DragDropFile from "../Components/DragDropFile";
 
-describe("Sliders", () => {
-  test("should render Sliders component", () => {
-    render(<Sliders />);
+describe("Render Learn React App", () => {
+  let onActionMock;
+  beforeEach(() => {
+    onActionMock = jest.fn();
   });
-  test("should render Sliders component", () => {
-    render(<Sliders />);
+
+  it("renders without crashing", () => {
+    render(<DragDropFile onAction={onActionMock} />);
   });
 });
