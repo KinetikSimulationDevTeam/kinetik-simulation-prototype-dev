@@ -23,7 +23,7 @@
   flex-direction: row;
   justify-content: space-between;
   height: 35px;
-  width: 100vw;
+  width: 100%;
   align-items: center;
   background-color: white;
   padding: 2px 1em 0 1em;
@@ -31,6 +31,7 @@
   border-width: 1px;
   border-style: solid;
   border-color: lightgray;
+  overflow: auto;
 }
 
 .nav-bar-items {

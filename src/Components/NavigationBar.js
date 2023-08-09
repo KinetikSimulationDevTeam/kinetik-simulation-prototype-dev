@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import BarChartTwoToneIcon from '@mui/icons-material/BarChartTwoTone';
-import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
-import ViewInArTwoToneIcon from '@mui/icons-material/ViewInArTwoTone';
-import AssignmentTwoToneIcon from '@mui/icons-material/AssignmentTwoTone';
-import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
-import CrisisAlertTwoToneIcon from '@mui/icons-material/CrisisAlertTwoTone';
-import PollTwoToneIcon from '@mui/icons-material/PollTwoTone';
-import UploadTwoToneIcon from '@mui/icons-material/UploadTwoTone';
-import SpeedTwoToneIcon from '@mui/icons-material/SpeedTwoTone';
-import NotListedLocationTwoToneIcon from '@mui/icons-material/NotListedLocationTwoTone';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import BarChartTwoToneIcon from "@mui/icons-material/BarChartTwoTone";
+import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
+import ViewInArTwoToneIcon from "@mui/icons-material/ViewInArTwoTone";
+import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
+import AccountTreeTwoToneIcon from "@mui/icons-material/AccountTreeTwoTone";
+import CrisisAlertTwoToneIcon from "@mui/icons-material/CrisisAlertTwoTone";
+import PollTwoToneIcon from "@mui/icons-material/PollTwoTone";
+import UploadTwoToneIcon from "@mui/icons-material/UploadTwoTone";
+import SpeedTwoToneIcon from "@mui/icons-material/SpeedTwoTone";
+import NotListedLocationTwoToneIcon from "@mui/icons-material/NotListedLocationTwoTone";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 /*
     Description: This component is used to display the navigation bar.
@@ -104,258 +104,419 @@ const Navbar = () => {
   const isHelpMenuOpen = Boolean(helpAnchorEl);
 
   return (
-    <nav id='nav-bar'>
+    <nav id="nav-bar">
       <div
-        className='nav-bar-items'
+        className="nav-bar-items"
         onMouseEnter={handleForecastMenuOpen}
         onMouseLeave={handleForecastMenuClose}
       >
-        <BarChartTwoToneIcon className='nav-bar-icon' />
+        <BarChartTwoToneIcon className="nav-bar-icon" />
         Forecast
         <Menu
           anchorEl={forecastAnchorEl}
           open={isForecastMenuOpen}
           onClose={handleForecastMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <Link className='menu-link' to='/'>
+          <Link className="menu-link" to="/">
             <MenuItem onClick={handleForecastMenuClose}>Slider UX</MenuItem>
           </Link>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleForecastMenuClose}>Load top 5 Scenarios</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleForecastMenuClose}>Update Key Variables</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleForecastMenuClose}>Detailed Assumptions</MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleForecastMenuClose}
+          >
+            Load top 5 Scenarios
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleForecastMenuClose}
+          >
+            Update Key Variables
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleForecastMenuClose}
+          >
+            Detailed Assumptions
+          </MenuItem>
         </Menu>
       </div>
 
       <p> | </p>
 
       <div
-        className='nav-bar-items'
+        className="nav-bar-items"
         onMouseEnter={handleHomeMenuOpen}
         onMouseLeave={handleHomeMenuClose}
       >
-        <HomeTwoToneIcon className='nav-bar-icon' />
+        <HomeTwoToneIcon className="nav-bar-icon" />
         Home
         <Menu
           anchorEl={homeAnchorEl}
           open={isHomeMenuOpen}
           onClose={handleHomeMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleHomeMenuClose} >Resource Levels and Mix</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleHomeMenuClose} >Productivity Drivers</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleHomeMenuClose} >Operational Outcomes</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleHomeMenuClose} >Pipeline State and Key Metrics</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleHomeMenuClose} >Tranches and Veloccity Statistics</MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleHomeMenuClose}
+          >
+            Resource Levels and Mix
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleHomeMenuClose}
+          >
+            Productivity Drivers
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleHomeMenuClose}
+          >
+            Operational Outcomes
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleHomeMenuClose}
+          >
+            Pipeline State and Key Metrics
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleHomeMenuClose}
+          >
+            Tranches and Veloccity Statistics
+          </MenuItem>
         </Menu>
       </div>
 
       <p> | </p>
 
-      <div  className='nav-bar-items'>
-        <ViewInArTwoToneIcon className='nav-bar-icon' />
+      <div className="nav-bar-items">
+        <ViewInArTwoToneIcon className="nav-bar-icon" />
         Run Simulation
       </div>
 
       <p> | </p>
 
-      <div 
-        className='nav-bar-items'
+      <div
+        className="nav-bar-items"
         onMouseEnter={handleScenariosMenuOpen}
         onMouseLeave={handleScenariosMenuClose}
       >
-        <AssignmentTwoToneIcon className='nav-bar-icon' />
+        <AssignmentTwoToneIcon className="nav-bar-icon" />
         Scenarios
         <Menu
           anchorEl={scenariosAnchorEl}
           open={isScenariosMenuOpen}
           onClose={handleScenariosMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleScenariosMenuClose} >20 Minutes Survey</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleScenariosMenuClose} >Visual g2m Builder</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleScenariosMenuClose} >Upload Files and Refine {`(min 2)`}</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleScenariosMenuClose} >Calibrate Model</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleScenariosMenuClose} >Connect CRM</MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleScenariosMenuClose}
+          >
+            20 Minutes Survey
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleScenariosMenuClose}
+          >
+            Visual g2m Builder
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleScenariosMenuClose}
+          >
+            Upload Files and Refine {`(min 2)`}
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleScenariosMenuClose}
+          >
+            Calibrate Model
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleScenariosMenuClose}
+          >
+            Connect CRM
+          </MenuItem>
         </Menu>
       </div>
 
       <p> | </p>
 
-      <div className='nav-bar-items'>
-        <AccountTreeTwoToneIcon className='nav-bar-icon' />
+      <div className="nav-bar-items">
+        <AccountTreeTwoToneIcon className="nav-bar-icon" />
         Structure Module
       </div>
 
       <p> | </p>
 
       <div
-        className='nav-bar-items'
+        className="nav-bar-items"
         onMouseEnter={handleVisualizationsMenuOpen}
         onMouseLeave={handleVisualizationsMenuClose}
       >
-        <CrisisAlertTwoToneIcon className='nav-bar-icon' />
+        <CrisisAlertTwoToneIcon className="nav-bar-icon" />
         Visulization
         <Menu
           anchorEl={visualizationsAnchorEl}
           open={isVisualizationsMenuOpen}
           onClose={handleVisualizationsMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleVisualizationsMenuClose} >Visualize System Dynamics</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleVisualizationsMenuClose} >Replay Historical Performance</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleVisualizationsMenuClose} >Constraining Factor Analysis</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleVisualizationsMenuClose} >Profile User Defined Tranches</MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleVisualizationsMenuClose}
+          >
+            Visualize System Dynamics
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleVisualizationsMenuClose}
+          >
+            Replay Historical Performance
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleVisualizationsMenuClose}
+          >
+            Constraining Factor Analysis
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleVisualizationsMenuClose}
+          >
+            Profile User Defined Tranches
+          </MenuItem>
         </Menu>
       </div>
 
       <p> | </p>
 
-      <div 
-        className='nav-bar-items'
+      <div
+        className="nav-bar-items"
         onMouseEnter={handleAnalyzeDataMenuOpen}
         onMouseLeave={handleAnalyzeDataMenuClose}
       >
-        <PollTwoToneIcon className='nav-bar-icon' />
+        <PollTwoToneIcon className="nav-bar-icon" />
         Analyze Data
         <Menu
           anchorEl={analyzeDataAnchorEl}
           open={isAnalyzeDataMenuOpen}
           onClose={handleAnalyzeDataMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleAnalyzeDataMenuClose} >Calculate Velocity Statistics</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleAnalyzeDataMenuClose} >Calculat Current Cost and Speed Statistics</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleAnalyzeDataMenuClose} >Journey Statistics for User Defined Tranches</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleAnalyzeDataMenuClose} >Route Path Statistics for User Defined Tranches</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleAnalyzeDataMenuClose} >AI Proposed Tranches and Route-path Statistics {`$1M`}</MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleAnalyzeDataMenuClose}
+          >
+            Calculate Velocity Statistics
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleAnalyzeDataMenuClose}
+          >
+            Calculat Current Cost and Speed Statistics
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleAnalyzeDataMenuClose}
+          >
+            Journey Statistics for User Defined Tranches
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleAnalyzeDataMenuClose}
+          >
+            Route Path Statistics for User Defined Tranches
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleAnalyzeDataMenuClose}
+          >
+            AI Proposed Tranches and Route-path Statistics {`$1M`}
+          </MenuItem>
         </Menu>
       </div>
 
       <p> | </p>
 
-      <div  
-        className='nav-bar-items'
+      <div
+        className="nav-bar-items"
         onMouseEnter={handleUploadMenuOpen}
         onMouseLeave={handleUploadMenuClose}
       >
-        <UploadTwoToneIcon className='nav-bar-icon' />
+        <UploadTwoToneIcon className="nav-bar-icon" />
         Upload Files
         <Menu
           anchorEl={uploadAnchorEl}
           open={isUploadMenuOpen}
           onClose={handleUploadMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <Link className='menu-link' to='/files'>
-            <MenuItem onClick={handleUploadMenuClose} >Upload CSV</MenuItem>
+          <Link className="menu-link" to="/files">
+            <MenuItem onClick={handleUploadMenuClose}>Upload CSV</MenuItem>
           </Link>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleUploadMenuClose} >Simple Upload: Two Files With Dates</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleUploadMenuClose} >Multiple File Upload: Upload From Box File or Drive; Infer Dates or Tag</MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleUploadMenuClose}
+          >
+            Simple Upload: Two Files With Dates
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleUploadMenuClose}
+          >
+            Multiple File Upload: Upload From Box File or Drive; Infer Dates or
+            Tag
+          </MenuItem>
         </Menu>
       </div>
 
       <p> | </p>
 
-      <div 
-        className='nav-bar-items'
+      <div
+        className="nav-bar-items"
         onMouseEnter={handleDashboardMenuOpen}
         onMouseLeave={handleDashboardMenuClose}
       >
-        <SpeedTwoToneIcon className='nav-bar-icon' />
+        <SpeedTwoToneIcon className="nav-bar-icon" />
         Dashboard
         <Menu
           anchorEl={dashboardAnchorEl}
           open={isDashboardMenuOpen}
           onClose={handleDashboardMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >General Manager</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >Chief Revenue Officer</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >Sales</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >Sales Operations</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >Marketing</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >Channels</MenuItem>
-          <MenuItem sx={{color: 'gray', cursor: 'default'}} onClick={handleDashboardMenuClose} >Strategy</MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleDashboardMenuClose}
+          >
+            General Manager
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleDashboardMenuClose}
+          >
+            Chief Revenue Officer
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleDashboardMenuClose}
+          >
+            Sales
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleDashboardMenuClose}
+          >
+            Sales Operations
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleDashboardMenuClose}
+          >
+            Marketing
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleDashboardMenuClose}
+          >
+            Channels
+          </MenuItem>
+          <MenuItem
+            sx={{ color: "gray", cursor: "default" }}
+            onClick={handleDashboardMenuClose}
+          >
+            Strategy
+          </MenuItem>
         </Menu>
       </div>
 
       <p> | </p>
 
-      <div 
-        className='nav-bar-items'
+      <div
+        className="nav-bar-items"
         onMouseEnter={handleHelpMenuOpen}
         onMouseLeave={handleHelpMenuClose}
       >
-        <NotListedLocationTwoToneIcon className='nav-bar-icon' />
+        <NotListedLocationTwoToneIcon className="nav-bar-icon" />
         Help
         <Menu
           anchorEl={helpAnchorEl}
           open={isHelpMenuOpen}
           onClose={handleHelpMenuClose}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
-          <Link className='menu-link' to='/help'>
-            <MenuItem onClick={handleHelpMenuClose} >FAQ</MenuItem>
+          <Link className="menu-link" to="/help">
+            <MenuItem onClick={handleHelpMenuClose}>FAQ</MenuItem>
           </Link>
-          <a className='menu-link' href='https://www.kinetiksimulation.com' target='_blank' rel='noreferrer'>
-            <MenuItem onClick={handleHelpMenuClose} >About Us</MenuItem>
+          <a
+            className="menu-link"
+            href="https://www.kinetiksimulation.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <MenuItem onClick={handleHelpMenuClose}>About Us</MenuItem>
           </a>
         </Menu>
       </div>
