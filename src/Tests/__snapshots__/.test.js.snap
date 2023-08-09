@@ -1,15 +1,1 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ScoreboardBarChart renders the chart correctly 1`] = `
-<div
-  style="width: 100%; height: 100%;"
-/>
-`;
-
-exports[`SimulationBarChart renders the chart correctly 1`] = `
-<div
-  style="width: 100%; height: 100%;"
-/>
-`;
-
-exports[`SimulationModule should render correctly 1`] = `ShallowWrapper {}`;
