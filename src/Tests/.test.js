@@ -17,3 +17,12 @@ import Scoreboard from "../Modules/ScoreboardModule";
 import SimulationModule from "../Modules/SimulationModule";
 
 Enzyme.configure({ adapter: new Adapter() });
+
+describe("Sliders", () => {
+  test("should render Sliders component", () => {
+    render(<Sliders />);
+  });
+  test("should render Sliders component", () => {
+    render(<Sliders />);
+  });
+});
