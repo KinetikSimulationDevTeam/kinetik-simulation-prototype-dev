@@ -122,7 +122,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem>
         <Link to={"/signin"} style={{ textDecoration: "none", color: "white" }}>
           My account
         </Link>
