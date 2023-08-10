@@ -24,7 +24,6 @@ function DragDropFile(props) {
   const inputRef = React.useRef(null);
   // It will store the file uploaded by the user
   const [file, setFile] = useState("");
-  // It will store the file uploaded by the user
   const fileReader = new FileReader();
   const [userLoginStatus, setUserLoginStatus] = useState(false);
   const [username, setUsername] = useState("");
@@ -32,6 +31,8 @@ function DragDropFile(props) {
   const [showFileSelect, setShowFileSelect] = useState(false);
   const [showConfirmationButtons, setShowConfirmationButtons] = useState(false);
   const [uploadtoDatabase, setUploadtoDatabase] = useState(false);
+  const [previousFileName, setPreviousFileName] = useState("");
+  const [previousFileBody, setPreviousFileBody] = useState("");
 
   const { user, signOut } = useAuthenticator((context) => [context.user]);
 
@@ -67,6 +68,12 @@ function DragDropFile(props) {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       alert(`Selected file - ${e.target.files[0].name}`);
+      if (localStorage.getItem("fileName") !== null) {
+        setPreviousFileName(localStorage.getItem("fileName"));
+      }
+      if (localStorage.getItem("KinetikDataSet") !== null) {
+        setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
+      }
       localStorage.setItem("fileName", e.target.files[0].name);
       await setFile(e.target.files[0], props.onAction(e.target.files[0].name));
     }
@@ -216,6 +223,9 @@ function DragDropFile(props) {
         dealSizeStd: dealSize[1],
       };
       const jsonString = JSON.stringify(jsonData);
+      if (localStorage.getItem("KinetikDataSet") !== null) {
+        setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
+      }
       localStorage.setItem("KinetikDataSet", jsonString);
 
       if (userLoginStatus && uploadtoDatabase) {
@@ -249,6 +259,14 @@ function DragDropFile(props) {
       props.handleUploadCount();
     } catch (err) {
       alertify.error("Input File is not in correct format");
+      if (previousFileBody !== "") {
+        alertify.error("Reverting to previous file.");
+      }
+      localStorage.setItem("KinetikDataSet", previousFileBody);
+      localStorage.setItem("fileName", previousFileName);
+      setFile(null);
+      setPreviousFileBody(null);
+      setPreviousFileName(null);
     }
   };
 
@@ -258,6 +276,9 @@ function DragDropFile(props) {
       const jsonObject = JSON.parse(localStorage.getItem("KinetikDataSet"));
       jsonObject.weeks = Number(props.timePeriod);
       const jsonString = JSON.stringify(jsonObject);
+      if (localStorage.getItem("KinetikDataSet") !== null) {
+        setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
+      }
       localStorage.setItem("KinetikDataSet", jsonString);
     }
   }, [props.timePeriod]);
@@ -295,6 +316,13 @@ function DragDropFile(props) {
       selectElement.options[selectElement.selectedIndex].text;
     var fileName = selectedText.split(": ")[1];
     fileName = fileName.split(",")[0].trim();
+    if (
+      localStorage.getItem("KinetikDataSet") !== null &&
+      localStorage.getItem("fileName") !== null
+    ) {
+      setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
+      setPreviousFileName(localStorage.getItem("fileName"));
+    }
     localStorage.setItem("KinetikDataSet", selectedValue);
     localStorage.setItem("fileName", fileName);
     props.handleUploadCount();

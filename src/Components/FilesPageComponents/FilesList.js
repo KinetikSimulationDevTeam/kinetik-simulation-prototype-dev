@@ -13,10 +13,12 @@ import Checkbox from "@mui/material/Checkbox";
 import CsvLogo from "../../Images/CsvLogo.png";
 import Button from "@mui/material/Button";
 import UploadLogo from "../../Images/UploadLogo.png";
-import { API, graphqlOperation } from "aws-amplify";
-import { createUser, createFile, deleteFile } from "../../graphql/mutations";
-import alertify from "alertifyjs";
 import DeleteIcon from "@mui/icons-material/Delete";
+import FileTypeSelectionDialog from "./FileTypeSelectionDialog";
+import csvFileToArray from "./CsvFileToArrayInFilesPage";
+import { API, graphqlOperation } from "aws-amplify";
+import { deleteFile } from "../../graphql/mutations";
+import alertify from "alertifyjs";
 
 const FilesList = () => {
   const [filesFromDdb, setFilesFromDdb] = useState([]);
@@ -26,6 +28,8 @@ const FilesList = () => {
   const [username, setUsername] = useState("");
   const [update, setUpdate] = useState(false);
   const [displayDeleteButton, setDisplayDeleteButton] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("");
 
   // It will store the file uploaded by the user
   const fileReader = new FileReader();
@@ -33,6 +37,10 @@ const FilesList = () => {
   const inputRef = React.useRef(null);
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+
+  const handleSetUpdate = () => {
+    setUpdate(!update);
+  };
 
   useEffect(() => {
     if (authStatus === "authenticated") {
@@ -125,7 +133,12 @@ const FilesList = () => {
       const file = e.target.files[0];
       fileReader.onload = function (event) {
         const text = event.target.result;
-        csvFileToArray(text);
+        csvFileToArray({
+          string: text,
+          username: username,
+          handleSetUpdate: handleSetUpdate,
+          update: update,
+        });
       };
 
       fileReader.readAsText(file);
@@ -134,8 +147,15 @@ const FilesList = () => {
 
   // Function to trigger the file input click
   const handleUploadButtonClick = () => {
-    // When the "Upload Files" button is clicked, trigger the click event on the hidden file input
-    inputRef.current.click();
+    setOpen(true);
+  };
+
+  const handleOnSelectFileType = async (value) => {
+    if (value === "pipelineSummary") {
+      // When the "Upload Files" button is clicked, trigger the click event on the hidden file input
+      inputRef.current.click();
+    } else if (value === "initialPipeline") {
+    }
   };
 
   const handleDeleteButtonClick = async () => {
@@ -153,136 +173,11 @@ const FilesList = () => {
     }
   };
 
-  const csvFileToArray = async (string) => {
-    try {
-      let array = string.toString().split("\n");
-      let sources = array[0].split(",");
-      let stages = array[1].split(",");
-      let newOpsProbabilities = array[4].split(",");
-      let mean = [];
-      let std = [];
-      let opsProbabilities = [];
-      let ops = [];
-      let sliderValues = [];
-      let dealSize = [];
-
-      //get the number of sources
-      for (let i = 0; i < sources.length; i++) {
-        sources[i] = sources[i].toString().trim();
-        if (sources[i] === "") {
-          sources = sources.slice(1, i);
-          break;
-        }
-        if (i === sources.length - 1) {
-          sources = sources.slice(1, sources.length);
-        }
-      }
-
-      //get the number of stages
-      for (let i = 0; i < stages.length; i++) {
-        stages[i] = stages[i].toString().trim();
-        newOpsProbabilities[i] = parseFloat(
-          newOpsProbabilities[i].toString().trim()
-        );
-        if (stages[i] === "") {
-          stages = stages.slice(1, i);
-          newOpsProbabilities = newOpsProbabilities.slice(1, i);
-          break;
-        }
-        if (i === stages.length - 1) {
-          stages = stages.slice(1, stages.length);
-          newOpsProbabilities = newOpsProbabilities.slice(
-            1,
-            newOpsProbabilities.length
-          );
-        }
-      }
-
-      //get the mean and std
-      for (let i = 0; i < sources.length; i++) {
-        mean[i] = parseFloat(array[7 + i].split(",")[1]);
-        std[i] = parseFloat(array[7 + i].split(",")[2]);
-      }
-
-      //get the ops probabilities
-      for (let i = 0; i < stages.length; i++) {
-        opsProbabilities[i] = array[9 + sources.length + i].split(",");
-
-        for (let j = 0; j < stages.length + 1; j++) {
-          opsProbabilities[i][j] = parseFloat(opsProbabilities[i][j].trim());
-        }
-        opsProbabilities[i] = opsProbabilities[i].slice(1, stages.length + 1);
-      }
-
-      //get the ops
-      ops = array[11 + sources.length + stages.length]
-        .split(",")
-        .slice(1, stages.length + 1);
-
-      //convert the ops to float
-      for (let i = 0; i < stages.length; i++) {
-        ops[i] = parseFloat(ops[i]);
-      }
-
-      //add slider values to the json object
-      for (let i = 0; i < 6; i++) {
-        //default value for slider is 0
-        sliderValues[i] = 0;
-      }
-
-      // get the deal size mean and std from the csv file
-      dealSize = array[14 + sources.length + stages.length]
-        .split(",")
-        .slice(1, 3);
-
-      //convert the deal size to float
-      for (let i = 0; i < 2; i++) {
-        dealSize[i] = dealSize[i].toString().replace("$", "");
-        dealSize[i] = parseFloat(dealSize[i]);
-      }
-
-      //convert data into json object
-      const jsonData = {
-        weeks: 52,
-        stages: stages,
-        sources: sources,
-        ops: ops,
-        means: mean,
-        stds: std,
-        newOpsProbabilities: newOpsProbabilities,
-        opsProbabilities: opsProbabilities,
-        sliderValues: sliderValues,
-        dealSizeMean: dealSize[0],
-        dealSizeStd: dealSize[1],
-      };
-      const jsonString = JSON.stringify(jsonData);
-
-      try {
-        // create user
-        const userParams = { id: username };
-
-        const userResult = await API.graphql(
-          graphqlOperation(createUser, { input: userParams })
-        );
-        const user = userResult.data.createUser;
-      } catch (err) {}
-
-      // create file
-      const fileParams = {
-        userid: username,
-        title: localStorage.getItem("fileName"),
-        body: jsonString,
-      };
-
-      const fileResult = await API.graphql(
-        graphqlOperation(createFile, { input: fileParams })
-      );
-      const file = fileResult.data.createFile;
-      setUpdate(!update);
-      alertify.success("File Uploaded Successfully");
-    } catch (err) {
-      alertify.error("Input File is not in correct format");
-    }
+  // handle close of file type selection dialog
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
+    handleOnSelectFileType(value);
   };
 
   return (
@@ -301,14 +196,6 @@ const FilesList = () => {
             </Button>
           )}
         </div>
-        <input
-          type="file"
-          ref={inputRef}
-          style={{ display: "none" }}
-          onChange={handleFileChange}
-          accept=".csv"
-          id="file-upload"
-        />
         <Button variant="contained" onClick={handleUploadButtonClick}>
           <img
             style={{ marginRight: "1vw" }}
@@ -317,6 +204,19 @@ const FilesList = () => {
           />
           Upload Files
         </Button>
+        <FileTypeSelectionDialog
+          selectedValue={selectedValue}
+          open={open}
+          onClose={handleClose}
+        />
+        <input
+          type="file"
+          ref={inputRef}
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+          accept=".csv"
+          id="file-upload"
+        />
       </div>
       <TableContainer component={Paper}>
         <Table
