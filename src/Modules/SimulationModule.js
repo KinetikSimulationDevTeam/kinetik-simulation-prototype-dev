@@ -173,11 +173,7 @@ const SimulationModule = (props) => {
         setIsLoading(false)
       );
     } catch (error) {
-      if (error.response.status === 500) {
-        alertify.error("Network Error. Please try again later.");
-      } else {
-        alertify.error("Input File is not in correct format.");
-      }
+      alertify.error("Input File is not in correct format.");
       setIsLoading(false);
     }
   };
