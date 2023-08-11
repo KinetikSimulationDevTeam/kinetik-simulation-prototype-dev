@@ -64,7 +64,7 @@ const FileTypeSelectionDialog = ({ onClose, open }) => {
         onClick={() => handleClose()}
         sx={{ width: "70%", margin: "5% 15%" }}
       >
-        Submit
+        Select
       </Button>
     </Dialog>
   );
