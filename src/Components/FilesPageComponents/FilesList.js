@@ -19,6 +19,7 @@ import csvFileToArray from "./CsvFileToArrayInFilesPage";
 import { API, graphqlOperation } from "aws-amplify";
 import { deleteFile } from "../../graphql/mutations";
 import alertify from "alertifyjs";
+import InitialPipelineFileColumnSelection from "./InitialPipelineFileColumnSelection";
 
 const FilesList = () => {
   const [filesFromDdb, setFilesFromDdb] = useState([]);
@@ -29,12 +30,20 @@ const FilesList = () => {
   const [update, setUpdate] = useState(false);
   const [displayDeleteButton, setDisplayDeleteButton] = useState(false);
   const [open, setOpen] = useState(false);
+  const [
+    displayInitialPipelineFileColumnSelection,
+    setDisplayInitialPipelineFileColumnSelection,
+  ] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
+  const [InitialPipelineFile, setInitialPipelineFile] = useState("");
+  const [anonymizeColumns, setAnonymizeColumns] = useState([]);
 
   // It will store the file uploaded by the user
   const fileReader = new FileReader();
+  const fileReaderInitialPipelineFile = new FileReader();
   // input ref
-  const inputRef = React.useRef(null);
+  const inputRefPipelineSummaryFile = React.useRef(null);
+  const inputRefInitialPipelineFile = React.useRef(null);
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
 
@@ -127,7 +136,7 @@ const FilesList = () => {
     return date.toLocaleDateString(undefined, options);
   };
 
-  const handleFileChange = async function (e) {
+  const handlePipelineSummaryFileChange = async function (e) {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
@@ -145,6 +154,20 @@ const FilesList = () => {
     }
   };
 
+  const handleInitialPipelineFileChange = async function (e) {
+    e.preventDefault();
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      fileReaderInitialPipelineFile.onload = function (event) {
+        const text = event.target.result;
+        setInitialPipelineFile(text);
+        setDisplayInitialPipelineFileColumnSelection(true);
+      };
+
+      fileReaderInitialPipelineFile.readAsText(file);
+    }
+  };
+
   // Function to trigger the file input click
   const handleUploadButtonClick = () => {
     setOpen(true);
@@ -153,8 +176,9 @@ const FilesList = () => {
   const handleOnSelectFileType = async (value) => {
     if (value === "pipelineSummary") {
       // When the "Upload Files" button is clicked, trigger the click event on the hidden file input
-      inputRef.current.click();
+      inputRefPipelineSummaryFile.current.click();
     } else if (value === "initialPipeline") {
+      inputRefInitialPipelineFile.current.click();
     }
   };
 
@@ -178,6 +202,10 @@ const FilesList = () => {
     setOpen(false);
     setSelectedValue(value);
     handleOnSelectFileType(value);
+  };
+
+  const handleInitialPipelineFileColumnSelectionClose = (e) => {
+    setDisplayInitialPipelineFileColumnSelection(false);
   };
 
   return (
@@ -209,13 +237,27 @@ const FilesList = () => {
           open={open}
           onClose={handleClose}
         />
+        <InitialPipelineFileColumnSelection
+          file={InitialPipelineFile}
+          open={displayInitialPipelineFileColumnSelection}
+          onClose={handleInitialPipelineFileColumnSelectionClose}
+          selectedValues={anonymizeColumns}
+        />
         <input
           type="file"
-          ref={inputRef}
+          ref={inputRefPipelineSummaryFile}
           style={{ display: "none" }}
-          onChange={handleFileChange}
+          onChange={handlePipelineSummaryFileChange}
           accept=".csv"
           id="file-upload"
+        />
+        <input
+          type="file"
+          ref={inputRefInitialPipelineFile}
+          style={{ display: "none" }}
+          onChange={handleInitialPipelineFileChange}
+          accept=".csv"
+          id="file-upload2"
         />
       </div>
       <TableContainer component={Paper}>
