@@ -131,14 +131,13 @@ const FilesList = () => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      localStorage.setItem("fileName", file.name);
       fileReader.onload = function (event) {
         const text = event.target.result;
         csvFileToArray({
           string: text,
           username: username,
           handleSetUpdate: handleSetUpdate,
-          update: update,
+          fileName: file.name,
         });
       };
 

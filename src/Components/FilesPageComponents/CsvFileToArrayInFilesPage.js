@@ -6,7 +6,7 @@ const csvFileToArray = async ({
   string,
   username,
   handleSetUpdate,
-  update,
+  fileName,
 }) => {
   try {
     let array = string.toString().split("\n");
@@ -124,7 +124,7 @@ const csvFileToArray = async ({
     // create file
     const fileParams = {
       userid: username,
-      title: localStorage.getItem("fileName"),
+      title: fileName,
       body: jsonString,
     };
 

@@ -10,6 +10,12 @@ import { Checkbox } from "pretty-checkbox-react";
 import "@djthoms/pretty-checkbox";
 import { Link } from "react-router-dom";
 import FileSelection from "./FileSelection";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
 
 /*
     Description: This component is used to display the drag and drop file upload.
@@ -33,6 +39,8 @@ function DragDropFile(props) {
   const [uploadtoDatabase, setUploadtoDatabase] = useState(false);
   const [previousFileName, setPreviousFileName] = useState("");
   const [previousFileBody, setPreviousFileBody] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   const { user, signOut } = useAuthenticator((context) => [context.user]);
 
@@ -57,6 +65,10 @@ function DragDropFile(props) {
     }
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   /*
     Description: triggers when file is selected with click.
 
@@ -67,13 +79,16 @@ function DragDropFile(props) {
   const handleChange = async function (e) {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
-      alert(`Selected file - ${e.target.files[0].name}`);
+      setOpen(true);
+      setSelectedFileName(e.target.files[0].name);
       if (localStorage.getItem("fileName") !== null) {
         setPreviousFileName(localStorage.getItem("fileName"));
       }
+
       if (localStorage.getItem("KinetikDataSet") !== null) {
         setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
       }
+
       localStorage.setItem("fileName", e.target.files[0].name);
       await setFile(e.target.files[0], props.onAction(e.target.files[0].name));
     }
@@ -410,7 +425,6 @@ function DragDropFile(props) {
           )}
         </form>
       )}
-
       {showFileSelect && (
         <FileSelection
           filesFromDdb={filesFromDdb}
@@ -419,6 +433,18 @@ function DragDropFile(props) {
           handleConfirmSelectionClick={handleConfirmSelectionClick}
         />
       )}
+
+      <Dialog onClose={handleClose} open={open}>
+        <DialogTitle>File Selected</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You selected {selectedFileName} from your computer!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Done</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
