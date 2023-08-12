@@ -14,6 +14,7 @@ export const createUser = /* GraphQL */ `
           userid
           title
           body
+          filetype
           createdAt
           updatedAt
         }
@@ -37,6 +38,7 @@ export const updateUser = /* GraphQL */ `
           userid
           title
           body
+          filetype
           createdAt
           updatedAt
         }
@@ -60,6 +62,7 @@ export const deleteUser = /* GraphQL */ `
           userid
           title
           body
+          filetype
           createdAt
           updatedAt
         }
@@ -80,6 +83,7 @@ export const createFile = /* GraphQL */ `
       userid
       title
       body
+      filetype
       createdAt
       updatedAt
     }
@@ -95,6 +99,7 @@ export const updateFile = /* GraphQL */ `
       userid
       title
       body
+      filetype
       createdAt
       updatedAt
     }
@@ -110,6 +115,7 @@ export const deleteFile = /* GraphQL */ `
       userid
       title
       body
+      filetype
       createdAt
       updatedAt
     }

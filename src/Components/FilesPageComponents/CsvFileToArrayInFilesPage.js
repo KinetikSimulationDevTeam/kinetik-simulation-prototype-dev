@@ -126,6 +126,7 @@ const csvFileToArray = async ({
       userid: username,
       title: fileName,
       body: jsonString,
+      filetype: "Pipeline Summary",
     };
 
     const fileResult = await API.graphql(

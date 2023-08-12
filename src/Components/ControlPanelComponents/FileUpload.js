@@ -259,6 +259,7 @@ function DragDropFile(props) {
           userid: username,
           title: localStorage.getItem("fileName"),
           body: jsonString,
+          filetype: "Pipeline Summary",
         };
 
         const fileResult = await API.graphql(
