@@ -11,6 +11,7 @@ export const getUser = /* GraphQL */ `
           userid
           title
           body
+          filetype
           createdAt
           updatedAt
         }
@@ -47,6 +48,7 @@ export const getFile = /* GraphQL */ `
       userid
       title
       body
+      filetype
       createdAt
       updatedAt
     }
@@ -64,6 +66,7 @@ export const listFiles = /* GraphQL */ `
         userid
         title
         body
+        filetype
         createdAt
         updatedAt
       }
@@ -93,6 +96,7 @@ export const filesByUseridAndTitleAndBody = /* GraphQL */ `
         userid
         title
         body
+        filetype
         createdAt
         updatedAt
       }

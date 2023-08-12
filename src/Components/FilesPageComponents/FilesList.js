@@ -20,6 +20,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { deleteFile } from "../../graphql/mutations";
 import alertify from "alertifyjs";
 import InitialPipelineFileColumnSelection from "./InitialPipelineFileColumnSelection";
+import FileAnonymizer from "./FileAnonymizer";
 
 const FilesList = () => {
   const [filesFromDdb, setFilesFromDdb] = useState([]);
@@ -37,6 +38,7 @@ const FilesList = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [InitialPipelineFile, setInitialPipelineFile] = useState("");
   const [anonymizeColumns, setAnonymizeColumns] = useState([]);
+  const [uploadFileName, setUploadFileName] = useState("");
 
   // It will store the file uploaded by the user
   const fileReader = new FileReader();
@@ -162,6 +164,7 @@ const FilesList = () => {
         const text = event.target.result;
         setInitialPipelineFile(text);
         setDisplayInitialPipelineFileColumnSelection(true);
+        setUploadFileName(file.name);
       };
 
       fileReaderInitialPipelineFile.readAsText(file);
@@ -204,8 +207,18 @@ const FilesList = () => {
     handleOnSelectFileType(value);
   };
 
-  const handleInitialPipelineFileColumnSelectionClose = (e) => {
+  const handleInitialPipelineFileColumnSelectionClose = (value) => {
     setDisplayInitialPipelineFileColumnSelection(false);
+    setAnonymizeColumns(
+      value,
+      FileAnonymizer({
+        username: username,
+        filebody: InitialPipelineFile,
+        anonymizeColumns: value,
+        handleSetUpdate: handleSetUpdate,
+        fileName: uploadFileName,
+      })
+    );
   };
 
   return (
@@ -341,7 +354,7 @@ const FilesList = () => {
                         src={CsvLogo}
                         alt="csv logo"
                       />
-                      <b>Pipeline Summary</b>
+                      <b>{row.filetype}</b>
                     </div>
                   </TableCell>
                   <TableCell>{row.title}</TableCell>

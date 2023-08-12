@@ -7,14 +7,17 @@ import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 
 const InitialPipelineFileColumnSelection = (props) => {
-  const { onClose, selectedValues, open, file } = props;
+  var { onClose, selectedValues, open, file } = props;
 
   const handleClose = () => {
     onClose(selectedValues);
   };
 
-  const handleListItemClick = (event) => {
-    selectedValues = [...selectedValues, event.target.value];
+  const handleListItemClick = (index) => {
+    if (!selectedValues.includes(index)) {
+      selectedValues = [...selectedValues, index];
+      return;
+    }
   };
 
   const paseFirstRow = (file) => {
@@ -32,20 +35,22 @@ const InitialPipelineFileColumnSelection = (props) => {
       <DialogTitle>Select sensitive columns to anonymize:</DialogTitle>
       <RadioGroup
         value={selectedValues}
-        onChange={handleListItemClick}
         sx={{ margin: "1vw", borderRadius: "5px" }}
       >
         {paseFirstRow(file)
           .filter((column) => column.trim() !== "")
           .map((column, index) => {
-            const uniqueKey = `${column}_${index}`;
+            const uniqueKey = index;
             return (
               <FormControlLabel
                 key={uniqueKey}
-                value={column}
+                value={index}
                 control={<Checkbox />}
                 label={column}
                 sx={{ padding: "0 1vw 1vh 1vw" }}
+                onClick={() => {
+                  handleListItemClick(index);
+                }}
               />
             );
           })}
