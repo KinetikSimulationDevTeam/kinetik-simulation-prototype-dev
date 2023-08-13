@@ -17,14 +17,16 @@ const FileSelection = ({
           <option value="disabled" disabled>
             Choose From Uploaded File
           </option>
-          {filesFromDdb.map((file) => (
-            <option key={file.id} value={file.body}>
-              {"File Name: " +
-                file.title +
-                ", Time: " +
-                new Date(file.createdAt).toLocaleString()}
-            </option>
-          ))}
+          {filesFromDdb
+            .filter((file) => file.filetype === "Pipeline Summary")
+            .map((file) => (
+              <option key={file.id} value={file.body}>
+                {"File Name: " +
+                  file.title +
+                  ", Time: " +
+                  new Date(file.createdAt).toLocaleString()}
+              </option>
+            ))}
         </select>
         {showConfirmationButtons && (
           <div>
