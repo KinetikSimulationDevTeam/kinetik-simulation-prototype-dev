@@ -1,15 +1,15 @@
-import React from 'react'
-import SimulationModule from '../Modules/SimulationModule'
-import ControlPanelModule from '../Modules/ControlPanelModule'
-import { useState, useEffect } from 'react'
-import NewOpsModule from '../Modules/ScenarioAnalysisModule'
-import Scoreboard from '../Modules/ScoreboardModule'
-import alertify from 'alertifyjs';
-import 'alertifyjs/build/css/alertify.css';
-import Navbar from '../Components/NavigationBar'
-import StatisticsTopModule from '../Modules/StatisticsTopModule'
-import StatisticsButtomModule from '../Modules/StatisticsButtomModule'
-import SearchAppBar from '../Components/SearchAppBar'
+import React from "react";
+import SimulationModule from "../Modules/SimulationModule";
+import ControlPanelModule from "../Modules/ControlPanelModule";
+import { useState, useEffect } from "react";
+import NewOpsModule from "../Modules/ScenarioAnalysisModule";
+import Scoreboard from "../Modules/ScoreboardModule";
+import alertify from "alertifyjs";
+import "alertifyjs/build/css/alertify.css";
+import Navbar from "../Components/NavigationBar";
+import StatisticsTopModule from "../Modules/StatisticsTopModule";
+import StatisticsButtomModule from "../Modules/StatisticsButtomModule";
+import SearchAppBar from "../Components/SearchAppBar";
 
 /*
     Description: This component is used to display the main frame of the application.
@@ -21,48 +21,55 @@ import SearchAppBar from '../Components/SearchAppBar'
 const MainFrame = () => {
   // This state will store the response from the lambda function
   const [lambdaOutput, setLambdaOutput] = useState();
-  const [sliderValue, setSliderValue] = useState([0,0,0,0,0,0]);
+  const [sliderValue, setSliderValue] = useState([0, 0, 0, 0, 0, 0]);
   const [uploadCount, setUploadCount] = useState(0);
 
   useEffect(() => {
-    if (localStorage.getItem('KinetikDataSet') === null) {
-      alertify.alert('Welcome to Kinetik Simulation', 'Please upload the file to begin!');
-      alertify.success('For input template, please see the template link');
+    if (localStorage.getItem("KinetikDataSet") === null) {
+      alertify.success(
+        "Please see the template link for input template, and upload file to begin simulation."
+      );
     }
   }, []);
 
   const handleLambdaOutput = async (output) => {
     await setLambdaOutput(output);
-  }
+  };
 
   const handleSliderValue = async (data) => {
     await setSliderValue(data);
-  }
+  };
 
   const handleUploadCount = async () => {
     await setUploadCount(uploadCount + 1);
-  }
+  };
 
   return (
     <div>
       <SearchAppBar />
       <Navbar />
-      <div id='mainFrameLayout'>
-        <div id='first-column-mainframe'>
+      <div id="mainFrameLayout">
+        <div id="first-column-mainframe">
           <ControlPanelModule handleUploadCount={handleUploadCount} />
-          <NewOpsModule handleSliderValue={handleSliderValue} uploadCount={uploadCount} />
+          <NewOpsModule
+            handleSliderValue={handleSliderValue}
+            uploadCount={uploadCount}
+          />
         </div>
-        <div id='second-column-mainframe'>
-          <SimulationModule handleLambdaOutput={handleLambdaOutput} sliderValue={sliderValue} />
+        <div id="second-column-mainframe">
+          <SimulationModule
+            handleLambdaOutput={handleLambdaOutput}
+            sliderValue={sliderValue}
+          />
           <Scoreboard lambdaOutput={lambdaOutput} />
         </div>
-        <div id='third-column-mainframe'>
+        <div id="third-column-mainframe">
           <StatisticsTopModule lambdaOutput={lambdaOutput} />
           <StatisticsButtomModule lambdaOutput={lambdaOutput} />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MainFrame
+export default MainFrame;

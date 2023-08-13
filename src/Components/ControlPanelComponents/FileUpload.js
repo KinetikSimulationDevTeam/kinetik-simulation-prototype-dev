@@ -41,6 +41,7 @@ function DragDropFile(props) {
   const [previousFileBody, setPreviousFileBody] = useState("");
   const [open, setOpen] = React.useState(false);
   const [selectedFileName, setSelectedFileName] = useState("");
+  const [importCsvButtonFlashing, setImportCsvButtonFlashing] = useState(false);
 
   const { user, signOut } = useAuthenticator((context) => [context.user]);
 
@@ -91,6 +92,7 @@ function DragDropFile(props) {
 
       localStorage.setItem("fileName", e.target.files[0].name);
       await setFile(e.target.files[0], props.onAction(e.target.files[0].name));
+      setImportCsvButtonFlashing(true);
     }
   };
 
@@ -121,6 +123,7 @@ function DragDropFile(props) {
       };
 
       fileReader.readAsText(file);
+      setImportCsvButtonFlashing(false);
     } else if (localStorage.getItem("KinetikDataSet") !== null) {
       alertify.error("No new file uploaded.");
     } else {
@@ -373,7 +376,16 @@ function DragDropFile(props) {
             onChange={handleChange}
             accept=".csv"
           />
-          <label id="label-file-upload" htmlFor="input-file-upload">
+          <label
+            id="label-file-upload"
+            htmlFor="input-file-upload"
+            className={
+              selectedFileName === "" &&
+              localStorage.getItem("KinetikDataSet") === null
+                ? "control-panel-upload-flashing-border"
+                : ""
+            }
+          >
             <div>
               <img id="upload-logo" src={UploadImg} alt="" />
               <p>Click here to</p>
@@ -411,7 +423,13 @@ function DragDropFile(props) {
           )}
           {userLoginStatus && (
             <button
-              className="upload-button"
+              className={`${
+                userLoginStatus && !showFileSelect && !showConfirmationButtons
+                  ? importCsvButtonFlashing
+                    ? "flashing-background upload-button"
+                    : "upload-button"
+                  : "upload-button-not-logged-in"
+              }`}
               onClick={(e) => {
                 handleOnSubmit(e);
               }}
