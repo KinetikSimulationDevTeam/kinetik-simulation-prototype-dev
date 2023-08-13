@@ -10,7 +10,7 @@ type User @model @aws_api_key {
 
 type File @model @aws_api_key {
   id: ID!
-  userid: ID! @index(name: "byUser", sortKeyFields: ["title", "body"])
+  userid: ID! @index(name: "byUser")
   title: String!
   body: String!
   filetype: String!

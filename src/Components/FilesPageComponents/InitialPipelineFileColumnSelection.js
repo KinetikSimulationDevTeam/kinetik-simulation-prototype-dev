@@ -35,7 +35,13 @@ const InitialPipelineFileColumnSelection = (props) => {
       <DialogTitle>Select sensitive columns to anonymize:</DialogTitle>
       <RadioGroup
         value={selectedValues}
-        sx={{ margin: "1vw", borderRadius: "5px" }}
+        sx={{
+          margin: "1vw",
+          borderRadius: "5px",
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "1vw",
+        }}
       >
         {paseFirstRow(file)
           .filter((column) => column.trim() !== "")

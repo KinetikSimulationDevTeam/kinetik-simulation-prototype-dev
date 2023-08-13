@@ -559,3 +559,35 @@
   align-items: center;
   gap: 2vw;
 }
+
+.control-panel-upload-flashing-border {
+  border: 2px solid goldenrod;
+  animation: flashBorder 3s infinite;
+}
+
+@keyframes flashBorder {
+  0% {
+    border-color: goldenrod;
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: goldenrod;
+  }
+}
+
+.flashing-background {
+  background-color: goldenrod;
+  animation: flashBackground 3s infinite;
+}
+
+@keyframes flashBackground {
+  0%,
+  100% {
+    background-color: goldenrod;
+  }
+  50% {
+    background-color: transparent;
+  }
+}
