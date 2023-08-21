@@ -7,6 +7,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/sensitivityanalysis": {
+      "name": "/sensitivityanalysis",
+      "lambdaFunction": "kinetiksimulationsensitivityanalysis",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

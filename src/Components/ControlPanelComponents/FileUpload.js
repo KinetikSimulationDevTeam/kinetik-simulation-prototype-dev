@@ -276,6 +276,7 @@ function DragDropFile(props) {
         'Please click "Start Simulation" to run the simulation.'
       );
       props.handleUploadCount();
+      props.startSimulationButtonFlash();
     } catch (err) {
       alertify.error("Input File is not in correct format");
       if (previousFileBody !== "") {

@@ -7,8 +7,8 @@ import Scoreboard from "../Modules/ScoreboardModule";
 import alertify from "alertifyjs";
 import "alertifyjs/build/css/alertify.css";
 import Navbar from "../Components/NavigationBar";
-import StatisticsTopModule from "../Modules/StatisticsTopModule";
-import StatisticsButtomModule from "../Modules/StatisticsButtomModule";
+import GoToMarketStatisticsModule from "../Modules/GoToMarketStatisticsModule";
+import ScenarioStatisticsModule from "../Modules/ScenarioStatisticsModule";
 import SearchAppBar from "../Components/SearchAppBar";
 
 /*
@@ -23,6 +23,8 @@ const MainFrame = () => {
   const [lambdaOutput, setLambdaOutput] = useState();
   const [sliderValue, setSliderValue] = useState([0, 0, 0, 0, 0, 0]);
   const [uploadCount, setUploadCount] = useState(0);
+  const [startSimulationButtonFlashing, setStartSimulationButtonFlashing] =
+    useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("KinetikDataSet") === null) {
@@ -44,13 +46,26 @@ const MainFrame = () => {
     await setUploadCount(uploadCount + 1);
   };
 
+  const handleStartSimulationButtonFlash = () => {
+    setStartSimulationButtonFlashing(!startSimulationButtonFlashing);
+  };
+
+  const onClickStartSimulationButton = () => {
+    setStartSimulationButtonFlashing(false);
+  };
+
   return (
     <div>
       <SearchAppBar />
       <Navbar />
       <div id="mainFrameLayout">
         <div id="first-column-mainframe">
-          <ControlPanelModule handleUploadCount={handleUploadCount} />
+          <ControlPanelModule
+            handleUploadCount={handleUploadCount}
+            handleStartSimulationButtonFlashing={
+              handleStartSimulationButtonFlash
+            }
+          />
           <NewOpsModule
             handleSliderValue={handleSliderValue}
             uploadCount={uploadCount}
@@ -60,12 +75,14 @@ const MainFrame = () => {
           <SimulationModule
             handleLambdaOutput={handleLambdaOutput}
             sliderValue={sliderValue}
+            startSimulationButtonFlashing={startSimulationButtonFlashing}
+            onClickStartSimulationButton={onClickStartSimulationButton}
           />
           <Scoreboard lambdaOutput={lambdaOutput} />
         </div>
         <div id="third-column-mainframe">
-          <StatisticsTopModule lambdaOutput={lambdaOutput} />
-          <StatisticsButtomModule lambdaOutput={lambdaOutput} />
+          <GoToMarketStatisticsModule lambdaOutput={lambdaOutput} />
+          <ScenarioStatisticsModule lambdaOutput={lambdaOutput} />
         </div>
       </div>
     </div>

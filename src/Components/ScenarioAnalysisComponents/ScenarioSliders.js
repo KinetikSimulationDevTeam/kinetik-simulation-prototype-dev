@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import ScenerioSlider from './ScenarioSlider';
-import alertify from 'alertifyjs';
+import React, { useState, useEffect } from "react";
+import ScenerioSlider from "./ScenarioSlider";
+import alertify from "alertifyjs";
 
 /*
     Description: This component is used to display the sliders for the scenerio analysis.
@@ -15,21 +15,22 @@ const ScenerioSliders = (props) => {
   // This state will store the response from the lambda function
   const [data, setData] = useState(null);
   // This state will store the value of the slider
-  const [sliderValue, setSliderValue] = useState([0,0,0,0,0,0]);
+  const [sliderValue, setSliderValue] = useState([0, 0, 0, 0, 0, 0]);
   // This state will set the confirm times
   const [confirmTimes, setConfirmTimes] = useState(false);
-  const [previousSliderValue, setPreviousSliderValue] = useState([0,0,0,0,0,0]);
+  const [previousSliderValue, setPreviousSliderValue] = useState([
+    0, 0, 0, 0, 0, 0,
+  ]);
   const [confirmCount, setConfirmCount] = useState(true);
 
   useEffect(() => {
     const refreshPage = () => {
-      const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
+      const jsonData = JSON.parse(localStorage.getItem("KinetikDataSet"));
       setData(jsonData);
     };
 
     refreshPage();
-  }, [props.uploadCount])
-
+  }, [props.uploadCount]);
 
   /*
     Description: This function is called when the slider is moved and sets the currentIndex and sliderValue states with the new value.
@@ -40,21 +41,23 @@ const ScenerioSliders = (props) => {
   */
   function onClicked() {
     props.handleSliderValue(sliderValue);
-    if(confirmTimes === false) {
+    if (confirmTimes === false) {
       setConfirmTimes(true);
-      alertify.alert('Verify', 'Please click Confirm again to confirm your selection.');
-    }else{
-      if(confirmCount) {
+      alertify.alert(
+        "Verify",
+        "Please click Confirm again to confirm your selection."
+      );
+    } else {
+      if (confirmCount) {
         setPreviousSliderValue(sliderValue);
         setConfirmCount(false);
-      }else{
+      } else {
         setConfirmCount(true);
       }
       setConfirmTimes(false);
-      alertify.success('New Values Confirmed! Simulation will now re-run.');
+      alertify.success("New Values Confirmed! Simulation will now re-run.");
     }
   }
-  
 
   /*
     Description: This function is used to get the data from the local storage when the page refresh and set the data state with that data.
@@ -64,9 +67,9 @@ const ScenerioSliders = (props) => {
     Return Type: None
   */
   const refreshPage = async () => {
-    const jsonData = JSON.parse(localStorage.getItem('KinetikDataSet'));
+    const jsonData = JSON.parse(localStorage.getItem("KinetikDataSet"));
     await setData(jsonData);
-  }
+  };
 
   useEffect(() => {
     refreshPage();
@@ -85,67 +88,92 @@ const ScenerioSliders = (props) => {
 
     Return Type: None
   */
-    const onResetClicked = () => {
-      if(sliderValue === previousSliderValue) {
-        alertify.alert('Warning', 'Sliders are already at their previous values.');
-        return;
-      }
-      setSliderValue(previousSliderValue);
-      setConfirmTimes(false);
-      alertify.success('Sliders have been reset to their previous values.');
-    };
+  const onResetClicked = () => {
+    if (sliderValue === previousSliderValue) {
+      alertify.alert(
+        "Warning",
+        "Sliders are already at their previous values."
+      );
+      return;
+    }
+    setSliderValue(previousSliderValue);
+    setConfirmTimes(false);
+    alertify.success("Sliders have been reset to their previous values.");
+  };
 
   if (!data) {
     return (
       <div>
-        <p>Please Upload a File Above</p>
+        <p style={{ textAlign: "left" }}>Please Upload a File Above</p>
+        <p style={{ textAlign: "left" }}>
+          For the template input file, kindly refer to the link adjacent to the
+          control panel
+        </p>
       </div>
     );
   } else {
     return (
-      <div style={{ height: '100%', overflow: 'auto' }}>
+      <div style={{ height: "100%", overflow: "auto" }}>
         <ScenerioSlider
-          name='Leads (TBD)'
+          name="Leads (TBD)"
           mean={0}
-          onSliderChange={(newValue) => handleSliderChange(newValue, 0, sliderValue)}
+          onSliderChange={(newValue) =>
+            handleSliderChange(newValue, 0, sliderValue)
+          }
           sliderValue={sliderValue[0]}
         />
         <ScenerioSlider
-          name='Opportunities'
+          name="Opportunities"
           mean={0}
-          onSliderChange={(newValue) => handleSliderChange(newValue, 1, sliderValue)}
+          onSliderChange={(newValue) =>
+            handleSliderChange(newValue, 1, sliderValue)
+          }
           sliderValue={sliderValue[1]}
         />
         <ScenerioSlider
-          name='Progression'
+          name="Progression"
           mean={0}
-          onSliderChange={(newValue) => handleSliderChange(newValue, 2, sliderValue)}
+          onSliderChange={(newValue) =>
+            handleSliderChange(newValue, 2, sliderValue)
+          }
           sliderValue={sliderValue[2]}
         />
         <ScenerioSlider
-          name='Closing'
+          name="Closing"
           mean={0}
-          onSliderChange={(newValue) => handleSliderChange(newValue, 3, sliderValue)}
+          onSliderChange={(newValue) =>
+            handleSliderChange(newValue, 3, sliderValue)
+          }
           sliderValue={sliderValue[3]}
         />
         <ScenerioSlider
-          name='Win Rate'
+          name="Win Rate"
           mean={0}
-          onSliderChange={(newValue) => handleSliderChange(newValue, 4, sliderValue)}
+          onSliderChange={(newValue) =>
+            handleSliderChange(newValue, 4, sliderValue)
+          }
           sliderValue={sliderValue[4]}
         />
         <ScenerioSlider
-          name='Market Dynamics'
+          name="Market Dynamics"
           mean={0}
-          onSliderChange={(newValue) => handleSliderChange(newValue, 5, sliderValue)}
+          onSliderChange={(newValue) =>
+            handleSliderChange(newValue, 5, sliderValue)
+          }
           sliderValue={sliderValue[5]}
         />
-        <div id='scenario-buttons'>
-          <button className='button' type='submit' onClick={onClicked}> Confirm </button>
-          <button className='button' type='submit' onClick={onResetClicked}> Previous Values </button>
+        <div id="scenario-buttons">
+          <button className="button" type="submit" onClick={onClicked}>
+            {" "}
+            Confirm{" "}
+          </button>
+          <button className="button" type="submit" onClick={onResetClicked}>
+            {" "}
+            Previous Values{" "}
+          </button>
         </div>
       </div>
-    )
+    );
   }
 };
 
