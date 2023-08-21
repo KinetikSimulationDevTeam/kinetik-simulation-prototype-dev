@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "kinetikSimulationLambda"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "kinetiksimulationsensitivityanalysis"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -44,6 +52,11 @@
   },
   "function": {
     "kinetikSimulationLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "kinetiksimulationsensitivityanalysis": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -95,6 +108,22 @@
         {
           "category": "function",
           "resourceName": "kinetikSimulationLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_kinetiksimulationsensitivityanalysis_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "kinetiksimulationsensitivityanalysis"
+        }
+      ]
+    },
+    "AMPLIFY_function_kinetiksimulationsensitivityanalysis_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "kinetiksimulationsensitivityanalysis"
         }
       ]
     }

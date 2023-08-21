@@ -38,6 +38,9 @@ const SimulationModule = (props) => {
   const [graphSelection, setGraphSelection] = useState("bar-chart");
   // This state will be true if the app is waiting for a response from the lambda function
   const [isLoading, setIsLoading] = useState(false);
+  const [startSimulationButtonFlash, setStartSimulationButtonFlash] = useState(
+    props.startSimulationButtonFlashing
+  );
 
   /*
     Description: This function is used to make a call to the lambda function to get the data for the simulation module. It is called when the component is first rendered.
@@ -164,6 +167,16 @@ const SimulationModule = (props) => {
         body: updatedJsonObject,
       });
 
+      // const responseTest = await API.post(
+      //   "getSimulationOutput",
+      //   "/sensitivityanalysis",
+      //   {
+      //     body: updatedJsonObject,
+      //   }
+      // );
+
+      // await console.log(responseTest);
+
       // Set the state of lambdaOutput with the response
       await setLambdaOutput(
         response === undefined ? response[0] : response,
@@ -172,7 +185,9 @@ const SimulationModule = (props) => {
         ),
         setIsLoading(false)
       );
+      props.onClickStartSimulationButton();
     } catch (error) {
+      console.log(error);
       alertify.error("Input File is not in correct format.");
       setIsLoading(false);
     }
@@ -197,6 +212,10 @@ const SimulationModule = (props) => {
       setGraphSelection("bar-chart");
     }
   };
+
+  useEffect(() => {
+    setStartSimulationButtonFlash(props.startSimulationButtonFlashing);
+  }, [props.startSimulationButtonFlashing]);
 
   return (
     <div id="simulation-module-layout">
@@ -238,7 +257,9 @@ const SimulationModule = (props) => {
       </div>
       <div id="simulation-buttons-layout">
         <button
-          className="button"
+          className={`button ${
+            startSimulationButtonFlash ? "flashing-background" : ""
+          }`}
           onClick={() =>
             callLambdaFunction(localStorage.getItem("KinetikDataSet"))
           }
