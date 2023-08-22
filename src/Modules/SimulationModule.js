@@ -309,7 +309,6 @@ const SimulationModule = (props) => {
         </div>
         <Slider
           aria-label="Default"
-          valueLabelDisplay="auto"
           min={0}
           defaultValue={0}
           max={data.length - 1}
