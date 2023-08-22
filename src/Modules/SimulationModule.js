@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Slider from "react-slider";
 import MyResponsiveBar from "../Components/SimulationComponents/SimulationBarChart";
 import { API } from "aws-amplify";
 import alertify from "alertifyjs";
@@ -9,6 +8,11 @@ import ChordChartIcon from "../Images/ChordChartIcon.png";
 import BarChartIcon from "../Images/BarChartIcon.png";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import Slider from "@mui/material/Slider";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import FastForwardIcon from "@mui/icons-material/FastForward";
+import FastRewindIcon from "@mui/icons-material/FastRewind";
 
 /*
     Description: This component is used to display the simulation module.
@@ -38,9 +42,12 @@ const SimulationModule = (props) => {
   const [graphSelection, setGraphSelection] = useState("bar-chart");
   // This state will be true if the app is waiting for a response from the lambda function
   const [isLoading, setIsLoading] = useState(false);
+  // This state will be true if the start simulation button is flashing
   const [startSimulationButtonFlash, setStartSimulationButtonFlash] = useState(
     props.startSimulationButtonFlashing
   );
+  // This state store the current playback speed
+  const [playbackSpeed, setPlaybackSpeed] = useState(200);
 
   /*
     Description: This function is used to make a call to the lambda function to get the data for the simulation module. It is called when the component is first rendered.
@@ -98,14 +105,22 @@ const SimulationModule = (props) => {
           setCurrentIndex(0);
           setSliderValue(0);
         }
-      }, 200);
+      }, playbackSpeed); // Use the playbackSpeed state here
       if (currentIndex === data.length - 1) {
         setIsPlaying(false);
       }
     }
 
     return () => clearInterval(timer);
-  }, [currentIndex, data.length, isPlaying]);
+  }, [currentIndex, data.length, isPlaying, playbackSpeed]);
+
+  const increasePlaybackSpeed = () => {
+    setPlaybackSpeed((prevSpeed) => prevSpeed / 2);
+  };
+
+  const decreasePlaybackSpeed = () => {
+    setPlaybackSpeed((prevSpeed) => prevSpeed * 2);
+  };
 
   /*
     Description: This function is called when the slider is moved and sets the currentIndex and sliderValue states with the new value.
@@ -114,9 +129,9 @@ const SimulationModule = (props) => {
 
     Return Type: None
   */
-  const handleSliderChange = async (value) => {
-    await setCurrentIndex(value);
-    await setSliderValue(value);
+  const handleSliderChange = async (event, newValue) => {
+    await setCurrentIndex(newValue);
+    await setSliderValue(newValue);
   };
 
   /*
@@ -267,22 +282,40 @@ const SimulationModule = (props) => {
           {" "}
           Start Simulation{" "}
         </button>
-        <button className="button" onClick={togglePlay}>
-          {isPlaying ? "Pause" : "Auto Play"}
+        <button className="button" style={{ backgroundColor: "lightGray" }}>
+          Export Scenario
         </button>
       </div>
-      <Slider
-        id="simulation-slider"
-        thumbClassName="customSlider-thumb"
-        trackClassName="customSlider-track"
-        valueLabelDisplay="auto"
-        marks={1}
-        min={0}
-        defaultValue={0}
-        max={data.length - 1}
-        value={sliderValue}
-        onChange={handleSliderChange}
-      />
+      <div className="simulation-auto-play">
+        <div className="simulation-playback-speed">
+          <FastRewindIcon
+            onClick={decreasePlaybackSpeed}
+            sx={{ cursor: "pointer" }}
+          />
+          {!isPlaying ? (
+            <PlayCircleIcon onClick={togglePlay} sx={{ cursor: "pointer" }} />
+          ) : (
+            ""
+          )}
+          {isPlaying ? (
+            <StopCircleIcon onClick={togglePlay} sx={{ cursor: "pointer" }} />
+          ) : (
+            ""
+          )}
+          <FastForwardIcon
+            onClick={increasePlaybackSpeed}
+            sx={{ cursor: "pointer" }}
+          />
+        </div>
+        <Slider
+          aria-label="Default"
+          min={0}
+          defaultValue={0}
+          max={data.length - 1}
+          value={sliderValue}
+          onChange={handleSliderChange}
+        />
+      </div>
       {isLoading && (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
