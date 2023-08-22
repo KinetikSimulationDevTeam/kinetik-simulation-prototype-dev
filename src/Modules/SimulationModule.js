@@ -13,6 +13,8 @@ import Slider from "@mui/material/Slider";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
+import CsvMaker from "../Components/SimulationComponents/CsvMaker";
+import downloadCsv from "../Components/SimulationComponents/DownloadCsv";
 
 /*
     Description: This component is used to display the simulation module.
@@ -232,6 +234,11 @@ const SimulationModule = (props) => {
     setStartSimulationButtonFlash(props.startSimulationButtonFlashing);
   }, [props.startSimulationButtonFlashing]);
 
+  const onClickExportScenario = async () => {
+    const csvData = await CsvMaker(lambdaOutput);
+    await downloadCsv(csvData, "scenario.csv");
+  };
+
   return (
     <div id="simulation-module-layout">
       <div id="simulation-title">
@@ -282,7 +289,11 @@ const SimulationModule = (props) => {
           {" "}
           Start Simulation{" "}
         </button>
-        <button className="button" style={{ backgroundColor: "lightGray" }}>
+        <button
+          className="button"
+          style={{ backgroundColor: "lightGray" }}
+          onClick={onClickExportScenario}
+        >
           Export Scenario
         </button>
       </div>
