@@ -230,7 +230,7 @@
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 60%;
+  height: 59%;
   padding: 0.5vh 0.5vw;
   overflow-x: hidden;
   overflow-y: auto;
@@ -289,7 +289,7 @@
 
 #simulation-bar-chart {
   width: 113%;
-  height: 65%;
+  height: 62%;
 }
 
 #simulation-title {
@@ -345,7 +345,7 @@
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 40%;
+  height: 39%;
   padding: 0 0.5em;
 }
 
