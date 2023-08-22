@@ -400,7 +400,7 @@ const Navbar = () => {
           }}
         >
           <Link className="menu-link" to="/files">
-            <MenuItem onClick={handleUploadMenuClose}>Upload CSV</MenuItem>
+            <MenuItem onClick={handleUploadMenuClose}>Manage Files</MenuItem>
           </Link>
           <MenuItem
             sx={{ color: "gray", cursor: "default" }}

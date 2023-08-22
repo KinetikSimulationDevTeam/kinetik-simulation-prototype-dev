@@ -55,23 +55,25 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
         <p className="statistics-module-info-legend">
           Loss:
           <span className="statistics-module-info-values">
-            {loss.toLocaleString("en")}
+            {Math.round(loss).toLocaleString("en")}
           </span>
         </p>
         <p className="statistics-module-info-legend">
           New Leads:
-          <span className="statistics-module-info-values">{newLeads}</span>
+          <span className="statistics-module-info-values">
+            {Math.round(newLeads).toLocaleString("en")}
+          </span>
         </p>
         <p className="statistics-module-info-legend">
           New Opportunities:
           <span className="statistics-module-info-values">
-            {newOpportunities.toLocaleString("en")}
+            {Math.round(newOpportunities).toLocaleString("en")}
           </span>
         </p>
         <p className="statistics-module-info-legend">
           Wins:
           <span className="statistics-module-info-values">
-            {wins.toLocaleString("en")}
+            {Math.round(wins).toLocaleString("en")}
           </span>
         </p>
       </div>
