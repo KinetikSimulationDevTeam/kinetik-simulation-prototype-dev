@@ -289,11 +289,7 @@ const SimulationModule = (props) => {
           {" "}
           Start Simulation{" "}
         </button>
-        <button
-          className="button"
-          style={{ backgroundColor: "lightGray" }}
-          onClick={onClickExportScenario}
-        >
+        <button className="button" onClick={onClickExportScenario}>
           Export Scenario
         </button>
       </div>
