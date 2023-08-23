@@ -15,6 +15,7 @@ import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import CsvMaker from "../Components/SimulationComponents/CsvMaker";
 import downloadCsv from "../Components/SimulationComponents/DownloadCsv";
+import { Style } from "@mui/icons-material";
 
 /*
     Description: This component is used to display the simulation module.
@@ -242,7 +243,7 @@ const SimulationModule = (props) => {
   return (
     <div id="simulation-module-layout">
       <div id="simulation-title">
-        <h3 className="title"> Simulation/History </h3>
+        <h3 className="title"> Pipeline Dynamic </h3>
         <h3> Week {currentIndex + 1} </h3>
         {graphSelection === "bar-chart" && (
           <img
@@ -279,9 +280,10 @@ const SimulationModule = (props) => {
       </div>
       <div id="simulation-buttons-layout">
         <button
-          className={`button ${
-            startSimulationButtonFlash ? "flashing-background" : ""
-          }`}
+          className="button"
+          style={{
+            backgroundColor: startSimulationButtonFlash ? "goldenrod" : "",
+          }}
           onClick={() =>
             callLambdaFunction(localStorage.getItem("KinetikDataSet"))
           }
