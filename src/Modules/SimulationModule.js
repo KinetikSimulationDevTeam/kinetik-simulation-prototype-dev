@@ -235,7 +235,7 @@ const SimulationModule = (props) => {
   }, [props.startSimulationButtonFlashing]);
 
   const onClickExportScenario = async () => {
-    const csvData = await CsvMaker(lambdaOutput);
+    const csvData = await CsvMaker(lambdaOutput, props.sliderValue);
     await downloadCsv(csvData, "scenario.csv");
   };
 
