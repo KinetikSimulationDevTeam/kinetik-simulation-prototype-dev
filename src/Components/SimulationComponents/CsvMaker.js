@@ -18,7 +18,7 @@ const csvMaker = (lambdaOutput) => {
 
     return csvRows.join("\n");
   } catch (error) {
-    alertify.error("Error when creating CSV file");
+    alertify.error("Error when parsing results to CSV");
   }
 };
 
