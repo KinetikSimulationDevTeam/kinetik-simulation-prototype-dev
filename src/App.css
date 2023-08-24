@@ -70,8 +70,9 @@
 }
 
 #form-file-upload {
-  height: 30vh;
+  height: 28vh;
   text-align: center;
+  margin-top: 2vh;
 }
 
 #input-file-upload {
@@ -407,7 +408,7 @@
 }
 
 #remind-signin-text {
-  font-size: 0.7em;
+  font-size: 0.6em;
   margin-bottom: -0.3vh;
 }
 
@@ -603,4 +604,11 @@
   align-items: center;
   gap: 0.5vw;
   margin: 0 0.5vw 0 0;
+}
+
+#input-file-template-text-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 3.5vh;
 }
