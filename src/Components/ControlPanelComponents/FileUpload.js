@@ -16,6 +16,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import SampleFile from "../../InputTemplate/SampleFile";
 
 /*
     Description: This component is used to display the drag and drop file upload.
@@ -358,15 +359,39 @@ function DragDropFile(props) {
     setUploadtoDatabase(isChecked);
   };
 
+  const onClickSampleFileButton = (e) => {
+    e.preventDefault();
+    const jsonString = JSON.stringify(SampleFile);
+    localStorage.setItem("KinetikDataSet", jsonString);
+    localStorage.setItem("fileName", "Sample File");
+    props.handleUploadCount();
+    props.startSimulationButtonFlash();
+    alertify.success("Successfully selected the sample file.");
+    alertify.success('Please click "Start Simulation" to run the simulation.');
+  };
+
   return (
     <div id="upload-module-right-section">
-      <a
-        id="upload-module-template-link"
-        href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
-        target="_blank"
-      >
-        <h5> Input File Template </h5>
-      </a>
+      <div id="input-file-template-text-layout">
+        <a
+          id="upload-module-template-link"
+          href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
+          target="_blank"
+        >
+          <h5 style={{ marginBottom: "0vh" }}> Input File Template </h5>
+        </a>
+        <span style={{ fontWeight: "bold", fontSize: "90%" }}>
+          Or{" "}
+          <Button
+            variant="outlined"
+            size="small"
+            sx={{ fontSize: "10px" }}
+            onClick={onClickSampleFileButton}
+          >
+            Use Sample File
+          </Button>
+        </span>
+      </div>
       {!showFileSelect && !showConfirmationButtons && (
         <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
           <input
