@@ -243,7 +243,7 @@ const SimulationModule = (props) => {
   return (
     <div id="simulation-module-layout">
       <div id="simulation-title">
-        <h3 className="title"> Pipeline Dynamic </h3>
+        <h3 className="title"> Pipeline Dynamics </h3>
         <h3> Week {currentIndex + 1} </h3>
         {graphSelection === "bar-chart" && (
           <img
