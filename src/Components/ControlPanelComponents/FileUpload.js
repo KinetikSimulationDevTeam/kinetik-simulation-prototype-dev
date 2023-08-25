@@ -331,7 +331,7 @@ function DragDropFile(props) {
   const handleConfirmSelectionClick = (e) => {
     e.preventDefault();
     const selectElement = document.getElementsByName("filesDdb")[0];
-    const selectedValue =
+    let selectedValue =
       selectElement.options[selectElement.selectedIndex].value;
     const selectedText =
       selectElement.options[selectElement.selectedIndex].text;
@@ -344,11 +344,15 @@ function DragDropFile(props) {
       setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
       setPreviousFileName(localStorage.getItem("fileName"));
     }
+    let selectedValueinStr = JSON.parse(selectedValue);
+    selectedValueinStr["weeks"] = Number(props.timePeriod);
+    selectedValue = JSON.stringify(selectedValueinStr);
     localStorage.setItem("KinetikDataSet", selectedValue);
     localStorage.setItem("fileName", fileName);
     props.handleUploadCount();
     setShowFileSelect(false);
     setShowConfirmationButtons(false);
+    props.startSimulationButtonFlash();
     alertify.success("Successfully select a file from the database.");
     alertify.success('Please click "Start Simulation" to run the simulation.');
   };
