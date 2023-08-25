@@ -7,16 +7,21 @@ const csvMaker = (lambdaOutput, scenarioValues) => {
 
     const headers = lambdaOutput[0]
       .filter((obj) => obj.Stage !== "Movement Flow")
-      .map((obj) => obj.Stage);
+      .map((obj) => {
+        if (obj.Stage === "Revenue") {
+          return "Revenue($M)";
+        }
+        return obj.Stage;
+      });
     const headersWithWeek = [
       "Week",
       ...headers,
-      "Leads",
-      "Opportunities",
-      "Progression",
-      "Closing",
-      "Win Rate",
-      "Market Dynamics",
+      "Leads(% change)",
+      "Opportunities(% change)",
+      "Progression(% change)",
+      "Closing(% change)",
+      "Win Rate(% change)",
+      "Market Dynamics(% change)",
     ];
 
     csvRows.push(headersWithWeek.join(","));
