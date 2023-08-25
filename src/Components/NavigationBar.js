@@ -199,7 +199,7 @@ const Navbar = () => {
             sx={{ color: "gray", cursor: "default" }}
             onClick={handleHomeMenuClose}
           >
-            Tranches and Veloccity Statistics
+            Tranches and Velocity Statistics
           </MenuItem>
         </Menu>
       </div>
@@ -237,7 +237,7 @@ const Navbar = () => {
             sx={{ color: "gray", cursor: "default" }}
             onClick={handleScenariosMenuClose}
           >
-            20 Minutes Survey
+            20 Minute Survey
           </MenuItem>
           <MenuItem
             sx={{ color: "gray", cursor: "default" }}
@@ -281,7 +281,7 @@ const Navbar = () => {
         onMouseLeave={handleVisualizationsMenuClose}
       >
         <CrisisAlertTwoToneIcon className="nav-bar-icon" />
-        Visulization
+        Visualization
         <Menu
           anchorEl={visualizationsAnchorEl}
           open={isVisualizationsMenuOpen}

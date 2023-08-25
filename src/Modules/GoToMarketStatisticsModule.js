@@ -67,7 +67,7 @@ const GoToMarketStatisticsModule = ({ lambdaOutput }) => {
             {totalOpportunities === 0
               ? 0
               : Math.round(
-                  (leads * 1500 + totalOpportunities * 7500) / wins
+                  (leads * 750 + totalOpportunities * 3250) / wins
                 ).toLocaleString("en")}
           </span>
         </p>
