@@ -34,11 +34,17 @@ import numpy
 
 def handler(event, context):
 
-    # store body of request in variable
-    eventBody = event['body']
+    try:
+        # store body of request in variable
+        eventBody = event['body']
+    except:
+        eventBody = event
 
-    # convert body to JSON object
-    body = json.loads(json.loads(eventBody))
+    try:
+        # convert body to JSON object
+        body = json.loads(json.loads(eventBody))
+    except:
+        body = eventBody
 
     # store total revenue
     totalRevenue = 0.0

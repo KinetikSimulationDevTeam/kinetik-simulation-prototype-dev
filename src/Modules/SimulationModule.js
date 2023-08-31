@@ -15,7 +15,6 @@ import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import CsvMaker from "../Components/SimulationComponents/CsvMaker";
 import downloadCsv from "../Components/SimulationComponents/DownloadCsv";
-import { Style } from "@mui/icons-material";
 
 /*
     Description: This component is used to display the simulation module.
@@ -184,16 +183,6 @@ const SimulationModule = (props) => {
       const response = await API.post("getSimulationOutput", "/simulation", {
         body: updatedJsonObject,
       });
-
-      // const responseTest = await API.post(
-      //   "getSimulationOutput",
-      //   "/sensitivityanalysis",
-      //   {
-      //     body: updatedJsonObject,
-      //   }
-      // );
-
-      // await console.log(responseTest);
 
       // Set the state of lambdaOutput with the response
       await setLambdaOutput(

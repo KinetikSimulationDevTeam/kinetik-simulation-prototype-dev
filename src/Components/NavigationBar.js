@@ -128,6 +128,12 @@ const Navbar = () => {
           <Link className="menu-link" to="/">
             <MenuItem onClick={handleForecastMenuClose}>Slider UX</MenuItem>
           </Link>
+
+          <Link className="menu-link" to="/sensitivityanalysis">
+            <MenuItem onClick={handleForecastMenuClose}>
+              Sensitivity Analysis
+            </MenuItem>
+          </Link>
           <MenuItem
             sx={{ color: "gray", cursor: "default" }}
             onClick={handleForecastMenuClose}

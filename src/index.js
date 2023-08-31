@@ -1,27 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Amplify, API } from 'aws-amplify';
-import awsconfig from './aws-exports';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Help from './Pages/FaqPage';
-import Signin from './Pages/SigninPage';
-import PageNotFound from './Pages/PageNotFound';
-import Files from './Pages/Files';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Amplify, API } from "aws-amplify";
+import awsconfig from "./aws-exports";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Help from "./Pages/FaqPage";
+import Signin from "./Pages/SigninPage";
+import PageNotFound from "./Pages/PageNotFound";
+import Files from "./Pages/Files";
+import SensitivityAnalysisPage from "./Pages/SensitivityAnalysisPage";
 
 Amplify.configure(awsconfig);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />} />
+        <Route path="/" element={<App />} />
         <Route path="/help" element={<Help />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/files" element={<Files />} />
+        <Route
+          path="/sensitivityanalysis"
+          element={<SensitivityAnalysisPage />}
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
