@@ -31,10 +31,8 @@ const ModelVariablesList = () => {
           localStorage.getItem("KinetikDataSet")
         );
         await setStages(lambdaResult[0]);
-        console.log("stages: ", stages);
         const nomalizeLambdaResult = normalizeArray(lambdaResult);
         await setNormalizeSensitivityAnalysisLambdaResult(nomalizeLambdaResult);
-        console.log("nomalizeLambdaResult: ", nomalizeLambdaResult);
       }
     }
 

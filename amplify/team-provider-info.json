@@ -15,11 +15,11 @@
       "function": {
         "kinetikSimulationLambda": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
-          "s3Key": "amplify-builds/kinetikSimulationLambda-6f3652446e6d6d4d3446-build.zip"
+          "s3Key": "amplify-builds/kinetikSimulationLambda-416533355a634d464d7a-build.zip"
         },
         "kinetiksimulationsensitivityanalysis": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
-          "s3Key": "amplify-builds/kinetiksimulationsensitivityanalysis-41392b78706f64326f71-build.zip"
+          "s3Key": "amplify-builds/kinetiksimulationsensitivityanalysis-70387a475a5054704749-build.zip"
         }
       },
       "api": {
