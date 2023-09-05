@@ -39,8 +39,14 @@ def handler(event, context):
 
         revenue_values.append(revenue_value)
 
-    # Calculate the average of the revenue values
-    average_revenue = sum(revenue_values) / len(revenue_values)
+    # Calculate the median of the revenue values
+    revenue_values.sort()
+    middle = len(revenue_values) // 2
+    if len(revenue_values) % 2 == 0:
+        average_revenue = (
+            revenue_values[middle - 1] + revenue_values[middle]) / 2
+    else:
+        average_revenue = revenue_values[middle]
 
     # Create an array to store the results of each trial
     all_results = []
@@ -58,16 +64,20 @@ def handler(event, context):
 
             # create copys of the body
             body_copy_5percent = copy.deepcopy(body)
+
             # increase the value of the stage by 5%
-            body_copy_5percent["newOpsProbabilities"][i] = body_copy_5percent["newOpsProbabilities"][i] * 1.05
+            body_copy_5percent["sensitivityanalysis"] = [
+                0 if index < i else 0.05 for index in range(i + 1)]
 
             body_copy_10percent = copy.deepcopy(body)
             # increase the value of the stage by 10%
-            body_copy_10percent["newOpsProbabilities"][i] = body_copy_10percent["newOpsProbabilities"][i] * 1.1
+            body_copy_10percent["sensitivityanalysis"] = [
+                0 if index < i else 0.1 for index in range(i + 1)]
 
             body_copy_15percent = copy.deepcopy(body)
             # increase the value of the stage by 15%
-            body_copy_15percent["newOpsProbabilities"][i] = body_copy_15percent["newOpsProbabilities"][i] * 1.15
+            body_copy_15percent["sensitivityanalysis"] = [
+                0 if index < i else 0.15 for index in range(i + 1)]
 
             # Call another Lambda function to get the simulation result for the 5% increase
             response_simulation_5percent = client.invoke(
@@ -171,8 +181,6 @@ def handler(event, context):
     for i in range(len(all_results[0])):
         average_results.append(numpy.mean(
             [all_results[j][i] for j in range(len(all_results))], axis=0).tolist())
-
-    print("average result: ", average_results)
 
     # create response
     response = {

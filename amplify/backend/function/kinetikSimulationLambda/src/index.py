@@ -278,6 +278,11 @@ def handler(event, context):
         # Order: All stages, followed by Win and Loss
         newOps = [j * newOpsTotal for j in body['newOpsProbabilities']]
 
+        # each index in newOps multiply by corresponding sensitivity analysis index
+        if body.get('sensitivityanalysis') is not None:
+            for k in range(len(body['sensitivityanalysis'])):
+                newOps[k] = newOps[k] * (1 + body['sensitivityanalysis'][k])
+
         # movement from each stage to each other stage
         # Order: All stages, followed by Win and Loss
         movementFromStages = [0 for j in range(len(body['stages']))]
