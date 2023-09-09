@@ -377,19 +377,21 @@ function DragDropFile(props) {
   return (
     <div id="upload-module-right-section">
       <div id="input-file-template-text-layout">
-        <a
-          id="upload-module-template-link"
-          href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
-          target="_blank"
-        >
-          <h5 style={{ marginBottom: "0vh" }}> Input File Template </h5>
-        </a>
-        <span style={{ fontWeight: "bold", fontSize: "90%" }}>
+        <span style={{ fontWeight: "bold" }}>
+          <a
+            id="upload-module-template-link"
+            href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
+            target="_blank"
+          >
+            <h5 style={{ marginBottom: "10px", fontSize: "13px" }}>
+              {" "}
+              Input File Template{" "}
+            </h5>
+          </a>
           Or{" "}
           <Button
             variant="outlined"
             size="small"
-            sx={{ fontSize: "10px" }}
             onClick={onClickSampleFileButton}
           >
             Use Sample File

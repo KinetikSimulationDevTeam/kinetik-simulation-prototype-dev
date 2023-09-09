@@ -57,7 +57,7 @@ const GoToMarketStatisticsModule = ({ lambdaOutput }) => {
   }
 
   return (
-    <div id="statistics-top-module-layout">
+    <div id="statistics-module-layout">
       <h3 className="title">Go-to Market Statistics</h3>
       <div className="statistics-module-info">
         <p className="statistics-module-info-legend">

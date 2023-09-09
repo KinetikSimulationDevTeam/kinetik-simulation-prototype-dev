@@ -43,7 +43,7 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
   }
 
   return (
-    <div id="statistics-buttom-module-layout">
+    <div id="statistics-module-layout">
       <h3 className="title">Scenario Statistics</h3>
       <div className="statistics-module-info">
         <p className="statistics-module-info-legend">

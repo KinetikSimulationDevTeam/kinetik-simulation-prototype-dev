@@ -8,13 +8,13 @@
 
 .link {
   text-decoration: none;
-  font-size: 2vh;
+  font-size: 15px;
   color: rgb(128, 128, 128);
 }
 
 .link:hover {
   text-decoration: none;
-  font-size: 2vh;
+  font-size: 15px;
   color: black;
 }
 
@@ -58,6 +58,7 @@
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
+  min-height: 300px;
   height: 47%;
   padding: 0 1em 0.5em 1em;
   overflow-y: auto;
@@ -70,7 +71,7 @@
 }
 
 #form-file-upload {
-  height: 28vh;
+  height: 70%;
   text-align: center;
   margin-top: 2vh;
 }
@@ -80,7 +81,7 @@
 }
 
 #label-file-upload {
-  font-size: 2vh;
+  font-size: 15px;
   margin-bottom: 5px;
   height: 65%;
   display: flex;
@@ -100,7 +101,7 @@
 .upload-click-text {
   cursor: pointer;
   padding: 0.25rem;
-  font-size: 1em;
+  font-size: 15px;
   border: none;
   font-family: "Oswald", sans-serif;
   background-color: transparent;
@@ -123,7 +124,7 @@
   cursor: pointer;
   display: inline-flex;
   font-family: Inter, sans-serif;
-  font-size: 0.7em;
+  font-size: 12px;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
@@ -156,7 +157,7 @@
   cursor: pointer;
   display: inline-flex;
   font-family: Inter, sans-serif;
-  font-size: 1.4vh;
+  font-size: 12px;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
@@ -187,7 +188,7 @@
 }
 
 .title {
-  font-size: 2.5vh;
+  font-size: 23px;
   text-align: left;
   white-space: nowrap;
 }
@@ -231,6 +232,7 @@
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
+  min-height: 400px;
   height: 59%;
   padding: 0.5vh 0.5vw;
   overflow-x: hidden;
@@ -243,6 +245,7 @@
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
+  min-height: 350px;
   height: 51%;
   padding: 0 1em 1em 1em;
 }
@@ -346,6 +349,7 @@
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
+  min-height: 250px;
   height: 39%;
   padding: 0 0.5em;
 }
@@ -357,7 +361,7 @@
 }
 
 #scoreboard-graph {
-  height: 25vh;
+  height: 70%;
   width: 113%;
 }
 
@@ -431,22 +435,13 @@
   gap: 1em;
 }
 
-#statistics-top-module-layout {
+#statistics-module-layout {
   display: flex;
   flex-direction: column;
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
-  height: 50%;
-  padding: 0 1em;
-}
-
-#statistics-buttom-module-layout {
-  display: flex;
-  flex-direction: column;
-  border-radius: 2% 2% 2% 2%;
-  background-color: white;
-  width: 100%;
+  min-height: 325px;
   height: 50%;
   padding: 0 1em;
 }
@@ -457,7 +452,7 @@
   justify-content: space-between;
   height: 100%;
   padding: 1vh 1vw;
-  font-size: 2.5vh;
+  font-size: 21px;
   font-weight: 300;
   text-align: left;
   width: 100%;
@@ -485,8 +480,8 @@
 }
 
 .simulation-chart-icon {
-  width: 8vh;
-  height: 8vh;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   cursor: pointer;
 }
