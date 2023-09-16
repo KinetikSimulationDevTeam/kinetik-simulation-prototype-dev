@@ -1,7 +1,7 @@
 import React from "react";
 import SearchAppBar from "../Components/SearchAppBar";
 import NavigationBar from "../Components/NavigationBar";
-import FilesList from "../Components/FilesPageComponents/FilesList";
+import FilesList from "../Components/FilesPageComponents/ManageFilesScene";
 import { Authenticator } from "@aws-amplify/ui-react";
 
 const Files = () => {

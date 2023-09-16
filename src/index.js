@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Help from "./Pages/FaqPage";
 import Signin from "./Pages/SigninPage";
 import PageNotFound from "./Pages/PageNotFound";
-import Files from "./Pages/Files";
+import Files from "./Pages/ManageFilesPage";
 import SensitivityAnalysisPage from "./Pages/SensitivityAnalysisPage";
 
 Amplify.configure(awsconfig);
