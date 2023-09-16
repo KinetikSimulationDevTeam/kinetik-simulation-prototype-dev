@@ -1,5 +1,5 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { createUser, createFile } from "../../graphql/mutations";
+import { createUser, createFile } from "../../../graphql/mutations";
 import alertify from "alertifyjs";
 
 const FileAnonymizer = async ({

@@ -57,6 +57,22 @@ const FileTypeSelectionDialog = ({ onClose, open }) => {
           }
           sx={{ padding: "0 1vw 1vh 1vw" }}
         />
+
+        <FormControlLabel
+          value="initialPipeline"
+          control={<Radio />}
+          label={
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src={CsvLogo}
+                alt="CSV Logo"
+                style={{ marginRight: "8px", width: "40px", height: "40px" }}
+              />
+              Marketing Input CSV
+            </div>
+          }
+          sx={{ padding: "0 1vw 1vh 1vw" }}
+        />
       </RadioGroup>
       <Button
         color="primary"
