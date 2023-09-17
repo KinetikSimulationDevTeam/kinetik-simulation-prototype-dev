@@ -12,6 +12,7 @@ import alertify from "alertifyjs";
 import InitialPipelineFileColumnSelection from "./InitialPipelineFiles/InitialPipelineFileColumnSelection";
 import FileAnonymizer from "./InitialPipelineFiles/FileAnonymizer";
 import FilesTable from "./FilesTable";
+import MarketingInputFileDataProcessor from "./MarketingInputFiles/MarketingInputFileDataProcessor";
 
 const FilesList = () => {
   const [filesFromDdb, setFilesFromDdb] = useState([]);
@@ -32,9 +33,14 @@ const FilesList = () => {
   // It will store the file uploaded by the user
   const fileReader = new FileReader();
   const fileReaderInitialPipelineFile = new FileReader();
+  const fileReaderMarketingInputFile = new FileReader();
+
   // input ref
   const inputRefPipelineSummaryFile = React.useRef(null);
   const inputRefInitialPipelineFile = React.useRef(null);
+  const inputRefMarketingInputFile = React.useRef(null);
+
+  // Get the user from the cognito authenticator
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
 
@@ -91,6 +97,24 @@ const FilesList = () => {
     }
   };
 
+  const handleMarketingInputFileChange = async function (e) {
+    e.preventDefault();
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      fileReaderMarketingInputFile.onload = function (event) {
+        const text = event.target.result;
+        MarketingInputFileDataProcessor({
+          filebody: text,
+          username: username,
+          fileName: file.name,
+          handleSetUpdate: handleSetUpdate,
+        });
+      };
+
+      fileReaderMarketingInputFile.readAsText(file);
+    }
+  };
+
   // Function to trigger the file input click
   const handleUploadButtonClick = () => {
     setOpen(true);
@@ -102,6 +126,8 @@ const FilesList = () => {
       inputRefPipelineSummaryFile.current.click();
     } else if (value === "initialPipeline") {
       inputRefInitialPipelineFile.current.click();
+    } else if (value === "marketingInput") {
+      inputRefMarketingInputFile.current.click();
     }
   };
 
@@ -157,6 +183,7 @@ const FilesList = () => {
             </Button>
           )}
         </div>
+
         <Button variant="contained" onClick={handleUploadButtonClick}>
           <img
             style={{ marginRight: "1vw" }}
@@ -165,17 +192,20 @@ const FilesList = () => {
           />
           Upload Files
         </Button>
+
         <FileTypeSelectionDialog
           selectedValue={selectedValue}
           open={open}
           onClose={handleClose}
         />
+
         <InitialPipelineFileColumnSelection
           file={InitialPipelineFile}
           open={displayInitialPipelineFileColumnSelection}
           onClose={handleInitialPipelineFileColumnSelectionClose}
           selectedValues={anonymizeColumns}
         />
+
         <input
           type="file"
           ref={inputRefPipelineSummaryFile}
@@ -184,6 +214,7 @@ const FilesList = () => {
           accept=".csv"
           id="file-upload"
         />
+
         <input
           type="file"
           ref={inputRefInitialPipelineFile}
@@ -191,6 +222,15 @@ const FilesList = () => {
           onChange={handleInitialPipelineFileChange}
           accept=".csv"
           id="file-upload2"
+        />
+
+        <input
+          type="file"
+          ref={inputRefMarketingInputFile}
+          style={{ display: "none" }}
+          onChange={handleMarketingInputFileChange}
+          accept=".csv"
+          id="file-upload3"
         />
       </div>
 

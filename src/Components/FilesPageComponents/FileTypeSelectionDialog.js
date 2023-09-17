@@ -59,7 +59,7 @@ const FileTypeSelectionDialog = ({ onClose, open }) => {
         />
 
         <FormControlLabel
-          value="initialPipeline"
+          value="marketingInput"
           control={<Radio />}
           label={
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -74,6 +74,7 @@ const FileTypeSelectionDialog = ({ onClose, open }) => {
           sx={{ padding: "0 1vw 1vh 1vw" }}
         />
       </RadioGroup>
+
       <Button
         color="primary"
         variant="contained"
