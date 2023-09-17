@@ -1,7 +1,7 @@
 import React from "react";
 import SearchAppBar from "../Components/SearchAppBar";
 import NavigationBar from "../Components/NavigationBar";
-import FilesList from "../Components/FilesPageComponents/ManageFilesScene";
+import ManageFilesScene from "../Components/FilesPageComponents/ManageFilesScene";
 import { Authenticator } from "@aws-amplify/ui-react";
 
 const Files = () => {
@@ -11,7 +11,7 @@ const Files = () => {
       <NavigationBar />
       <div id="files-page-layout">
         <Authenticator>
-          <FilesList />
+          <ManageFilesScene />
         </Authenticator>
       </div>
     </div>
