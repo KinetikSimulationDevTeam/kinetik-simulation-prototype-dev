@@ -12,6 +12,7 @@ const MarketingInputFileDataProcessor = async ({
   const startCol = 0;
 
   let stages = [];
+  let subStages = [];
   let sources = [];
   let subCategoriesNames = [];
   let data = [];
@@ -23,7 +24,7 @@ const MarketingInputFileDataProcessor = async ({
     const firstRow = rows[startRow].split(",");
 
     if (firstRow[startCol] === "") {
-      return;
+      throw new Error("Invalid start column");
     }
 
     // first element in the first row is source 1
@@ -33,24 +34,58 @@ const MarketingInputFileDataProcessor = async ({
     let colCounter = startCol + 1;
     while (colCounter < firstRow.length) {
       if (firstRow[colCounter] === "") {
-        break;
+        continue;
       }
 
       stages.push(firstRow[colCounter]);
-      colCounter = colCounter + 3;
+      colCounter++;
     }
 
+    // check if the first element in the second row is empty
     let rowCounter = startRow + 1;
     if (rows[rowCounter].split(",")[startCol] !== "") {
-      throw new Error("Invalid file format");
+      throw new Error("Invalid file format in line " + rowCounter);
     }
+
+    // add the substage names
+    const subStageRow = rows[rowCounter].split(",");
+    let currentSubstageArr = [];
+    colCounter = startCol + 1;
+
+    // loop through the second row and get the substage names
+    while (
+      colCounter < subStageRow.length &&
+      subStages.length < stages.length
+    ) {
+      if (subStageRow[colCounter] === "") {
+        if (currentSubstageArr.length === 0) {
+          throw new Error("Invalid file format in line" + rowCounter);
+        }
+
+        subStages.push(currentSubstageArr);
+        currentSubstageArr = [];
+        colCounter++;
+        continue;
+      }
+
+      currentSubstageArr.push(subStageRow[colCounter]);
+      colCounter++;
+    }
+
+    // incrment row counter to the third row
     rowCounter++;
 
+    // loop through the rows and get the number of subcategories
     let subCategoryCounter = 0;
     let currentSubCategoryNames = [];
+
     // loop through the rows and get the number of sources
-    for (let i = rowCounter; ; i++) {
+    for (let i = rowCounter; i < rows.length; i++) {
       if (rows[i].split(",")[startCol] === "") {
+        if (subCategoryCounter === 0) {
+          throw new Error("Invalid file format in line" + i);
+        }
+
         subCategoriesNames.push(currentSubCategoryNames);
         subCategoryCounter = -1;
         currentSubCategoryNames = [];
@@ -92,20 +127,26 @@ const MarketingInputFileDataProcessor = async ({
         // Initialize currentSubSource as an empty array
         let currentSubSource = [];
         let currentCol = startCol + 1;
-        for (let k = 0; k < stages.length; k++) {
-          if (
-            parseFloat(currentRow[currentCol]) === NaN ||
-            parseFloat(currentRow[currentCol + 1]) === NaN
-          ) {
-            throw new Error("Invalid number in file");
-          }
-          let mean = currentRow[currentCol];
-          let std = currentRow[currentCol + 1];
-          std = std.replace("\r", "");
 
-          // Push mean and std as an array
-          currentSubSource.push([mean, std]);
-          currentCol = currentCol + 3;
+        // Loop through the stages and get the substages values
+        for (let k = 0; k < stages.length; k++) {
+          let currentSubStagesValues = [];
+          for (let l = 0; l < subStages[k].length; l++) {
+            // Check if the value is a number
+            // if (currentRow[currentCol] === null) {
+            //   throw new Error("Invalid value in input file");
+            // }
+
+            // Push the substage name
+            let val = currentRow[currentCol];
+            val = val.replace("\r", "");
+            currentSubStagesValues.push(val);
+            currentCol++;
+          }
+
+          // Push the substage values into currentSubSource
+          currentSubSource.push(currentSubStagesValues);
+          currentCol++;
         }
 
         // Push currentSubSource into currentSource
@@ -122,6 +163,7 @@ const MarketingInputFileDataProcessor = async ({
       sources: sources,
       subCategoriesNames: subCategoriesNames,
       stages: stages,
+      subStages: subStages,
       data: data,
     };
 
@@ -152,6 +194,7 @@ const MarketingInputFileDataProcessor = async ({
   } catch (err) {
     console.log(err);
     alertify.error("Input File is not in correct format");
+    alertify.error(err);
   }
 };
 
