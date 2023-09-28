@@ -16,6 +16,7 @@ const MarketingInputFileDataProcessor = async ({
   let sources = [];
   let subCategoriesNames = [];
   let data = [];
+  let totalOpportunities;
 
   try {
     let rows = filebody.toString().split("\n");
@@ -32,12 +33,16 @@ const MarketingInputFileDataProcessor = async ({
 
     // loop through the first row and get the stages
     let colCounter = startCol + 1;
+
     while (colCounter < firstRow.length) {
-      if (firstRow[colCounter] === "") {
-        continue;
+      if (
+        firstRow[colCounter] !== "" &&
+        firstRow[colCounter] !== ">" &&
+        firstRow[colCounter] !== "\r"
+      ) {
+        stages.push(firstRow[colCounter]);
       }
 
-      stages.push(firstRow[colCounter]);
       colCounter++;
     }
 
@@ -58,18 +63,21 @@ const MarketingInputFileDataProcessor = async ({
       subStages.length < stages.length
     ) {
       if (subStageRow[colCounter] === "") {
-        if (currentSubstageArr.length === 0) {
-          throw new Error("Invalid file format in line" + rowCounter);
+        if (currentSubstageArr.length !== 0) {
+          subStages.push(currentSubstageArr);
+          currentSubstageArr = [];
+          colCounter++;
+          continue;
         }
-
-        subStages.push(currentSubstageArr);
-        currentSubstageArr = [];
-        colCounter++;
-        continue;
       }
 
-      currentSubstageArr.push(subStageRow[colCounter]);
+      currentSubstageArr.push(subStageRow[colCounter].replace("\r", ""));
       colCounter++;
+    }
+
+    // add the last substage names
+    if (currentSubstageArr.length !== 0) {
+      subStages.push(currentSubstageArr);
     }
 
     // incrment row counter to the third row
@@ -138,8 +146,7 @@ const MarketingInputFileDataProcessor = async ({
             // }
 
             // Push the substage name
-            let val = currentRow[currentCol];
-            val = val.replace("\r", "");
+            let val = currentRow[currentCol].replace("\r", "");
             currentSubStagesValues.push(val);
             currentCol++;
           }
@@ -151,11 +158,34 @@ const MarketingInputFileDataProcessor = async ({
 
         // Push currentSubSource into currentSource
         currentSource.push(currentSubSource);
+
+        // Increment rowCounter and reset currentCol counter
         rowCounter++;
+        currentCol = startCol + 1;
       }
       // Push currentSource into the data array
       data.push(currentSource);
       rowCounter = rowCounter + 2;
+    }
+
+    // get the total opportunities in the rowCounter row
+    const totalOpportunitiesRow = rows[rowCounter].split(",");
+
+    // loop through the row and get the total opportunities
+    for (let i = 1; i < totalOpportunitiesRow.length; i++) {
+      // check if the value is the total opportunities
+      if (
+        totalOpportunitiesRow[i] !== "" &&
+        totalOpportunitiesRow[i] !== "\r"
+      ) {
+        totalOpportunities = totalOpportunitiesRow[i];
+        break;
+      }
+    }
+
+    // check if the total opportunities is undefined
+    if (totalOpportunities === undefined || totalOpportunities === null) {
+      throw new Error("Invalid file format in line " + rowCounter);
     }
 
     // Create the json body
@@ -165,6 +195,7 @@ const MarketingInputFileDataProcessor = async ({
       stages: stages,
       subStages: subStages,
       data: data,
+      totalOpportunities: totalOpportunities,
     };
 
     try {
@@ -192,9 +223,7 @@ const MarketingInputFileDataProcessor = async ({
     handleSetUpdate();
     alertify.success("File Uploaded Successfully");
   } catch (err) {
-    console.log(err);
     alertify.error("Input File is not in correct format");
-    alertify.error(err);
   }
 };
 
