@@ -330,13 +330,19 @@ function DragDropFile(props) {
 
   const handleConfirmSelectionClick = (e) => {
     e.preventDefault();
-    const selectElement = document.getElementsByName("filesDdb")[0];
+
+    const selectElement = document.getElementsByName(
+      "pipelineSummaryFileDdb"
+    )[0];
     let selectedValue =
       selectElement.options[selectElement.selectedIndex].value;
+
     const selectedText =
       selectElement.options[selectElement.selectedIndex].text;
+
     var fileName = selectedText.split(": ")[1];
     fileName = fileName.split(",")[0].trim();
+
     if (
       localStorage.getItem("KinetikDataSet") !== null &&
       localStorage.getItem("fileName") !== null
@@ -344,8 +350,44 @@ function DragDropFile(props) {
       setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
       setPreviousFileName(localStorage.getItem("fileName"));
     }
+
     let selectedValueinStr = JSON.parse(selectedValue);
     selectedValueinStr["weeks"] = Number(props.timePeriod);
+
+    let selectedMarketingInputFile,
+      selectedMarketingInputValue,
+      selectedMarketingInputText,
+      marketingInputFileName;
+
+    selectedMarketingInputFile = document.getElementsByName(
+      "marketingInputFileDdb"
+    )[0];
+
+    // check if marketing input file is selected
+    if (selectedMarketingInputFile.selectedIndex !== 0) {
+      selectedMarketingInputValue =
+        selectedMarketingInputFile.options[
+          selectedMarketingInputFile.selectedIndex
+        ].value;
+
+      selectedMarketingInputText =
+        selectedMarketingInputFile.options[
+          selectedMarketingInputFile.selectedIndex
+        ].text;
+
+      marketingInputFileName = selectedMarketingInputText.split(": ")[1];
+      marketingInputFileName = marketingInputFileName.split(",")[0].trim();
+
+      let selectedMarketingInputValueinStr = JSON.parse(
+        selectedMarketingInputValue
+      );
+
+      let marketingInputOps =
+        selectedMarketingInputValueinStr["totalOpportunities"];
+
+      selectedValueinStr["marketingInputOps"] = Number(marketingInputOps);
+    }
+
     selectedValue = JSON.stringify(selectedValueinStr);
     localStorage.setItem("KinetikDataSet", selectedValue);
     localStorage.setItem("fileName", fileName);
