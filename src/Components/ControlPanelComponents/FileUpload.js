@@ -430,7 +430,6 @@ function DragDropFile(props) {
               Input File Template{" "}
             </h5>
           </a>
-          Or{" "}
           <Button
             variant="outlined"
             size="small"
