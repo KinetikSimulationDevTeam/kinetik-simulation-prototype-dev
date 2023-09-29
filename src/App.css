@@ -205,7 +205,13 @@
 }
 
 .upload-module-ddb-dropdown {
-  margin: 10vh 0 2vh 0;
+  margin: 20% 0 2vh 0;
+  width: 100%;
+  font-size: 0.9vw;
+}
+
+.upload-module-ddb-dropdown + .upload-module-ddb-dropdown {
+  margin: 0 0 2vh 0;
   width: 100%;
   font-size: 0.9vw;
 }

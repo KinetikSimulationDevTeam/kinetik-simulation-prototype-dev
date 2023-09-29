@@ -265,8 +265,12 @@ def handler(event, context):
         output = [0 for j in range(len(body['stages']))]
 
         # total new opportunities coming in
-        # uses normal distribution for each source and adds to total opportunities
         newOpsTotal = 0.0
+        # if marketing input is provided, add that value
+        if (body.get("marketingInputOps") is not None):
+            newOpsTotal = body["marketingInputOps"]
+
+        # uses normal distribution for each source and adds to total opportunities
         for j in range(len(body['sources'])):
             newOpsTotal = newOpsTotal + \
                 numpy.random.normal(body['means'][j], body['stds'][j])

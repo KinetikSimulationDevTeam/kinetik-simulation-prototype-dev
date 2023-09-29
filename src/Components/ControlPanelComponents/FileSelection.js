@@ -11,14 +11,33 @@ const FileSelection = ({
       <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
         <select
           className="upload-module-ddb-dropdown"
-          name="filesDdb"
+          name="pipelineSummaryFileDdb"
           defaultValue="disabled"
         >
           <option value="disabled" disabled>
-            Choose From Uploaded File
+            Chosse Pipeline Summary File
           </option>
           {filesFromDdb
             .filter((file) => file.filetype === "Pipeline Summary")
+            .map((file) => (
+              <option key={file.id} value={file.body}>
+                {"File Name: " +
+                  file.title +
+                  ", Time: " +
+                  new Date(file.createdAt).toLocaleString()}
+              </option>
+            ))}
+        </select>
+        <select
+          className="upload-module-ddb-dropdown"
+          name="marketingInputFileDdb"
+          defaultValue="disabled"
+        >
+          <option value="disabled" disabled>
+            Chosse Marketing Input File
+          </option>
+          {filesFromDdb
+            .filter((file) => file.filetype === "Marketing Input")
             .map((file) => (
               <option key={file.id} value={file.body}>
                 {"File Name: " +
