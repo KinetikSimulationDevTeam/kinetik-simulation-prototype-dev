@@ -4,10 +4,8 @@
     "apiName": "kinetiksimulation",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "expirationTime": 365,
-      "apiKeyExpirationDate": "2024-07-01T07:44:39.067Z",
-      "keyDescription": "kinetiksimulation dynamodb api key"
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authkinetiksimulation7377e52d"
     },
     "conflictResolution": {},
     "additionalAuthTypes": []

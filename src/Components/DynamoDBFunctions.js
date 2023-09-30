@@ -1,11 +1,6 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { listFiles, getFile, listUsers, getUser } from "../graphql/queries";
-import {
-  createUser,
-  createFile,
-  updateFile,
-  updateUser,
-} from "../graphql/mutations";
+import { createUser } from "../graphql/mutations";
 
 export async function fetchUsersDdb() {
   try {

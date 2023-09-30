@@ -7,8 +7,7 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "kinetiksimulation": {
       "GraphQLAPIEndpointOutput": "string",
-      "GraphQLAPIIdOutput": "string",
-      "GraphQLAPIKeyOutput": "string"
+      "GraphQLAPIIdOutput": "string"
     }
   },
   "function": {

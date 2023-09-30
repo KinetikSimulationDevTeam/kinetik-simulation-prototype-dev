@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { getUserDdb } from "../DynamoDBFunctions";
+import { fetchFilesDdb } from "../DynamoDBFunctions";
 import Button from "@mui/material/Button";
 import UploadLogo from "../../Images/UploadLogo.png";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -53,8 +53,8 @@ const FilesList = () => {
       setUsername(user.username);
       const fetchData = async () => {
         try {
-          const fileResult = await getUserDdb(user.username);
-          setFilesFromDdb(fileResult.data.getUser.files.items);
+          const fileResult = await fetchFilesDdb();
+          setFilesFromDdb(fileResult);
         } catch (e) {
           console.log(e);
         }

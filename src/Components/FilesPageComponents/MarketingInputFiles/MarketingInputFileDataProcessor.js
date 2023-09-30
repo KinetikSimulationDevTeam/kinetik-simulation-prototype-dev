@@ -223,6 +223,7 @@ const MarketingInputFileDataProcessor = async ({
     handleSetUpdate();
     alertify.success("File Uploaded Successfully");
   } catch (err) {
+    console.log(err);
     alertify.error("Input File is not in correct format");
   }
 };
