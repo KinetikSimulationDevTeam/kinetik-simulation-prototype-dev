@@ -2,5 +2,11 @@
   "AppSyncApiName": "kinetiksimulation",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-07-02T07:44:47.331Z"
+  "AuthModeLastUpdated": "2023-09-30T03:00:02.920Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authkinetiksimulation7377e52d",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

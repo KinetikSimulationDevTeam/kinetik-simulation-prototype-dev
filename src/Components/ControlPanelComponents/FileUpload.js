@@ -5,7 +5,7 @@ import "alertifyjs/build/css/alertify.css";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { API, graphqlOperation } from "aws-amplify";
 import { createUser, createFile } from "../../graphql/mutations";
-import { getUserDdb } from "../DynamoDBFunctions";
+import { fetchFilesDdb } from "../DynamoDBFunctions";
 import { Checkbox } from "pretty-checkbox-react";
 import "@djthoms/pretty-checkbox";
 import { Link } from "react-router-dom";
@@ -308,8 +308,8 @@ function DragDropFile(props) {
     if (userLoginStatus && username) {
       const fetchData = async () => {
         try {
-          const fileResult = await getUserDdb(username);
-          setFilesFromDdb(fileResult.data.getUser.files.items);
+          const fileResult = await fetchFilesDdb();
+          setFilesFromDdb(fileResult);
         } catch (e) {}
       };
 
