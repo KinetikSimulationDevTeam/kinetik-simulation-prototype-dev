@@ -277,7 +277,7 @@ def handler(event, context):
         for j in range(len(body['sources'])):
 
             # if marketing input is provided, do not add digital inbound or digital outbound to new opportunities since they are already accounted for in marketing input
-            if (body.get("marketingInputOps") is not None & (newOpportunitySourcesName[j] == "Digital Inbound" | newOpportunitySourcesName[j] == "Digital Outbound")):
+            if (body.get("marketingInputOps") is not None and (newOpportunitySourcesName[j] == "Digital Inbound" or newOpportunitySourcesName[j] == "Digital Outbound")):
                 continue
 
             newOpsTotal = newOpsTotal + \

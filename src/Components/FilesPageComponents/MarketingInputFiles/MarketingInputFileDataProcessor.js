@@ -140,12 +140,7 @@ const MarketingInputFileDataProcessor = async ({
         for (let k = 0; k < stages.length; k++) {
           let currentSubStagesValues = [];
           for (let l = 0; l < subStages[k].length; l++) {
-            // Check if the value is a number
-            // if (currentRow[currentCol] === null) {
-            //   throw new Error("Invalid value in input file");
-            // }
-
-            // Push the substage name
+            // Push the substage value into currentSubStagesValues
             let val = currentRow[currentCol].replace("\r", "");
             currentSubStagesValues.push(val);
             currentCol++;
@@ -163,6 +158,7 @@ const MarketingInputFileDataProcessor = async ({
         rowCounter++;
         currentCol = startCol + 1;
       }
+
       // Push currentSource into the data array
       data.push(currentSource);
       rowCounter = rowCounter + 2;
