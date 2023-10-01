@@ -421,7 +421,7 @@ function DragDropFile(props) {
       <div id="input-file-template-text-layout">
         <span style={{ fontWeight: "bold" }}>
           <a
-            id="upload-module-template-link"
+            className="template-link"
             href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
             target="_blank"
           >

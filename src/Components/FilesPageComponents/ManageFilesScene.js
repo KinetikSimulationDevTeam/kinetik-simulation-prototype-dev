@@ -170,8 +170,32 @@ const FilesList = () => {
   return (
     <div>
       <div id="files-page-top">
-        <div id="files-title-delete-button">
+        <div className="manage-files-page-header">
           <h3 className="title">Files</h3>
+          <a
+            className="template-link"
+            href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
+            target="_blank"
+          >
+            <h5 style={{ marginBottom: "10px", fontSize: "13px" }}>
+              {" "}
+              Pipeline Summary File Template{" "}
+            </h5>
+          </a>
+
+          <a
+            className="template-link"
+            href="https://docs.google.com/spreadsheets/d/1RuXib61NXOudRm36gLRBXacBlbi2bvyhHxIE2oOAxBI/template/preview"
+            target="_blank"
+          >
+            <h5 style={{ marginBottom: "10px", fontSize: "13px" }}>
+              {" "}
+              Marketing Input File Template{" "}
+            </h5>
+          </a>
+        </div>
+
+        <div className="manage-files-page-buttons">
           {displayDeleteButton && (
             <Button
               color="error"
@@ -182,16 +206,16 @@ const FilesList = () => {
               Delete Files
             </Button>
           )}
-        </div>
 
-        <Button variant="contained" onClick={handleUploadButtonClick}>
-          <img
-            style={{ marginRight: "1vw" }}
-            src={UploadLogo}
-            alt="Upload Logo"
-          />
-          Upload Files
-        </Button>
+          <Button variant="contained" onClick={handleUploadButtonClick}>
+            <img
+              style={{ marginRight: "1vw" }}
+              src={UploadLogo}
+              alt="Upload Logo"
+            />
+            Upload File
+          </Button>
+        </div>
 
         <FileTypeSelectionDialog
           selectedValue={selectedValue}

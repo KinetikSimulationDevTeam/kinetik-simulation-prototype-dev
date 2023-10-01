@@ -391,12 +391,12 @@
   width: 100%;
 }
 
-#upload-module-template-link {
+.template-link {
   text-decoration-line: none;
   color: #0000ee;
   font-size: 2vh;
   height: 2vh;
-  text-align: end;
+  text-align: center;
   white-space: nowrap;
 }
 
@@ -551,8 +551,18 @@
   gap: 0.5vw;
 }
 
-#files-title-delete-button {
+.manage-files-page-header {
   display: flex;
+  flex-direction: row;
+  justify-content: left;
+  text-align: left;
+  gap: 3vw;
+}
+
+.manage-files-page-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
   align-items: center;
   gap: 2vw;
 }
