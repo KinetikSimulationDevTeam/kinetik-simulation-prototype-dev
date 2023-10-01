@@ -59,6 +59,9 @@ def handler(event, context):
     # set first week to current number of opportunities
     currentNumber = body["ops"]
 
+    # new opportunities source names
+    newOpportunitySourcesName = body['newOpsSourceNames']
+
     # change opsProbabilities to reflect slider values
     # progression slider bar
     # prospecting > Lead Qualification
@@ -272,6 +275,11 @@ def handler(event, context):
 
         # uses normal distribution for each source and adds to total opportunities
         for j in range(len(body['sources'])):
+
+            # if marketing input is provided, do not add digital inbound or digital outbound to new opportunities since they are already accounted for in marketing input
+            if (body.get("marketingInputOps") is not None & (newOpportunitySourcesName[j] == "Digital Inbound" | newOpportunitySourcesName[j] == "Digital Outbound")):
+                continue
+
             newOpsTotal = newOpsTotal + \
                 numpy.random.normal(body['means'][j], body['stds'][j])
 
