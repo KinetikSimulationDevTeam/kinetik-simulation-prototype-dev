@@ -19,6 +19,7 @@ const csvFileToArray = async ({
     let ops = [];
     let sliderValues = [];
     let dealSize = [];
+    let newOpsSourceNames = [];
 
     //get the number of sources
     for (let i = 0; i < sources.length; i++) {
@@ -54,6 +55,7 @@ const csvFileToArray = async ({
 
     //get the mean and std
     for (let i = 0; i < sources.length; i++) {
+      newOpsSourceNames[i] = sources[i].split(" ")[0];
       mean[i] = parseFloat(array[7 + i].split(",")[1]);
       std[i] = parseFloat(array[7 + i].split(",")[2]);
     }
@@ -101,6 +103,7 @@ const csvFileToArray = async ({
       stages: stages,
       sources: sources,
       ops: ops,
+      newOpsSourceNames: newOpsSourceNames,
       means: mean,
       stds: std,
       newOpsProbabilities: newOpsProbabilities,

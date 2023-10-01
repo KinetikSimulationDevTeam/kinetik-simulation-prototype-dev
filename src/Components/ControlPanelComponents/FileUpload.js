@@ -151,6 +151,7 @@ function DragDropFile(props) {
       let ops = [];
       let sliderValues = [];
       let dealSize = [];
+      let newOpsSourceNames = [];
 
       //get the number of sources
       for (let i = 0; i < sources.length; i++) {
@@ -186,6 +187,7 @@ function DragDropFile(props) {
 
       //get the mean and std
       for (let i = 0; i < sources.length; i++) {
+        newOpsSourceNames[i] = array[7 + i].split(",")[0];
         mean[i] = parseFloat(array[7 + i].split(",")[1]);
         std[i] = parseFloat(array[7 + i].split(",")[2]);
       }
@@ -233,6 +235,7 @@ function DragDropFile(props) {
         stages: stages,
         sources: sources,
         ops: ops,
+        newOpsSourceNames: newOpsSourceNames,
         means: mean,
         stds: std,
         newOpsProbabilities: newOpsProbabilities,
@@ -421,7 +424,7 @@ function DragDropFile(props) {
       <div id="input-file-template-text-layout">
         <span style={{ fontWeight: "bold" }}>
           <a
-            id="upload-module-template-link"
+            className="template-link"
             href="https://docs.google.com/spreadsheets/d/1BFe5Zd3hNXDDj_UhxXslOETMXakupOt3WtGcI0YQkro/template/preview"
             target="_blank"
           >
