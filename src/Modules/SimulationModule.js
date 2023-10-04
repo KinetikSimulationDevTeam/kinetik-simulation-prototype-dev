@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
-import MyResponsiveBar from "../Components/SimulationComponents/SimulationBarChart";
 import { API } from "aws-amplify";
 import alertify from "alertifyjs";
 import "alertifyjs/build/css/alertify.css";
-import SimulationChordChart from "../Components/SimulationComponents/SimulationChordChart";
-import ChordChartIcon from "../Images/ChordChartIcon.png";
-import BarChartIcon from "../Images/BarChartIcon.png";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import Slider from "@mui/material/Slider";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import FastForwardIcon from "@mui/icons-material/FastForward";
-import FastRewindIcon from "@mui/icons-material/FastRewind";
 import CsvMaker from "../Components/SimulationComponents/CsvMaker";
 import downloadCsv from "../Components/SimulationComponents/DownloadCsv";
+import SimulationTitle from "../Components/SimulationComponents/SimulationTitle";
+import SimulationChart from "../Components/SimulationComponents/SimulationChart";
+import SimulationButtons from "../Components/SimulationComponents/SimulationButtons";
+import SimulationControl from "../Components/SimulationComponents/SimulationControl";
+import SimulationBackDrop from "../Components/SimulationComponents/SimulationLoadingIndicator";
 
 /*
     Description: This component is used to display the simulation module.
@@ -258,102 +252,39 @@ const SimulationModule = (props) => {
 
   return (
     <div id="simulation-module-layout">
-      <div id="simulation-title">
-        <h3 className="title"> Pipeline Dynamics </h3>
-        <h3> Week {currentIndex + 1} </h3>
-        {graphSelection === "bar-chart" && (
-          <img
-            className="simulation-chart-icon"
-            title="Click to show movement flow chart"
-            src={ChordChartIcon}
-            alt="chord-chart"
-            onClick={handleGraphSelection}
-          />
-        )}
-        {graphSelection === "chord-chart" && (
-          <img
-            className="simulation-chart-icon"
-            title="Click to show stages bar chart"
-            src={BarChartIcon}
-            alt="chord-chart"
-            onClick={handleGraphSelection}
-          />
-        )}
-      </div>
-      <div id="simulation-bar-chart">
-        {graphSelection === "bar-chart" && (
-          <MyResponsiveBar
-            largestValue={largestValue}
-            data={data[currentIndex]}
-          />
-        )}
-        {graphSelection === "chord-chart" && chordData && (
-          <SimulationChordChart
-            data={getChordDataForCurrentIndex()}
-            key={chordKey}
-          />
-        )}
-      </div>
-      <div id="simulation-buttons-layout">
-        <button
-          className="button"
-          style={{
-            backgroundColor: startSimulationButtonFlash ? "goldenrod" : "",
-          }}
-          onClick={() =>
-            callLambdaFunction(
-              localStorage.getItem("KinetikDataSet"),
-              localStorage.getItem("marketingInputFile") === null
-                ? null
-                : localStorage.getItem("marketingInputFile")
-            )
-          }
-        >
-          {" "}
-          Start Simulation{" "}
-        </button>
-        <button className="button" onClick={onClickExportScenario}>
-          Export Scenario
-        </button>
-      </div>
-      <div className="simulation-auto-play">
-        <div className="simulation-playback-speed">
-          <FastRewindIcon
-            onClick={decreasePlaybackSpeed}
-            sx={{ cursor: "pointer" }}
-          />
-          {!isPlaying ? (
-            <PlayCircleIcon onClick={togglePlay} sx={{ cursor: "pointer" }} />
-          ) : (
-            ""
-          )}
-          {isPlaying ? (
-            <StopCircleIcon onClick={togglePlay} sx={{ cursor: "pointer" }} />
-          ) : (
-            ""
-          )}
-          <FastForwardIcon
-            onClick={increasePlaybackSpeed}
-            sx={{ cursor: "pointer" }}
-          />
-        </div>
-        <Slider
-          aria-label="Default"
-          min={0}
-          defaultValue={0}
-          max={data.length - 1}
-          value={sliderValue}
-          onChange={handleSliderChange}
-        />
-      </div>
-      {isLoading && (
-        <Backdrop
-          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={isLoading}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
+      <SimulationTitle
+        currentIndex={currentIndex}
+        graphSelection={graphSelection}
+        handleGraphSelection={handleGraphSelection}
+      />
+
+      <SimulationChart
+        graphSelection={graphSelection}
+        data={data}
+        currentIndex={currentIndex}
+        largestValue={largestValue}
+        chordData={chordData}
+        chordKey={chordKey}
+        getChordDataForCurrentIndex={getChordDataForCurrentIndex}
+      />
+
+      <SimulationButtons
+        onClickExportScenario={onClickExportScenario}
+        startSimulationButtonFlash={startSimulationButtonFlash}
+        callLambdaFunction={callLambdaFunction}
+      />
+
+      <SimulationControl
+        decreasePlaybackSpeed={decreasePlaybackSpeed}
+        increasePlaybackSpeed={increasePlaybackSpeed}
+        isPlaying={isPlaying}
+        togglePlay={togglePlay}
+        sliderValue={sliderValue}
+        handleSliderChange={handleSliderChange}
+        data={data}
+      />
+
+      <SimulationBackDrop isLoading={isLoading} />
     </div>
   );
 };
