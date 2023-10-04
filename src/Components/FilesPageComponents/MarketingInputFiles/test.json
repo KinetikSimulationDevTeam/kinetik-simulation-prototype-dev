@@ -1,0 +1,536 @@
+{
+  "sources": [
+    "Outbound",
+    "Digital",
+    "Account Based Marketing",
+    "Partners",
+    "Product Led Growth"
+  ],
+  "subCategoriesNames": [
+    [
+      "Touches / Calls",
+      "Conversion Rate",
+      "Open Rate",
+      "Response Rate",
+      "Appointments Set"
+    ],
+    [
+      "Impressions",
+      "Visitors",
+      "Engaged Visits",
+      "CTA Response",
+      "Appointments Set",
+      "Conversion Rate"
+    ],
+    [
+      "Accounts",
+      "Contacts",
+      "Direct Engagement",
+      "Event Participants",
+      "Relationship Progression",
+      "Social / Digital Engagement",
+      "Conversion Rate"
+    ],
+    [
+      "Active Partners",
+      "Program engagement",
+      "Contacts",
+      "CTA Responses",
+      "Conversion Rate"
+    ],
+    [
+      "Trial Requests",
+      "Trial Engagement",
+      "Demo requests",
+      "In-App Feedback",
+      "Conversion Rate"
+    ]
+  ],
+  "stages": [
+    "Activity / Outcome per week",
+    "Unqualified Leads",
+    "MQLs",
+    "SQLs",
+    "Opportunities"
+  ],
+  "subStages": [
+    ["Mean", "Std Dev", "Pct Change ", "Change Period"],
+    ["Mean", "Std Dev"],
+    ["Mean", "Std Dev"],
+    ["Mean", "Std Dev"],
+    ["Mean", "Std Dev"]
+  ],
+  "data": [
+    {
+      "Outbound": [
+        {
+          "Touches / Calls": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "500" },
+                { "Std Dev": "50" },
+                { "Pct Change ": "10%" },
+                { "Change Period": "Quarter" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "25" }, { "Std Dev": "5.61" }] },
+            { "MQLs": [{ "Mean": "7.5" }, { "Std Dev": "1.7" }] },
+            { "SQLs": [{ "Mean": "3.75" }, { "Std Dev": "0.85" }] },
+            { "Opportunities": [{ "Mean": "1.9" }, { "Std Dev": "0.42" }] }
+          ]
+        },
+        {
+          "Conversion Rate": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "5%" },
+                { "Std Dev": "1%" },
+                { "Pct Change ": "0" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "30%" }, { "Std Dev": "1%" }] },
+            { "MQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "SQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Open Rate": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "" },
+                { "Std Dev": "" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Response Rate": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "" },
+                { "Std Dev": "" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Appointments Set": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "" },
+                { "Std Dev": "" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        }
+      ]
+    },
+    {
+      "Digital": [
+        {
+          "Impressions": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "\"10" },
+                { "Std Dev": "000\"" },
+                { "Pct Change ": "\"1" },
+                { "Change Period": "000\"" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "Quarter" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "0.19" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "0.05" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "0.02" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Visitors": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "\"5" },
+                { "Std Dev": "000\"" },
+                { "Pct Change ": "500" },
+                { "Change Period": "0" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Engaged Visits": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "600" },
+                { "Std Dev": "60" },
+                { "Pct Change ": "0" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "CTA Response": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "60" },
+                { "Std Dev": "6" },
+                { "Pct Change ": "0" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Appointments Set": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "6" },
+                { "Std Dev": "1" },
+                { "Pct Change ": "0" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Conversion Rate": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "18%" },
+                { "Std Dev": "1%" },
+                { "Pct Change ": "0" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "30%" }, { "Std Dev": "1%" }] },
+            { "MQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "SQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        }
+      ]
+    },
+    {
+      "Account Based Marketing": [
+        {
+          "Accounts": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "25" },
+                { "Std Dev": "2.5" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            {
+              "Unqualified Leads": [{ "Mean": "22.5" }, { "Std Dev": "2.57" }]
+            },
+            { "MQLs": [{ "Mean": "6.8" }, { "Std Dev": "0.8" }] },
+            { "SQLs": [{ "Mean": "3.4" }, { "Std Dev": "0.4" }] },
+            { "Opportunities": [{ "Mean": "2" }, { "Std Dev": "0.2" }] }
+          ]
+        },
+        {
+          "Contacts": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "1250" },
+                { "Std Dev": "125" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Direct Engagement": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "125" },
+                { "Std Dev": "12.5" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Event Participants": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "0" },
+                { "Std Dev": "0" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Relationship Progression": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "0" },
+                { "Std Dev": "0" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Social / Digital Engagement": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "37.5" },
+                { "Std Dev": "3.75" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Conversion Rate": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "18%" },
+                { "Std Dev": "1%" },
+                { "Pct Change ": "0" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "30%" }, { "Std Dev": "1%" }] },
+            { "MQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "SQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        }
+      ]
+    },
+    {
+      "Partners": [
+        {
+          "Active Partners": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "12" },
+                { "Std Dev": "1.2" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "0.7" }, { "Std Dev": "0.15" }] },
+            { "MQLs": [{ "Mean": "0.2" }, { "Std Dev": "0.04" }] },
+            { "SQLs": [{ "Mean": "0.1" }, { "Std Dev": "0.02" }] },
+            { "Opportunities": [{ "Mean": "0.0" }, { "Std Dev": "0.01" }] }
+          ]
+        },
+        {
+          "Program engagement": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "9" },
+                { "Std Dev": "0.9" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Contacts": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "135" },
+                { "Std Dev": "13.5" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "CTA Responses": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "13.5" },
+                { "Std Dev": "1.35" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Conversion Rate": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "5%" },
+                { "Std Dev": "1%" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "30%" }, { "Std Dev": "1%" }] },
+            { "MQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "SQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        }
+      ]
+    },
+    {
+      "Product Led Growth": [
+        {
+          "Trial Requests": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "45" },
+                { "Std Dev": "4.5" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "1.7" }, { "Std Dev": "0.37" }] },
+            { "MQLs": [{ "Mean": "0.5" }, { "Std Dev": "0.11" }] },
+            { "SQLs": [{ "Mean": "0.3" }, { "Std Dev": "0.05" }] },
+            { "Opportunities": [{ "Mean": "0.0" }, { "Std Dev": "0.02" }] }
+          ]
+        },
+        {
+          "Trial Engagement": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "34" },
+                { "Std Dev": "3.4" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Demo requests": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "5%" },
+                { "Std Dev": "1%" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "In-App Feedback": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "0.025" },
+                { "Std Dev": "0" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "MQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "SQLs": [{ "Mean": "" }, { "Std Dev": "" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        },
+        {
+          "Conversion Rate": [
+            {
+              "Activity / Outcome per week": [
+                { "Mean": "5%" },
+                { "Std Dev": "1%" },
+                { "Pct Change ": "" },
+                { "Change Period": "" }
+              ]
+            },
+            { "Unqualified Leads": [{ "Mean": "30%" }, { "Std Dev": "1%" }] },
+            { "MQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "SQLs": [{ "Mean": "50%" }, { "Std Dev": "1%" }] },
+            { "Opportunities": [{ "Mean": "" }, { "Std Dev": "" }] }
+          ]
+        }
+      ]
+    }
+  ],
+  "totalOpportunities": "3.6"
+}

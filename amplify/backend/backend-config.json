@@ -62,6 +62,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "kinetikSimulationMarketingInputFileAlgorithm": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "kinetiksimulationsensitivityanalysis": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -114,6 +119,22 @@
         {
           "category": "function",
           "resourceName": "kinetikSimulationLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_kinetikSimulationMarketingInputFileAlgorithm_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "kinetikSimulationMarketingInputFileAlgorithm"
+        }
+      ]
+    },
+    "AMPLIFY_function_kinetikSimulationMarketingInputFileAlgorithm_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "kinetikSimulationMarketingInputFileAlgorithm"
         }
       ]
     },
