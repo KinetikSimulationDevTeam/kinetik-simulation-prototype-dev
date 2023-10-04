@@ -244,6 +244,7 @@ function DragDropFile(props) {
         dealSizeMean: dealSize[0],
         dealSizeStd: dealSize[1],
       };
+
       const jsonString = JSON.stringify(jsonData);
       if (localStorage.getItem("KinetikDataSet") !== null) {
         setPreviousFileBody(localStorage.getItem("KinetikDataSet"));
@@ -274,6 +275,9 @@ function DragDropFile(props) {
         );
         const file = fileResult.data.createFile;
       }
+
+      // set marketing input file to null since no marketing input file is selected
+      localStorage.setItem("marketingInputFile", null);
 
       alertify.success("Successfully Upload a file.");
       alertify.success(
@@ -389,6 +393,12 @@ function DragDropFile(props) {
         selectedMarketingInputValueinStr["totalOpportunities"];
 
       selectedValueinStr["marketingInputOps"] = Number(marketingInputOps);
+
+      // store marketing input file in local storage
+      localStorage.setItem("marketingInputFile", selectedMarketingInputValue);
+    } else {
+      // if no marketing input file is selected, set marketinginput local storage to null
+      localStorage.setItem("marketingInputFile", null);
     }
 
     selectedValue = JSON.stringify(selectedValueinStr);

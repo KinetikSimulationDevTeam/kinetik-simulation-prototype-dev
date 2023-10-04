@@ -156,7 +156,12 @@ const SimulationModule = (props) => {
   */
   useEffect(() => {
     if (localStorage.getItem("KinetikDataSet") != null) {
-      callLambdaFunction(localStorage.getItem("KinetikDataSet"));
+      callLambdaFunction(
+        localStorage.getItem("KinetikDataSet"),
+        localStorage.getItem("marketingInputFile") === null
+          ? null
+          : localStorage.getItem("marketingInputFile")
+      );
     }
   }, [props.sliderValue]);
 
@@ -167,7 +172,7 @@ const SimulationModule = (props) => {
     
     Return Type: None
   */
-  const callLambdaFunction = async (input) => {
+  const callLambdaFunction = async (input, marketingInput) => {
     try {
       setIsLoading(true);
       let updatedJsonObject = input;
@@ -180,15 +185,37 @@ const SimulationModule = (props) => {
         updatedJsonObject = JSON.stringify(jsonObject);
       }
 
-      const response = await API.post("getSimulationOutput", "/simulation", {
-        body: updatedJsonObject,
-      });
+      const mainSimulationResponse = await API.post(
+        "getSimulationOutput",
+        "/simulation",
+        {
+          body: updatedJsonObject,
+        }
+      );
 
-      // Set the state of lambdaOutput with the response
+      if (marketingInput !== "null") {
+        console.log("marketingInput", marketingInput);
+
+        const marketingInputFileResponse = await API.post(
+          "getSimulationOutput",
+          "/kinetikSimulationMarketingInputFileAlgorithm-dev",
+          {
+            body: marketingInput,
+          }
+        );
+
+        console.log("marketingInputFileResponse", marketingInputFileResponse);
+      }
+
+      // Set the state of lambdaOutput with the mainSimulationResponse
       await setLambdaOutput(
-        response === undefined ? response[0] : response,
+        mainSimulationResponse === undefined
+          ? mainSimulationResponse[0]
+          : mainSimulationResponse,
         props.handleLambdaOutput(
-          response === undefined ? response[0] : response
+          mainSimulationResponse === undefined
+            ? mainSimulationResponse[0]
+            : mainSimulationResponse
         ),
         setIsLoading(false)
       );
@@ -274,7 +301,12 @@ const SimulationModule = (props) => {
             backgroundColor: startSimulationButtonFlash ? "goldenrod" : "",
           }}
           onClick={() =>
-            callLambdaFunction(localStorage.getItem("KinetikDataSet"))
+            callLambdaFunction(
+              localStorage.getItem("KinetikDataSet"),
+              localStorage.getItem("marketingInputFile") === null
+                ? null
+                : localStorage.getItem("marketingInputFile")
+            )
           }
         >
           {" "}

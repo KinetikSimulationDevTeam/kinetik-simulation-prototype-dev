@@ -3,7 +3,10 @@ import numpy as np
 
 
 def handler(event, context):
+    print(event)
+    # Parse the JSON body from the event
     eventbody = event['body']
+
     data = eventbody['data']
 
     # Initialize dictionaries to store means and standard deviations
