@@ -141,18 +141,20 @@ const MarketingInputFileDataProcessor = async ({
           let currentSubStagesValues = [];
           for (let l = 0; l < subStages[k].length; l++) {
             // Push the substage value into currentSubStagesValues
-            let val = currentRow[currentCol].replace("\r", "");
-            currentSubStagesValues.push(val);
+            const val = currentRow[currentCol].replace("\r", "");
+            currentSubStagesValues.push({ [subStages[k][l]]: val });
             currentCol++;
           }
 
           // Push the substage values into currentSubSource
-          currentSubSource.push(currentSubStagesValues);
+          currentSubSource.push({ [stages[k]]: currentSubStagesValues });
           currentCol++;
         }
 
         // Push currentSubSource into currentSource
-        currentSource.push(currentSubSource);
+        currentSource.push({
+          [subCategoriesNames[i][j]]: currentSubSource,
+        });
 
         // Increment rowCounter and reset currentCol counter
         rowCounter++;
@@ -160,7 +162,9 @@ const MarketingInputFileDataProcessor = async ({
       }
 
       // Push currentSource into the data array
-      data.push(currentSource);
+      data.push({
+        [sources[i]]: currentSource,
+      });
       rowCounter = rowCounter + 2;
     }
 
