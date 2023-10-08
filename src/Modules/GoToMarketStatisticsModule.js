@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-const GoToMarketStatisticsModule = ({ lambdaOutput }) => {
+const GoToMarketStatisticsModule = ({
+  lambdaOutput,
+  marketingInputFileResponse,
+}) => {
   const [winRate, setWinRate] = useState(0);
   const [leads, setLeads] = useState(0);
   const [mqls, setMqls] = useState(0);
@@ -75,14 +78,18 @@ const GoToMarketStatisticsModule = ({ lambdaOutput }) => {
         <p className="statistics-module-info-legend">
           Marketing Qualified Leads:
           <span className="statistics-module-info-values">
-            {Math.round(mqls).toLocaleString("en")}
+            {marketingInputFileResponse === null
+              ? Math.round(mqls).toLocaleString("en")
+              : marketingInputFileResponse.MQL.toLocaleString("en")}
           </span>
         </p>
 
         <p className="statistics-module-info-legend">
           Sales Qualified Leads:
           <span className="statistics-module-info-values">
-            {Math.round(mqls / 3).toLocaleString("en")}
+            {marketingInputFileResponse === null
+              ? Math.round(mqls / 3).toLocaleString("en")
+              : marketingInputFileResponse.SQL.toLocaleString("en")}
           </span>
         </p>
 

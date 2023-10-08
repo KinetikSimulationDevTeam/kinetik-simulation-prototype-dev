@@ -25,6 +25,12 @@ const MainFrame = () => {
   const [uploadCount, setUploadCount] = useState(0);
   const [startSimulationButtonFlashing, setStartSimulationButtonFlashing] =
     useState(false);
+  const [marketingInputFileResponse, setMarketingInputFileResponse] =
+    useState(null);
+
+  const handleMarketingInputFileResponse = (response) => {
+    setMarketingInputFileResponse(response);
+  };
 
   useEffect(() => {
     if (localStorage.getItem("KinetikDataSet") === null) {
@@ -77,11 +83,15 @@ const MainFrame = () => {
             sliderValue={sliderValue}
             startSimulationButtonFlashing={startSimulationButtonFlashing}
             onClickStartSimulationButton={onClickStartSimulationButton}
+            marketingInputFileResponse={handleMarketingInputFileResponse}
           />
           <Scoreboard lambdaOutput={lambdaOutput} />
         </div>
         <div id="third-column-mainframe">
-          <GoToMarketStatisticsModule lambdaOutput={lambdaOutput} />
+          <GoToMarketStatisticsModule
+            lambdaOutput={lambdaOutput}
+            marketingInputFileResponse={marketingInputFileResponse}
+          />
           <ScenarioStatisticsModule lambdaOutput={lambdaOutput} />
         </div>
       </div>
