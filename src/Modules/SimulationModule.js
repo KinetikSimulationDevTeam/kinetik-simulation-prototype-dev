@@ -187,20 +187,6 @@ const SimulationModule = (props) => {
         }
       );
 
-      if (marketingInput !== "null") {
-        console.log("marketingInput", marketingInput);
-
-        const marketingInputFileResponse = await API.post(
-          "getSimulationOutput",
-          "/kinetikSimulationMarketingInputFileAlgorithm-dev",
-          {
-            body: marketingInput,
-          }
-        );
-
-        console.log("marketingInputFileResponse", marketingInputFileResponse);
-      }
-
       // Set the state of lambdaOutput with the mainSimulationResponse
       await setLambdaOutput(
         mainSimulationResponse === undefined
@@ -213,6 +199,23 @@ const SimulationModule = (props) => {
         ),
         setIsLoading(false)
       );
+
+      if (marketingInput !== "null") {
+        const marketingInputJson = JSON.parse(marketingInput);
+
+        const marketingInputFileResponse = await API.post(
+          "getSimulationOutput",
+          "/kinetikSimulationMarketingInputFileAlgorithm",
+          {
+            body: marketingInputJson,
+          }
+        );
+
+        props.marketingInputFileResponse(marketingInputFileResponse);
+      } else {
+        props.marketingInputFileResponse(null);
+      }
+
       props.onClickStartSimulationButton();
     } catch (error) {
       console.log(error);

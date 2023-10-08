@@ -122,7 +122,7 @@ function DragDropFile(props) {
         const text = event.target.result;
         csvFileToArray(text);
       };
-
+      localStorage.setItem("marketingInputFile", null);
       fileReader.readAsText(file);
       setImportCsvButtonFlashing(false);
     } else if (localStorage.getItem("KinetikDataSet") !== null) {
@@ -309,6 +309,16 @@ function DragDropFile(props) {
       }
       localStorage.setItem("KinetikDataSet", jsonString);
     }
+
+    if (localStorage.getItem("marketingInputFile") !== null) {
+      const jsonObject = JSON.parse(localStorage.getItem("marketingInputFile"));
+      jsonObject.weeks = Number(props.timePeriod);
+      const jsonString = JSON.stringify(jsonObject);
+      if (localStorage.getItem("marketingInputFile") !== null) {
+        setPreviousFileBody(localStorage.getItem("marketingInputFile"));
+      }
+      localStorage.setItem("marketingInputFile", jsonString);
+    }
   }, [props.timePeriod]);
 
   useEffect(() => {
@@ -423,6 +433,7 @@ function DragDropFile(props) {
     const jsonString = JSON.stringify(SampleFile);
     localStorage.setItem("KinetikDataSet", jsonString);
     localStorage.setItem("fileName", "Sample File");
+    localStorage.setItem("marketingInputFile", null);
     props.handleUploadCount();
     props.startSimulationButtonFlash();
     alertify.success("Successfully selected the sample file.");

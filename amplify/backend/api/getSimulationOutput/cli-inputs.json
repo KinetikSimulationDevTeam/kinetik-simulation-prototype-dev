@@ -14,6 +14,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/kinetikSimulationMarketingInputFileAlgorithm": {
+      "name": "/kinetikSimulationMarketingInputFileAlgorithm",
+      "lambdaFunction": "kinetikSimulationMarketingInputFileAlgorithm",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

@@ -17,6 +17,14 @@
           ],
           "category": "function",
           "resourceName": "kinetiksimulationsensitivityanalysis"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "kinetikSimulationMarketingInputFileAlgorithm"
         }
       ],
       "providerPlugin": "awscloudformation",

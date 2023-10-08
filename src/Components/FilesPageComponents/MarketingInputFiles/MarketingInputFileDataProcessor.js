@@ -190,6 +190,7 @@ const MarketingInputFileDataProcessor = async ({
 
     // Create the json body
     const jsonBody = {
+      weeks: 52,
       sources: sources,
       subCategoriesNames: subCategoriesNames,
       stages: stages,
