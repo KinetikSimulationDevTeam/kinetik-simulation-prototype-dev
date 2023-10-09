@@ -76,6 +76,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "kinetikSimulationWebScrapingDispatcher": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "kinetiksimulationsensitivityanalysis": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -147,6 +152,22 @@
         }
       ]
     },
+    "AMPLIFY_function_kinetikSimulationWebScrapingDispatcher_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "kinetikSimulationWebScrapingDispatcher"
+        }
+      ]
+    },
+    "AMPLIFY_function_kinetikSimulationWebScrapingDispatcher_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "kinetikSimulationWebScrapingDispatcher"
+        }
+      ]
+    },
     "AMPLIFY_function_kinetiksimulationsensitivityanalysis_deploymentBucketName": {
       "usedBy": [
         {
@@ -162,7 +183,142 @@
           "resourceName": "kinetiksimulationsensitivityanalysis"
         }
       ]
+    },
+    "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_kinetiksimulationfab70cc7_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "kinetiksimulationfab70cc7"
+        }
+      ]
+    },
+    "AMPLIFY_storage_kinetiksimulationfab70cc7_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "kinetiksimulationfab70cc7"
+        }
+      ]
     }
   },
-  "storage": {}
+  "storage": {
+    "Filepvj44lfrsvat7hklhitua63aaudev": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    },
+    "Userpvj44lfrsvat7hklhitua63aaudev": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    },
+    "kinetiksimulationfab70cc7": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "serviceType": "imported"
+    },
+    "recommendationEngine": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
 }

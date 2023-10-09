@@ -1,0 +1,10 @@
+{
+  "resourceName": "recommendationEngine",
+  "tableName": "webUrls",
+  "partitionKey": {
+    "fieldName": "path",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
