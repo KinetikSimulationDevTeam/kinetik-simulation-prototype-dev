@@ -310,7 +310,10 @@ function DragDropFile(props) {
       localStorage.setItem("KinetikDataSet", jsonString);
     }
 
-    if (localStorage.getItem("marketingInputFile") !== null) {
+    if (
+      localStorage.getItem("marketingInputFile") !== null &&
+      localStorage.getItem("marketingInputFile") !== "null"
+    ) {
       const jsonObject = JSON.parse(localStorage.getItem("marketingInputFile"));
       jsonObject.weeks = Number(props.timePeriod);
       const jsonString = JSON.stringify(jsonObject);
