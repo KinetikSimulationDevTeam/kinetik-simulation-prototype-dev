@@ -3,9 +3,10 @@ import boto3
 from botocore.vendored import requests
 import random
 import string
+from bs4 import BeautifulSoup
 
 
-def handler(event, context):
+def lambda_handler(event, context):
     # Create a DynamoDB client
     dynamodb = boto3.resource('dynamodb')
     dynamodb_table_name = 'webUrls-dev'
