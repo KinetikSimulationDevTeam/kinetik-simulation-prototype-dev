@@ -19,7 +19,7 @@
         },
         "kinetiksimulationsensitivityanalysis": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
-          "s3Key": "amplify-builds/kinetiksimulationsensitivityanalysis-696b644a702f49316f73-build.zip"
+          "s3Key": "amplify-builds/kinetiksimulationsensitivityanalysis-466f52516748744c482f-build.zip"
         },
         "kinetikSimulationMarketingInputFileAlgorithm": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
