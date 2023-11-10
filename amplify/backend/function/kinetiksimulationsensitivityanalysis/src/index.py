@@ -2,6 +2,7 @@ import json
 import numpy
 import boto3
 import copy
+from kinetikSimulationLambda import monteCarloSimulation
 
 # Create an instance of the Boto3 Lambda client
 client = boto3.client('lambda')
@@ -19,17 +20,12 @@ def handler(event, context):
     revenue_values = []
 
     # Run the simulation 10 times
-    for _ in range(50):
-        response_simulation = client.invoke(
-            FunctionName='kinetikSimulationLambda-dev',
-            InvocationType='RequestResponse',
-            Payload=json.dumps(body)
-        )
+    for _ in range(300):
+        response_simulation = monteCarloSimulation(body)
 
-        response_decode = response_simulation["Payload"].read().decode('utf-8')
-        simulation_result = json.loads(response_decode)["body"]
+        print("response_simulation", response_simulation)
 
-        last_subarray = json.loads(simulation_result)[-1]
+        last_subarray = response_simulation
 
         revenue_value = 0
 
@@ -52,7 +48,7 @@ def handler(event, context):
     all_results = []
 
     # Run the simulation 10 times
-    for _ in range(50):
+    for _ in range(300):
 
         # Results for one trial
         result = []
@@ -80,59 +76,18 @@ def handler(event, context):
                 0 if index < i else 0.15 for index in range(i + 1)]
 
             # Call another Lambda function to get the simulation result for the 5% increase
-            response_simulation_5percent = client.invoke(
-                # Lambda function name
-                FunctionName='kinetikSimulationLambda-dev',
-                # Use RequestResponse for synchronous invocation
-                InvocationType='RequestResponse',
-                # Pass the payload/data to the other Lambda function
-                Payload=json.dumps(body_copy_5percent)
-            )
-
-            response_decode_5percent = response_simulation_5percent["Payload"].read(
-            ).decode('utf-8')
-            simulation_result_5percent = json.loads(
-                response_decode_5percent)["body"]
-            simulation_result_5percent = json.loads(simulation_result_5percent)
+            response_simulation_5percent = monteCarloSimulation(body)
 
             # Call another Lambda function to get the simulation result for the 10% increase
-            response_simulation_10percent = client.invoke(
-                # Lambda function name
-                FunctionName='kinetikSimulationLambda-dev',
-                # Use RequestResponse for synchronous invocation
-                InvocationType='RequestResponse',
-                # Pass the payload/data to the other Lambda function
-                Payload=json.dumps(body_copy_10percent)
-            )
-
-            response_decode_10percent = response_simulation_10percent["Payload"].read(
-            ).decode('utf-8')
-            simulation_result_10percent = json.loads(
-                response_decode_10percent)["body"]
-            simulation_result_10percent = json.loads(
-                simulation_result_10percent)
+            response_simulation_10percent = monteCarloSimulation(body)
 
             # Call another Lambda function to get the simulation result for the 15% increase
-            response_simulation_15percent = client.invoke(
-                # Lambda function name
-                FunctionName='kinetikSimulationLambda-dev',
-                # Use RequestResponse for synchronous invocation
-                InvocationType='RequestResponse',
-                # Pass the payload/data to the other Lambda function
-                Payload=json.dumps(body_copy_15percent)
-            )
-
-            response_decode_15percent = response_simulation_15percent["Payload"].read(
-            ).decode('utf-8')
-            simulation_result_15percent = json.loads(
-                response_decode_15percent)["body"]
-            simulation_result_15percent = json.loads(
-                simulation_result_15percent)
+            response_simulation_15percent = monteCarloSimulation(body)
 
             # Get the last subarray
-            last_subarray_5percent = simulation_result_5percent[-1]
-            last_subarray_10percent = simulation_result_10percent[-1]
-            last_subarray_15percent = simulation_result_15percent[-1]
+            last_subarray_5percent = response_simulation_5percent
+            last_subarray_10percent = response_simulation_10percent
+            last_subarray_15percent = response_simulation_15percent
 
             revenue_stage_5percent = 0
             revenue_stage_10percent = 0
