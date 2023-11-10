@@ -23,6 +23,7 @@ const ModelVariablesList = () => {
   ] = useState(null);
   const [stages, setStages] = useState(null);
   const [maxNumberIncrease, setMaxNumberIncrease] = useState(0);
+  const [selectedValue, setSelectedValue] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -30,6 +31,7 @@ const ModelVariablesList = () => {
         const lambdaResult = await callSensitivityAnalysisLambda(
           localStorage.getItem("KinetikDataSet")
         );
+        console.log(lambdaResult[0]);
         await setStages(lambdaResult[0]);
         const nomalizeLambdaResult = normalizeArray(lambdaResult);
         await setNormalizeSensitivityAnalysisLambdaResult(nomalizeLambdaResult);
@@ -65,12 +67,24 @@ const ModelVariablesList = () => {
   const normalizeArray = (arr) => {
     const arrayWithoutFirstElement = arr.slice(1);
     const flattenedArray = arrayWithoutFirstElement.flat();
-    const maxNumber = Math.max(...flattenedArray);
+    console.log(flattenedArray);
+
+    // Find the max number in the array
+    let maxNumber = 0;
+    flattenedArray.forEach((num) => {
+      for (let i = 0; i < num.length; i++) {
+        if (num[i] > maxNumber) {
+          maxNumber = num[i];
+        }
+      }
+    });
     setMaxNumberIncrease(maxNumber);
 
-    const normalizedArray = arrayWithoutFirstElement.map((innerArr) =>
+    const normalizedArray = flattenedArray.map((innerArr) =>
       innerArr.map((num) => num / maxNumber)
     );
+
+    console.log(normalizedArray);
 
     return normalizedArray;
   };
@@ -128,6 +142,8 @@ const ModelVariablesList = () => {
                   <TableCell component="th" scope="row">
                     <Select
                       displayEmpty
+                      value={selectedValue}
+                      onChange={(event) => setSelectedValue(event.target.value)}
                       inputProps={{ "aria-label": "Without label" }}
                     >
                       <MenuItem value="">
@@ -138,6 +154,8 @@ const ModelVariablesList = () => {
                   <TableCell component="th" scope="row">
                     <Select
                       displayEmpty
+                      value={selectedValue}
+                      onChange={(event) => setSelectedValue(event.target.value)}
                       inputProps={{ "aria-label": "Without label" }}
                     >
                       <MenuItem value="">
@@ -148,6 +166,8 @@ const ModelVariablesList = () => {
                   <TableCell component="th" scope="row">
                     <Select
                       displayEmpty
+                      value={selectedValue}
+                      onChange={(event) => setSelectedValue(event.target.value)}
                       inputProps={{ "aria-label": "Without label" }}
                     >
                       <MenuItem value="">
