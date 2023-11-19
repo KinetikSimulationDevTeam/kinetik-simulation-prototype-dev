@@ -20,7 +20,7 @@ const DatabaseFileSelectionDialog = ({
   startSimulationButtonFlash,
   handleFileNameUpdate,
 }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState("");
   const [selectedFileName, setSelectedFileName] = useState(null);
   const [previousFileBody, setPreviousFileBody] = useState(null);
   const [previousFileName, setPreviousFileName] = useState(null);
@@ -41,11 +41,7 @@ const DatabaseFileSelectionDialog = ({
   };
 
   const handleConfirmButtonClick = (e) => {
-    console.log("Confirm button clicked");
-
     e.preventDefault();
-    console.log("Selected file: " + selectedFile);
-    console.log("Selected file name: " + selectedFileName);
 
     if (selectedFile === null) {
       alertify.error("Error: No file selected.");

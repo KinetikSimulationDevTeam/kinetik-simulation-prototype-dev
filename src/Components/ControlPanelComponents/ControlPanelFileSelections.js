@@ -43,7 +43,7 @@ const ControlPanelFileSelections = (props) => {
         display: "flex",
         flexDirection: "column",
         gap: "5%",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center",
         height: "100%",
       }}

@@ -35,7 +35,7 @@ const DatabaseFileSelection = ({
       const fetchData = async () => {
         try {
           const fileResult = await fetchFilesDdb();
-          setFilesFromDdb(fileResult, console.log(fileResult));
+          setFilesFromDdb(fileResult);
         } catch (e) {}
       };
 
@@ -65,7 +65,7 @@ const DatabaseFileSelection = ({
         sx={{ fontSize: "10px", width: "100%", whiteSpace: "nowrap" }}
         onClick={handleButtonClick}
       >
-        Select Database File
+        Select From Database
       </Button>
       <DatabaseFileSelectionDialog
         files={filesFromDdb}

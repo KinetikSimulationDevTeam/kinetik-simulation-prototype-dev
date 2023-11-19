@@ -55,6 +55,7 @@
 #upload-module-layout {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
