@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactSlider from "react-slider";
+import { Box, Typography, Slider } from "@mui/material";
 
 /*
     Description: This component is used to display the sliders for the scenerio analysis.
@@ -13,44 +13,44 @@ import ReactSlider from "react-slider";
     Return Type: None
 */
 const ScenerioSlider = ({ name, mean, onSliderChange, sliderValue }) => {
-  // This state will store the value of the slider
   const [value, setValue] = useState(mean);
 
-  useEffect(() => {
-    sliderValue = Math.round(sliderValue * 100);
-    setValue(sliderValue);
-  }, [sliderValue]);
-
-  /*
-    Description: This function is used to update the state of the slider when the user changes the value of the slider.
-
-    Arguments: newValue (the value of the slider)
-
-    Return Type: None
-  */
-  const handleSliderChange = async (newValue) => {
-    await setValue(newValue);
-    await onSliderChange(newValue); // call the callback function to update the state in ScenerioSliders
+  const handleSliderChange = (event, newValue) => {
+    setValue(newValue);
+    onSliderChange(newValue);
   };
 
+  function valuetext(value) {
+    return `${value}%`;
+  }
+
   return (
-    <div>
-      <p id="scenario-slider-name"> {name} </p>
-      <ReactSlider
-        className="scenario-slider"
-        thumbClassName="customSlider-thumb"
-        trackClassName="customSlider-track"
-        markClassName="customSlider-mark"
-        marks={mean}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        gap: "10px",
+        alignItems: "center",
+      }}
+    >
+      <Typography sx={{ fontSize: "small", width: "30%", textAlign: "start" }}>
+        {name}
+      </Typography>
+      <Slider
+        aria-label="Small"
+        value={typeof value === "number" ? value : 0}
+        getAriaValueText={valuetext}
+        step={10}
+        marks
         min={-90}
         max={300}
-        defaultValue={0}
-        value={value}
         onChange={handleSliderChange}
-        step={5}
+        sx={{ width: "70%" }}
       />
-      <p className="scenario-slider-value">Percent Change: {value}%</p>
-    </div>
+      <Typography sx={{ fontSize: "small", width: "10%", textAlign: "start" }}>
+        {value}%
+      </Typography>
+    </Box>
   );
 };
 

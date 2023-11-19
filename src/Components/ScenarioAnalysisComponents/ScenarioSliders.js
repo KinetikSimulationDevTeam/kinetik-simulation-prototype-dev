@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ScenerioSlider from "./ScenarioSlider";
 import alertify from "alertifyjs";
+import { Box } from "@mui/material";
 
 /*
     Description: This component is used to display the sliders for the scenerio analysis.
@@ -113,7 +114,15 @@ const ScenerioSliders = (props) => {
     );
   } else {
     return (
-      <div style={{ height: "100%", overflow: "auto" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          height: "100%",
+          overflow: "auto",
+        }}
+      >
         <ScenerioSlider
           name="Leads (TBD)"
           mean={0}
@@ -172,7 +181,7 @@ const ScenerioSliders = (props) => {
             Previous Values{" "}
           </button>
         </div>
-      </div>
+      </Box>
     );
   }
 };
