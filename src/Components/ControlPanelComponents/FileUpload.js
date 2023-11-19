@@ -40,6 +40,7 @@ function DragDropFile(props) {
   const [uploadtoDatabase, setUploadtoDatabase] = useState(false);
   const [previousFileName, setPreviousFileName] = useState("");
   const [previousFileBody, setPreviousFileBody] = useState("");
+
   const [open, setOpen] = React.useState(false);
   const [selectedFileName, setSelectedFileName] = useState("");
   const [importCsvButtonFlashing, setImportCsvButtonFlashing] = useState(false);
