@@ -76,7 +76,7 @@ const DatabaseFileSelectionDialog = ({
     <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
       <DialogTitle>Select T0 From Database</DialogTitle>
       <DialogContent>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ m: "1", width: "100%" }}>
           <InputLabel htmlFor="dialog-native">File</InputLabel>
           <Select
             value={selectedFile}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ScenerioSlider from "./ScenarioSlider";
 import alertify from "alertifyjs";
 import { Box } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 /*
     Description: This component is used to display the sliders for the scenerio analysis.
@@ -23,6 +24,7 @@ const ScenerioSliders = (props) => {
     0, 0, 0, 0, 0, 0,
   ]);
   const [confirmCount, setConfirmCount] = useState(true);
+  const [expand, setExpand] = useState(false);
 
   useEffect(() => {
     const refreshPage = () => {
@@ -102,6 +104,10 @@ const ScenerioSliders = (props) => {
     alertify.success("Sliders have been reset to their previous values.");
   };
 
+  const handleExpandIconClick = () => {
+    setExpand(!expand);
+  };
+
   if (!data) {
     return (
       <div>
@@ -123,14 +129,6 @@ const ScenerioSliders = (props) => {
           overflow: "auto",
         }}
       >
-        <ScenerioSlider
-          name="Leads (TBD)"
-          mean={0}
-          onSliderChange={(newValue) =>
-            handleSliderChange(newValue, 0, sliderValue)
-          }
-          sliderValue={sliderValue[0]}
-        />
         <ScenerioSlider
           name="Opportunities"
           mean={0}
@@ -171,7 +169,45 @@ const ScenerioSliders = (props) => {
           }
           sliderValue={sliderValue[5]}
         />
+
+        {expand && (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+            }}
+          >
+            <ScenerioSlider name="Impressions" mean={0} />
+            <ScenerioSlider name="Engagement" mean={0} />
+            <ScenerioSlider name="Responses" mean={0} />
+            <ScenerioSlider name="Leads" mean={0} />
+            <ScenerioSlider name="Marketing Qualified Leads" mean={0} />
+            <ScenerioSlider name="Sales Qualified Leads" mean={0} />
+            <ScenerioSlider name="Progression Velocity" mean={0} />
+            <ScenerioSlider name="Closing Velocity" mean={0} />
+            <ScenerioSlider name="Product Differentiation" mean={0} />
+          </Box>
+        )}
+
         <div id="scenario-buttons">
+          {!expand && (
+            <ExpandMoreIcon
+              sx={{ cursor: "pointer" }}
+              onClick={handleExpandIconClick}
+            />
+          )}
+
+          {expand && (
+            <ExpandMoreIcon
+              sx={{
+                cursor: "pointer",
+                transform: "rotate(180deg)",
+              }}
+              onClick={handleExpandIconClick}
+            />
+          )}
+
           <button className="button" type="submit" onClick={onClicked}>
             {" "}
             Confirm{" "}
