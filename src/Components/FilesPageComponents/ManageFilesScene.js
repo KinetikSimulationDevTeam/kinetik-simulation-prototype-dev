@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { fetchFilesDdb } from "../DynamoDBFunctions";
-import Button from "@mui/material/Button";
 import UploadLogo from "../../Images/UploadLogo.png";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FileTypeSelectionDialog from "./FileTypeSelectionDialog";
@@ -13,6 +12,7 @@ import InitialPipelineFileColumnSelection from "./InitialPipelineFiles/InitialPi
 import FileAnonymizer from "./InitialPipelineFiles/FileAnonymizer";
 import FilesTable from "./FilesTable";
 import MarketingInputFileDataProcessor from "./MarketingInputFiles/MarketingInputFileDataProcessor";
+import { Backdrop, CircularProgress, Button } from "@mui/material";
 
 const FilesList = () => {
   const [filesFromDdb, setFilesFromDdb] = useState([]);
@@ -29,6 +29,7 @@ const FilesList = () => {
   const [InitialPipelineFile, setInitialPipelineFile] = useState("");
   const [anonymizeColumns, setAnonymizeColumns] = useState([]);
   const [uploadFileName, setUploadFileName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // It will store the file uploaded by the user
   const fileReader = new FileReader();
@@ -153,9 +154,10 @@ const FilesList = () => {
     handleOnSelectFileType(value);
   };
 
-  const handleInitialPipelineFileColumnSelectionClose = (value) => {
+  const handleInitialPipelineFileColumnSelectionClose = async (value) => {
     setDisplayInitialPipelineFileColumnSelection(false);
-    setAnonymizeColumns(
+    setLoading(true);
+    await setAnonymizeColumns(
       value,
       FileAnonymizer({
         username: username,
@@ -165,6 +167,7 @@ const FilesList = () => {
         fileName: uploadFileName,
       })
     );
+    setLoading(false);
   };
 
   return (
@@ -265,6 +268,15 @@ const FilesList = () => {
         setDisplayDeleteButton={setDisplayDeleteButton}
         setFilesFromDdb={setFilesFromDdb}
       />
+
+      {loading && (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
     </div>
   );
 };

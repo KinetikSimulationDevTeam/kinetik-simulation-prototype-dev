@@ -54,7 +54,8 @@
 
 #upload-module-layout {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 2% 2% 2% 2%;
   background-color: white;
   width: 100%;
@@ -191,6 +192,7 @@
   font-size: 23px;
   text-align: left;
   white-space: nowrap;
+  font-weight: bold;
 }
 
 #upload-module-input-layout {
@@ -426,7 +428,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1.5vh 0.5vw;
+  margin: 0 0.5vw;
   gap: 1vw;
   height: 10%;
 }
@@ -496,13 +498,6 @@
   width: 4vh;
   height: 3.8vh;
   background-color: #e3f2fd;
-}
-
-#upload-module-left-section {
-  display: flex;
-  flex-direction: column;
-  gap: 2em;
-  width: 47%;
 }
 
 #kinetik-logo {

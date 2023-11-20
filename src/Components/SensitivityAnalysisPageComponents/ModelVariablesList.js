@@ -31,7 +31,6 @@ const ModelVariablesList = () => {
         const lambdaResult = await callSensitivityAnalysisLambda(
           localStorage.getItem("KinetikDataSet")
         );
-        console.log(lambdaResult[0]);
         await setStages(lambdaResult[0]);
         const nomalizeLambdaResult = normalizeArray(lambdaResult);
         await setNormalizeSensitivityAnalysisLambdaResult(nomalizeLambdaResult);
@@ -67,7 +66,6 @@ const ModelVariablesList = () => {
   const normalizeArray = (arr) => {
     const arrayWithoutFirstElement = arr.slice(1);
     const flattenedArray = arrayWithoutFirstElement.flat();
-    console.log(flattenedArray);
 
     // Find the max number in the array
     let maxNumber = 0;
@@ -83,8 +81,6 @@ const ModelVariablesList = () => {
     const normalizedArray = flattenedArray.map((innerArr) =>
       innerArr.map((num) => num / maxNumber)
     );
-
-    console.log(normalizedArray);
 
     return normalizedArray;
   };
