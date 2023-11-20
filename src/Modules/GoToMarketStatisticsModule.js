@@ -76,6 +76,13 @@ const GoToMarketStatisticsModule = ({
         </p>
 
         <p className="statistics-module-info-legend">
+          New Leads:
+          <span className="statistics-module-info-values">
+            {Math.round(leads).toLocaleString("en")}
+          </span>
+        </p>
+
+        <p className="statistics-module-info-legend">
           Marketing Qualified Leads:
           <span className="statistics-module-info-values">
             {marketingInputFileResponse === null
@@ -91,6 +98,23 @@ const GoToMarketStatisticsModule = ({
               ? Math.round(mqls / 3).toLocaleString("en")
               : marketingInputFileResponse.SQL.toLocaleString("en")}
           </span>
+        </p>
+
+        <p className="statistics-module-info-legend">
+          New Opportunities:
+          <span className="statistics-module-info-values">
+            {Math.round(totalOpportunities).toLocaleString("en")}
+          </span>
+        </p>
+
+        <p className="statistics-module-info-legend">
+          Progression Velocity:
+          <span className="statistics-module-info-values">9%</span>
+        </p>
+
+        <p className="statistics-module-info-legend">
+          Closing Velocity:
+          <span className="statistics-module-info-values">48%</span>
         </p>
 
         <p className="statistics-module-info-legend">
