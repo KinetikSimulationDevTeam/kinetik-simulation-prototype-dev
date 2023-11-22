@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import alertify from "alertifyjs";
 
-const DatabaseFileSelectionDialog = ({
+const MarketingSourceSelectionDialog = ({
   files,
   open,
   close,
@@ -20,7 +20,7 @@ const DatabaseFileSelectionDialog = ({
   startSimulationButtonFlash,
   handleFileNameUpdate,
 }) => {
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState("None");
   const [selectedFileName, setSelectedFileName] = useState(null);
 
   const handleChange = (event) => {
@@ -92,4 +92,4 @@ const DatabaseFileSelectionDialog = ({
   );
 };
 
-export default DatabaseFileSelectionDialog;
+export default MarketingSourceSelectionDialog;

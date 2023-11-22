@@ -5,6 +5,8 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
   const [totalRevenue, setTotalRevenue] = useState(0);
   const [wins, setWins] = useState(0);
   const [loss, setLoss] = useState(0);
+  const [lastPipeline, setLastPipeline] = useState(0);
+  const [endingARR, setEndingARR] = useState(0);
 
   useEffect(() => {
     if (lambdaOutput === undefined) return;
@@ -24,6 +26,18 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
       lambdaOutput[lambdaOutput.length - 1].find((obj) => obj.Stage === "Loss")
         .values
     );
+
+    // Count all pipeline values for the statistics module
+    let countLastPipeline = 0;
+    const totalStages = lambdaOutput[lambdaOutput.length - 1].length - 5;
+
+    for (let i = 0; i < totalStages; i++) {
+      countLastPipeline += lambdaOutput[lambdaOutput.length - 1][i].values;
+    }
+
+    setLastPipeline(countLastPipeline);
+
+    setEndingARR(((totalRevenue * 1000000) / lambdaOutput.length).toFixed(0));
   }, [lambdaOutput]);
 
   return (
@@ -34,14 +48,14 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
           <p className="statistics-module-info-legend">
             Total Revenue:
             <span className="statistics-module-info-values">
-              ${totalRevenue.toLocaleString("en")}M
+              ${totalRevenue.toFixed(0).toLocaleString("en")}M
             </span>
           </p>
 
           <p className="statistics-module-info-legend">
             Wins:
             <span className="statistics-module-info-values">
-              ${wins.toLocaleString("en")}M
+              {wins.toFixed(0).toLocaleString("en")}
             </span>
           </p>
         </Box>
@@ -50,14 +64,14 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
           <p className="statistics-module-info-legend">
             Lost Opportunities:
             <span className="statistics-module-info-values">
-              ${loss * (0.368).toLocaleString("en")}M
+              ${(loss * 0.368).toFixed(0).toLocaleString("en")}M
             </span>
           </p>
 
           <p className="statistics-module-info-legend">
             Losses:
             <span className="statistics-module-info-values">
-              {Math.round(loss).toLocaleString("en")}
+              {Math.round(loss).toFixed(0).toLocaleString("en")}
             </span>
           </p>
         </Box>
@@ -76,16 +90,20 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
 
         <p className="statistics-module-info-legend">
           Ending Pipeline:
-          <span className="statistics-module-info-values">Coming Soon</span>
+          <span className="statistics-module-info-values">
+            {lastPipeline.toFixed(0).toLocaleString("en")}
+          </span>
         </p>
 
         <p className="statistics-module-info-legend">
-          Ending APR:
-          <span className="statistics-module-info-values">Coming Soon</span>
+          Ending ARR:
+          <span className="statistics-module-info-values">
+            ${endingARR.toLocaleString("en")}
+          </span>
         </p>
 
         <p className="statistics-module-info-legend">
-          APR CAGR:
+          ARR CAGR:
           <span className="statistics-module-info-values">Coming Soon</span>
         </p>
       </div>

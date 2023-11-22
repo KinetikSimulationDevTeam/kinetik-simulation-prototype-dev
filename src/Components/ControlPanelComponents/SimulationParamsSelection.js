@@ -8,6 +8,7 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import HorizonParamSelection from "./HorizonParamSelection";
+import SourceParamSelection from "./SourceParamSelection";
 
 const strategyNames = [
   "None",
@@ -27,19 +28,10 @@ const marketingNames = [
   "ABM / Events Partners",
 ];
 
-const sourceNames = [
-  "None",
-  "Marketing",
-  "Sales",
-  "Current Pipeline",
-  "Model Design",
-];
-
 const SimulationParamsSelection = () => {
   // State variables for each select
   const [selectedStrategy, setSelectedStrategy] = useState("None");
   const [selectedMarketing, setSelectedMarketing] = useState("None");
-  const [selectedSource, setSelectedSource] = useState("None");
 
   return (
     <Box
@@ -89,23 +81,7 @@ const SimulationParamsSelection = () => {
         </Select>
       </FormControl>
 
-      <FormControl sx={{ width: "100%" }}>
-        <InputLabel id="source-label">Source</InputLabel>
-        <Select
-          labelId="source-label"
-          id="source-select"
-          value={selectedSource}
-          onChange={(e) => setSelectedSource(e.target.value)}
-          input={<OutlinedInput label="Source" />}
-          size="small"
-        >
-          {sourceNames.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <SourceParamSelection />
     </Box>
   );
 };
