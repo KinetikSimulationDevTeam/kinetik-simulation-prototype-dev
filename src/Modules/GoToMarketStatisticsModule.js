@@ -109,12 +109,12 @@ const GoToMarketStatisticsModule = ({
 
         <p className="statistics-module-info-legend">
           Progression Velocity:
-          <span className="statistics-module-info-values">9%</span>
+          <span className="statistics-module-info-values">Coming Soon</span>
         </p>
 
         <p className="statistics-module-info-legend">
           Closing Velocity:
-          <span className="statistics-module-info-values">48%</span>
+          <span className="statistics-module-info-values">Coming Soon</span>
         </p>
 
         <p className="statistics-module-info-legend">
