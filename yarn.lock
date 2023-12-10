@@ -11891,6 +11891,18 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
+react-chatbot-kit@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-chatbot-kit/-/react-chatbot-kit-2.2.1.tgz#9240338875fb63f62cedf8c4c2a4bf2873447b66"
+  integrity sha512-jGmMU2W3cV0mklv3yoHhvodpaVBssDiIYLU6j4kuYXysj3wJLdwPWoUgwKicW/Mj80qauPbv63FgFTR9IqjbIA==
+  dependencies:
+    react-conditionally-render "^1.0.2"
+
+react-conditionally-render@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-conditionally-render/-/react-conditionally-render-1.0.2.tgz#9ff3c3fb6b76c1cfaae64429285fa99c6d275fb5"
+  integrity sha512-CtjIgaLHVDSgHis3gv/PT/8EnD6GPUL8PrhUjh7DP6S5Y3p56dGu7y2nVg6pYv1kv+fGznRhRmX3assr/vRw3A==
+
 react-detect-offline@^2.4.5:
   version "2.4.5"
   resolved "https://registry.yarnpkg.com/react-detect-offline/-/react-detect-offline-2.4.5.tgz#3c242516c37b6789cf89102881031f87e70b80e6"

@@ -13,7 +13,8 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
     setTotalRevenue(
       lambdaOutput[lambdaOutput.length - 1].find(
         (obj) => obj.Stage === "Revenue"
-      ).values
+      ).values,
+      setEndingARR(((totalRevenue * 1000000) / lambdaOutput.length).toFixed(0))
     );
     setWins(
       Math.round(
@@ -36,8 +37,6 @@ const ScenarioAnalysisModule = ({ lambdaOutput }) => {
     }
 
     setLastPipeline(countLastPipeline);
-
-    setEndingARR(((totalRevenue * 1000000) / lambdaOutput.length).toFixed(0));
   }, [lambdaOutput]);
 
   return (
