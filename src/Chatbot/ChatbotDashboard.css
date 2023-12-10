@@ -15,6 +15,7 @@
 
 .react-chatbot-kit-chat-bot-message {
     background-color: rgb(26, 67, 129);
+    width: 280px;
 }
 
 .react-chatbot-kit-chat-bot-message-arrow {
