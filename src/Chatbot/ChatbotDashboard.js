@@ -7,6 +7,7 @@ import config from "./Config";
 import MessageParser from "./MessageParser";
 import ActionProvider from "./ActionProvider";
 import "react-chatbot-kit/build/main.css";
+import "./ChatbotDashboard.css";
 
 const ChatbotDashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -14,7 +15,7 @@ const ChatbotDashboard = () => {
   const toggleChatbot = () => {
     setIsCollapsed(!isCollapsed);
   };
-
+   
   return (
     <Box className={isCollapsed ? "chatbot-icon" : "chatbot-expanded"}>
       {isCollapsed ? (
