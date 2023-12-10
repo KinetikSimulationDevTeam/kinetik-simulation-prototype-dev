@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.react-chatbot-kit-chat-container {
+    width: 400px;
+}
+
+
+.react-chatbot-kit-chat-bot-message {
+    margin-left: 10px;
+    background-color: rgb(26, 67, 129);
+    width: 280px;
+    font-size: 0.8em;
+}
+
+.react-chatbot-kit-chat-bot-message-arrow {
+    border-right: 8px solid rgb(26, 67, 129);
+}
+
+.react-chatbot-kit-chat-btn-send {
+    background-color: rgb(26, 67, 129);
+}
+
+.ADE {
+    background-color: rgb(26, 67, 129);
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    color: white;
+    border-radius: 100%;
+}
+
+.start-btn {
+    background-color: rgb(26, 67, 129);
+    color: white;
+    padding: .5rem 1rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    margin-left: 3rem;
+}
+
+.slow-btn {
+    margin-left: 1rem;
+}
