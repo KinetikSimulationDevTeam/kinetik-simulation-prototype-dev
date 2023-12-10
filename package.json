@@ -22,6 +22,7 @@
     "enzyme-adapter-react-16": "^1.15.7",
     "jest-action": "^1.0.0",
     "material-ui-slider": "^3.0.8",
+    "openai": "^4.20.1",
     "papaparse": "^5.4.1",
     "pretty-checkbox-react": "^3.2.0",
     "react": "^18.2.0",
