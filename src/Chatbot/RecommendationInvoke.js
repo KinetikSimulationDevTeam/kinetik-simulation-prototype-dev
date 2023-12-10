@@ -6,6 +6,7 @@ export async function fetchQuestionResponse(question) {
     const params = querystring.stringify({ question: question });
 
     try {
+        console.log(`${url}?${params}`);
         const response = await axios.get(`${url}?${params}`);
         console.log(response.data);
         return response.data;

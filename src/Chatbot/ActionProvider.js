@@ -1,6 +1,6 @@
 import React from "react";
 import ChatGPTInvoke from "./ChatGPTInvoke";
-import { fetchQuestionResponse } from './fetchQuestionResponse.js';
+import { fetchQuestionResponse } from './RecommendationInvoke.js';
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const handleOtherInput = async (input) => {
