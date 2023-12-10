@@ -9,13 +9,17 @@ import ActionProvider from "./ActionProvider";
 import "react-chatbot-kit/build/main.css";
 import "./ChatbotDashboard.css";
 
+// ChatbotDashboard component handles the chatbot UI
 const ChatbotDashboard = () => {
+   //manage whether the chatbot is collapsed or expanded
   const [isCollapsed, setIsCollapsed] = useState(true);
 
+  // Function to toggle the chatbot's collapsed state
   const toggleChatbot = () => {
     setIsCollapsed(!isCollapsed);
   };
    
+  // Return the chatbot UI
   return (
     <Box className={isCollapsed ? "chatbot-icon" : "chatbot-expanded"}>
       {isCollapsed ? (
