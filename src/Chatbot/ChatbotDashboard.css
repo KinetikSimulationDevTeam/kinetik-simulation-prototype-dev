@@ -9,13 +9,12 @@
     width: 400px;
 }
 
-.react-chatbot-kit-chat-bot-message {
-    margin-left: 10px;
-}
 
 .react-chatbot-kit-chat-bot-message {
+    margin-left: 10px;
     background-color: rgb(26, 67, 129);
     width: 280px;
+    font-size: 0.8em;
 }
 
 .react-chatbot-kit-chat-bot-message-arrow {
