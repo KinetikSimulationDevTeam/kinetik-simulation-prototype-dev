@@ -1,4 +1,4 @@
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Storage } from "aws-amplify";
 import { createUser, createFile } from "../../../graphql/mutations";
 import alertify from "alertifyjs";
 
@@ -59,33 +59,15 @@ const FileAnonymizer = async ({
 
     const jsonString = JSON.stringify(jsonData);
 
-    try {
-      // create user
-      const userParams = { id: username };
-
-      const userResult = await API.graphql(
-        graphqlOperation(createUser, { input: userParams })
-      );
-      const user = userResult.data.createUser;
-    } catch (err) {}
-
-    // create file
-    const fileParams = {
-      userid: username,
-      title: fileName,
-      body: jsonString,
-      filetype: "Initial Pipeline",
-    };
-
-    const fileResult = await API.graphql(
-      graphqlOperation(createFile, { input: fileParams })
-    );
-    const file = fileResult.data.createFile;
-    handleSetUpdate();
-    alertify.success("File Uploaded Successfully");
+    // Upload to S3
+    await Storage.put(`${username}/${fileName}.json`, jsonString, {
+      contentType: "application/json",
+    });
+    alertify.success("File Uploaded to S3 Successfully");
   } catch (err) {
-    console.log(err);
+    console.error("Error uploading file to S3:", err);
     alertify.error("Input File is not in correct format");
+    return;
   }
 };
 

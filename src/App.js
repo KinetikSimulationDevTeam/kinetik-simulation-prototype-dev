@@ -1,6 +1,6 @@
-import './App.css';
-import MainFrame from './Pages/MainFrame';
-import { Authenticator } from '@aws-amplify/ui-react';
+import "./App.css";
+import MainFrame from "./Pages/MainFrame";
+import { Authenticator } from "@aws-amplify/ui-react";
 
 /*
     Description: This component is used to display the main frame of the application.

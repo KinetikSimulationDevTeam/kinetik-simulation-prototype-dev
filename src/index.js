@@ -11,6 +11,7 @@ import Signin from "./Pages/SigninPage";
 import PageNotFound from "./Pages/PageNotFound";
 import Files from "./Pages/ManageFilesPage";
 import SensitivityAnalysisPage from "./Pages/SensitivityAnalysisPage";
+import ChatbotDashboard from "./Chatbot/ChatbotDashboard";
 
 Amplify.configure(awsconfig);
 
@@ -30,6 +31,7 @@ root.render(
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
+    <ChatbotDashboard />
   </React.StrictMode>
 );
 
