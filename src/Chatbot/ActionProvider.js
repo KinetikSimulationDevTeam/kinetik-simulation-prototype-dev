@@ -8,13 +8,11 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     try {
       let response;
 
-      if (/^(tactics:|tactic:|strategy:|strategies:)/i.test(input)) {
-        // Remove the keyword from input and fetch question response
-        const question = input.replace(/^(tactics:|tactic:|strategy:|strategies:)\s*/i, "");
+      if (/^(tactics:|tactic:|strategy:|strategies:)/i.test(input)) {  // message starts with specified keywords
+        const question = input.replace(/^(tactics:|tactic:|strategy:|strategies:)\s*/i, "");  // Remove the keyword from input and fetch question response
         response = await fetchQuestionResponse(question);
-      } else {
-        // Otherwise, invoke ChatGPT
-        response = await ChatGPTInvoke(input);
+      } else {   
+        response = await ChatGPTInvoke(input);  // Otherwise, invoke ChatGPT
       }
       
       botMessage = createChatBotMessage(response);
