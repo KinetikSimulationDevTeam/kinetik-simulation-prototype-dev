@@ -9,7 +9,7 @@ export async function fetchQuestionResponse(question) {
 
     try {
         const response = await axios.get(`${url}?${params}`);  // make request
-        return response.data;  // return the jsonify(result)
+        return response.data.message;  // return the jsonify(result)
     } catch (error) {
         console.error('Error:', error.message);  // handle error msg, like 500 status code
         return null;
