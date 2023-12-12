@@ -1,8 +1,6 @@
 module.exports = {
-    setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
-    testPathIgnorePatterns: ['/node_modules/', '/public/'],
-    moduleNameMapper: {
-      '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-    },
-  };
-  
+  moduleNameMapper: {
+    '\\.(css|scss)$': '<rootDir>/__mocks__/styleMocks.js',
+  },
+  // other configuration options
+};
