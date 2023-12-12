@@ -3,15 +3,27 @@ import querystring from 'querystring';
 
 // fetch the backend recommendation engine result
 export async function fetchQuestionResponse(question) {
-    // url and query, it should be in the format of 'http://IP:PORT/route?question=...'
-    const url = 'http://54.226.206.36:5000/process_user_question';
-    const params = querystring.stringify({ question: question });
+    // call AWS HTTP gateway to make sure the HTTPS 
+    const url = 'https://p5svvptpnf.execute-api.us-east-2.amazonaws.com/get-recommendation-function'
+    const params = querystring.stringify({ question: question})
 
     try {
         const response = await axios.get(`${url}?${params}`);  // make request
-        return response.data;  // return the jsonify(result)
+        
+        // Check response status code 
+        if (response.data.statuscode === 200) {  // usual resp
+            return response.data.body.message;
+        } else if (response.data.statuscode === 400) {  // usually caused by no question provided & recognized
+            console.error('Error from API:', response.data.body.error);
+            return response.data.body.error;
+        } else {  // back-up for unhandled. should not happen
+            console.error('Unhandled API error. Please double check question & lambda function to fix this');
+            return 'Request failed: Unhandled Exceptions. Please contact developer for a fix.'
+        }
+
     } catch (error) {
-        console.error('Error:', error.message);  // handle error msg, like 500 status code
-        return null;
+        // Handle any exception uncaught
+        console.error('Error making the request:', error.message);
+        return 'Request failed: Unhandled Exceptions. Please contact developer for a fix.';
     }
 }
