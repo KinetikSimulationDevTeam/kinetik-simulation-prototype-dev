@@ -11,9 +11,9 @@ export async function fetchQuestionResponse(question) {
         const response = await axios.get(`${url}?${params}`);  // make request
         
         // Check response status code 
-        if (response.data.status_code === 200) {  // usual resp
+        if (response.data.statuscode === 200) {  // usual resp
             return response.data.body.message;
-        } else if (response.data.status_code === 400) {  // usually caused by no question provided & recognized
+        } else if (response.data.statuscode === 400) {  // usually caused by no question provided & recognized
             console.error('Error from API:', response.data.body.error);
             return response.data.body.error;
         } else {  // back-up for unhandled. should not happen
