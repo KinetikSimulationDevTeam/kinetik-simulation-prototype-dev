@@ -23,7 +23,7 @@
         },
         "kinetikSimulationMarketingInputFileAlgorithm": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
-          "s3Key": "amplify-builds/kinetikSimulationMarketingInputFileAlgorithm-6f70786872416856347a-build.zip"
+          "s3Key": "amplify-builds/kinetikSimulationMarketingInputFileAlgorithm-7a3158664d6d51723348-build.zip"
         }
       },
       "api": {
