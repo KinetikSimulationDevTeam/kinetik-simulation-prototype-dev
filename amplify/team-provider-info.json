@@ -15,7 +15,7 @@
       "function": {
         "kinetikSimulationLambda": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
-          "s3Key": "amplify-builds/kinetikSimulationLambda-38696350713567462f78-build.zip"
+          "s3Key": "amplify-builds/kinetikSimulationLambda-4a414778434a53677557-build.zip"
         },
         "kinetiksimulationsensitivityanalysis": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
@@ -23,7 +23,7 @@
         },
         "kinetikSimulationMarketingInputFileAlgorithm": {
           "deploymentBucketName": "amplify-kinetiksimulation-dev-153354-deployment",
-          "s3Key": "amplify-builds/kinetikSimulationMarketingInputFileAlgorithm-7a3158664d6d51723348-build.zip"
+          "s3Key": "amplify-builds/kinetikSimulationMarketingInputFileAlgorithm-3547436c4253785a6448-build.zip"
         }
       },
       "api": {
@@ -40,25 +40,16 @@
       },
       "storage": {
         "recommendationEngine": {},
+        "kinetiksimulationfab70cc7": {
+          "bucketName": "recommendation-engine-scraped-data",
+          "region": "us-east-1"
+        },
         "Filepvj44lfrsvat7hklhitua63aaudev": {
           "tableName": "File-pvj44lfrsvat7hklhitua63aau-dev",
           "region": "us-east-1",
           "arn": "arn:aws:dynamodb:us-east-1:737874217071:table/File-pvj44lfrsvat7hklhitua63aau-dev",
-          "streamArn": "arn:aws:dynamodb:us-east-1:737874217071:table/File-pvj44lfrsvat7hklhitua63aau-dev/stream/2023-07-02T06:48:45.939",
           "partitionKeyName": "id",
           "partitionKeyType": "S"
-        },
-        "Userpvj44lfrsvat7hklhitua63aaudev": {
-          "tableName": "User-pvj44lfrsvat7hklhitua63aau-dev",
-          "region": "us-east-1",
-          "arn": "arn:aws:dynamodb:us-east-1:737874217071:table/User-pvj44lfrsvat7hklhitua63aau-dev",
-          "streamArn": "arn:aws:dynamodb:us-east-1:737874217071:table/User-pvj44lfrsvat7hklhitua63aau-dev/stream/2023-07-02T06:47:55.714",
-          "partitionKeyName": "id",
-          "partitionKeyType": "S"
-        },
-        "kinetiksimulationfab70cc7": {
-          "bucketName": "recommendation-engine-scraped-data",
-          "region": "us-east-1"
         }
       }
     }

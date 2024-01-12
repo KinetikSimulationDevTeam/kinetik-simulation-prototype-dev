@@ -195,67 +195,11 @@
         }
       ]
     },
-    "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_streamArn": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
-        }
-      ]
-    },
     "AMPLIFY_storage_Filepvj44lfrsvat7hklhitua63aaudev_tableName": {
       "usedBy": [
         {
           "category": "storage",
           "resourceName": "Filepvj44lfrsvat7hklhitua63aaudev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_arn": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_partitionKeyName": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_partitionKeyType": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_region": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_streamArn": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_Userpvj44lfrsvat7hklhitua63aaudev_tableName": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "Userpvj44lfrsvat7hklhitua63aaudev"
         }
       ]
     },
@@ -278,12 +222,6 @@
   },
   "storage": {
     "Filepvj44lfrsvat7hklhitua63aaudev": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "DynamoDB",
-      "serviceType": "imported"
-    },
-    "Userpvj44lfrsvat7hklhitua63aaudev": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB",

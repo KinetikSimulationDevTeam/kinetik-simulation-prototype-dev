@@ -210,7 +210,7 @@ def handler(event, context):
             body['opsProbabilities'][1][1]
         body['opsProbabilities'][1][1] = 0
 
-    # Demo > Proposal
+    # Demo > Proposal.
     currentProposalMarketDynamics2 = body['opsProbabilities'][2][3]
     newProposalMarketDynamics2 = body['opsProbabilities'][2][3] * \
         (1 + (sliderValues[5]/5))
