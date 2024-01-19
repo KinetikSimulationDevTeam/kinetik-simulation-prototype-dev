@@ -17,6 +17,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import InputAdornment from "@mui/material/InputAdornment";
+import LaunchIcon from "@mui/icons-material/Launch";
 
 const searchResult = [
   { tab: "Go to: Slider UX", group: "Forecast", link: "/", value: "slider ux" },
@@ -229,6 +230,27 @@ export default function PrimarySearchAppBar() {
               )}
             />
           </Stack>
+          <Box sx={{ flexGrow: 3 }} />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "5px",
+              width: "fit-content",
+            }}
+          >
+            <Typography>
+              <a
+                href="https://bmc.kinetik.solutions"
+                target="_blank"
+                style={{ color: "white", whiteSpace: "nowrap" }}
+              >
+                Our Partners
+              </a>
+            </Typography>
+            <LaunchIcon size="small" />
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton size="large" aria-label="notifications" color="inherit">
