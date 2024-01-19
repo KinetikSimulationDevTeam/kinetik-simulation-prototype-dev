@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Smile from "../Images/Smile.png";
 import SearchAppBar from "../Components/SearchAppBar";
 import Navbar from "../Components/NavigationBar";
+import Copyright from "../Components/Copyright/Copyright";
 
 const Signin = () => {
   return (
@@ -28,6 +29,7 @@ const Signin = () => {
           )}
         </Authenticator>
       </div>
+      <Copyright />
     </div>
   );
 };
