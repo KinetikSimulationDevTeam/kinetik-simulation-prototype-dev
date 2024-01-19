@@ -11,6 +11,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "BMCKinetikSimulationAlgorithm": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "kinetikSimulationLambda": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

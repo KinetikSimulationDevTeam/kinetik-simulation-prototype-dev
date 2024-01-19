@@ -21,6 +21,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/bmcsimulationalgorithm": {
+      "name": "/bmcsimulationalgorithm",
+      "lambdaFunction": "BMCKinetikSimulationAlgorithm",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }
